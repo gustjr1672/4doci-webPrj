@@ -8,4 +8,14 @@
         values (#{name})
     </insert>
 
+    <select id="findAll" resultType="com.doci.webPrj.admin.entity.Category">
+    select *
+    from category
+    </select>
+
+    <update id="update" >
+        update category
+        set name= #{name}
+        where id = #{id}
+    </update>
 </mapper>

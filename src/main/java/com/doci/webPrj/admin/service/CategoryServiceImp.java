@@ -20,11 +20,11 @@ public class CategoryServiceImp implements CategoryService{
 
     @Override
     public List<Category> findAll() {
-        return null;
+        return categoryRepository.findAll();
     }
 
     @Override
     public void update(Category category) {
-
+        categoryRepository.update(category);
     }
 }
