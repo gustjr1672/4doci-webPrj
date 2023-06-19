@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/admin.css" />
+  <script src="/js/validate.js" defer></script>
+  <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" />
+</head>
+
+<body>
+  <header>
+    <a href="/admin/randomchallenge/manage">
+      <img class="back" src="/image/admin/back.png" alt="back" />
+    </a>
+  </header>
+  <div class="title">랜덤도전 수정</div>
+
+  <form onsubmit="return validateCategory() && validateUnit()" action="/admin/randomchallenge/edit/submit/submit" method="post"
+    th:object="${selectedChallenge}" class="multi-form">
+    <div class="error-wrap">
+      <div>
+        <span>카테고리</span>
+        <select name="category" required id="category" th:field="*{categoryId}">
+          <!-- <option value="0" th:text="${categoryName}" th:value="${selectedChallenge.categoryId}">생활</option> -->
+          <option th:each="challengeCategory :${challengeCategoryList}" th:if="${challengeCategory.id == selectedChallenge.categoryId}" th:text="${challengeCategory.name}" th:value="${selectedChallenge.categoryId}">생활</option>
+          <option th:each="challengeCategory :${challengeCategoryList}" th:if="${challengeCategory.id != selectedChallenge.categoryId}" th:value="${challengeCategory.id}"
+            th:text="${challengeCategory.name}">
+          </option>
+        </select>
+      </div>
+      <p id="category-error"></p>
+    </div>
+    
+    <div>
+      <span>도전명</span>
+      <input type="text" id="title" name="title" required autocomplete="off" placeholder="도전명" th:field="*{name}"/>
+    </div>
+    <div>
+      <span>목표량</span>
+      <input type="number" id="goal" name="goal" required th:field="*{goalQuantity}" autocomplete="off"
+         />
+    </div>
+    <div class="error-wrap">
+      <div>
+        <span>목표단위</span>
+        <select name="unit" required id="unit" th:field="*{unitId}">
+          <!-- <option value="0" th:text="${UnitName}" th:value="${selectedChallenge.unitId}">선택</option> -->
+          <option th:each="challengeUnit :${challengeUnitList}" th:if="${challengeUnit.id == selectedChallenge.unitId}" th:text="${challengeUnit.name}"  th:value="${selectedChallenge.unitId}">선택</option>
+          <option th:each="challengeUnit :${challengeUnitList}" th:if="${challengeUnit.id != selectedChallenge.unitId}" th:value="${challengeUnit.id}"
+            th:text="${challengeUnit.name}">
+          </option>
+        </select>
+      </div>
+      <p id="unit-error"></p>
+    </div>
+    <div>
+      <span>도전기간</span>
+      <input type="number" id="period" name="period" required th:field="*{period}" autocomplete="off"
+        />
+    </div>
+    <div>
+      <span>인증빈도</span>
+      <input type="number" id="frequency" name="frequency" required th:field="*{authFrequency}" autocomplete="off"
+       />
+    </div>
+    <input type="hidden" th:field="*{id}">
+    
+    <button type="submit">수정완료</button>
+  </form>
+</body>
+
+</html>

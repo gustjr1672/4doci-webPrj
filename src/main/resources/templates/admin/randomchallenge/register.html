@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/admin.css" />
+  <script src="/js/validate.js" defer></script>
+  <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" />
+</head>
+
+<body>
+  <header>
+    <a href="/admin/randomchallenge/manage">
+      <img class="back" src="/image/admin/back.png" alt="back" />
+    </a>
+  </header>
+  <div class="title">랜덤도전 등록</div>
+
+  <form onsubmit="return validateCategory() && validateUnit()" action="" action="/admin/randomchallenge/register/submit" method="post"
+   class="multi-form">
+    <div class="error-wrap">
+      <div>
+        <span>카테고리</span>
+        <select name="categoryId" required id="category">
+          <option value="0" disabled selected hidden>선택</option>
+          <option th:each="challengeCategory :${challengeCategoryList}" th:value="${challengeCategory.id}"
+            th:text="${challengeCategory.name}">
+          </option>
+        </select>
+      </div>
+      <p id="category-error"></p>
+    </div>
+    
+    <div>
+      <span>도전명</span>
+      <input type="text" id="title" name="name" required autocomplete="off" placeholder="도전명" />
+    </div>
+    <div>
+      <span>목표량</span>
+      <input type="text" id="goal" name="goalQuantity" required autocomplete="off"
+        placeholder="목표량" />
+    </div>
+    <div class="error-wrap">
+      <div>
+        <span>목표단위</span>
+        <select name="unitId" required id="unitId">
+          <option value="0" disabled selected hidden>선택</option>
+          <option th:each="challengeUnit :${challengeUnitList}" th:value="${challengeUnit.id}"
+            th:text="${challengeUnit.name}">
+          </option>
+        </select>
+      </div>
+      <p id="unit-error"></p>
+    </div>
+    <div>
+      <span>도전기간</span>
+      <input type="number" id="period" name="period" required autocomplete="off"
+        placeholder="도전기간" />
+    </div>
+    <div>
+      <span>인증빈도</span>
+      <input type="number" id="frequency" name="authFrequency" required autocomplete="off"
+        placeholder="인증빈도" />
+    </div>
+
+    <button type="submit">등록</button>
+  </form>
+</body>
+
+</html>
