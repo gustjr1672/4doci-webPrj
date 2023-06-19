@@ -18,5 +18,9 @@ public interface RandomChallengeRepository {
     void create(@Param("r")RandomChallenge randomChallenge);
     List<Category> getCategoryList();
     List<Unit> getUnitList();
-  
+    List<RandomChallenge> findAllBycategoryId(int categoryId);
+    RandomChallenge findById(int id);
+    String findCategoryName(int categoryId);
+    String findUnitName(int unit);
+    void update(@Param("r")RandomChallenge randomChallenge);
 }

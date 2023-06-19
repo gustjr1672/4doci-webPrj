@@ -19,12 +19,12 @@
   </header>
   <div class="title">랜덤도전 등록</div>
 
-  <form onsubmit="return validateCategory() && validateUnit()" action="" th:action="@{/admin/randomchallenge/register/submit}" method="post"
-    th:object="${randomchallenge}" class="multi-form">
+  <form onsubmit="return validateCategory() && validateUnit()" action="" action="/admin/randomchallenge/register/submit" method="post"
+   class="multi-form">
     <div class="error-wrap">
       <div>
         <span>카테고리</span>
-        <select name="category" required id="category" th:field="*{categoryId}">
+        <select name="categoryId" required id="category">
           <option value="0" disabled selected hidden>선택</option>
           <option th:each="challengeCategory :${challengeCategoryList}" th:value="${challengeCategory.id}"
             th:text="${challengeCategory.name}">
@@ -36,17 +36,17 @@
     
     <div>
       <span>도전명</span>
-      <input type="text" id="title" name="title" required th:field="*{name}" autocomplete="off" placeholder="도전명" />
+      <input type="text" id="title" name="name" required autocomplete="off" placeholder="도전명" />
     </div>
     <div>
       <span>목표량</span>
-      <input type="text" id="goal" name="goal" required th:field="*{goalQuantity}" autocomplete="off"
+      <input type="text" id="goal" name="goalQuantity" required autocomplete="off"
         placeholder="목표량" />
     </div>
     <div class="error-wrap">
       <div>
         <span>목표단위</span>
-        <select name="unit" required id="unit" th:field="*{unitId}">
+        <select name="unitId" required id="unitId">
           <option value="0" disabled selected hidden>선택</option>
           <option th:each="challengeUnit :${challengeUnitList}" th:value="${challengeUnit.id}"
             th:text="${challengeUnit.name}">
@@ -57,12 +57,12 @@
     </div>
     <div>
       <span>도전기간</span>
-      <input type="number" id="period" name="period" required th:field="*{period}" autocomplete="off"
+      <input type="number" id="period" name="period" required autocomplete="off"
         placeholder="도전기간" />
     </div>
     <div>
       <span>인증빈도</span>
-      <input type="number" id="frequency" name="frequency" required th:field="*{authFrequency}" autocomplete="off"
+      <input type="number" id="frequency" name="authFrequency" required autocomplete="off"
         placeholder="인증빈도" />
     </div>
 

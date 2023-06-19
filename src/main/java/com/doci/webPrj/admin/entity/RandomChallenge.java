@@ -12,7 +12,6 @@ public class RandomChallenge {
     boolean isFinish;
     int unitId;
     int goalQuantity;
-    int adminId;
     int categoryId;
     String result;
 }

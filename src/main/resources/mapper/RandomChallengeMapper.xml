@@ -7,8 +7,8 @@
 
 
     <insert id="create">
-        insert into random_challenge(name,period,auth_frequency,unit_id, goal_quantity, admin_id,category_id) 
-        values(#{r.name},#{r.period},#{r.authFrequency},#{r.unitId},#{r.goalQuantity},2,#{r.categoryId});
+        insert into random_challenge(name,period,auth_frequency,unit_id, goal_quantity,category_id) 
+        values(#{r.name},#{r.period},#{r.authFrequency},#{r.unitId},#{r.goalQuantity},#{r.categoryId});
     </insert>
 
     <select id="getCategoryList" resultType="com.doci.webPrj.admin.entity.Category">
@@ -21,5 +21,24 @@
         from unit
     </select>
 
+ <select id="findAllBycategoryId" resultType="com.doci.webPrj.admin.entity.RandomChallenge">
+        select * from startupdb.random_challenge
+        <where>
+        <if test="categoryId!=null">
+			category_id = #{categoryId} 
+        </if>
+        </where>
+    </select>
+
+    <select id="findById" resultType="com.doci.webPrj.admin.entity.RandomChallenge">
+        select * from startupdb.random_challenge
+        where id = #{id}
+    </select>
+
+    <update id="update">
+        update random_challenge set name=#{r.name},period=#{r.period},auth_frequency=#{r.authFrequency},
+        unit_id=#{r.unitId}, goal_quantity=#{r.goalQuantity},category_id=#{r.categoryId}
+        where id=#{r.id}
+    </update>
     
 </mapper>

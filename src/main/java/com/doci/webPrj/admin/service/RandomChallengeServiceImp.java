@@ -29,5 +29,18 @@ public class RandomChallengeServiceImp implements RandomChallengeService {
     public List<Unit> getUnitList() {
        return randomChallengeRepository.getUnitList();
     }
+   @Override
+   public List<RandomChallenge> findAllBycategoryId(int categoryId) {
+     return randomChallengeRepository.findAllBycategoryId(categoryId);
+   }
 
+   @Override
+   public RandomChallenge findById(int id) {
+     return randomChallengeRepository.findById(id);
+   }
+
+   @Override
+   public void update(RandomChallenge randomChallenge) {
+    randomChallengeRepository.update(randomChallenge);
+   }
 }

@@ -16,4 +16,9 @@ public interface RandomChallengeService {
 
     List<Unit> getUnitList();
 
+    List<RandomChallenge> findAllBycategoryId(int categoryId);
+
+    RandomChallenge findById(int id);
+    
+    void update(RandomChallenge randomChallenge);
 }
