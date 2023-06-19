@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.doci.webPrj.common.repository.RandomChallengeRepository">
+
+
+    <insert id="create">
+        insert into random_challenge(name,period,auth_frequency,unit_id, goal_quantity, admin_id,category_id) 
+        values(#{r.name},#{r.period},#{r.authFrequency},#{r.unitId},#{r.goalQuantity},2,#{r.categoryId});
+    </insert>
+
+    <select id="getCategoryList" resultType="com.doci.webPrj.admin.entity.Category">
+        select *
+        from category
+    </select>
+
+    <select id="getUnitList" resultType="com.doci.webPrj.admin.entity.Unit">
+        select *
+        from unit
+    </select>
+
+    
+</mapper>
