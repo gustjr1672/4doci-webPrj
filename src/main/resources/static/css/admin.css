@@ -1,0 +1,203 @@
+* {
+    font-family: "SUIT", sans-serif !important;
+}
+body {
+    margin: 0;
+}
+header {
+    margin-left: 12px;
+    padding-top: 24px;
+}
+.back {
+    width: 40px;
+}
+.title {
+    font-size: 32px;
+    font-weight: bold;
+    height: 160px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin: 0 24px;
+}
+.list a {
+    text-decoration: none;
+    color: black;
+    max-width: 400px;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.list a img {
+    width: 24px;
+}
+
+.single-form {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+.single-form button {
+    background-color: #fff;
+    width: 130px;
+    height: 30px;
+}
+.multi-form {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.multi-form input {
+    height: 30px;
+    width: 250px;
+    border: solid 1px;
+    border-radius: 4px;
+}
+.multi-form div {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 12px;
+}
+.multi-form :first-child {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 12px;
+}
+
+/* .multi-form :nth-child(4) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: 12px;
+} */
+
+.error-wrap{
+    display: flex !important;
+    flex-direction: column !important;
+    gap:2px !important;
+}
+.error-wrap p{
+    color : red ;
+    font-size: 12px ;
+    margin: 0;
+    height: 12px;
+    width: 100%;
+    text-align: start;
+}
+.multi-form button {
+    font-size: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    width: 120px;
+    height: 40px;
+    text-align: center;
+}
+.filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding-bottom: 24px;
+}
+#new-category {
+    width: 60px;
+    height: 20px;
+    display: none;
+}
+#new-unit {
+    width: 60px;
+    height: 20px;
+    display: none;
+}
+.challenge-list-wrap{
+    max-height: 400px;
+    margin-bottom: 16px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scrollbar-width: none; /* 스크롤바 너비 */
+    -ms-overflow-style: none; /* IE/Edge용 스크롤바 스타일 */
+}
+
+
+.challenge-list-wrap::-webkit-scrollbar {
+    display: none; /* Chrome/Safari용 스크롤바 스타일 */
+}
+.radio-btn {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.radio-btn-label {
+    font-size: 14px;
+    display: inline-block;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    width: 308px;
+    height: 24px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    line-height: 24px;
+    border-radius: 8px;
+}
+
+/* 선택된 라디오 버튼 스타일 */
+.radio-btn:checked + .radio-btn-label {
+    border-color: #007bff;
+}
+
+.delete-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.delete-modal.show {
+    display: block;
+}
+
+.delete-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
