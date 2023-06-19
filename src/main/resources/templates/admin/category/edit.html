@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/admin.css" />
+  <script src="/js/modify.js" defer></script>
+  <link
+          href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+          rel="stylesheet"
+  />
+</head>
+<body>
+<header>
+  <a href="/admin/category/manage">
+    <img class="back" src="/image/admin/back.png" alt="back" />
+  </a>
+</header>
+
+<div class="title">카테고리 수정</div>
+<div class="filter">
+  <span>수정할 카테고리를 고르세요</span>
+  <select name="category" id="category" required onchange="handleOnChangeCategory(this)">
+    <option value="">선택</option>
+
+    <option
+            th:each="category :${categoryList}"
+            th:value="${category.id}"
+            th:text="${category.name}"
+    ></option>
+  </select>
+</div>
+
+<form
+        action="/admin/category/edit"
+        class="single-form"
+        method="post"
+>
+  <input type="hidden" id="category-id" name="id"/>
+  <input
+          type="text"
+          id="new-category"
+          name="name"
+          required
+          autocomplete="off"
+  />
+  <button type="submit">수정</button>
+</form>
+</body>
+</html>
