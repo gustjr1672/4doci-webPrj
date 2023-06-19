@@ -1,0 +1,130 @@
+* {
+    font-family: "SUIT", sans-serif !important;
+}
+
+header {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 22px;
+}
+
+.header-text {
+    font-size: 22px;
+
+    font-weight: bold;
+
+    /* display: flex;
+    justify-content: center; */
+}
+body {
+    margin: 0;
+}
+.header-img {
+    padding-top: 30px;
+}
+.header-img img {
+    width: 100px;
+}
+.login-btn {
+    font-size: 16px;
+
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin: 24px 14px;
+}
+/* 폼 전체 스타일 */
+.input-form {
+    padding-top: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px 14px;
+}
+input[type="text"] {
+    padding-left: 60px;
+    background-image: url("/image/login/user.png");
+    background-repeat: no-repeat;
+    background-position: 30px center;
+}
+input[type="password"] {
+    padding-left: 60px;
+    background-image: url("/image/login/pwd.png");
+    background-repeat: no-repeat;
+    background-position: 30px center;
+}
+/* 입력란 스타일 */
+input[type="text"],
+input[type="password"] {
+    width: 258px;
+    height: 50px;
+
+    margin: 10px 24px;
+    border: 1px solid;
+    border-color: #a9a9a9;
+    border-radius: 12px;
+    /* box-sizing: border-box; */
+}
+
+/* 로그인 버튼 스타일 */
+
+button[type="submit"] {
+    background-color: #383d66;
+    color: white;
+    width: 320px;
+    height: 52px;
+    font-size: 16px;
+    font-weight: semi-bold;
+
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.util {
+    font-size: 14px;
+
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    padding: 0px 48px;
+}
+.util .a {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+.save {
+    gap: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sns-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 44px;
+    margin-bottom: 12px;
+    font-size: 12px;
+
+    font-weight: bold;
+}
+.sns-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 24px;
+    gap: 20px;
+}
