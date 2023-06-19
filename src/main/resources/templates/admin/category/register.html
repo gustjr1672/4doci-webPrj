@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+
+    <link
+            href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+            rel="stylesheet"
+    />
+</head>
+<body>
+<header>
+    <a href="/admin/challengecategory/manage">
+        <img class="back" src="/image/admin/back.png" alt="back" />
+    </a>
+</header>
+
+<div class="title">카테고리 등록</div>
+
+<form
+        class="single-form"
+        action="/admin/category/register"
+        method="post">
+
+    <span>카테고리</span>
+    <input
+            type="text"
+            id="category"
+            name="name"
+            required
+            autocomplete="off"
+            placeholder="카테고리 이름"
+    />
+    <button type="submit">등록</button>
+</form>
+</body>
+</html>
