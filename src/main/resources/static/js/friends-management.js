@@ -21,14 +21,27 @@ let addSearchBtn = document.getElementById("add-search");
 let addSearchInput = document.querySelector("input[name=n]");
 let newfriendList = document.getElementById("new-friend-list");
 addSearchBtn.addEventListener("click", () => {
-  console.log(addSearchInput.value);
   if (addSearchInput.value == "") return;
-  fetch(`/friendmanage/newfriend/search?n=${addSearchInput.value}`)
+  newFriendListLoad(`/friendmanage/newfriend/search?n=${addSearchInput.value}`);
+});
+
+let newFriendList = document.getElementById("new-friend-list");
+
+newFriendList.onclick = function (e) {
+  if (e.target.id === "add-request") {
+    let cancel = e.target.nextElementSibling;
+    fetch(`/friendmanage/newfriend/add?id=${e.target.dataset.id}`).then((response) => {});
+  } else if (e.target.id === "cancel") {
+    let add = e.target.previousElementSibling;
+  }
+};
+
+function newFriendListLoad(url) {
+  fetch(url)
     .then((response) => response.json())
     .then((list) => {
       newfriendList.innerHTML = "";
       Object.entries(list).map(([key, value]) => {
-        console.log(value);
         let newFriendTemplate = `
         <div  class="content">
             <div class="info">
@@ -38,10 +51,15 @@ addSearchBtn.addEventListener("click", () => {
                     <span>${value.nickname}</span>
                 </div>
             </div>
-            <button>요청</button>
+            <button data-id=${value.id} id='add-request' class="${
+          value.state == "요청" ? "" : "hidden"
+        }">요청</button>
+            <button data-id=${value.id} id='cancel' class="${
+          value.state == "요청취소" ? "" : "hidden"
+        }">요청취소</button>
         </div>
         `;
         newfriendList.insertAdjacentHTML("beforeend", newFriendTemplate);
       });
     });
-});
+}

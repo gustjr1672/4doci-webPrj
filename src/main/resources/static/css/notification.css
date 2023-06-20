@@ -1,0 +1,124 @@
+* {
+    font-family: "SUIT", sans-serif !important;
+}
+
+/* ======================커뮤니티,그룹초대,친구요청 버튼3개==================== */
+.btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 5px;
+    /* gap: 36px; */
+}
+
+.btns button {
+    /* display: none; */
+    /* width: 128px;
+    height: 40px;
+    border: 1px solid #8a8a8a;
+    border-radius: 12px; */
+    width: 120px;
+    height: 32px;
+    font-family: "suit";
+    font-weight: 600;
+    border: none;
+}
+
+.btns .community-btn.active,
+.btns .group-invitation-btn.active,
+.btns .friend-request-btn.active {
+    color: #383d66;
+    background: #ffffff;
+    border-bottom: 1px solid #383d66;
+}
+
+.btns .community-btn,
+.btns .group-invitation-btn,
+.btns .friend-request-btn {
+    color: #b4b4b4;
+    background: #ffffff;
+    border-bottom: 1px solid #b4b4b4;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+/* ======================= 알림 별 내용들 ======================================= */
+.contents {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+}
+.contents > button:hover {
+    background-color: rgba(248, 248, 248, 0.575);
+}
+.contents button{
+    border: none;
+}
+.contents .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 450px;
+    width: 100%;
+    padding: 0px 30px;
+    background-color: white;
+    border: none;
+    height: 68px;
+    box-sizing: border-box;
+}
+.contents .content .info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+.contents .content .info div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 4px;
+}
+.content div span {
+    margin: 0px;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: "suit";
+}
+.contents .content .time {
+    color: #737373;
+}
+.contents .content button {
+    width: 48px;
+    height: 28px;
+    border-radius: 12px;
+    font-weight: 400;
+    font-size: 11px;
+    font-family: "suit";
+    color: white;
+    background: #383d66;
+}
+.content img {
+    width: 50px;
+    height: 50px;
+    border-radius: 60px;
+}
+/* ==============친구요청 응답 버튼 2개============== */
+.contents .content .friend-request-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 2px;
+    gap: 6px;
+}
+.contents .content .friend-request-btns .refuse {
+    background-color: white;
+    color: #383d66;
+    border: solid 1px #383d66;
+}
+
+.hidden {
+    display: none;
+}

@@ -9,9 +9,11 @@ import java.util.Optional;
 
 @Mapper
 public interface MemberRepository {
-    Optional<Member> findById(String userId);
+    Optional<Member> findByUserId(String userId);
 
     Member findByNickname(String nickname);
 
     List<Member> findListByNickname(@Param("nickname") String nickname, @Param("userNickname") String userNickname);
+
+    Member findById(int id);
 }

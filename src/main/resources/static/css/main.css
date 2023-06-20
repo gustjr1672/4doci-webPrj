@@ -1,0 +1,337 @@
+* {
+    font-family: "SUIT", sans-serif !important;
+}
+
+body {
+    margin: 0;
+    background-image: linear-gradient(to bottom, #383d66 372px, #ffffff 372px);
+    background-repeat: no-repeat;
+
+}
+.header-wrap{
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    height: 40px;
+}
+
+header > button {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+/* =================프로필=============== */
+.profile-wrap {
+    display: flex;
+    /* margin: 12px 32px 0px; */
+    margin-top: 12px;
+    color: #ffffff;
+    flex-direction: column;
+    gap: 2px;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-title {
+    width: 80%;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+    gap: 12px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.profile-wrap span {
+    font-weight: 600;
+}
+
+/* =================도전시작 배너=============== */
+.start-btn {
+    height: 110px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px 0;
+    background-color: #5192f3;
+    color: #ffffff;
+    /* gap: 10%; */
+    border-radius: 12px;
+    width: 76%;
+    height: 70px;
+    max-width: 500px;
+    padding:24px;
+}
+.start-btn > div {
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+    gap: 16px;
+}
+
+.start-btn > div > div {
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+}
+
+.start-btn > div > div span:first-child {
+    font-size: 10px;
+}
+.start-btn > div > div span:nth-child(2) {
+    font-size: 16px;
+    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+}
+.start-btn button {
+    font-weight: 600;
+    background: none;
+    font-style: normal;
+    font-size: 12px;
+    color: #ffffff;
+    border-radius: 8px;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* 홀수번째만 */
+.start-btn span:nth-child(odd) {
+    font-size: 16px;
+}
+
+/* 짝수번째만 */
+.start-btn span:nth-child(even) {
+    font-size: 14px;
+}
+
+/* ==================도전 리스트==================== */
+.chal-header {
+    width: 80%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.chal-header span {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.chal-list select {
+    padding-left: 6px;
+    border: none;
+    width: 52px;
+    height: 32px;
+    font-size: 12px;
+    color: #ffffff;
+    border-bottom: 1px solid #ffffff;
+    -webkit-appearance: none;
+    /* for chrome */
+    -moz-appearance: none;
+    /*for firefox*/
+    appearance: none;
+    background: url("/image/main/down.png") no-repeat 90% 50%/12px auto;
+}
+
+option {
+    background: #333333;
+    color: #ffffff;
+    border: none;
+}
+
+.chal-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.btn-wrap {
+    /* padding: 0 20px; */
+    display: flex;
+    justify-content: center;
+    margin: 12px 0px;
+    width: 100%;
+}
+
+.chal-btn {
+    color: #333333;
+    display: flex;
+    width: 76%;
+    max-width: 500px;
+    height: 100px;
+    border-radius: 12px 0px 0px 12px;
+    border: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px 0 28px;
+}
+
+.chal-title {
+    font-weight: 700;
+    font-size: 12px;
+    text-align: start;
+    padding: 0 24px 0 0;
+    word-break: keep-all;
+}
+
+.prog-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 10px;
+}
+
+/* 막대그래프 */
+.prog-bar {
+    width: 93px;
+    height: 8px;
+    border-radius: 8px;
+    background-color: #dedede;
+    display: flex;
+    align-items: end;
+}
+
+.prog {
+    width: 72%;
+    height: 8px;
+    border-radius: 8px;
+    padding: 0;
+    background-color: #57b1e3;
+    color: #111;
+    margin: 0;
+}
+
+.plus-btn {
+    width: 43px;
+    height: 100px;
+    border-radius: 0px 12px 12px 0px;
+    border: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #71b5cb;
+    font-size: 24px;
+    font-weight: 600;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.prog-wrap :first-child {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: -8px;
+    text-align: center;
+    justify-content: center;
+}
+
+.prog-wrap span:first-child {
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.prog-wrap span:nth-child(2) {
+    font-weight: 800;
+    color: #dcdcdc;
+    font-size: 14px;
+}
+
+.prog-wrap span:nth-child(3) {
+    font-weight: 800;
+    color: #57b1e3;
+    font-size: 10px;
+    /* box-sizing: content-box; */
+    /* height: 10px; */
+    /* vertical-align:bottom; */
+    display: flex;
+    align-items: end;
+    margin: 1px;
+}
+
+/* ===========================footer============================ */
+.footer-wrap {
+    position: fixed;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: white;
+}
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 20px;
+    height: 50px;
+}
+footer button {
+    background-color: white;
+    border: none;
+}
+footer img {
+    width: 30px;
+}
+
+/* ==========================알림 modal====================== */
+
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: width 0.3s ease-in-out;
+}
+.modal.open {
+    width: 100%;
+}
+.modal-content {
+    background-color: #fff;
+    border-radius: 14px;
+    margin: 40px auto;
+    padding-top: 10px;
+    width: 90%;
+    max-width: 450px;
+    height: 70%;
+    max-height: 100%;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.modal.open .modal-content {
+    transform: translateX(0);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+footer img {
+    width: 30px;
+}
+

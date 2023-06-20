@@ -49,15 +49,24 @@ public class FriendManageServiceImp implements FriendManageService {
         for (Member member : list) {
             Map<String, Object> memberResponse = new LinkedHashMap<>();
             String requestState = getRequestState(member.getNickname(), user.getId());
-            memberResponse.put("id", member.getUserId());
-            memberResponse.put("name", member.getName());
-            memberResponse.put("nickname", member.getNickname());
-            memberResponse.put("profile", member.getProfileImage());
-            memberResponse.put("state", requestState);
-            response.add(memberResponse);
+            if (!requestState.equals("친구")) {
+                memberResponse.put("id", member.getId());
+                memberResponse.put("name", member.getName());
+                memberResponse.put("nickname", member.getNickname());
+                memberResponse.put("profile", member.getProfileImage());
+                memberResponse.put("state", requestState);
+                response.add(memberResponse);
+            }
         }
 
         return response;
+    }
+
+    @Override
+    public void request(int memberId, int userId) {
+        friendRequestRepository.sendRequest(memberId, userId);
+        friendRequestRepository.createRequest(userId, memberId);
+
     }
 
 }
