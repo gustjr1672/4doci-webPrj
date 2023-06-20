@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doci.webPrj.user.repository.FriendRequestRepository">
+
+    <insert id="sendRequest">
+        insert into 
+        friend_request(to_member_id, from_member_id) 
+        VALUES (#{friendId}, #{userId});
+    </insert>
+
+
+    <!-- createRequest --> 
+
+    <insert id="createRequest">
+        insert into 
+        friend_request(to_member_id, from_member_id,is_accept) 
+        VALUES (#{userId}, #{friendId},1);
+    </insert>
+
+    <!-- findById --> 
+
+    <select id="findById" resultType="com.doci.webPrj.user.entity.FriendRequest">
+        select * from friend_request
+        where to_member_id = #{id1} AND from_member_id = #{id2};
+    </select>
+    <!-- findRequestByUserId --> 
+
+    <select id="findRequestByUserId" resultType="com.doci.webPrj.user.entity.FriendRequest">
+        select * from friend_request
+        where to_member_id = #{userId} AND is_accept = 0;
+    </select>   
+    <!-- findFriendById --> 
+
+    <select id="findFriendById" resultType="com.doci.webPrj.user.entity.FriendRequest">
+        select * from friend_request
+        where to_member_id = #{userId} AND is_accept = 1;
+    </select>     
+
+    <!-- accept --> 
+
+    <update id="accept">
+        update friend_request set is_accept = 1
+        where to_member_id = #{userId} and from_member_id = #{memberId}
+    </update>    
+    <!-- delete --> 
+
+    <delete id="delete">
+        delete from friend_request
+        where to_member_id = #{id1} AND from_member_id = #{id2};
+    </delete>
+
+
+
+
+</mapper>
