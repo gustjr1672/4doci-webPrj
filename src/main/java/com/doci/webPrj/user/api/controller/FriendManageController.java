@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.doci.webPrj.config.MyUserDetails;
+import com.doci.webPrj.user.entity.Member;
 import com.doci.webPrj.user.service.FriendManageService;
 
 @RequestMapping("friendmanage")
@@ -31,6 +32,14 @@ public class FriendManageController {
         List<Map<String, Object>> response = friendManageService.getNewMemberList(nickname, user.getNickname(), user);
 
         return response;
+    }
+
+    @GetMapping("friend/search")
+    public List<Member> searchFriend(
+            @AuthenticationPrincipal MyUserDetails user,
+            @RequestParam(name = "n", required = false) String nickname) {
+        List<Member> friendList = friendManageService.getFriendListByNickname(user.getId(), nickname);
+        return friendList;
     }
 
 }

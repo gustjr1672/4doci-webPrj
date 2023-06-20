@@ -34,8 +34,8 @@
     <!--  친구 목록-->
     <section id="left-content" class="contents">
       <div class="search">
-        <input type="text" placeholder="닉네임으로 검색" />
-        <button>검색</button>
+        <input type="text" name="nickname" placeholder="닉네임으로 검색" />
+        <button id="friend-search">검색</button>
       </div>
       <div id="friend-list" class="friend-list">
         <p th:text="'친구 '+${total}+'명'">친구 2명</p>

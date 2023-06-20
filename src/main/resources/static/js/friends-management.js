@@ -68,3 +68,31 @@ function newFriendListLoad(url) {
       });
     });
 }
+
+let friendSearchBtn = document.getElementById("friend-search");
+let friendSearchInput = document.querySelector("input[name=nickname]");
+let friendList = document.getElementById("friend-list");
+friendSearchBtn.addEventListener("click", () => {
+  if (friendSearchInput.value == "") return;
+  fetch(`/friendmanage/friend/search?n=${friendSearchInput.value}`)
+    .then((response) => response.json())
+    .then((list) => {
+      console.log(list);
+      friendList.innerHTML = "";
+      friendList.insertAdjacentHTML("beforeend", `<p >친구 ${list.length}명</p>`);
+      for (const friend of list) {
+        let friendListTemplate = `
+        <div class="friend">
+          <button class="info">
+            <img src="/image/friends-management/profile.png" alt="프로필이미지" />
+            <div class="user-name">
+              <span> ${friend.name}</span>
+              <span>${friend.nickname}</span>
+            </div>
+          </button>
+          <button id="friend-delete" class="delete">삭제</button>
+        </div>`;
+        friendList.insertAdjacentHTML("beforeend", friendListTemplate);
+      }
+    });
+});

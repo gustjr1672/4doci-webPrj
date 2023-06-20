@@ -91,4 +91,21 @@ public class FriendManageServiceImp implements FriendManageService {
         return friendList;
     }
 
+    @Override
+    public List<Member> getFriendListByNickname(int userId, String nickname) {
+        List<FriendRequest> requestList = friendRequestRepository.findFriendById(userId);
+        List<Member> friendList = new ArrayList<>();
+
+        for (FriendRequest request : requestList) {
+            int id = request.getFromMemberId();
+            FriendRequest anotherRequest = friendRequestRepository.findById(id, userId);
+            if (anotherRequest.isAccept()) {
+                Member member = memberRepository.findById(request.getFromMemberId());
+                if (member.getNickname().contains(nickname))
+                    friendList.add(member);
+            }
+        }
+        return friendList;
+    }
+
 }

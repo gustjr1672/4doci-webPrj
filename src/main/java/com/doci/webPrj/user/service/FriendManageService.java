@@ -19,4 +19,6 @@ public interface FriendManageService {
     void cancel(int memberId, int userId);
 
     List<Member> getFriendList(int userId);
+
+    List<Member> getFriendListByNickname(int id, String nickname);
 }
