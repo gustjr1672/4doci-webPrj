@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>친구관리페이지</title>
+    <link rel="stylesheet" href="/css/friends-management.css" type="text/css" />
+    <script src="/js/friends-management.js" defer="defer"></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="header-wrap">
+      <header>
+        <div class="header-left">
+          <!-- <button><img src="/image/back.png" alt="뒤로가기" /></button> -->
+          <img src="/image/header/blackLogo.png" alt="4℃" width="60" height="40" />
+        </div>
+        <!-- <button class="bell"><img src="/image/header/blackBell.png" alt="알림" /></button> -->
+      </header>
+    </div>
+
+    <section id="btns" class="btns">
+      <div class="btns-wrap">
+        <button class="left-btn active" onclick="toggleContent('left')">친구목록</button>
+        <button class="right-btn" onclick="toggleContent('right')">친구추가</button>
+      </div>
+    </section>
+    <input id="my-nickname" type="hidden" />
+    <!--  친구 목록-->
+    <section id="left-content" class="contents">
+      <div class="search">
+        <input type="text" name="nickname" placeholder="닉네임으로 검색" />
+        <button id="friend-search">검색</button>
+      </div>
+      <div id="friend-list" class="friend-list">
+        <p th:text="'친구 '+${total}+'명'">친구 2명</p>
+
+        <div class="friend" th:each="friend : ${friendList}">
+          <button class="info">
+            <img src="/image/friends-management/profile.png" alt="프로필이미지" />
+            <div class="user-name">
+              <span th:text="${friend.name}">고민시</span>
+              <span th:text="${friend.nickname}">고민시작</span>
+            </div>
+          </button>
+          <button th:data-id="${friend.id}" id="friend-delete" class="delete">삭제</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="right-content" class="contents hidden">
+      <p>같이할 친구를 추가해 보세요</p>
+      <div class="add-friend">
+        <input id="add-search-input" required type="text" name="n" placeholder="닉네임으로 검색" />
+        <button id="add-search">검색</button>
+      </div>
+      <section id="new-friend-list"></section>
+    </section>
+
+    <div class="footer-wrap">
+      <footer>
+        <button>
+          <img src="/image/footer/home.png" onclick="location.href = '/main' " alt="홈" />
+        </button>
+        <button>
+          <img
+            src="/image/footer/community.png"
+            onclick="location.href = '/community/feed' "
+            alt="커뮤니티"
+          />
+        </button>
+        <button>
+          <img src="/image/footer/clickFriendManagement.png" alt="친구관리" />
+        </button>
+        <button>
+          <img src="/image/footer/myPage.png" alt="내정보" onclick="location.href = '/my-page' " />
+        </button>
+      </footer>
+    </div>
+  </body>
+</html>

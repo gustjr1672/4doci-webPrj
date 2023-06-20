@@ -1,0 +1,332 @@
+body {
+  margin: 0;
+}
+button {
+  border: none;
+}
+.header-wrap {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 12px;
+}
+
+.header-left {
+  display: flex;
+  gap: 12px;
+  width: 90px;
+  height: 40px;
+}
+
+header button {
+  background-color: white;
+  border: none;
+}
+
+.header_left button:hover img {
+  content: url("/image/backHover.png");
+}
+
+.bell:hover img {
+  content: url("/image/bellHover.png");
+}
+
+/* ================= 버튼===================== */
+
+.btns {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0px;
+
+  /* max-width: 700px; */
+  /* box-sizing: border-box; */
+  /* border-bottom: 1px solid #b4b4b4; */
+}
+.btns-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 700px;
+  width: 80%;
+}
+.btns button {
+  /* width: 140px; */
+  width: 50%;
+  height: 32px;
+  font-family: "suit";
+  font-weight: 700;
+  border: none;
+}
+
+.btns .left-btn.active,
+.btns .right-btn.active {
+  color: #333333;
+  background: #ffffff;
+  border-bottom: 1px solid #333333;
+}
+
+.btns .left-btn,
+.btns .right-btn {
+  color: #b4b4b4;
+  background: #ffffff;
+  border-bottom: 1px solid #b4b4b4;
+  transition: color 0.3s, border-bottom 0.3s;
+}
+
+/* =====================친구목록 클릭시 컨텐트============================= */
+
+.contents {
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
+}
+
+/* =====================친구목록 내에 검색============================= */
+.contents .search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 700px;
+  width: 100%;
+  padding: 0 38px 0 58px;
+  box-sizing: border-box;
+  gap: 4vw;
+}
+.contents .search input {
+  border: 1px solid #b7b7b7;
+  height: 28px;
+  width: 80%;
+  text-align: center;
+  /* max-width: 280px; */
+  /* width: 100%; */
+  /* margin-right: 38px; */
+  /* margin: 0 38px; */
+  border-radius: 12px;
+  font-size: 12px;
+  /* margin-right: 20px; */
+  /* margin-left: 20px; */
+}
+
+.contents .search button {
+  width: 54px;
+  height: 28px;
+  border-radius: 12px;
+  font-weight: 400;
+  font-size: 11px;
+  font-family: "suit";
+  color: white;
+  background: #383d66;
+  margin-left: 24px;
+}
+
+/* =====================친구목록============================= */
+.contents .friend-list {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-start; */
+  align-items: flex-start;
+  gap: 4px;
+  margin-top: 30px;
+  box-sizing: border-box;
+  padding: 0px 38px;
+  max-width: 700px;
+  width: 100%;
+  overflow: auto;
+  padding-bottom: 50px;
+}
+.contents .friend-list .friend {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: white;
+  padding: 0px;
+  /* border: none; */
+  /* padding: 0px 38px; */
+  height: 64px;
+  box-sizing: border-box;
+}
+
+.contents .friend .delete {
+  width: 54px;
+  height: 28px;
+  border-radius: 12px;
+  font-weight: 400;
+  font-size: 11px;
+  font-family: "suit";
+  background: white;
+  /* color: #383d66; */
+  border: 1px solid #b7b7b7;
+}
+
+.contents .friend .info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  border: none;
+  background-color: white;
+  padding: 0;
+}
+.contents .friend-list .friend .info div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+}
+.friend img {
+  width: 50px;
+  height: 50px;
+  border-radius: 60px;
+}
+
+.friend-list span {
+  margin: 0px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "suit";
+}
+/* ===================친구 추가=================== */
+
+/* ===================친구추가 내에 검색================== */
+.contents p {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "suit";
+}
+
+.add-friend {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 10px 38px 30px 38px;
+}
+
+.add-friend input {
+  height: 32px;
+  font-family: "suit", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  border: 1px solid #b7b7b7;
+  width: 278px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+::placeholder {
+  text-align: center;
+}
+.add-friend button {
+  background-color: #383d66;
+  color: #ffffff;
+  font-family: "suit";
+  border-radius: 12px;
+  height: 32px;
+  /* border: none; */
+}
+.hidden {
+  display: none;
+}
+/* ==============================친구추가 검색된 친구목록================== */
+.contents .content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 450px;
+  width: 100%;
+  padding: 0px 30px;
+  background-color: white;
+  border: none;
+  height: 68px;
+  box-sizing: border-box;
+}
+.contents .content .info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+.contents .content .info div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+}
+#new-friend-list {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.content div span {
+  margin: 0px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: "suit";
+}
+
+.contents .content button {
+  width: 60px;
+  height: 28px;
+  border-radius: 11px;
+  font-weight: 400;
+  font-size: 11px;
+  font-family: "suit";
+}
+.content img {
+  width: 50px;
+  height: 50px;
+  border-radius: 60px;
+}
+/* ===========================footer============================ */
+.footer-wrap {
+  position: fixed;
+  bottom: 0%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: white;
+}
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20px;
+  height: 50px;
+}
+footer button {
+  background-color: white;
+  border: none;
+}
+footer img {
+  width: 30px;
+}
+#cancel {
+  background-color: white;
+  color: #fd6a6a;
+  border: solid 1px #fd6a6a;
+}
+#add-request {
+  background-color: #383d66;
+  color: #ffffff;
+  border: solid 1px #383d66;
+}

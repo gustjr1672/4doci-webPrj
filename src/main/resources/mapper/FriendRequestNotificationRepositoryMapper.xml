@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doci.webPrj.user.repository.FriendRequestNotificationRepository">
+
+    <!-- send --> 
+    <insert id="send">
+        INSERT INTO friend_request_notification
+            (from_member_id,
+            to_member_id)
+        VALUES
+        (#{userId},
+        #{memberId});
+    </insert>
+
+    <!-- findList --> 
+    <select id="findList">
+        SELECT from_member_id 
+        FROM friend_request_notification
+
+        where to_member_id = #{userId}
+
+    </select>
+
+    <!-- delete --> 
+
+    <delete id="delete">
+        DELETE FROM friend_request_notification
+        WHERE from_member_id = #{userId} and to_member_id = #{memberId}
+
+    </delete>    
+</mapper>
+

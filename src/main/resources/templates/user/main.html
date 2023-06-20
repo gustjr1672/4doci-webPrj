@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="/css/main.css" type="text/css" rel="stylesheet" />
+    <link href="/css/notification.css" type="text/css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+      rel="stylesheet"
+    />
+    <script src="/js/main.js" module defer="defer"></script>
+    <script src="/js/notification.js" defer="defer"></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-left">
+        <img src="/image/header/whiteLogo.png" alt="4℃" width="50" height="32" />
+      </div>
+      <button class="bell" onclick="openModal()">
+        <img id="bell" src="/image/header/whiteBell.png" alt="알림" />
+      </button>
+    </header>
+
+    <div class="profile-wrap">
+      <div class="profile-title">
+        <img src="/image/main/profile4.png" alt="profile" width="50" height="50" />
+        <span th:text="${nickname} + ' 님'">신도시여신</span>
+      </div>
+
+      <div class="start-btn">
+        <div>
+          <div>
+            <span>랜덤도전,자유도전,그룹도전까지</span>
+            <span>새로운 도전을 시작해보세요</span>
+          </div>
+          <button type="submit" onclick="location.href='startchallenge/choice/type'">
+            시작하기
+            <img src="/image/main/right.png" alt="go" />
+          </button>
+        </div>
+        <img src="/image/main/bannerImg.png" alt="banner" />
+      </div>
+    </div>
+
+    <div class="footer-wrap">
+      <footer>
+        <button>
+          <img src="/image/footer/clickHome.png" alt="홈" />
+        </button>
+        <button>
+          <img
+            src="/image/footer/community.png"
+            alt="커뮤니티"
+            onclick="location.href = 'community.html' "
+          />
+        </button>
+        <button>
+          <img
+            src="/image/footer/friendManagement.png"
+            alt="친구관리"
+            onclick="location.href = 'friendmanage/main' "
+          />
+        </button>
+        <button>
+          <img
+            src="/image/footer/myPage.png"
+            alt="내정보"
+            onclick="location.href = 'my-page.html' "
+          />
+        </button>
+      </footer>
+    </div>
+
+    <div class="footer-wrap">
+      <footer>
+        <button>
+          <img src="/image/footer/clickHome.png" alt="홈" />
+        </button>
+        <button>
+          <img
+            src="/image/footer/community.png"
+            alt="커뮤니티"
+            onclick="location.href = '/community/feed' "
+          />
+        </button>
+        <button>
+          <img
+            src="/image/footer/friendManagement.png"
+            alt="친구관리"
+            onclick="location.href = 'friendmanage/main' "
+          />
+        </button>
+        <button>
+          <img src="/image/footer/myPage.png" alt="내정보" onclick="location.href = '/my-page' " />
+        </button>
+      </footer>
+    </div>
+
+    <!-- ======================알림 모달 ================================== -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <section id="btns" class="btns">
+          <button class="community-btn active" onclick="toggleContent('community')">
+            커뮤니티
+          </button>
+          <button class="group-invitation-btn" onclick="toggleContent('groupInvitation')">
+            그룹초대
+          </button>
+          <button class="friend-request-btn" onclick="toggleContent('friendRequest')">
+            친구요청
+          </button>
+        </section>
+        <!-- 커뮤니티 알림 -->
+        <section id="community-content" class="contents">
+          <button class="content" onclick="location.href = 'comments.html' ">
+            <div class="info">
+              <img src="/image/notification/profile.png" alt="프로필이미지" />
+              <div>
+                <span>고민시작 님이 댓글을 남겼습니다.</span>
+                <span class="time">1분전</span>
+              </div>
+            </div>
+          </button>
+          <button class="content">
+            <div class="info">
+              <img src="/image/notification/progileImg2.png" alt="프로필이미지" />
+              <div>
+                <span>재혁짱 님이 댓글을 남겼습니다.</span>
+                <span class="time">11분전</span>
+              </div>
+            </div>
+          </button>
+          <button class="content">
+            <div class="info">
+              <img src="/image/notification/progileImg2.png" alt="프로필이미지" />
+              <div>
+                <span>재혁짱 님이 댓글을 남겼습니다.</span>
+                <span class="time">17분전</span>
+              </div>
+            </div>
+          </button>
+        </section>
+        <!--그룹초대 알림 -->
+        <section id="group-invitation-content" class="contents hidden">
+          <div class="content">
+            <div class="info">
+              <img src="/image/notification/profile.png" alt="프로필이미지" />
+              <div>
+                <span
+                  >고민시작 님이 <br />
+                  그룹도전에 초대했습니다.</span
+                >
+              </div>
+            </div>
+            <button onclick="location.href='group-invite.html'">보기</button>
+          </div>
+          <div class="content">
+            <div class="info">
+              <img src="/image/notification/progileImg2.png" alt="프로필이미지" />
+              <div>
+                <span
+                  >고민시작 님이 <br />
+                  그룹도전에 초대했습니다.</span
+                >
+              </div>
+            </div>
+            <button>보기</button>
+          </div>
+        </section>
+        <!-- 친구요청 알림 -->
+        <section id="friend-request-content" class="contents hidden">
+          <div class="content" th:each="member:${requestMemberList}">
+            <div class="info">
+              <img src="/image/notification/progileImg2.png" alt="프로필이미지" />
+              <div class="user-name">
+                <span th:text="${member.name}">jaevely</span>
+                <span th:text="${member.nickname}">재혁짱</span>
+              </div>
+            </div>
+            <div class="friend-request-btns">
+              <button th:data-id="${member.id}" id="request-refuse" class="refuse">거절</button>
+              <button th:data-id="${member.id}" id="request-accept">수락</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

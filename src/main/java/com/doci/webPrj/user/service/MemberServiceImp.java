@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class MemberServiceImp implements MemberService{
+public class MemberServiceImp implements MemberService {
 
     @Autowired
     private MemberRepository memberRepository;
 
     @Override
     public Optional<Member> findOne(String userId) {
-        return memberRepository.findById(userId);
+        return memberRepository.findByUserId(userId);
     }
+
 }
