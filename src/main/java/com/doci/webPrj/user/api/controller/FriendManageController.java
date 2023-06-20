@@ -1,5 +1,6 @@
 package com.doci.webPrj.user.api.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,6 +42,21 @@ public class FriendManageController {
             @RequestParam(name = "n", required = false) String nickname) {
         List<Member> friendList = friendManageService.getFriendListByNickname(user.getId(), nickname);
         return friendList;
+    }
+
+    @DeleteMapping("friend/delete")
+    public List<Member> delete(
+            @AuthenticationPrincipal MyUserDetails user,
+            @RequestParam(name = "id", required = false) int memberId,
+            @RequestParam(name = "n", required = false) String nickname) {
+        friendManageService.delete(memberId, user.getId());
+        List<Member> list = new ArrayList<>();
+        if (nickname.equals(""))
+            list = friendManageService.getFriendList(user.getId());
+        else
+            list = friendManageService.getFriendListByNickname(user.getId(), nickname);
+
+        return list;
     }
 
 }

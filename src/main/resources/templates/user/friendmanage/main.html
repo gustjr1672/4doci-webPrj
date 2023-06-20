@@ -48,7 +48,7 @@
               <span th:text="${friend.nickname}">고민시작</span>
             </div>
           </button>
-          <button id="friend-delete" class="delete">삭제</button>
+          <button th:data-id="${friend.id}" id="friend-delete" class="delete">삭제</button>
         </div>
       </div>
     </section>

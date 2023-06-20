@@ -90,9 +90,36 @@ friendSearchBtn.addEventListener("click", () => {
               <span>${friend.nickname}</span>
             </div>
           </button>
-          <button id="friend-delete" class="delete">삭제</button>
+          <button data-id="${friend.id}" id="friend-delete" class="delete">삭제</button>
         </div>`;
         friendList.insertAdjacentHTML("beforeend", friendListTemplate);
       }
     });
 });
+friendList.onclick = function (e) {
+  if (e.target.classList.contains("delete")) {
+    fetch(`/friendmanage/friend/delete?id=${e.target.dataset.id}&n=${friendSearchInput.value}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((list) => {
+        console.log(list);
+        friendList.innerHTML = "";
+        friendList.insertAdjacentHTML("beforeend", `<p >친구 ${list.length}명</p>`);
+        for (const friend of list) {
+          let friendListTemplate = `
+        <div class="friend">
+          <button class="info">
+            <img src="/image/friends-management/profile.png" alt="프로필이미지" />
+            <div class="user-name">
+              <span> ${friend.name}</span>
+              <span>${friend.nickname}</span>
+            </div>
+          </button>
+          <button data-id=${friend.id} id="friend-delete" class="delete">삭제</button>
+        </div>`;
+          friendList.insertAdjacentHTML("beforeend", friendListTemplate);
+        }
+      });
+  }
+};

@@ -21,4 +21,6 @@ public interface FriendManageService {
     List<Member> getFriendList(int userId);
 
     List<Member> getFriendListByNickname(int id, String nickname);
+
+    void delete(int memberId, int id);
 }
