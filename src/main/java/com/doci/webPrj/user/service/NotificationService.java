@@ -13,4 +13,6 @@ public interface NotificationService {
     void requestRefuse(int id, String nickname);
 
     void sendRequestNotice(int userId, int memberId);
+
+    void deleteRequestNotice(int userId, int memberId);
 }

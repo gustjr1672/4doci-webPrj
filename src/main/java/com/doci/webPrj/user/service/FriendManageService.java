@@ -15,4 +15,6 @@ public interface FriendManageService {
     List<Map<String, Object>> getNewMemberList(String nickname, String string, MyUserDetails user);
 
     void request(int memberId, int userId);
+
+    void cancel(int memberId, int userId);
 }

@@ -30,9 +30,14 @@ let newFriendList = document.getElementById("new-friend-list");
 newFriendList.onclick = function (e) {
   if (e.target.id === "add-request") {
     let cancel = e.target.nextElementSibling;
-    fetch(`/friendmanage/newfriend/add?id=${e.target.dataset.id}`).then((response) => {});
+    e.target.classList.add("hidden");
+    cancel.classList.remove("hidden");
+    fetch(`/friendmanage/newfriend/add?id=${e.target.dataset.id}`);
   } else if (e.target.id === "cancel") {
     let add = e.target.previousElementSibling;
+    e.target.classList.add("hidden");
+    add.classList.remove("hidden");
+    fetch(`/friendmanage/newfriend/cancel?id=${e.target.dataset.id}`);
   }
 };
 

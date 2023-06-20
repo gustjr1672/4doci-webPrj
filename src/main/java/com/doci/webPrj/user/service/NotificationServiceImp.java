@@ -46,4 +46,9 @@ public class NotificationServiceImp implements NotificationService {
         friendRequestNotificationRepository.send(userId, memberId);
     }
 
+    @Override
+    public void deleteRequestNotice(int userId, int memberId) {
+        friendRequestNotificationRepository.delete(userId, memberId);
+    }
+
 }

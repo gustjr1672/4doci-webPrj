@@ -69,4 +69,10 @@ public class FriendManageServiceImp implements FriendManageService {
 
     }
 
+    @Override
+    public void cancel(int memberId, int userId) {
+        friendRequestRepository.delete(memberId, userId);
+        friendRequestRepository.delete(userId, memberId);
+    }
+
 }

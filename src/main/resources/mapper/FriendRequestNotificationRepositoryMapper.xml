@@ -22,6 +22,13 @@
         where to_member_id = #{userId}
 
     </select>
-    
+
+    <!-- delete --> 
+
+    <delete id="delete">
+        DELETE FROM friend_request_notification
+        WHERE from_member_id = #{userId} and to_member_id = #{memberId}
+
+    </delete>    
 </mapper>
 

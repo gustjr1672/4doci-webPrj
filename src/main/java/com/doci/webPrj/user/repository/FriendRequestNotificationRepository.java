@@ -12,4 +12,6 @@ public interface FriendRequestNotificationRepository {
 
     List<Integer> findList(int userId);
 
+    void delete(@Param("userId") int userId, @Param("memberId") int memberId);
+
 }

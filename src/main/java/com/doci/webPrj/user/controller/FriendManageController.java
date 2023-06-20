@@ -37,4 +37,14 @@ public class FriendManageController {
         notificationService.sendRequestNotice(user.getId(), id);
         return "user/friendmanage/main";
     }
+
+    @GetMapping("newfriend/cancel")
+    public String cancel(
+            Model model,
+            @AuthenticationPrincipal MyUserDetails user,
+            @RequestParam(name = "id", required = false) int id) {
+        friendManageService.cancel(id, user.getId());
+        notificationService.deleteRequestNotice(user.getId(), id);
+        return "user/friendmanage/main";
+    }
 }
