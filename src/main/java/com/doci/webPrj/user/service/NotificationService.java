@@ -8,9 +8,9 @@ public interface NotificationService {
 
     List<Member> getRequest(int userId);
 
-    void requestAccept(int userId, String nickname);
+    void requestAccept(int userId, int memberId);
 
-    void requestRefuse(int id, String nickname);
+    void requestRefuse(int userId, int memberId);
 
     void sendRequestNotice(int userId, int memberId);
 

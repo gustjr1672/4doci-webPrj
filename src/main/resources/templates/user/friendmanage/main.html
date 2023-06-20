@@ -37,6 +37,20 @@
         <input type="text" placeholder="닉네임으로 검색" />
         <button>검색</button>
       </div>
+      <div id="friend-list" class="friend-list">
+        <p th:text="'친구 '+${total}+'명'">친구 2명</p>
+
+        <div class="friend" th:each="friend : ${friendList}">
+          <button class="info">
+            <img src="/image/friends-management/profile.png" alt="프로필이미지" />
+            <div class="user-name">
+              <span th:text="${friend.name}">고민시</span>
+              <span th:text="${friend.nickname}">고민시작</span>
+            </div>
+          </button>
+          <button id="friend-delete" class="delete">삭제</button>
+        </div>
+      </div>
     </section>
 
     <section id="right-content" class="contents hidden">

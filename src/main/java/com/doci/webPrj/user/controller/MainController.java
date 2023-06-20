@@ -22,7 +22,6 @@ public class MainController {
     public String main(Model model, @AuthenticationPrincipal MyUserDetails user) {
 
         List<Member> requestMemberList = notificationService.getRequest(user.getId());
-        System.out.println(requestMemberList);
         model.addAttribute("requestMemberList", requestMemberList);
         return "user/main";
     }

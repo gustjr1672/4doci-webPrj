@@ -183,8 +183,8 @@
               </div>
             </div>
             <div class="friend-request-btns">
-              <button id="request-refuse" class="refuse">거절</button>
-              <button id="request-accept">수락</button>
+              <button th:data-id="${member.id}" id="request-refuse" class="refuse">거절</button>
+              <button th:data-id="${member.id}" id="request-accept">수락</button>
             </div>
           </div>
         </section>

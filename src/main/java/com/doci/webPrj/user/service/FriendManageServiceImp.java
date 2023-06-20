@@ -75,4 +75,20 @@ public class FriendManageServiceImp implements FriendManageService {
         friendRequestRepository.delete(userId, memberId);
     }
 
+    @Override
+    public List<Member> getFriendList(int userId) {
+        List<FriendRequest> requestList = friendRequestRepository.findFriendById(userId);
+        List<Member> friendList = new ArrayList<>();
+
+        for (FriendRequest request : requestList) {
+            int id = request.getFromMemberId();
+            FriendRequest anotherRequest = friendRequestRepository.findById(id, userId);
+            if (anotherRequest.isAccept()) {
+                Member member = memberRepository.findById(request.getFromMemberId());
+                friendList.add(member);
+            }
+        }
+        return friendList;
+    }
+
 }

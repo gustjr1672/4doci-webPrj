@@ -17,4 +17,6 @@ public interface FriendManageService {
     void request(int memberId, int userId);
 
     void cancel(int memberId, int userId);
+
+    List<Member> getFriendList(int userId);
 }
