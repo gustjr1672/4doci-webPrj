@@ -1,4 +1,4 @@
-package com.doci.webPrj.user.service;
+package com.doci.webPrj.common.service;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Random;
@@ -58,10 +58,24 @@ public class MailService {
         for(int i=0;i<6;i++){
             key.append(rand.nextInt(10));
         }
-
         return key.toString();
     }
 
-   
+    public String sendMessage(String toEmail) {
+        authNum = createKey();
+
+        try {// 예외처리
+            MimeMessage message = createMessage(toEmail);
+			emailSender.send(message);
+		} catch (MailException es) {
+			es.printStackTrace();
+			throw new IllegalArgumentException();
+		} catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        return authNum;
+    }
     
 }
