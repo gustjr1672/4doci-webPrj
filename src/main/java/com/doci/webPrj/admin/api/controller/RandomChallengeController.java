@@ -12,16 +12,16 @@ import com.doci.webPrj.admin.entity.RandomChallenge;
 import com.doci.webPrj.admin.service.RandomChallengeService;
 
 @RestController("apiRandomChallengeController")
-@RequestMapping("api/randomchallenges")
+@RequestMapping("admin/api")
 public class RandomChallengeController {
     
 
     @Autowired
     private RandomChallengeService randomChallengeService;
 
-    @GetMapping
+    @GetMapping("randomchallenges")
     public List<RandomChallenge> list(@RequestParam(name ="c", required=false) Integer categoryId){
-    
+        System.out.println("아아아ㅏㅇ");
         List<RandomChallenge> list = randomChallengeService.findAllBycategoryId(categoryId);
         System.out.println(list);
         return list;
