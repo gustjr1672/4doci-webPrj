@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="/css/joinForm.css" type="text/css" rel="stylesheet" />
+  <link
+      href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+      rel="stylesheet"
+    />
+  <script src="/js/joinForm.js" defer="defer"></script>
+<!--  <script src="/js/header.js"></script>-->
+</head>
+
+<body>
+<header>
+  <button onclick="">
+    <img src="image/header/blackBack.png" alt="뒤로가기" />
+  </button>
+</header>
+<div class="h1">
+  <h1>4℃ 이용을 위한<br />기본정보를 입력해주세요.</h1>
+</div>
+
+<form th:object="${newMember}" action="/member/join"  th:action="@{/member/join}" method="post">
+  <div class="input">
+    <label for="email">이메일</label>
+    <div class="input-form">
+      <input type="email" id="email" name="email" th:field="*{email}" readonly />
+    </div>
+  </div>
+  <div class="input">
+    <label for="name">이름</label>
+    <div class="input-form">
+      <input type="name" id="name" name="name" th:field="*{name}" required autocomplete="off"/>
+    </div>
+  </div>
+  <div class="input">
+    <label for="user-id">아이디</label>
+    <div class="input-form">
+      <div class="id-input-form">
+      <input type="text" id="user-id" class="user-id" name="user-id" th:field="*{userId}" required autocomplete="off"/>
+      <button type="button">중복확인</button>
+    </div>
+    <div id="id-error" class="error"></div>
+    </div>
+  </div>
+
+  <div class="input">
+    <label for="nickname">닉네임</label>
+    <div class="input-form">
+      <input type="text" id="nickname" name="nickname" th:field="*{nickname}" required autocomplete="off" />
+      <div  id="nickname-error" class="error"></div>
+    </div>
+  </div>
+
+  <div class="input">
+    <label for="pwd">비밀번호</label>
+    <div class="input-form">
+      <input type="password" id="pwd" name="pwd" th:field="*{pwd}" required autocomplete="off" onkeyup="checkPassword()"  />
+      <div id="pwd-error" class="error"></div>
+    </div>
+  </div>
+
+
+  <div class="input">
+    <label for="pwd-check">비밀번호 확인</label>
+    <div class="input-form">
+      <input
+              type="password"
+              id="pwd-check"
+              name="pwdcheck"
+              required
+              autocomplete="off"
+      />
+      <div id="pwd-check-error" class="error"></div>
+    </div>
+  </div>
+
+  <div class="finish-btn">
+    <button type="submit" disabled>완료</button>
+  </div>
+
+</form>
+</body>
+</html>

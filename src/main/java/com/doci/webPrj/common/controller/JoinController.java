@@ -36,4 +36,10 @@ public class JoinController {
         return "redirect:/join/joinForm";
     }
 
+    @GetMapping("/joinForm")
+    public String join(Model model){
+        model.addAttribute("newMember",member);
+        return "/common/joinForm";
+    }
+
 }
