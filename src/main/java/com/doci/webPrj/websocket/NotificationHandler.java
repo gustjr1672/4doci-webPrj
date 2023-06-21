@@ -46,15 +46,15 @@ public class NotificationHandler extends TextWebSocketHandler {
         if (!StringUtils.isEmpty(msg)) {
             String[] strs = msg.split(",");
 
-            if (strs != null && strs.length == 5) {
+            if (strs != null && strs.length == 4) {
                 String pushCategory = strs[0]; // 친추 그룹초대 댓글 구분
-                String replyWriter = strs[1]; // 친추 그룹초대 댓글 보낸 유저
-                String sendedPushUser = strs[2]; // 푸시 알림 받을 유저
-                Member member = memberRepository.findByNickname(sendedPushUser);
+                // String replyWriter = strs[1]; // 친추 그룹초대 댓글 보낸 유저
+                int sendedPushUserId = Integer.parseInt(strs[1]); // 푸시 알림 받을 유저
+                Member member = memberRepository.findById(sendedPushUserId);
                 String UserId = member.getUserId();
                 WebSocketSession sendedPushSession = userSessionMap.get(UserId);
                 if ("request".equals(pushCategory) && sendedPushSession != null) {
-                    TextMessage textMsg = new TextMessage(replyWriter + "님이 친구요청을 하였습니다.");
+                    TextMessage textMsg = new TextMessage("새로운 알람이 도착했습니다.");
                     sendedPushSession.sendMessage(textMsg);
 
                 }
