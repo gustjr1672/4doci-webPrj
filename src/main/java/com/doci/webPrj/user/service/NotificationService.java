@@ -15,4 +15,6 @@ public interface NotificationService {
     void sendRequestNotice(int userId, int memberId);
 
     void deleteRequestNotice(int userId, int memberId);
+
+    boolean getNotiStatus(int id);
 }

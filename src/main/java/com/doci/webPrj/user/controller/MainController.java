@@ -20,9 +20,8 @@ public class MainController {
 
     @GetMapping("main")
     public String main(Model model, @AuthenticationPrincipal MyUserDetails user) {
-
-        List<Member> requestMemberList = notificationService.getRequest(user.getId());
-        model.addAttribute("requestMemberList", requestMemberList);
+        boolean isNoti = notificationService.getNotiStatus(user.getId());
+        model.addAttribute("isNoti", isNoti);
         return "user/main";
     }
 

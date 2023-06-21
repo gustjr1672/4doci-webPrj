@@ -1,3 +1,21 @@
+let socket = null;
+
+document.addEventListener("DOMContentLoaded", function () {
+  // 소켓 연결
+  connectWs();
+});
+function connectWs() {
+  let ws = new SockJS("/friendmanage");
+  socket = ws;
+  ws.onopen = function () {
+    console.log("open");
+  };
+
+  ws.close = function () {
+    console.log("close");
+  };
+}
+
 const btns = document.getElementById("btns");
 const leftBtn = btns.querySelector(".left-btn");
 const rightBtn = btns.querySelector(".right-btn");
@@ -32,12 +50,18 @@ newFriendList.onclick = function (e) {
     let cancel = e.target.nextElementSibling;
     e.target.classList.add("hidden");
     cancel.classList.remove("hidden");
-    fetch(`/friendmanage/newfriend/add?id=${e.target.dataset.id}`);
+    fetch(`/friendmanage/newfriend/add?id=${e.target.dataset.id}`).then((response) => {
+      if (socket) {
+        let socketMsg = "request," + e.target.dataset.id + "," + "2," + "1";
+        socket.send(socketMsg);
+      }
+    });
   } else if (e.target.id === "cancel") {
     let add = e.target.previousElementSibling;
-    e.target.classList.add("hidden");
-    add.classList.remove("hidden");
-    fetch(`/friendmanage/newfriend/cancel?id=${e.target.dataset.id}`);
+    fetch(`/friendmanage/newfriend/cancel?id=${e.target.dataset.id}`).then((response) => {
+      e.target.classList.add("hidden");
+      add.classList.remove("hidden");
+    });
   }
 };
 
