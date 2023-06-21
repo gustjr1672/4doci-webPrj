@@ -74,7 +74,7 @@ function newFriendListLoad(url) {
         let newFriendTemplate = `
         <div  class="content">
             <div class="info">
-                <img src="/image/friends-management/progileImg2.png" alt="프로필이미지" />
+                <img src="${value.profile}" alt="프로필이미지" />
                 <div>
                     <span>${value.name}</span>
                     <span>${value.nickname}</span>
@@ -108,7 +108,7 @@ friendSearchBtn.addEventListener("click", () => {
         let friendListTemplate = `
         <div class="friend">
           <button class="info">
-            <img src="/image/friends-management/profile.png" alt="프로필이미지" />
+            <img src="${friend.profileImage}" alt="프로필이미지" />
             <div class="user-name">
               <span> ${friend.name}</span>
               <span>${friend.nickname}</span>
@@ -134,7 +134,7 @@ friendList.onclick = function (e) {
           let friendListTemplate = `
         <div class="friend">
           <button class="info">
-            <img src="/image/friends-management/profile.png" alt="프로필이미지" />
+            <img src="${friend.profileImage}" alt="프로필이미지" />
             <div class="user-name">
               <span> ${friend.name}</span>
               <span>${friend.nickname}</span>
