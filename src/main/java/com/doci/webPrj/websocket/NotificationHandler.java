@@ -28,8 +28,12 @@ public class NotificationHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        // TODO Auto-generated method stub
-        super.afterConnectionEstablished(session);
+        System.out.println("Socket 연결");
+        sessions.add(session);
+        System.out.println(sendPushUsername(session));
+        String senderId = sendPushUsername(session);
+        userSessionMap.put(senderId, session);
+
     }
 
     @Override
@@ -42,5 +46,17 @@ public class NotificationHandler extends TextWebSocketHandler {
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         // TODO Auto-generated method stub
         super.afterConnectionClosed(session, status);
+    }
+
+     // 알람을 보내는 유저(친구추가 유저)
+    private String sendPushUsername(WebSocketSession session) {
+        String loginUsername;
+
+        if (session.getPrincipal() == null) {
+            loginUsername = null;
+        } else {
+            loginUsername = session.getPrincipal().getName();
+        }
+        return loginUsername;
     }
 }
