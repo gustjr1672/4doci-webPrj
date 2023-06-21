@@ -44,11 +44,12 @@ public class NotificationHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        // TODO Auto-generated method stub
-        super.afterConnectionClosed(session, status);
+        System.out.println("Socket 연결 해제");
+        sessions.remove(session);
+        userSessionMap.remove(sendPushUsername(session), session);
     }
 
-     // 알람을 보내는 유저(친구추가 유저)
+    // 알람을 보내는 유저(친구추가 유저)
     private String sendPushUsername(WebSocketSession session) {
         String loginUsername;
 
