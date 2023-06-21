@@ -25,7 +25,7 @@ public class SpringSecurityConfig {
         http.csrf(csrf -> csrf.disable()).cors(cors -> cors.disable())
                 .authorizeHttpRequests(request -> request
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                        .requestMatchers("/image/**", "/css/**", "/member/join", "/js/**").permitAll()
+                        .requestMatchers("/image/**", "/css/**", "/js/**","/join/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/**").hasRole("USER")
                         .anyRequest().authenticated()

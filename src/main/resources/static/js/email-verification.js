@@ -93,7 +93,7 @@ authBtn.addEventListener("click", () => {
   if (chkEmailValidity()) {
     //  sendEmail();
     let value = email.value;
-    let url = `/common/email-verification?email=${value}`;
+    let url = `/join/email-verification?email=${value}`;
     sendEmail(url);
   }
 });
@@ -140,6 +140,16 @@ closeBtn.onclick = function() { //이메일 전송 모달창 닫고 타이머 �
   startTimer(179, timerDisplay);
 }
 
+const errorModal = document.getElementById("error-modal-wrap");
+
+if (errorModal) {
+let closeErrorBtn = errorModal.querySelector(".close-btn");
+
+closeErrorBtn.onclick = function(){
+  errorModal.style.display="none";
+}
+
+}
 
 
 

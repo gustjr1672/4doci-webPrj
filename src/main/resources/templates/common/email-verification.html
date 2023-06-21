@@ -25,7 +25,7 @@
       <h1>4℃ 이용을 위한<br />이메일 주소를 입력해주세요.</h1>
     </div>
 
-    <form id="form" action="/common/email-verification/submit" method="post">
+    <form id="form" action="/join/email-verification/submit" method="post">
       <div class="email-input">
         <label for="email">이메일 주소</label>
         <div class="email-input-form">
@@ -49,7 +49,7 @@
     <div th:if="${param.error}" id="error-modal-wrap" class="modal">
       <div id="modal-content" class="modal-content">
         <p>이미 가입된 이메일입니다. 가입을 다시 진행해주세요</p>
-        <button class="close-btn" onclick="closeErrorModal()">확인</button>
+        <button class="close-btn">확인</button>
       </div>
     </div>
 
