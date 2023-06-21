@@ -117,78 +117,9 @@
           </button>
         </section>
         <!-- 커뮤니티 알림 -->
-        <section id="community-content" class="contents">
-          <button class="content" onclick="location.href = 'comments.html' ">
-            <div class="info">
-              <img src="/image/notification/profile.png" alt="프로필이미지" />
-              <div>
-                <span>고민시작 님이 댓글을 남겼습니다.</span>
-                <span class="time">1분전</span>
-              </div>
-            </div>
-          </button>
-          <button class="content">
-            <div class="info">
-              <img src="/image/notification/progileImg2.png" alt="프로필이미지" />
-              <div>
-                <span>재혁짱 님이 댓글을 남겼습니다.</span>
-                <span class="time">11분전</span>
-              </div>
-            </div>
-          </button>
-          <button class="content">
-            <div class="info">
-              <img src="/image/notification/progileImg2.png" alt="프로필이미지" />
-              <div>
-                <span>재혁짱 님이 댓글을 남겼습니다.</span>
-                <span class="time">17분전</span>
-              </div>
-            </div>
-          </button>
-        </section>
         <!--그룹초대 알림 -->
-        <section id="group-invitation-content" class="contents hidden">
-          <div class="content">
-            <div class="info">
-              <img src="/image/notification/profile.png" alt="프로필이미지" />
-              <div>
-                <span
-                  >고민시작 님이 <br />
-                  그룹도전에 초대했습니다.</span
-                >
-              </div>
-            </div>
-            <button onclick="location.href='group-invite.html'">보기</button>
-          </div>
-          <div class="content">
-            <div class="info">
-              <img src="/image/notification/progileImg2.png" alt="프로필이미지" />
-              <div>
-                <span
-                  >고민시작 님이 <br />
-                  그룹도전에 초대했습니다.</span
-                >
-              </div>
-            </div>
-            <button>보기</button>
-          </div>
-        </section>
         <!-- 친구요청 알림 -->
-        <section id="friend-request-content" class="contents hidden">
-          <div class="content" th:each="member:${requestMemberList}">
-            <div class="info">
-              <img src="/image/notification/progileImg2.png" alt="프로필이미지" />
-              <div class="user-name">
-                <span th:text="${member.name}">jaevely</span>
-                <span th:text="${member.nickname}">재혁짱</span>
-              </div>
-            </div>
-            <div class="friend-request-btns">
-              <button th:data-id="${member.id}" id="request-refuse" class="refuse">거절</button>
-              <button th:data-id="${member.id}" id="request-accept">수락</button>
-            </div>
-          </div>
-        </section>
+        <section class="notification"></section>
       </div>
     </div>
   </body>

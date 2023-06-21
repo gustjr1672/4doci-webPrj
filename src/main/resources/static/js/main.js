@@ -23,8 +23,10 @@ function connectWs() {
 function openModal() {
   let bell = document.getElementById("bell");
   bell.src = "/image/header/whiteBell.png";
-  var modal = document.getElementById("myModal");
+  let modal = document.getElementById("myModal");
   modal.style.display = "block";
+  let btn = document.querySelector(".community-btn");
+  btn.click();
   setTimeout(function () {
     modal.classList.add("open");
   }, 100);

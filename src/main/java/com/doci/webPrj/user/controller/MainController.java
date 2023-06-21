@@ -21,8 +21,6 @@ public class MainController {
     @GetMapping("main")
     public String main(Model model, @AuthenticationPrincipal MyUserDetails user) {
 
-        List<Member> requestMemberList = notificationService.getRequest(user.getId());
-        model.addAttribute("requestMemberList", requestMemberList);
         return "user/main";
     }
 

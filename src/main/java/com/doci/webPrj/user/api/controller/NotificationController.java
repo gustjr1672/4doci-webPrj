@@ -1,6 +1,7 @@
 package com.doci.webPrj.user.api.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -20,6 +21,11 @@ public class NotificationController {
 
     @Autowired
     NotificationService notificationService;
+
+    @GetMapping("request")
+    public List<Member> request(@AuthenticationPrincipal MyUserDetails user) {
+        return notificationService.getRequest(user.getId());
+    }
 
     @GetMapping("request/accept")
     public List<Member> requestAccept(
@@ -43,5 +49,11 @@ public class NotificationController {
         model.addAttribute("name", user.getName());
         model.addAttribute("requestMemberList", requestMemberList);
         return requestMemberList;
+    }
+
+    @GetMapping("modal")
+    public Map<String, List<Member>> modal() {
+
+        return null;
     }
 }
