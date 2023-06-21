@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="/css/email-verification.css" type="text/css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+      rel="stylesheet"
+    />
+    <script src="/js/email-verification.js" defer></script>
+    <script src="/js/header.js" defer></script>
+  </head>
+
+  <body>
+    <header>
+      <button onclick="goBack()">
+        <img src="/image/header/blackBack.png" alt="뒤로가기" />
+      </button>
+    </header>
+
+    <div class="h1">
+      <h1>4℃ 이용을 위한<br />이메일 주소를 입력해주세요.</h1>
+    </div>
+
+    <form id="form" action="/join/email-verification/submit" method="post">
+      <div class="email-input">
+        <label for="email">이메일 주소</label>
+        <div class="email-input-form">
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div id="error" class="error"></div>
+      </div>
+      <div class="auth-btn">
+        <button type="button" class="auth-btn" id="auth-btn">인증번호 받기</button>
+      </div>
+      <div id="checkContainer"></div>
+    </form>
+
+    <div id="modal-wrap" class="modal">
+      <div id="modal-content"class="modal-content">
+        <p>이메일이 전송되었습니다.</p>
+        <button class="close-btn">확인</button>
+      </div>
+    </div>
+
+    <div th:if="${param.error}" id="error-modal-wrap" class="modal">
+      <div id="modal-content" class="modal-content">
+        <p>이미 가입된 이메일입니다. 가입을 다시 진행해주세요</p>
+        <button class="close-btn">확인</button>
+      </div>
+    </div>
+
+
+  </body>
+</html>
