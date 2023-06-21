@@ -12,8 +12,10 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.doci.webPrj.user.entity.Member;
 import com.doci.webPrj.user.repository.MemberRepository;
 
+import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 
 @Component
@@ -38,8 +40,26 @@ public class NotificationHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        // TODO Auto-generated method stub
-        super.handleTextMessage(session, message);
+        System.out.println("session = " + sendPushUsername(session));
+        String msg = message.getPayload();
+        System.out.println("msg = " + msg);
+        if (!StringUtils.isEmpty(msg)) {
+            String[] strs = msg.split(",");
+
+            if (strs != null && strs.length == 5) {
+                String pushCategory = strs[0]; // 친추 그룹초대 댓글 구분
+                String replyWriter = strs[1]; // 친추 그룹초대 댓글 보낸 유저
+                String sendedPushUser = strs[2]; // 푸시 알림 받을 유저
+                Member member = memberRepository.findByNickname(sendedPushUser);
+                String UserId = member.getUserId();
+                WebSocketSession sendedPushSession = userSessionMap.get(UserId);
+                if ("request".equals(pushCategory) && sendedPushSession != null) {
+                    TextMessage textMsg = new TextMessage(replyWriter + "님이 친구요청을 하였습니다.");
+                    sendedPushSession.sendMessage(textMsg);
+
+                }
+            }
+        }
     }
 
     @Override
