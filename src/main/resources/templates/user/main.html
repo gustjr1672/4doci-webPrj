@@ -29,8 +29,8 @@
 
     <div class="profile-wrap">
       <div class="profile-title">
-        <img src="/image/main/profile4.png" alt="profile" width="50" height="50" />
-        <span th:text="${nickname} + ' 님'">신도시여신</span>
+        <img th:src="${user.profileImage}" alt="profile" width="50" height="50" />
+        <span th:text="${user.nickname} + ' 님'">신도시여신</span>
       </div>
 
       <div class="start-btn">

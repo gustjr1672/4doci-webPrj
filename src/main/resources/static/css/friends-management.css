@@ -209,33 +209,37 @@ header button {
 
 .add-friend {
   display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 10px 38px 30px 38px;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 700px;
+  width: 100%;
+  padding: 20px 32px 20px 58px;
+  box-sizing: border-box;
+  gap: 4vw;
 }
 
 .add-friend input {
-  height: 32px;
-  font-family: "suit", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
   border: 1px solid #b7b7b7;
-  width: 278px;
-  border-radius: 12px;
+  height: 28px;
+  width: 70%;
   text-align: center;
+  border-radius: 12px;
+  font-size: 12px;
 }
 
 ::placeholder {
   text-align: center;
 }
 .add-friend button {
-  background-color: #383d66;
-  color: #ffffff;
-  font-family: "suit";
+  width: 60px;
+  height: 28px;
   border-radius: 12px;
-  height: 32px;
-  /* border: none; */
+  font-weight: 400;
+  font-size: 11px;
+  font-family: "suit";
+  color: white;
+  background: #383d66;
+  margin-left: 24px;
 }
 .hidden {
   display: none;
@@ -246,7 +250,7 @@ header button {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  max-width: 450px;
+  max-width: 700px;
   width: 100%;
   padding: 0px 30px;
   background-color: white;
