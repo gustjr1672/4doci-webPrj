@@ -22,7 +22,8 @@
         <img src="/image/header/whiteLogo.png" alt="4℃" width="50" height="32" />
       </div>
       <button class="bell" onclick="openModal()">
-        <img id="bell" src="/image/header/whiteBell.png" alt="알림" />
+        <img th:if="${isNoti}" id="bell" src="/image/header/whiteBellAlarm.png" alt="알림" />
+        <img th:unless="${isNoti}" id="bell" src="/image/header/whiteBell.png" alt="알림" />
       </button>
     </header>
 

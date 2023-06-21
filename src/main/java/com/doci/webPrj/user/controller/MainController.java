@@ -20,7 +20,8 @@ public class MainController {
 
     @GetMapping("main")
     public String main(Model model, @AuthenticationPrincipal MyUserDetails user) {
-
+        boolean isNoti = notificationService.getNotiStatus(user.getId());
+        model.addAttribute("isNoti", isNoti);
         return "user/main";
     }
 
