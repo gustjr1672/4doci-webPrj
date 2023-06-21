@@ -91,17 +91,20 @@ authBtn.addEventListener("click", () => {
   chkEmailValidity(); // 이메일 유효성 확인
 
   if (chkEmailValidity()) {
-    //  sendEmail();
     let value = email.value;
-    let url = `/join/email-verification?email=${value}`;
-    sendEmail(url);
+    let data = `email=${value}`;
+    sendEmail(data);
   }
 });
 
-function sendEmail(url) {
-  fetch(url, {
-    method: 'POST'
-  }).then(response => response.json())
+function sendEmail(data) {
+  fetch("/api/join/email-verification", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams(data)
+  }).then(response => response.text())
     .then(authCode => {
       code = authCode;
       openModal();   // 전송 모달창 띄움

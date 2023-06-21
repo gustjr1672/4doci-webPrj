@@ -24,26 +24,16 @@ public class JoinController {
 
     @GetMapping("/email-verification")
     public String mailAuthPage(@Param("error")String error){
-        System.out.println(error);
         return "/common/email-verification";
-    }
-
-    @PostMapping("/email-verification")
-    @ResponseBody
-    public String mailAuth(@RequestParam("email") String email){
-        String code = mailService.sendMessage(email);
-        System.out.printf("인증코드 : %s",code);
-        return code;
     }
 
     @PostMapping("/email-verification/submit")
     public String mailAuthSubmit(Model model,@RequestParam("email") String email){
-       System.out.printf("이메일은요 %s",email);
-       System.out.println(mailService.isEmailValid(email));
         member.setEmail(email);
         if(mailService.isEmailValid(email))
             return "redirect:/join/email-verification?error";
       
         return "redirect:/join/joinForm";
     }
+
 }
