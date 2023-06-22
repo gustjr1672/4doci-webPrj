@@ -5,12 +5,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
-  <link href="/css/joinForm.css" type="text/css" rel="stylesheet" />
+  <link href="/css/join-form.css" type="text/css" rel="stylesheet" />
   <link
       href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
       rel="stylesheet"
     />
-  <script src="/js/joinForm.js" defer="defer"></script>
+  <script src="/js/join-form.js" defer="defer"></script>
 <!--  <script src="/js/header.js"></script>-->
 </head>
 
@@ -24,7 +24,7 @@
   <h1>4℃ 이용을 위한<br />기본정보를 입력해주세요.</h1>
 </div>
 
-<form th:object="${newMember}" action="/member/join"  th:action="@{/member/join}" method="post">
+<form th:object="${newMember}" action="/join/join-form" method="post">
   <div class="input">
     <label for="email">이메일</label>
     <div class="input-form">
@@ -59,7 +59,7 @@
   <div class="input">
     <label for="pwd">비밀번호</label>
     <div class="input-form">
-      <input type="password" id="pwd" name="pwd" th:field="*{pwd}" required autocomplete="off" onkeyup="checkPassword()"  />
+      <input type="password" id="pwd" name="pwd" th:field="*{pwd}" required autocomplete="off" />
       <div id="pwd-error" class="error"></div>
     </div>
   </div>

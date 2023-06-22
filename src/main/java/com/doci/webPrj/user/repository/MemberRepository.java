@@ -16,4 +16,6 @@ public interface MemberRepository {
     List<Member> findListByNickname(@Param("nickname") String nickname, @Param("userNickname") String userNickname);
 
     Member findById(int id);
+
+    void save(@Param("m") Member member);
 }
