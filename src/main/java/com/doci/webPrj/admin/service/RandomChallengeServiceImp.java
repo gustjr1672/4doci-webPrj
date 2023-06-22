@@ -10,37 +10,38 @@ import com.doci.webPrj.admin.entity.RandomChallenge;
 import com.doci.webPrj.admin.entity.Unit;
 import com.doci.webPrj.common.repository.RandomChallengeRepository;
 
-
 @Service
 public class RandomChallengeServiceImp implements RandomChallengeService {
-   @Autowired
-   private RandomChallengeRepository randomChallengeRepository;
+  @Autowired
+  private RandomChallengeRepository randomChallengeRepository;
 
-    @Override
-    public void create(RandomChallenge randomChallenge) {
-      randomChallengeRepository.create(randomChallenge);
-    }
+  @Override
+  public void create(RandomChallenge randomChallenge) {
+    randomChallengeRepository.create(randomChallenge);
+  }
 
-    @Override
-    public List<Category> getCategoryList() {
-       return randomChallengeRepository.getCategoryList();
-    }
-    @Override
-    public List<Unit> getUnitList() {
-       return randomChallengeRepository.getUnitList();
-    }
-   @Override
-   public List<RandomChallenge> findAllBycategoryId(int categoryId) {
-     return randomChallengeRepository.findAllBycategoryId(categoryId);
-   }
+  @Override
+  public List<Category> getCategoryList() {
+    return randomChallengeRepository.getCategoryList();
+  }
 
-   @Override
-   public RandomChallenge findById(int id) {
-     return randomChallengeRepository.findById(id);
-   }
+  @Override
+  public List<Unit> getUnitList() {
+    return randomChallengeRepository.getUnitList();
+  }
 
-   @Override
-   public void update(RandomChallenge randomChallenge) {
+  @Override
+  public List<RandomChallenge> findAllBycategoryId(int categoryId) {
+    return randomChallengeRepository.findAllBycategoryId(categoryId);
+  }
+
+  @Override
+  public RandomChallenge findById(int id) {
+    return randomChallengeRepository.findById(id);
+  }
+
+  @Override
+  public void update(RandomChallenge randomChallenge) {
     randomChallengeRepository.update(randomChallenge);
-   }
+  }
 }
