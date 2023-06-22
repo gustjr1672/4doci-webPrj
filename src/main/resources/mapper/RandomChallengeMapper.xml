@@ -40,5 +40,15 @@
         unit_id=#{r.unitId}, goal_quantity=#{r.goalQuantity},category_id=#{r.categoryId}
         where id=#{r.id}
     </update>
+
+        <select id="findRandomByCategory" resultType="com.doci.webPrj.admin.entity.RandomChallenge">
+        select * from random_challenge
+        where category_id in
+        <foreach collection="array" item="arr" open="(" close=")" separator=",">
+        #{arr}
+        </foreach>
+        order by rand()
+        limit 3;
+    </select>
     
 </mapper>

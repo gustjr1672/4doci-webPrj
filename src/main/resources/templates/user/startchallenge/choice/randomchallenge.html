@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>random_choice</title>
+    <link rel="stylesheet" href="/css/random-challenge-choice.css" />
+    <link
+      href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+      rel="stylesheet"
+    />
+    <script src="/js/random_choice.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <button onclick="location.href='/challenge/start/choice/randomcategory'">
+          <img src="/image/header/blackBack.png" alt="뒤로가기" />
+        </button>
+        <!-- <img src="/image/title.png" alt="4℃" width="60" height="40" /> -->
+      </div>
+      <!-- <button><img src="/image/bell.png" alt="알림" /></button> -->
+    </header>
+    <section class="start-order">
+      <h1>
+        <p class="h1-1">마음에 드는 도전과</p>
+        <p class="h1-2">시작할 날짜를 선택해주세요</p>
+      </h1>
+    </section>
+
+    <form class="random-list" method="post" action="/challenge/start/randomchallenge/reg">
+      <!--    challenge-option 바로 위에 있었는데 옮겼음-->
+      <section class="start-order2">
+        <div class="date-input">
+          <label for="start-date">시작일:</label>
+          <input required min="yyyy-mm-dd" type="date" id="start-date" name="startDate" />
+        </div>
+      </section>
+      <section class="start-order">
+        <div class="end-date">
+          <label for="end-date">종료일:</label>
+          <input type="date" id="end-date" name="endDate" readonly />
+        </div>
+      </section>
+
+      <div class="challenge-option" th:each="challenge:${randomList}">
+        <input
+          th:value="${challenge.id}"
+          th:id="${challenge.id}"
+          id="17"
+          name="challenge"
+          th:name="randomChallengeId"
+          type="radio"
+          required
+        />
+        <label th:data-period="${challenge.period}" th:for="${challenge.id}" for="17">
+          <div class="period">
+            <p th:text="${challenge.period}+'DAY'">7DAY</p>
+          </div>
+          <img src="/img/random_category/familly.png" alt="" />
+          <p class="frequency">하루에 한 번</p>
+          <p th:text="${challenge.name}" class="goal">가족들에게 사랑한다 말하기</p>
+        </label>
+      </div>
+
+      <div class="create-btn">
+        <button type="submit" id="submit-button">도전생성</button>
+      </div>
+    </form>
+  </body>
+</html>
