@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.doci.webPrj.admin.entity.Category;
+import com.doci.webPrj.admin.entity.RandomChallenge;
 import com.doci.webPrj.admin.entity.Unit;
 import com.doci.webPrj.admin.service.CategoryService;
 import com.doci.webPrj.admin.service.UnitService;
 import com.doci.webPrj.config.MyUserDetails;
+import com.doci.webPrj.user.entity.Choice;
 import com.doci.webPrj.user.entity.FreeChallenge;
 import com.doci.webPrj.user.service.StartChallengeService;
 
@@ -43,7 +45,6 @@ public class StartChallengeController {
         List<Unit> unitList = unitService.findAll();
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("unitList", unitList);
-        // model.addAttribute("freeChallenge", freeChallenge);
         return "user/startchallenge/freeform";
     }
 
@@ -56,6 +57,15 @@ public class StartChallengeController {
         startChallengeService.addFreeChallenge(freeChallenge);
 
         return "redirect:/main";
+    }
+
+    @PostMapping("randomchallenge/reg")
+    public String randomChallengeReg(Choice choice,
+            @AuthenticationPrincipal MyUserDetails user) {
+        choice.setMemberId(user.getId());
+        startChallengeService.addRandomChallenge(choice);
+        return "redirect:/main";
+
     }
 
     @PostMapping("choice/type/submit")
@@ -78,5 +88,21 @@ public class StartChallengeController {
         }
         return new RedirectView("/startchallenge/choice/type");
 
+    }
+
+    @GetMapping("choice/randomcategory")
+    public String randomCategory(Model model) {
+        List<Category> categoryList = categoryService.findAll();
+        model.addAttribute("categoryList", categoryList);
+        return "user/startchallenge/choice/randomcategory";
+    }
+
+    @PostMapping("choice/randomchallenge")
+    public String randomCategorySubmit(Model model, @RequestParam("options") String[] categoryIdList) {
+
+        List<RandomChallenge> list = startChallengeService.getRandomList(categoryIdList);
+        model.addAttribute("randomList", list);
+        model.addAttribute("choice", new Choice());
+        return "user/startchallenge/choice/randomchallenge";
     }
 }
