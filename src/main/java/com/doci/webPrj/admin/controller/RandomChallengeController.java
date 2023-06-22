@@ -16,8 +16,6 @@ import com.doci.webPrj.admin.entity.RandomChallenge;
 import com.doci.webPrj.admin.entity.Unit;
 import com.doci.webPrj.admin.service.RandomChallengeService;
 
-
-
 @Controller
 @RequestMapping("/admin/randomchallenge")
 public class RandomChallengeController {
@@ -28,32 +26,31 @@ public class RandomChallengeController {
     @GetMapping("/manage")
     public String manage() {
         return "/admin/randomchallenge/manage";
-    } 
-    
+    }
+
     @GetMapping("/register")
-    public String registerRandomChallenge(Model model){
+    public String registerRandomChallenge(Model model) {
         List<Category> challengeCategoryList = randomChallengeService.getCategoryList();
         List<Unit> challengeUnitList = randomChallengeService.getUnitList();
         model.addAttribute("challengeCategoryList", challengeCategoryList);
         model.addAttribute("challengeUnitList", challengeUnitList);
- 
+
         return "/admin/randomchallenge/register";
     }
 
     @PostMapping("/register/submit")
-    public String submitRegister(RandomChallenge randomChallenge){
-        
+    public String submitRegister(RandomChallenge randomChallenge) {
+
         randomChallengeService.create(randomChallenge);
         return "redirect:/admin/randomchallenge/manage";
     }
 
-    
     @GetMapping("/edit")
-    public String editRandomChallenge(Model model, @RequestParam(name ="c", required=false) Integer categoryId){
+    public String editRandomChallenge(Model model, @RequestParam(name = "c", required = false) Integer categoryId) {
         List<Category> challengeCategoryList = randomChallengeService.getCategoryList();
-        if(categoryId != null){
-        List<RandomChallenge> randomChallengeList = randomChallengeService.findAllBycategoryId(categoryId);
-        model.addAttribute("randomChallengeList", randomChallengeList);
+        if (categoryId != null) {
+            List<RandomChallenge> randomChallengeList = randomChallengeService.findAllBycategoryId(categoryId);
+            model.addAttribute("randomChallengeList", randomChallengeList);
         }
 
         model.addAttribute("challengeCategoryList", challengeCategoryList);
@@ -61,10 +58,9 @@ public class RandomChallengeController {
     }
 
     @PostMapping("/edit/submit")
-    public String chioceEdit(Model model, @ModelAttribute("selectedChallenge") int challengeId){
+    public String chioceEdit(Model model, @ModelAttribute("selectedChallenge") int challengeId) {
 
         RandomChallenge selectedChallenge = randomChallengeService.findById(challengeId);
-       
 
         List<Category> challengeCategoryList = randomChallengeService.getCategoryList();
         List<Unit> challengeUnitList = randomChallengeService.getUnitList();
@@ -73,16 +69,14 @@ public class RandomChallengeController {
         model.addAttribute("challengeCategoryList", challengeCategoryList);
         model.addAttribute("challengeUnitList", challengeUnitList);
 
-
         System.out.print(selectedChallenge);
         return "/admin/randomchallenge/editdetail";
     }
 
     @PostMapping("/edit/submit/submit")
-    public String submitEdit( RandomChallenge randomChallenge){
+    public String submitEdit(RandomChallenge randomChallenge) {
         randomChallengeService.update(randomChallenge);
         return "redirect:/admin/randomchallenge/manage";
     }
-
 
 }
