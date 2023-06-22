@@ -75,7 +75,7 @@ public class RandomChallengeController {
 
 
         System.out.print(selectedChallenge);
-        return "/admin/randomchallenge/editdetail";
+        return "/admin/randomchallenge/edit-detail";
     }
 
     @PostMapping("/edit/submit/submit")
