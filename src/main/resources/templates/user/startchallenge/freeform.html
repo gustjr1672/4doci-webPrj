@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>free_challenge_form</title>
+    <link rel="stylesheet" href="/css/free-challenge-form.css" type="text/css" />
+    <script src="/js/freeChallenge.js" defer="defer"></script>
+    <link
+      href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="header-wrap">
+        <header>
+          <div class="header_left">
+            <button onclick="location.href='/challenge/start/choice/type'">
+              <img src="/image/freechallenge/back.png" alt="뒤로가기" />
+            </button>
+          </div>
+        </header>
+      </div>
+    </header>
+
+    <div class="massage">
+      <p>도전에 대해 입력해 주세요</p>
+    </div>
+
+    <form action="/challenge/start/freechallenge/reg" method="post">
+      <div class="list">
+        <div class="category_title">
+          <label for="category">카테고리</label>
+          <!--label: 입력 폼 요소와 레이블을 연결할때 사용. div보다 의미론적으로 명확-->
+          <div>
+            <select id="category" name="categoryId" required>
+              <option value="">선택</option>
+              <option
+                th:each="category:${categoryList}"
+                th:value="${category.id}"
+                th:text="${category.name}"
+              ></option>
+            </select>
+          </div>
+        </div>
+
+        <div class="name_set">
+          <div class="title">
+            <label for="name">도전명</label>
+            <div>
+              <textarea
+                placeholder="3자 이상 30자 이하"
+                id="challenge_name"
+                class="challenge_name"
+                name="name"
+                oninput="challengeAlert()"
+                required
+              ></textarea>
+              <p id="check_challenge_length"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quantity_title">
+          <label for="goalQuantity">목표량</label>
+          <div class="quantity_set">
+            <input
+              type="number"
+              placeholder="수치 입력"
+              id="quantity_inside"
+              name="goalQuantity"
+              required
+            />
+            <div>
+              <!--              id="quantity_inside"-->
+              <select name="unitId" required>
+                <option value="">단위 선택</option>
+
+                <option
+                  th:each="unit:${unitList}"
+                  th:value="${unit.id}"
+                  th:text="${unit.name}"
+                ></option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="frequency_title">
+          <label for="authFrequency">인증 빈도</label>
+          <div class="frequency_set">
+            <div>
+              <select id="auth_frequency" name="authFrequency" required>
+                <option value="">선택</option>
+
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+              </select>
+            </div>
+            <p>일에 한 번</p>
+          </div>
+        </div>
+
+        <div class="period_title">
+          <div class="period_set">
+            <div class="start_set">
+              <label for="startDate">시작일</label>
+              <div>
+                <input
+                  min="yyyy-mm-dd"
+                  type="date"
+                  id="start_inside"
+                  class="inside"
+                  name="startDate"
+                  required
+                />
+              </div>
+            </div>
+            <div class="end_set">
+              <label for="endDate">종료일</label>
+              <div>
+                <input
+                  min="yyyy-mm-dd"
+                  type="date"
+                  id="end_inside"
+                  class="inside"
+                  name="endDate"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="alert hidden">종료일은 시작일 이후로 설정해주세요.</div>
+      </div>
+      <div class="next_btn">
+        <button type="submit">다음</button>
+      </div>
+    </form>
+  </body>
+</html>
