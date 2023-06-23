@@ -19,7 +19,7 @@
      <select id="findListByNickname" resultType="com.doci.webPrj.user.entity.Member">
         select *
         from member
-        where nickname like '%${nickname}%' AND nickname NOT LIKE #{userNickname};
+        where roles = 'USER' AND nickname like '%${nickname}%' AND nickname NOT LIKE #{userNickname}; 
     </select>
 
     <!-- findById --> 

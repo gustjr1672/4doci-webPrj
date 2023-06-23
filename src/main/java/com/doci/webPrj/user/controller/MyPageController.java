@@ -26,17 +26,16 @@ public class MyPageController {
     @PostMapping("/change/new-profile")
     @ResponseBody
     public void newProfile(@RequestParam("profileImage") MultipartFile file,
-                                @AuthenticationPrincipal MyUserDetails user) {
+            @AuthenticationPrincipal MyUserDetails user) {
 
-        uploadProfileService.save(file , user);
+        uploadProfileService.save(file, user);
     }
 
     @PostMapping("/change/normal-profile")
     @ResponseBody
     public void normalProfile(@RequestParam("fileName") String fileName,
-                                      @AuthenticationPrincipal MyUserDetails user){
-        uploadProfileService.update(fileName,user);
+            @AuthenticationPrincipal MyUserDetails user) {
+        uploadProfileService.update(fileName, user);
     }
-
 
 }
