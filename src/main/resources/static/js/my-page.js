@@ -1,28 +1,34 @@
 function loadFile(input) {
-
+    let modal = document.querySelector('.modal');
+    modal.classList.remove('show');
 
     let file = input.files[0]; //선택된 파일 가져오기
-
-
-    let filename = file.name;
 
     let userImg = document.querySelector(".user-image");
     userImg.style.backgroundImage = `url("${URL.createObjectURL(file)}")`;
 
     const formData = new FormData();
     formData.append("profileImage", file);
-    formData.append("filename", filename);
 
-    const xhr = new XMLHttpRequest();
 
-    xhr.onreadystatechange = (() =>{
-        if (xhr.readyState == XMLHttpRequest.DONE){
-            if (xhr.status == 200){
-            }
-        }
+    fetch("/my-page/upload/profile",{
+        method: 'POST',
+        body: formData,
     })
 
-    xhr.open("Post", "/my-page/upload/profile",true);
-    xhr.send(formData);
 
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    let changeImageButton = document.querySelector('.change-img-btn');
+    let modal = document.querySelector('.modal');
+    let closeModalButton = modal.querySelector('.close');
+
+    changeImageButton.addEventListener('click', function() {
+        modal.classList.add('show'); // 모달에 show 클래스 추가하여 나타나도록 설정
+    });
+
+    closeModalButton.addEventListener('click', function() {
+        modal.classList.remove('show'); // 모달에서 show 클래스 제거하여 사라지도록 설정
+    });
+});

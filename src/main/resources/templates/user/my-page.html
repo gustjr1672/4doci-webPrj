@@ -24,23 +24,10 @@
 
 <section>
   <div class="profile">
-    <form class="image-form" id="image-form" method="post" enctype="multipart/form-data">
-      <div class="user-image" id="user-image" th:style="'background-image:url('+ ${fileName} + ')'">
-
-        <img src="">
-        <label for="choose-file"><img src="/image/my-page/profileEdit.png" alt=""/></label>
+      <div class="user-image" id="user-image" th:style="'background-image:url('+ ${user.profileImage} + ')'">
+        <button class="change-img-btn" ><img src="/image/my-page/profileEdit.png" alt=""/></button>
       </div>
 
-      <input
-              type="file"
-              id="choose-file"
-              class="choose-file"
-              name="choose-file"
-              accept="image/*"
-              onchange="loadFile(this)"
-
-      />
-    </form>
 
     <div class="info">
       <p class="nickname">고민시</p>
@@ -63,6 +50,7 @@
         <p>실패도전</p>
       </div>
     </div>
+  </div>
 </section>
 
 
@@ -95,5 +83,29 @@
     </button>
   </footer>
 </div>
-</body>
+<!--====================== 모달===================-->
+    <div class="modal" >
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="buttons">
+          <div class="normal-change">
+            <button class="normal-image"><img src="/image/my-page/normalProfile.png" alt="기본이미지로"></button>
+            <span>기본 이미지</span>
+          </div>
+
+          <div class="new-change">
+            <button class="new-image"><label for="choose-file"><img src="/image/my-page/newProfile.png" alt="새로운이미지로"></label></button>
+            <span>새로운 이미지</span>
+          </div>
+        </div>
+        <input
+              type="file"
+              id="choose-file"
+              class="choose-file"
+              name="choose-file"
+              accept="image/*"
+              onchange="loadFile(this)"/>
+      </div>
+    </div>
+  </body>
 </html>
