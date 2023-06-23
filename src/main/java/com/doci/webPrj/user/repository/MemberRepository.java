@@ -19,4 +19,7 @@ public interface MemberRepository {
     Member findById(int id);
 
     void updateProfileImage(MyUserDetails user);
+
+    void save(@Param("m") Member member);
+
 }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>random-category</title>
+    <link rel="stylesheet" href="/css/challenge-category.css" />
+    <link
+      href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+      rel="stylesheet"
+    />
+    <script src="random_category.js" type="module"></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <button onclick="location.href='/challenge/start/choice/type'">
+          <img src="/image/header/blackBack.png" alt="뒤로가기" />
+        </button>
+        <!-- <img src="/image/title.png" alt="4℃" width="60" height="40" /> -->
+      </div>
+      <!-- <button><img src="/image/bell.png" alt="알림" /></button> -->
+    </header>
+
+    <div class="top-text">
+      <p>어떤 도전을 해볼까요?</p>
+      <p>카테고리를 선택해 주세요(복수선택 가능)</p>
+    </div>
+    <form
+      id="check-form"
+      th:action="@{/challenge/start/choice/randomchallenge}"
+      action=""
+      method="post"
+    >
+      <div class="category-checkBox" th:each="cate:${categoryList}">
+        <label th:for="${cate.id}">
+          <!-- <img src="/image/startchallenge/category/exercise.png" alt="" /> -->
+          <div>
+            <p th:text="${cate.name}">운동</p>
+            <p>가벼운 산책부터 다양한 운동들을 시도해 보세요.</p>
+          </div>
+          <input type="checkbox" name="options" th:value="${cate.id}" th:id="${cate.id}" />
+        </label>
+      </div>
+
+      <div class="create-btn">
+        <button type="submit" id="submit-button">도전생성</button>
+      </div>
+    </form>
+  </body>
+</html>

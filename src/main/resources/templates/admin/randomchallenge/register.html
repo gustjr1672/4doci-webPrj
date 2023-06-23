@@ -19,7 +19,7 @@
   </header>
   <div class="title">랜덤도전 등록</div>
 
-  <form onsubmit="return validateCategory() && validateUnit()" action="" action="/admin/randomchallenge/register/submit" method="post"
+  <form action="/admin/randomchallenge/register/submit" method="post"
    class="multi-form">
     <div class="error-wrap">
       <div>
@@ -40,13 +40,13 @@
     </div>
     <div>
       <span>목표량</span>
-      <input type="text" id="goal" name="goalQuantity" required autocomplete="off"
+      <input type="number" id="goal" name="goalQuantity" required autocomplete="off" min="1"
         placeholder="목표량" />
     </div>
     <div class="error-wrap">
       <div>
         <span>목표단위</span>
-        <select name="unitId" required id="unitId">
+        <select name="unitId" required id="unit">
           <option value="0" disabled selected hidden>선택</option>
           <option th:each="challengeUnit :${challengeUnitList}" th:value="${challengeUnit.id}"
             th:text="${challengeUnit.name}">
@@ -57,16 +57,16 @@
     </div>
     <div>
       <span>도전기간</span>
-      <input type="number" id="period" name="period" required autocomplete="off"
+      <input type="number" id="period" name="period" required autocomplete="off" min="1"
         placeholder="도전기간" />
     </div>
     <div>
       <span>인증빈도</span>
-      <input type="number" id="frequency" name="authFrequency" required autocomplete="off"
+      <input type="number" id="frequency" name="authFrequency" required autocomplete="off" min="1"
         placeholder="인증빈도" />
     </div>
 
-    <button type="submit">등록</button>
+    <button type="submit" >등록</button>
   </form>
 </body>
 

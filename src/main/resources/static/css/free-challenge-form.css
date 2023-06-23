@@ -1,0 +1,308 @@
+@import "reset.css";
+
+* {
+  font-family: "SUIT", sans-serif !important;
+}
+body {
+  margin: 0;
+}
+
+/* 헤더 */
+.header-wrap {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 12px 12px 12px;
+}
+
+.header_left {
+  display: flex;
+  gap: 12px;
+  width: 90px;
+  height: 40px;
+}
+.header_left img {
+  width: 40px;
+}
+
+header button {
+  border: none;
+  background-color: #fff;
+}
+
+/* --------------------본문--------------------- */
+
+/* selcet box 공통 */
+select {
+  text-align-last: center;
+  text-align: center;
+  -ms-text-align-last: center;
+  -moz-text-align-last: center;
+
+  font-size: 12px;
+  font-weight: medium;
+  color: black;
+  text-align: center;
+
+  height: 38px;
+  border: 1px solid #949494;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+}
+
+select option {
+  font-size: 12px;
+  font-weight: medium;
+  color: #333333;
+}
+
+/* .category_title select:hover{
+   border-color: #383D66; 
+} */
+
+/*메세지*/
+.massage {
+  display: flex;
+  justify-content: center;
+}
+
+.massage p {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333333;
+
+  margin-bottom: 40px;
+
+  width: 312px;
+}
+
+/*입력폼 리스트 전체 묶는 div*/
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/*카테고리 */
+.category_title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  gap: 20px;
+
+  width: 312px;
+}
+
+.category_title select {
+  width: 120px;
+}
+
+/*그룹명, 도전명 */
+
+.name_set {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.challenge_name {
+  resize: none;
+  width: 229px;
+  height: 32px;
+  border: 1px solid #949494;
+  border-radius: 4px;
+  background-color: #fdfdfd;
+
+  font-size: 12px;
+  font-weight: medium;
+  color: #333333;
+
+  position: relative;
+  text-align: center;
+  padding: 20px 40px 10px 40px;
+}
+
+#check_group_length {
+  margin: 0px;
+  position: absolute;
+
+  font-size: 10px;
+  font-weight: 400;
+  color: rgb(219, 92, 92);
+}
+
+#check_challenge_length {
+  margin: 0px;
+  position: absolute;
+
+  font-size: 10px;
+  font-weight: 400;
+  color: rgb(219, 92, 92);
+}
+
+/*목표량 설정*/
+.quantity_title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 312px;
+}
+
+.quantity_set {
+  display: flex;
+  gap: 20px;
+}
+
+.quantity_set input {
+  width: 140px;
+  height: 37px;
+  /* border-radius: 8px; */
+  border: 1px solid #949494;
+  background-color: #fdfdfd;
+
+  font-size: 12px;
+  font-weight: medium;
+  color: #333333;
+
+  text-align: center;
+}
+
+.quantity_set select {
+  width: 145px;
+}
+
+/* 인증 빈도 */
+.frequency_title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 70px;
+
+  width: 312px;
+}
+
+.frequency_set {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  font-size: 12px;
+  font-weight: bold;
+  color: #333333;
+}
+
+.frequency_set select {
+  width: 120px;
+}
+
+/*기간 설정*/
+.period_title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 310px;
+}
+
+.period_set {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+
+  /* height: 100px; */
+  border-radius: 12px;
+  /* background-color: #F8F8F8; */
+}
+
+.start_set,
+.end_set {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.inside {
+  width: 140px;
+  height: 37px;
+  border-radius: 8px;
+  border: 1px solid #949494;
+  background-color: #fdfdfd;
+
+  font-size: 12px;
+  font-weight: medium;
+  color: #333333;
+  text-align: center;
+}
+
+/* 다음 버튼 */
+.next_btn {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.next_btn button {
+  border: 1px solid #949494;
+  border-radius: 12px;
+
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+
+  background-color: #383d66;
+  width: 312px;
+  height: 47px;
+}
+input,
+textarea,
+option,
+select {
+  font-weight: 700;
+  border-radius: 0;
+}
+.alert {
+  padding-left: 120px;
+  color: #d64e4e;
+  font-size: 12px;
+}
+
+.hidden {
+  display: none;
+}

@@ -41,7 +41,7 @@
     </div>
     <div>
       <span>목표량</span>
-      <input type="number" id="goal" name="goal" required th:field="*{goalQuantity}" autocomplete="off"
+      <input type="number" id="goal" name="goal" required th:field="*{goalQuantity}" autocomplete="off"  min="1"
          />
     </div>
     <div class="error-wrap">
@@ -59,12 +59,12 @@
     </div>
     <div>
       <span>도전기간</span>
-      <input type="number" id="period" name="period" required th:field="*{period}" autocomplete="off"
+      <input type="number" id="period" name="period" required th:field="*{period}" autocomplete="off" min="1"
         />
     </div>
     <div>
       <span>인증빈도</span>
-      <input type="number" id="frequency" name="frequency" required th:field="*{authFrequency}" autocomplete="off"
+      <input type="number" id="frequency" name="frequency" required th:field="*{authFrequency}" autocomplete="off" min="1"
        />
     </div>
     <input type="hidden" th:field="*{id}">

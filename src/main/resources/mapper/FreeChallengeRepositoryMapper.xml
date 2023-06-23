@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.doci.webPrj.user.repository.FreeChallengeRepository">
+
+    <!-- save --> 
+
+    <insert id="save" >
+        insert into free_challenge
+        (name,
+        start_date,
+        end_date,
+        period,
+        auth_frequency,
+        goal_quantity,
+        unit_id,
+        member_id,
+        category_id) 
+        values
+        (#{f.name},
+        #{f.startDate},
+        #{f.endDate},
+        #{f.period},
+        #{f.authFrequency},
+        #{f.goalQuantity},
+        #{f.unitId},
+        #{f.memberId},
+        #{f.categoryId});
+    </insert>
+
+</mapper>

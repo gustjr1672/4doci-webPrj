@@ -29,8 +29,8 @@
 
     <div class="profile-wrap">
       <div class="profile-title">
-        <img src="/image/main/profile4.png" alt="profile" width="50" height="50" />
-        <span th:text="${nickname} + ' 님'">신도시여신</span>
+        <img th:src="${user.profileImage}" alt="profile" width="50" height="50" />
+        <span th:text="${user.nickname} + ' 님'">신도시여신</span>
       </div>
 
       <div class="start-btn">
@@ -39,7 +39,7 @@
             <span>랜덤도전,자유도전,그룹도전까지</span>
             <span>새로운 도전을 시작해보세요</span>
           </div>
-          <button type="submit" onclick="location.href='startchallenge/choice/type'">
+          <button type="submit" onclick="location.href='challenge/start/choice/type'">
             시작하기
             <img src="/image/main/right.png" alt="go" />
           </button>

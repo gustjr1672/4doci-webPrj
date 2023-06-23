@@ -36,7 +36,7 @@ function friendRequestLoad(url) {
           <section id="friend-request-content" class="contents">
             <div class="content">
             <div class="info">
-              <img src="/image/notification/progileImg2.png" alt="프로필이미지" />
+              <img src="${member.profileImage}" alt="프로필이미지" />
               <div class="user-name">
                 <span>${member.name}</span>
                 <span>${member.nickname}</span>

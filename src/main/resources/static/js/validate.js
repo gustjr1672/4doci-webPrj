@@ -21,4 +21,12 @@ function validateUnit() {
   }
 }
 
-
+const finishBtn = document.querySelector("button");
+const form = document.querySelector("form");
+finishBtn.onclick = function(e){
+  if(!(validateCategory()) || !(validateUnit())){
+    e.preventDefault();
+    return;
+  }
+  form.submit();
+}
