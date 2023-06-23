@@ -1,7 +1,7 @@
 package com.doci.webPrj.user.controller;
 
 import com.doci.webPrj.config.MyUserDetails;
-import com.doci.webPrj.user.service.UploadProfileService;
+import com.doci.webPrj.user.service.ChangeProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -14,23 +14,28 @@ import org.springframework.web.multipart.MultipartFile;
 public class MyPageController {
 
     @Autowired
-    UploadProfileService uploadProfileService;
+    ChangeProfileService uploadProfileService;
 
     @GetMapping
     public String myPage(Model model, @AuthenticationPrincipal MyUserDetails user) {
         model.addAttribute("user", user);
         String profileImage = user.getProfileImage();
-        System.out.println("profileImage = " + profileImage);
         return "user/my-page";
     }
 
-    @PostMapping("/upload/profile")
+    @PostMapping("/change/new-profile")
     @ResponseBody
-    public void uploadProfile(@RequestParam("profileImage") MultipartFile file,
+    public void newProfile(@RequestParam("profileImage") MultipartFile file,
                                 @AuthenticationPrincipal MyUserDetails user) {
 
         uploadProfileService.save(file , user);
-//        return null;
+    }
+
+    @PostMapping("/change/normal-profile")
+    @ResponseBody
+    public void normalProfile(@RequestParam("fileName") String fileName,
+                                      @AuthenticationPrincipal MyUserDetails user){
+        uploadProfileService.update(fileName,user);
     }
 
 

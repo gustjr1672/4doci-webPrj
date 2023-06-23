@@ -13,7 +13,7 @@ import java.nio.file.Path;
 import java.util.UUID;
 
 @Service
-public class UploadProfileServiceImp implements UploadProfileService{
+public class ChangeProfileServiceImp implements ChangeProfileService {
 
     @Autowired
     MemberRepository memberRepository;
@@ -31,11 +31,16 @@ public class UploadProfileServiceImp implements UploadProfileService{
         DBSave(fullPath , user);
 
     }
+    @Override
+    public void update(String fileName, MyUserDetails user) {
+        DBSave(fileName,user);
+    }
 
     private void DBSave(String fullPath , MyUserDetails user){
         String relativePath = fullPath.substring(fullPath.indexOf("/upload"));
         user.setProfileImage(relativePath);
 
+        System.out.println("relativePath = " + relativePath);
         memberRepository.updateProfileImage(user);
     }
 
