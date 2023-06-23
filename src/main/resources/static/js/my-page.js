@@ -1,7 +1,7 @@
 
 
 function changeTONormalProfile(){
-    let fileName = "/upload/normal.png";
+    let fileName = "/upload/image/profile/normal.png";
 
     let userImg = document.querySelector(".user-image");
     userImg.style.backgroundImage = `url(${fileName})`;
