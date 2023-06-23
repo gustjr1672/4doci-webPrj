@@ -1,5 +1,6 @@
 package com.doci.webPrj.user.repository;
 
+import com.doci.webPrj.config.MyUserDetails;
 import com.doci.webPrj.user.entity.Member;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -17,5 +18,8 @@ public interface MemberRepository {
 
     Member findById(int id);
 
+    void updateProfileImage(MyUserDetails user);
+
     void save(@Param("m") Member member);
+
 }

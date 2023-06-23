@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/my-page.css" type="text/css" />
+  <title>myPage</title>
+  <link
+          href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+          rel="stylesheet"
+  />
+
+  <script src="/js/my-page.js"></script>
+</head>
+<body>
+<div class="header-wrap">
+  <header>
+    <div class="header_left">
+      <img src="/image/header/whiteLogo.png" alt="4℃" width="50px" height="30px"/>
+    </div>
+  </header>
+</div>
+
+<section>
+  <div class="profile">
+      <div class="user-image" id="user-image" th:style="'background-image:url('+ ${user.profileImage} + ')'">
+        <button class="change-img-btn" ><img src="/image/my-page/profileEdit.png" alt=""/></button>
+      </div>
+
+
+    <div class="info">
+      <p class="nickname">고민시</p>
+      <button class="nickname-edit" onclick="location.href ='edit-nickname.html'"></button>
+    </div>
+
+    <div class="challenge-record">
+      <div class="total">
+        <p>42</p>
+        <p>전체도전</p>
+      </div>
+
+      <div class="sucess">
+        <p>24</p>
+        <p>성공도전</p>
+      </div>
+
+      <div class="fail">
+        <p>18</p>
+        <p>실패도전</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="btns">
+  <button onclick="location.href = '/edit-password.html' ">
+    <span>비밀번호 변경</span>
+    <img src="./image/my-page/next.png" alt=">" />
+  </button>
+
+  <button onclick="location.href='/logout'">
+    <span>로그아웃</span>
+    <img src="./image/my-page/next.png" alt=">" />
+  </button>
+  </div>
+</section>
+
+<div class="footer-wrap">
+  <footer>
+    <button>
+      <img src="/image/footer/home.png" alt="홈" onclick="location.href = 'main' " />
+    </button>
+    <button>
+      <img src="/image/footer/community.png" alt="커뮤니티" onclick="location.href = 'community.html' " />
+    </button>
+    <button>
+      <img src="/image/footer/friendManagement.png" alt="친구관리" onclick="location.href = '/friends-management.html' " />
+    </button>
+    <button>
+      <img src="/image/footer/clickMyPage.png" alt="내정보" />
+    </button>
+  </footer>
+</div>
+<!--====================== 모달===================-->
+    <div class="modal" >
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="buttons">
+          <div class="normal-change">
+            <button class="normal-image"><img src="/image/my-page/normalProfile.png" alt="기본이미지로"></button>
+            <span>기본 이미지</span>
+          </div>
+
+          <div class="new-change">
+            <button class="new-image"><label for="choose-file"><img src="/image/my-page/newProfile.png" alt="새로운이미지로"></label></button>
+            <span>새로운 이미지</span>
+          </div>
+        </div>
+        <input
+              type="file"
+              id="choose-file"
+              class="choose-file"
+              name="choose-file"
+              accept="image/*"
+              onchange="loadFile(this)"/>
+      </div>
+    </div>
+  </body>
+</html>
