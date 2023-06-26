@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>standby-screen</title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/standby_screen.css" type="text/css">
+    <script src="/js/standby_screen.js" defer="defer"></script>
+    <link
+    href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+    <header>
+        <div class="header-wrap">
+            <header>
+              <div class="header_left">
+                <button><img src="/image/wating-page/back.png" alt="뒤로가기" /></button>
+                <img src="/image/wating-page/title.png" alt="4℃" width="50" height="30" />
+              </div>
+              <button class="bell"><img src="/image/wating-page/bell.png" alt="알림" /></button>
+            </header>
+          </div>
+    </header>
+
+    <div class="content-list">
+        <div class="message">
+            <p>그룹도전 시작을 기다리는 중입니다</p>
+        </div>
+
+        <div class="challenge-title">
+            <p>대기중인 도전</p>
+            <div>
+                <span>일주일에 한번 재혁이한테 뽀뽀해주고<br>안아주고 쓰다듬어주기</span>
+            </div>
+        </div>
+
+        <div class="friends">
+            <p>함께하는 친구</p>
+            <div class="profile-wrap">
+                <div class="profile">
+                    <div>
+                        <img src="/image/wating-page/신도시여신.png" alt="profile-img">
+                        <span>신도시여신</span>
+                    </div>
+                </div>
+                <div class="profile">
+                    <div>
+                        <img src="/image/wating-page/신도시여신.png" alt="profile-img">
+                        <span>신도시여신</span>
+                    </div>
+                </div>
+                <div class="profile">
+                    <div>
+                        <img src="/image/wating-page/신도시여신.png" alt="profile-img">
+                        <span>신도시여신</span>
+                    </div>
+                </div>
+                <div class="profile">
+                    <div>
+                        <img src="/image/wating-page/망사나시.png" alt="profile-img">
+                        <span>망고나시</span>
+                    </div>
+                </div>
+                <div class="profile">
+                    <div>
+                        <img src="/image/wating-page/로고.png" alt="profile-img">
+                        <span>재혁짱</span>
+                    </div>
+                </div>
+                <div class="profile">
+                    <div>
+                        <img src="/image/wating-page/로고.png" alt="profile-img">
+                        <span>재혁짱</span>
+                    </div>
+                </div>
+                <div class="profile">
+                    <div>
+                        <img src="/image/wating-page/로고.png" alt="profile-img">
+                        <span>재혁짱</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="period">
+            <p>도전 기간</p>
+            <div class="start-set">
+                <p>시작일</p>
+                <span>2023년 05월 12일</span>
+            </div>
+            <div class="end-set">
+                <p>종료일</p>
+                <span>2023년 05월 30일</span>
+            </div>
+        </div>
+
+        <div class="buttons" id="buttons">
+            <button type="submit" class="invite-btn">초대 더보내기</button>
+            <button type="submit" class="start-btn">바로 시작하기</button>
+        </div>
+    </div>
+
+    
+<!-- 모달 -->
+<div class="modal" id="modal">
+    <div class="modal-body">
+        <p>함께할 친구를 추가해 보세요</p>
+        <div class="friends-list">
+            <div class="content">
+              <div class="info">
+                    <img src="/image/wating-page/재혁짱.png" alt="프로필이미지" />
+                    <div>
+                        <span>재혁짱<br>최재혁</span>
+                    </div>
+              </div>
+              <input type="checkbox">
+            </div>
+            <div class="content">
+              <div class="info">
+                    <img src="/image/wating-page/홍시냠냠.png" alt="프로필이미지" />
+                    <div>
+                        <span>홍시냠냠<br>김주리</span>
+                    </div>
+              </div>
+              <input type="checkbox">
+            </div>
+            <div class="content">
+                <div class="info">
+                      <img src="/image/wating-page/멋을아는자.png" alt="프로필이미지" />
+                      <div>
+                          <span>멋을아는자<br>최재형</span>
+                      </div>
+                </div>
+                <input type="checkbox">
+            </div>
+            <div class="content">
+                <div class="info">
+                      <img src="/image/wating-page/순수했던시절.png" alt="프로필이미지" />
+                      <div>
+                          <span>순수했던시절<br>최재혈</span>
+                      </div>
+                </div>
+                <input type="checkbox">
+            </div>
+            <div class="content">
+                <div class="info">
+                      <img src="/image/wating-page/순수했던시절.png" alt="프로필이미지" />
+                      <div>
+                          <span>순수했던시절<br>최재혈</span>
+                      </div>
+                </div>
+                <input type="checkbox">
+            </div>
+            <div class="content">
+                <div class="info">
+                      <img src="/image/wating-page/순수했던시절.png" alt="프로필이미지" />
+                      <div>
+                          <span>순수했던시절<br>최재혈</span>
+                      </div>
+                </div>
+                <input type="checkbox">
+            </div>
+            
+        </div>
+        <div class="btns">
+            <button type="submit">그룹 초대</button>
+            <button type="submit"><img src="/image/wating-page/close.png"></button>      
+        </div>   
+    </div>
+
+</div>
+
+</body>
+</html>

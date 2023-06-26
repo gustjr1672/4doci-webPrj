@@ -51,7 +51,6 @@ select {
 
   height: 38px;
   border: 1px solid #949494;
-  border-radius: 8px;
   background-color: #fdfdfd;
 }
 
@@ -132,7 +131,6 @@ select option {
   width: 229px;
   height: 32px;
   border: 1px solid #949494;
-  border-radius: 4px;
   background-color: #fdfdfd;
 
   font-size: 12px;
@@ -144,17 +142,9 @@ select option {
   padding: 20px 40px 10px 40px;
 }
 
-#check_group_length {
-  margin: 0px;
-  position: absolute;
-
-  font-size: 10px;
-  font-weight: 400;
-  color: rgb(219, 92, 92);
-}
 
 #check_challenge_length {
-  margin: 0px;
+  margin: 4px 0 0 0;
   position: absolute;
 
   font-size: 10px;
@@ -182,7 +172,6 @@ select option {
 .quantity_set input {
   width: 140px;
   height: 37px;
-  /* border-radius: 8px; */
   border: 1px solid #949494;
   background-color: #fdfdfd;
 
@@ -245,9 +234,6 @@ select option {
   justify-content: center;
   gap: 10px;
 
-  /* height: 100px; */
-  border-radius: 12px;
-  /* background-color: #F8F8F8; */
 }
 
 .start_set,
@@ -261,7 +247,6 @@ select option {
 .inside {
   width: 140px;
   height: 37px;
-  border-radius: 8px;
   border: 1px solid #949494;
   background-color: #fdfdfd;
 
@@ -295,7 +280,7 @@ textarea,
 option,
 select {
   font-weight: 700;
-  border-radius: 0;
+  border-radius: 4px;
 }
 .alert {
   padding-left: 120px;
