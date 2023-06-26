@@ -1,0 +1,403 @@
+@import"reset.css";
+
+* {
+    font-family: "SUIT", sans-serif !important;
+  }
+
+body {
+    margin: 0; 
+    background-image: linear-gradient(to bottom,#383D66 312px, #FFFFFF 312px);
+    background-repeat: no-repeat;
+}
+
+/* 헤더 */
+.header-wrap {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 12px;
+}
+
+.header_left {
+    display: flex;
+    gap: 12px;
+    width: 90px;
+    height: 40px;
+}
+
+header button {
+    background-color: #383D66;
+    border: none;
+}
+
+.header_left button:hover img {
+    content: url("/image/backHover.png");
+}
+
+.bell:hover img {
+    content: url("/image/bellHover.png");
+}
+
+/* 전체 div */
+.content-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+/* 메세지 */
+.message{
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+
+    margin: 20px 0px;
+}
+
+/* 대기중인 도전 */
+.challenge-title{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;  
+
+    width: 100%;
+    max-width: 400px;
+} 
+
+.challenge-title p{
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+
+    margin-right: 230px;
+}
+
+.challenge-title span{
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--black-color);
+} 
+
+.challenge-title div{
+    border: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+    width: 325px;
+    height: 123px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 함께하는 친구 */
+.friends{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+
+    width: 100%;
+    max-width: 400px;
+}
+
+.friends p{
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--black-color);
+
+    margin-right: 230px;
+}
+
+.profile-wrap{
+    display: flex;
+    align-items: center;
+
+    height: 80px;
+    column-gap: 29px;
+    width: 312px;
+    white-space: nowrap;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+} 
+
+.profile-wrap::-webkit-scrollbar{
+    display: none;
+}
+
+.profile {
+    font-size: 10px;
+    font-weight: medium;
+    color: var(--black-color);
+    text-align: center;
+
+    display: inline-block;
+
+    width: 60px;
+    height: 80px;
+}
+
+.profile div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* 도전기간 */
+.period{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+
+    width: 100%;
+    max-width: 400px;
+}
+
+.period>p{      /*>: 바로 밑 자식에만 먹음 */
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--black-color);
+
+    margin-right: 251px;
+}
+
+/* 시작일 */
+.start-set{
+    display: flex;
+    gap: 40px;
+    
+    font-size: 12px;
+    color: var(--black-color);
+}
+
+.start-set p{
+    line-height: 35px;
+    font-weight: bold;
+}
+
+.start-set span{
+    border-bottom: 1px solid #333333;
+    /* border-radius: 12px; */
+    text-align: center;
+    line-height: 35px;
+
+    width: 167px;
+    height: 35px;
+
+    font-weight: medium;
+}
+/* 종료일 */
+.end-set{
+    display: flex;
+    gap: 40px;
+    
+    font-size: 12px;
+    color: var(--black-color);
+}
+
+.end-set p{
+    line-height: 35px;
+    font-weight: bold;
+}
+
+.end-set span{
+    border-bottom: 1px solid #333333;
+    /* border-radius: 12px; */
+    text-align: center;
+    line-height: 35px;
+
+    width: 167px;
+    height: 35px;
+
+    font-weight: medium;
+}
+
+/* 버튼 */
+.buttons{
+    display: flex;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.buttons button{
+    border-radius: 12px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    width: 150px;
+    height: 47px;
+}
+
+.invite-btn{
+    border: 1px solid #383D66;
+    color: #383D66;
+    background-color: #ffffff;
+}
+
+.start-btn{
+    border: none;
+    color: #ffffff;
+    background-color: var(--main-color);
+
+}
+
+/* 모달 */
+/* 모달 전체 */
+.modal{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    width: 100%;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.7);
+}
+/* 모달 바디 */
+.modal-body{
+    position: absolute;
+    top:10%;
+
+    border-radius: 12px;
+
+    width: 100%;
+    max-width: 400px;
+    height: 680px;
+    background-color: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.modal-body p{
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--black-color);
+
+    margin-top: 90px;
+    width: 312px;
+
+    text-align: center;
+}
+
+/* 모달 바디 -친구 목록 */
+.friends-list {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    height: 348px;
+    width: 312px;
+    overflow: scroll;
+}
+
+.friends-list::-webkit-scrollbar{
+    display: none;
+}
+
+.friends-list .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 450px;
+    width: 100%;
+    padding: 10px 30px;
+    background-color: white;
+    border: none;
+    height: 68px;
+    box-sizing: border-box;
+}
+
+.friends-list .content .info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.friends-list .content .info div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 4px;
+}
+
+.content img {
+    width: 50px;
+    height: 50px;
+    border-radius: 60px;
+}
+  
+.content span {
+    margin: 0px;
+    font-size: 12px;
+    font-weight: medium;
+    color:var(--black-color);
+}
+
+/* 모달버튼 */
+.content input[type=checkbox]{
+    appearance: none;   /*기본스타일 없애기 */
+    border: var(--8px-border);
+    border-radius: 30px;
+    width: 30px;
+    height: 30px;
+}
+.content input[type=checkbox]:checked{
+    background-image: url("/image/wating-page/select.png");
+    background-repeat: no-repeat;
+    border: none;
+    
+}
+
+.btns button:nth-child(1){
+    border: none;
+    border-radius: 12px;
+
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+
+    background-color: var(--main-color);
+    width: 289px;
+    height: 47px;
+
+    position: absolute;
+    top:550px;
+    left:50px;
+
+}
+
+.btns button:nth-child(2){
+    border: none;
+    width: 40px;
+    background-color: #ffffff;
+
+    position: absolute;
+    top:30px;
+    left:330px;
+}
+
+
