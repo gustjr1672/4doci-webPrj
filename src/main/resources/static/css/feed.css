@@ -4,35 +4,27 @@
 
 body {
   margin: 0;
-  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 main {
   padding-bottom: 50px;
-}
-
-header {
   width: 100%;
+}
+.header-wrap {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+header {
   display: flex;
   align-items: center;
-  margin: 12px 40px 8px 40px;
+  justify-content: space-between;
+  padding: 18px 20px;
   height: 40px;
 }
-header img {
-  margin-left: 12px;
-}
-.community-header {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.friends::-webkit-scrollbar {
-  display: none;
-}
+
 .friends {
   width: 90%;
   max-width: 660px;
@@ -46,6 +38,10 @@ header img {
   white-space: nowrap;
   overflow-x: scroll;
   scroll-behavior: smooth;
+}
+
+.friends::-webkit-scrollbar {
+  display: none;
 }
 .friends button {
   border: none;
@@ -83,7 +79,7 @@ header img {
   justify-content: start;
   align-items: center;
   width: 100%;
-  max-width: 354px;
+  max-width: 660px;
   gap: 6px;
   font-size: 12px;
   font-weight: 800;
@@ -92,6 +88,7 @@ header img {
   width: 30px;
   height: 30px;
   border-radius: 30px;
+  margin-left: 16px;
 }
 .title {
   display: flex;
@@ -119,7 +116,7 @@ header img {
   font-size: 10px;
   width: 54px;
   height: 20px;
-  padding: 0 12px;
+  padding: 0 16px;
   text-align: center;
   border-radius: 4px;
   color: #fff;
@@ -221,9 +218,9 @@ footer button {
   background-color: white;
   border: none;
 }
-footer img {
-  width: 30px;
-}
 .feed-footer-btns button img {
   width: 24px;
+}
+footer img {
+  width: 30px;
 }

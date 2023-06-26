@@ -21,6 +21,7 @@ public class Feed {
     String nickname;
     String profileImage;
     String challengeName;
+    int commentCount;
     int freeChallengeId;
     int choiceId;
     int groupStartId;

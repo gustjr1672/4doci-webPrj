@@ -20,27 +20,26 @@
     <header>
       <img src="/image/header/blackLogo.png" alt="4℃" width="60" height="40" />
     </header>
-    <section class="community-header">
-      <div class="friends">
-        <button>
-          <img th:src="${user.profileImage}" alt="friend" />
-          <span th:text="${user.nickname}">신도시아지매</span>
-        </button>
-        <button th:each="friend:${friendList}">
-          <img th:src="${friend.profileImage}" alt="friend" />
-          <span th:text="${friend.nickname}">멋을아는자</span>
-        </button>
-      </div>
+
+    <section class="friends">
+      <button>
+        <img th:src="${user.profileImage}" alt="friend" />
+        <span th:text="${user.nickname}">신도시아지매</span>
+      </button>
+      <button th:each="friend:${friendList}">
+        <img th:src="${friend.profileImage}" alt="friend" />
+        <span th:text="${friend.nickname}">멋을아는자</span>
+      </button>
     </section>
 
     <main>
       <section class="feed" th:each="feed:${feedList}">
         <div class="profile">
-          <img th:src="${feed.key.profileImage}" alt="friend" />
-          <span th:text="${feed.key.nickname}">멋을아는자</span>
+          <img th:src="${feed.profileImage}" alt="friend" />
+          <span th:text="${feed.nickname}">멋을아는자</span>
         </div>
         <div class="title">
-          <span th:text="${feed.key.challengeName}" class="challenge-title"
+          <span th:text="${feed.challengeName}" class="challenge-title"
             >하루에 30분씩 가벼운 스트레칭하기 어쩌고저쩌고 어쩌고</span
           >
           <div class="title-btns">
@@ -48,14 +47,14 @@
           </div>
         </div>
         <div class="content">
-          <img th:if="${feed.key.Image}" th:src="${feed.key.Image}" alt="" />
-          <span th:text="${feed.key.impression}">오늘도 열시미 불태웠다...</span>
+          <img th:if="${feed.Image}" th:src="${feed.Image}" alt="" />
+          <span th:text="${feed.impression}">오늘도 열시미 불태웠다...</span>
         </div>
         <div class="feed-footer">
           <div class="comment">
             <button>
               <img src="/image/community/comment.png" alt="" />
-              <span th:text="${#lists.size(feed.value)}">1</span>
+              <span th:text="${feed.commentCount}">1</span>
             </button>
           </div>
         </div>
