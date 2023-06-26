@@ -13,6 +13,7 @@ import com.doci.webPrj.user.entity.Choice;
 import com.doci.webPrj.user.entity.FreeChallenge;
 import com.doci.webPrj.user.repository.ChoiceRepository;
 import com.doci.webPrj.user.repository.FreeChallengeRepository;
+import com.doci.webPrj.user.repository.InvitationRepository;
 
 @Service
 public class StartChallengeServiceImp implements StartChallengeService {
@@ -23,6 +24,7 @@ public class StartChallengeServiceImp implements StartChallengeService {
     RandomChallengeRepository randomChallengeRepository;
     @Autowired
     ChoiceRepository choiceRepository;
+    
 
     public void addFreeChallenge(FreeChallenge freeChallenge) {
         LocalDate startDate = freeChallenge.getStartDate();
@@ -45,4 +47,16 @@ public class StartChallengeServiceImp implements StartChallengeService {
         return randomChallengeRepository.findRandomByCategory(categoryIdList);
     }
 
+    @Override
+    public int getFreechallengeId(String challengeName,int userId) {
+        // String challengeName
+       return freeChallengeRepository.getChallengeId(challengeName,userId);
+    }
+
+    @Override
+    public void delete(int challengeId) {
+        freeChallengeRepository.delete(challengeId);
+    }
+
+    
 }

@@ -28,8 +28,9 @@
     <div class="massage">
       <p>도전에 대해 입력해 주세요</p>
     </div>
-
+    
     <form action="/challenge/start/freechallenge/reg" method="post">
+      <input type = "hidden" name = "type" value="${type}"></input>
       <div class="list">
         <div class="category_title">
           <label for="category">카테고리</label>
@@ -55,7 +56,7 @@
                 id="challenge_name"
                 class="challenge_name"
                 name="name"
-                oninput="challengeAlert()"
+                minlength="3" maxlength="30"
                 required
               ></textarea>
               <p id="check_challenge_length"></p>

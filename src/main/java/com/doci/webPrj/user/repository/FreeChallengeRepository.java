@@ -10,4 +10,8 @@ public interface FreeChallengeRepository {
 
     void save(@Param("f") FreeChallenge freeChallenge);
 
+    Integer getChallengeId(@Param("name") String challengeName, @Param("userId") int userId);
+
+    void delete(int challengeId);
+
 }
