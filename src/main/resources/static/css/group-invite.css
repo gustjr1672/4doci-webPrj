@@ -1,0 +1,187 @@
+
+* {
+    font-family: "SUIT", sans-serif !important;
+  }
+
+  header {
+    display: flex;
+    margin-left: 12px;
+    margin-top: 20px;
+  }
+  
+  header>button {
+    background-color: white;
+    border: none;
+  }
+
+/* .group_title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 44px;
+    gap : 20px;
+}
+
+.group_title label{
+    width: 312px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.group_name {
+    width: 304px;
+    height: 48px;
+    border: 1px solid #949494;
+    border-radius: 4px;
+    background-color: #fdfdfd;
+  
+    font-size: 12px;
+    font-weight: medium;
+    color: #333333;
+  
+    text-align: center;
+  }
+
+  #check_group_length {
+    margin: 4px 0 0 0;
+    position: absolute;
+  
+    font-size: 10px;
+    font-weight: 400;
+    color: rgb(219, 92, 92);
+  } */
+
+.invite-wrap{
+
+    border-radius: 12px;
+
+    width: 100%;
+    background-color: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+.invite-wrap p{
+    font-size: 14px;
+    font-weight: bold;
+    color:#333333;
+
+    margin-top: 44px;
+    width: 312px;
+
+    text-align: center;
+}
+
+/* 모달 바디 -친구 목록 */
+.friends-list {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    height: 348px;
+    width: 312px;
+    overflow: scroll;
+}
+
+.friends-list::-webkit-scrollbar{
+    display: none;
+}
+
+.friends-list .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 450px;
+    width: 100%;
+    padding: 10px 10px;
+    background-color: white;
+    border: none;
+    height: 68px;
+    box-sizing: border-box;
+}
+
+.friends-list .content .info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.friends-list .content .info div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 4px;
+}
+
+.content img {
+    width: 50px;
+    height: 50px;
+    border-radius: 60px;
+}
+  
+.content span {
+    margin: 0px;
+    font-size: 12px;
+    font-weight: medium;
+    color:#333333;
+}
+
+.content input[type=checkbox]{
+    appearance: none;   /*기본스타일 없애기 */
+    border: 1px solid #949494;
+    border-radius: 30px;
+    width: 30px;
+    height: 30px;
+}
+.content input[type=checkbox]:checked{
+    background-image: url("/image/freechallenge/select.png");
+    background-repeat: no-repeat;
+    border: none;
+    
+}
+.btns{
+    width: 312px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+.btns button:nth-child(1){
+    border: none;
+    border-radius: 12px;
+
+    font-size: 14px;
+    font-weight: 500;
+    color: #383D66;
+
+    background-color: #ffffff;
+    border: 1px solid #383D66 ;
+    width: 144px;
+    height: 47px;
+    margin-top: 30px;
+}
+
+.btns button:nth-child(2){
+    border: none;
+    border-radius: 12px;
+
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+
+    background-color: #383D66;
+    width: 144px;
+    height: 47px;
+    margin-top: 30px;
+}
