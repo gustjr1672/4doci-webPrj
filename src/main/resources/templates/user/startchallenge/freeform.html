@@ -29,8 +29,8 @@
       <p>도전에 대해 입력해 주세요</p>
     </div>
     
-    <form action="/challenge/start/freechallenge/reg" method="post">
-      <input type = "hidden" name = "type" value="${type}"></input>
+    <form action="/freeChallenge/challenge/reg" method="post">
+      <input type = "hidden" name = "type" th:value="${type}"></input>
       <div class="list">
         <div class="category_title">
           <label for="category">카테고리</label>
