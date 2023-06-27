@@ -25,26 +25,26 @@ public class FriendManageController {
     @Autowired
     private FriendManageService friendManageService;
 
-    @GetMapping("newfriend/search")
-    public List<Map<String, Object>> search(
+    @GetMapping("newfriends/list")
+    public List<Map<String, Object>> list(
             Model model,
             @AuthenticationPrincipal MyUserDetails user,
             @RequestParam(name = "n", required = false) String nickname) {
 
-        List<Map<String, Object>> response = friendManageService.getNewMemberList(nickname, user.getNickname(), user);
+        List<Map<String, Object>> list = friendManageService.getNewMemberList(nickname, user.getNickname(), user);
 
-        return response;
+        return list;
     }
 
-    @GetMapping("friend/search")
-    public List<Member> searchFriend(
+    @GetMapping("friends/list")
+    public List<Member> list(
             @AuthenticationPrincipal MyUserDetails user,
             @RequestParam(name = "n", required = false) String nickname) {
         List<Member> friendList = friendManageService.getFriendListByNickname(user.getId(), nickname);
         return friendList;
     }
 
-    @DeleteMapping("friend/delete")
+    @DeleteMapping("friends")
     public List<Member> delete(
             @AuthenticationPrincipal MyUserDetails user,
             @RequestParam(name = "id", required = false) int memberId,

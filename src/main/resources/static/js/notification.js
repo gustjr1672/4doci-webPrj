@@ -26,8 +26,10 @@ function toggleContent(content) {
       break;
   }
 }
-function friendRequestLoad(url) {
-  fetch(url)
+function friendRequestLoad(url, method) {
+  fetch(url, {
+    method: method,
+  })
     .then((response) => response.json())
     .then((list) => {
       notification.innerHTML = "";
@@ -56,9 +58,9 @@ let notificationBtns = document.querySelector(".notification");
 
 notificationBtns.addEventListener("click", (e) => {
   if (e.target.id === "request-accept") {
-    friendRequestLoad(`/notification/request/accept?id=${e.target.dataset.id}`);
+    friendRequestLoad(`/notifications/request/${e.target.dataset.id}`, "POST");
   } else if (e.target.id === "request-refuse") {
-    friendRequestLoad(`/notification/request/refuse?id=${e.target.dataset.id}`);
+    friendRequestLoad(`/notifications/request/${e.target.dataset.id}`, "DELETE");
   }
 });
 let bell = document.getElementById("bell");
@@ -75,7 +77,7 @@ btnSection.addEventListener("click", (e) => {
     notification.innerHTML = "";
     notification.insertAdjacentHTML("beforeend", groupNotiTemplate);
   } else if (e.target.classList.contains("friend-request-btn")) {
-    friendRequestLoad(`/notification/request`);
+    friendRequestLoad(`/notifications/request`, "GET");
   }
 });
 
