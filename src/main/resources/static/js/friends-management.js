@@ -40,7 +40,7 @@ let addSearchInput = document.querySelector("input[name=n]");
 let newfriendList = document.getElementById("new-friend-list");
 addSearchBtn.addEventListener("click", () => {
   if (addSearchInput.value == "") return;
-  newFriendListLoad(`/friendmanage/newfriend/search?n=${addSearchInput.value}`);
+  newFriendListLoad(`/friendmanage/newfriends/list?n=${addSearchInput.value}`);
 });
 
 let newFriendList = document.getElementById("new-friend-list");
@@ -98,7 +98,7 @@ let friendSearchInput = document.querySelector("input[name=nickname]");
 let friendList = document.getElementById("friend-list");
 friendSearchBtn.addEventListener("click", () => {
   if (friendSearchInput.value == "") return;
-  fetch(`/friendmanage/friend/search?n=${friendSearchInput.value}`)
+  fetch(`/friendmanage/friends/list?n=${friendSearchInput.value}`)
     .then((response) => response.json())
     .then((list) => {
       console.log(list);
@@ -122,7 +122,7 @@ friendSearchBtn.addEventListener("click", () => {
 });
 friendList.onclick = function (e) {
   if (e.target.classList.contains("delete")) {
-    fetch(`/friendmanage/friend/delete?id=${e.target.dataset.id}&n=${friendSearchInput.value}`, {
+    fetch(`/friendmanage/friends?id=${e.target.dataset.id}&n=${friendSearchInput.value}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
