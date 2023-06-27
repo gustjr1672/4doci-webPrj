@@ -30,20 +30,20 @@ public class RandomChoiceController {
     @Autowired
     RandomChoiceService randomChoiceService;
 
-    @GetMapping("choice/randomcategory")
+    @GetMapping("choice/category")
     public String randomCategory(Model model) {
         List<Category> categoryList = categoryService.findAll();
         model.addAttribute("categoryList", categoryList);
-        return "user/startchallenge/choice/randomcategory";
+        return "user/startchallenge/randomchallenge/choice-category";
     }
 
-    @PostMapping("choice/randomchallenge")
+    @PostMapping("choice/challenge")
     public String randomCategorySubmit(Model model, @RequestParam("options") String[] categoryIdList) {
 
         List<RandomChallenge> list = randomChoiceService.getRandomList(categoryIdList);
         model.addAttribute("randomList", list);
         model.addAttribute("choice", new Choice());
-        return "user/startchallenge/choice/randomchallenge";
+        return "user/startchallenge/randomchallenge/choice-challenge";
     }
 
 
