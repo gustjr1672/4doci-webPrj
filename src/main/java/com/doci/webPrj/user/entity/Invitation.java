@@ -4,8 +4,7 @@ import lombok.Data;
 
 @Data
 public class Invitation {
-    int freeChallengeId;
+    int groupChallengeId;
     int toMemberId;
-    int fromMemberId;
     boolean isAccept;
 }

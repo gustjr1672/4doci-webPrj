@@ -15,7 +15,7 @@ public class FreeChallengeServiceImp implements FreeChallengeService {
     @Autowired
     FreeChallengeRepository freeChallengeRepository;
     @Override
-    public void addFreeChallenge(FreeChallenge freeChallenge) {
+    public void addChallenge(FreeChallenge freeChallenge) {
         LocalDate startDate = freeChallenge.getStartDate();
         LocalDate endDate = freeChallenge.getEndDate();
         Period period = startDate.until(endDate);
@@ -24,17 +24,6 @@ public class FreeChallengeServiceImp implements FreeChallengeService {
 
         freeChallenge.setPeriod(days);
         freeChallengeRepository.save(freeChallenge);
-    }
-
-    @Override
-    public int getFreechallengeId(String challengeName,int userId) {
-        // String challengeName
-       return freeChallengeRepository.getChallengeId(challengeName,userId);
-    }
-
-    @Override
-    public void delete(int challengeId) {
-        freeChallengeRepository.delete(challengeId);
     }
     
 

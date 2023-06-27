@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.doci.webPrj.user.repository.GroupChallengeRepository">
+
+    <!-- save --> 
+
+    <insert id="save" >
+        insert into group_challenge
+        (name,
+        start_date,
+        end_date,
+        period,
+        auth_frequency,
+        goal_quantity,
+        unit_id,
+        group_leader_id,
+        category_id) 
+        values
+        (#{g.name},
+        #{g.startDate},
+        #{g.endDate},
+        #{g.period},
+        #{g.authFrequency},
+        #{g.goalQuantity},
+        #{g.unitId},
+        #{g.groupLeaderId},
+        #{g.categoryId});
+    </insert>
+
+    <select id="getId">
+    select id from group_challenge
+        where
+        name=#{g.name}
+        AND start_date= #{g.startDate}
+        AND end_date = #{g.endDate}
+        AND period = #{g.period}
+        AND auth_frequency = #{g.authFrequency}
+        AND goal_quantity = #{g.goalQuantity}
+        AND unit_id = #{g.unitId}
+        AND group_leader_id = #{g.groupLeaderId}
+        AND category_id = #{g.categoryId}
+    </select>
+
+    <delete id="delete">
+    delete from free_challenge where id=#{challengeId}
+    </delete>
+</mapper>
