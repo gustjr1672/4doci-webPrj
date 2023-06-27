@@ -16,4 +16,6 @@ public interface GroupChallengeRepository {
     int getId(@Param("g") GroupChallenge groupChallenge);
 
     void delete(int challengeId);
+
+    GroupChallenge findById(int challengeId);
 }

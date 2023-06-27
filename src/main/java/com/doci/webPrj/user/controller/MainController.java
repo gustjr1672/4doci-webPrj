@@ -28,6 +28,7 @@ public class MainController {
     @GetMapping("main")
     public String main(Model model, @AuthenticationPrincipal MyUserDetails user) {
         boolean isNoti = notificationService.getNotiStatus(user.getId());
+        
         List<AllChallenges> allChallengesList = allChallengesService.findAll(user.getId());
         List<Unit> unitList = unitService.findAll();
 

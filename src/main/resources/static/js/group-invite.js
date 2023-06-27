@@ -1,11 +1,30 @@
-const groupName = document.getElementById("group_name");
 
-groupName.oninput = function(){
-    let input = groupName.value;
-    let alert = document.getElementById("check_group_length");
-  
-    if(input.length > 20)
-        alert.textContent="20자 이내로 작성해 주세요";
-    else
-        alert.textContent="";
-  }
+let socket = null;
+
+document.addEventListener("DOMContentLoaded", function () {
+  // 소켓 연결
+  connectWs();
+});
+function connectWs() {
+  let ws = new SockJS("/groupChallenge");
+  socket = ws;
+  ws.onopen = function () {
+    console.log("open");
+  };
+
+  ws.close = function () {
+    console.log("close");
+  };
+}
+
+let inviteBtn = document.getElementById("invite-btn");
+
+inviteBtn.onclick = function(e){
+    const selectedFriends = document.querySelectorAll('input[name="friend"]:checked');
+    selectedFriends.forEach(function(friend){
+        let socketMsg = "invite," + friend.value + "," + "2," + "1";
+        socket.send(socketMsg);
+    });
+    
+}
+

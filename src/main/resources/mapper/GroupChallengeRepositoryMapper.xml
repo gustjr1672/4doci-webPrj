@@ -31,6 +31,10 @@
     </insert>
 
     <delete id="delete">
-    delete from free_challenge where id=#{challengeId}
+    delete from group_challenge where id=#{challengeId}
     </delete>
+
+    <select id="findById" resultType="com.doci.webPrj.user.entity.GroupChallenge">
+        select * from group_challenge where id=#{challengeId}
+    </select>
 </mapper>

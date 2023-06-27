@@ -52,6 +52,32 @@ function friendRequestLoad(url) {
     });
 }
 
+function groupInvitationLoad(url){
+  fetch(url)
+  .then((response) => response.json())
+  .then((list) => {
+    notification.innerHTML = "";
+    for (const invitation of list) {
+      let groupNotiTemplate = ` 
+        <section id="group-invitation-content" class="contents">
+          <div class="content">
+            <div class="info">
+              <img src="${invitation.profileImage}" alt="프로필이미지" />
+              <div>
+                <span
+                  >${invitation.nickname} 님이 <br/>
+                  그룹도전에 초대했습니다.</span
+                >
+              </div>
+            </div>
+            <button onclick="location.href='group-invite?id=${invitation.groupChallengeId}'">보기</button>
+          </div>
+        </section>`;
+      notification.insertAdjacentHTML("beforeend", groupNotiTemplate);
+    }
+  });
+}
+
 let notificationBtns = document.querySelector(".notification");
 
 notificationBtns.addEventListener("click", (e) => {
@@ -61,6 +87,9 @@ notificationBtns.addEventListener("click", (e) => {
     friendRequestLoad(`/notification/request/refuse?id=${e.target.dataset.id}`);
   }
 });
+
+
+
 let bell = document.getElementById("bell");
 bell.addEventListener("click", () => {
   console.log("1");
@@ -72,8 +101,7 @@ btnSection.addEventListener("click", (e) => {
     notification.innerHTML = "";
     notification.insertAdjacentHTML("beforeend", commuNotiTemplate);
   } else if (e.target.classList.contains("group-invitation-btn")) {
-    notification.innerHTML = "";
-    notification.insertAdjacentHTML("beforeend", groupNotiTemplate);
+    groupInvitationLoad(`/notification/invite`);
   } else if (e.target.classList.contains("friend-request-btn")) {
     friendRequestLoad(`/notification/request`);
   }
@@ -110,30 +138,4 @@ let commuNotiTemplate = `
     </button>
   </section>`;
 
-let groupNotiTemplate = ` 
-        <section id="group-invitation-content" class="contents">
-          <div class="content">
-            <div class="info">
-              <img src="/image/notification/profile.png" alt="프로필이미지" />
-              <div>
-                <span
-                  >고민시작 님이 <br />
-                  그룹도전에 초대했습니다.</span
-                >
-              </div>
-            </div>
-            <button onclick="location.href='group-invite.html'">보기</button>
-          </div>
-          <div class="content">
-            <div class="info">
-              <img src="/image/notification/progileImg2.png" alt="프로필이미지" />
-              <div>
-                <span
-                  >고민시작 님이 <br />
-                  그룹도전에 초대했습니다.</span
-                >
-              </div>
-            </div>
-            <button>보기</button>
-          </div>
-        </section>`;
+

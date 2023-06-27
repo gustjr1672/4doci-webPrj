@@ -23,10 +23,16 @@ public class GroupChallengeServiceImp implements GroupChallengeService {
 
         groupChallenge.setPeriod(days);
         groupChallengeRepository.save(groupChallenge);
+
     }
 
     @Override
     public void delete(int challengeId) {
         groupChallengeRepository.delete(challengeId);
+    }
+
+    @Override
+    public GroupChallenge getChallenge(int challengeId) {
+        return groupChallengeRepository.findById(challengeId);
     }
 }

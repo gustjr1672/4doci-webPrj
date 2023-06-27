@@ -6,4 +6,6 @@ public interface GroupChallengeService {
     void addChallenge(GroupChallenge groupChallenge);
 
     void delete(int challengeId);
+
+    GroupChallenge getChallenge(int challengeId);
 }
