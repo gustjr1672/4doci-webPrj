@@ -65,7 +65,7 @@
         <span class="chal-title" th:text="${all.name}">하루에 30분이상 운동하고 치킨먹고 자기</span>
         <div class="prog-wrap">
           <div>
-            <span class="achv-Quantity">0</span>
+            <span class="achv-Quantity" th:text="${all.achvQuantity}">0</span>
             <span>/</span>
             <span th:each="unit:${unitList}"
                   th:if="${unit.id == all.unitId}"
