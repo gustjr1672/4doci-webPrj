@@ -9,7 +9,10 @@ header {
   justify-content: space-between;
   margin: 20px 12px;
 }
-
+header img {
+  width: 22px;
+  height: 22px;
+}
 .header-left {
   display: flex;
   gap: 12px;

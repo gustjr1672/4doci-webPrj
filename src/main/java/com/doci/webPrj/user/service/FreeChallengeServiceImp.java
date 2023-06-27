@@ -3,6 +3,8 @@ package com.doci.webPrj.user.service;
 import java.time.LocalDate;
 import java.time.Period;
 
+import com.doci.webPrj.user.entity.PerformanceRecords;
+import com.doci.webPrj.user.repository.PerformanceRecordsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ public class FreeChallengeServiceImp implements FreeChallengeService {
     
     @Autowired
     FreeChallengeRepository freeChallengeRepository;
+    @Autowired
+    PerformanceRecordsRepository recordsRepository;
     @Override
     public void addChallenge(FreeChallenge freeChallenge) {
         LocalDate startDate = freeChallenge.getStartDate();
@@ -24,6 +28,17 @@ public class FreeChallengeServiceImp implements FreeChallengeService {
 
         freeChallenge.setPeriod(days);
         freeChallengeRepository.save(freeChallenge);
+        int freeChallengeId = freeChallenge.getId();
+
+        savePerformanceRecords(freeChallengeId);
+    }
+
+    private void savePerformanceRecords(int freeChallengeId) {
+        PerformanceRecords record = PerformanceRecords.builder()
+                .round(1)
+                .freeChallengeId(freeChallengeId)
+                .build();
+        recordsRepository.save(record);
     }
     
 
