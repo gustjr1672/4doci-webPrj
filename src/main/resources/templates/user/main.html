@@ -61,7 +61,7 @@
       </select>
     </div>
     <div class="btn-wrap" th:each="all:${allChallengesList}">
-      <button class="chal-btn">
+      <button class="chal-btn" th:data-unique-id="${all.uniqueId}">
         <span class="chal-title" th:text="${all.name}">하루에 30분이상 운동하고 치킨먹고 자기</span>
         <div class="prog-wrap">
           <div>
