@@ -49,7 +49,7 @@ public class FreechallengeController {
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("unitList", unitList);
         model.addAttribute("type", type);
-        return "user/startchallenge/freeform";
+        return "user/startchallenge/freechallenge/challengeForm";
     }
 
     @PostMapping("challenge/reg")
