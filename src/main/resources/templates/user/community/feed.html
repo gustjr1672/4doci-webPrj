@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>community</title>
+    <script src="/js/feed.js" defer="defer"></script>
+    <link rel="stylesheet" href="/css/feed.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="header-wrap">
+      <header>
+        <img src="/image/header/blackLogo.png" alt="4℃" />
+      </header>
+    </div>
+    <section class="friends">
+      <button>
+        <img th:src="${user.profileImage}" alt="friend" />
+        <span th:text="${user.nickname}">신도시아지매</span>
+      </button>
+      <button th:each="friend:${friendList}">
+        <img th:src="${friend.profileImage}" alt="friend" />
+        <span th:text="${friend.nickname}">멋을아는자</span>
+      </button>
+    </section>
+
+    <main>
+      <section class="feed" th:each="feed:${feedList}">
+        <div class="profile">
+          <img th:src="${feed.profileImage}" alt="friend" />
+          <span th:text="${feed.nickname}">멋을아는자</span>
+        </div>
+        <div class="title">
+          <span th:text="${feed.challengeName}" class="challenge-title"
+            >하루에 30분씩 가벼운 스트레칭하기</span
+          >
+          <div class="title-btns">
+            <button
+              th:if="${feed.freeChallengeId}"
+              th:onclick="|location.href = '/community/feed/detail?fc=${feed.freeChallengeId}'|"
+            >
+              <img src="/image/community/more.png" alt="" /><span>자세히 보기</span>
+            </button>
+            <button
+              th:if="${feed.choiceId}"
+              th:onclick="|location.href = '/community/feed/detail?ch=${feed.choiceId}'|"
+            >
+              <img src="/image/community/more.png" alt="" /><span>자세히 보기</span>
+            </button>
+            <button
+              th:if="${feed.groupStartId}"
+              th:onclick="|location.href = '/community/feed/detail?gs=${feed.groupStartId}'|"
+            >
+              <img src="/image/community/more.png" alt="" /><span>자세히 보기</span>
+            </button>
+          </div>
+        </div>
+        <div class="content">
+          <img th:if="${feed.Image}" th:src="${feed.Image}" alt="" />
+          <span th:text="${feed.impression}">오늘도 열시미 불태웠다...</span>
+        </div>
+        <div class="feed-footer">
+          <span class="time-message" th:text="${feed.timeMessage}">1시간 전</span>
+          <div class="footer-btn">
+            <button class="comment" th:data-id="${feed.id}">
+              <img src="/image/community/comment.png" alt="" />
+              <span th:text="${feed.commentCount}">1</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="footer-wrap">
+      <footer>
+        <button>
+          <img src="/image/footer/home.png" alt="홈" onclick="location.href = '/main' " />
+        </button>
+        <button>
+          <img src="/image/footer/clickCommunity.png" alt="커뮤니티" />
+        </button>
+        <button>
+          <img
+            src="/image/footer/friendManagement.png"
+            alt="친구관리"
+            onclick="location.href = '/friendmanage/main' "
+          />
+        </button>
+        <button>
+          <img src="/image/footer/myPage.png" alt="내정보" onclick="location.href = '/my-page' " />
+        </button>
+      </footer>
+    </div>
+  </body>
+</html>

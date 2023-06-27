@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doci.webPrj.user.repository.FeedRepository">
+
+    <!-- findFeedList --> 
+
+    <select id="findFeedList">
+        select * from feed
+        where member_id in
+        <foreach collection="list" item="arr" open="(" close=")" separator=",">
+            #{arr}
+        </foreach>
+        order by reg_date DESC;
+    </select>
+</mapper>
