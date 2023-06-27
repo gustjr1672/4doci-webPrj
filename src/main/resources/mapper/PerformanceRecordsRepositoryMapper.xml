@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doci.webPrj.user.repository.PerformanceRecordsRepository">
+    <update id="updateAchvQuantity">
+        update performance_records
+        set achv_quantity = achv_quantity + 1
+        <if test="FCId != null">
+        where free_challenge_id = #{FCId}
+        and round = (
+            select max(round)
+            from performance_records
+            where free_challenge_id = #{FCId}
+            )
+        </if>
+        <if test="CHId != null">
+            where choice_id = #{CHId}
+            and round = (
+            select max(round)
+            from performance_records
+            where choice_id = #{CHId}
+            )
+        </if>
+        <if test="GSId != null">
+            where group_start_id = #{GSId}
+            and round = (
+            select max(round)
+            from performance_records
+            where group_start_id = #{GSId}
+            )
+        </if>
+    </update>
+
+    <select id="getAchvQuantity">
+        select achv_quantity
+        from performance_records
+        <if test="FCId != null">
+            where free_challenge_id = #{FCId}
+        </if>
+        <if test="CHId != null">
+            where choice_id = #{CHId}
+        </if>
+        <if test="GSId != null">
+            where group_start_id = #{GSId}
+        </if>
+    </select>
+</mapper>

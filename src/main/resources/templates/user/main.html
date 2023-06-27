@@ -14,6 +14,7 @@
     <script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
     <script src="/js/main.js" module defer="defer"></script>
     <script src="/js/notification.js" defer="defer"></script>
+    <script src="/js/progress-bar.js" defer="defer"></script>
   </head>
 
   <body>
@@ -49,28 +50,38 @@
       </div>
     </div>
 
-  <div class="btn-wrap" th:each="all:${allChallengesList}">
-    <button class="chal-btn">
-      <span class="chal-title" th:text="${all.name}">하루에 30분이상 운동하고 치킨먹고 자기</span>
-      <div class="prog-wrap">
-        <div>
-          <span class="achv-Quantity">0</span>
-          <span>/</span>
-          <span th:each="unit:${unitList}"
-                th:if="${unit.id == all.unitId}"
-                th:text="${all.goalQuantity} + ' '+ ${unit.name}">1회</span>
-          <span hidden="hidden" th:text="${all.goalQuantity}" class="goal_quantity"></span>
+  <section class="chal-list">
+    <div class="chal-header">
+      <span>진행중인 도전</span>
+      <select id="filter">
+        <option value="all">전체</option>
+        <option value="personal">개인</option>
+        <option value="challenge">도전</option>
+        <option value="random">랜덤</option>
+      </select>
+    </div>
+    <div class="btn-wrap" th:each="all:${allChallengesList}">
+      <button class="chal-btn">
+        <span class="chal-title" th:text="${all.name}">하루에 30분이상 운동하고 치킨먹고 자기</span>
+        <div class="prog-wrap">
+          <div>
+            <span class="achv-Quantity">0</span>
+            <span>/</span>
+            <span th:each="unit:${unitList}"
+                  th:if="${unit.id == all.unitId}"
+                  th:text="${all.goalQuantity} + ' '+ ${unit.name}">1회</span>
+            <span hidden="hidden" th:text="${all.goalQuantity}" class="goal_quantity"></span>
+          </div>
+          <div class="prog-bar">
+            <div class="prog"> </div>
+          </div>
         </div>
-        <div class="prog-bar">
-          <div class="prog"> </div>
-        </div>
-      </div>
-    </button>
-    <button class="plus-btn"
-            th:data-goal-quantity="${all.goalQuantity}"
-            th:data-challenge-id="${all.uniqueId}">+</button>
-  </div>
-
+      </button>
+      <button class="plus-btn"
+              th:data-goal-quantity="${all.goalQuantity}"
+              th:data-challenge-id="${all.uniqueId}">+</button>
+    </div>
+  </section>
 
 
 
