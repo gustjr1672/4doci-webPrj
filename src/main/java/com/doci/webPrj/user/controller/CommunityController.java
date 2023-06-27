@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.doci.webPrj.config.MyUserDetails;
 import com.doci.webPrj.user.entity.Feed;
@@ -37,4 +38,13 @@ public class CommunityController {
 
         return "user/community/feed";
     }
+
+    @GetMapping("feed/detail")
+    public String detail(@RequestParam(name = "fc", defaultValue = "0") int fcId,
+            @RequestParam(name = "ch", defaultValue = "0") int chId,
+            @RequestParam(name = "gs", defaultValue = "0") int gsId) {
+
+        return "user/community/feed-detail";
+    }
+
 }

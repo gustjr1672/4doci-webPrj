@@ -1,0 +1,134 @@
+* {
+  font-family: "SUIT", sans-serif !important;
+}
+
+header {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  max-width: 660px;
+}
+header img {
+  width: 30px;
+}
+header > button {
+  background-color: white;
+  border: none;
+}
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.detail-header {
+  padding-top: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 24px;
+  width: 100%;
+  max-width: 660px;
+}
+.profile {
+  padding-left: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+.comment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding-right: 16px;
+}
+.comment span {
+  padding-right: 24px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.comment-btn {
+  width: 24px;
+  height: 24px;
+}
+.space-btwn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.space-btwn :first-child {
+  font-size: 14px;
+  font-weight: 700;
+  padding-left: 12px;
+}
+.title {
+  word-break: keep-all;
+  width: 180px;
+}
+.space-btwn button {
+  border: none;
+  background-color: #fff;
+}
+.period {
+  font-size: 12px;
+  color: #7b7b7b;
+  padding-left: 12px;
+}
+.feed {
+  padding-top: 36px;
+  margin: 10px 0 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding-bottom: 10px;
+  width: 100%;
+}
+.feed img {
+  width: 100%;
+  max-width: 660px;
+}
+.date {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  max-width: 660px;
+}
+.date span {
+  background-color: #808080;
+  color: #fff;
+  border: 1px solid #808080;
+  border-radius: 10px;
+  height: 25px;
+  width: 60px;
+  text-align: center;
+  line-height: 25px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 12px;
+}
+.content {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  max-width: 660px;
+}
+.content span {
+  font-size: 12px;
+  padding-left: 12px;
+}
