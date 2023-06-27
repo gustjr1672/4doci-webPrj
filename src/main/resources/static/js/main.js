@@ -39,3 +39,18 @@ function closeModal() {
     modal.style.display = "none";
   }, 300);
 }
+
+/*도전상태페이지로 unique_id 넘기기*/
+let chalListSection = document.querySelector(".chal-list");
+
+chalListSection.addEventListener("click", function(e){
+
+  if(e.target.className !== "chal-btn")
+    return;
+
+  let chalBtn = e.target;
+  let uniqueId = chalBtn.dataset.uniqueId;
+  
+  location.href=`performance-record?cid=${uniqueId}`;
+
+});
