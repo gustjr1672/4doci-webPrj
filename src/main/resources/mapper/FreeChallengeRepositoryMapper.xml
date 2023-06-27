@@ -29,12 +29,5 @@
         #{f.memberId},
         #{f.categoryId});
     </insert>
-
-    <select id="getChallengeId">
-    select id from free_challenge where name=#{name} and member_id=#{userId}
-    </select>
-
-    <delete id="delete">
-    delete from free_challenge where id=#{challengeId}
-    </delete>
+    
 </mapper>

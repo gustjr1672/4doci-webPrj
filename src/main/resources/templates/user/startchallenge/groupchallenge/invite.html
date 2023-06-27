@@ -16,7 +16,7 @@
           <img src="image/header/blackBack.png" alt="뒤로가기" />
         </button>
       </header>
-      <form action="/freeChallenge/group-invite/reg" method="post">
+      <form action="/groupChallenge/group-invite/reg" method="post">
         <!-- <div class="group_title">
           <label for="group_name">그룹명</label>
           <div>
@@ -32,7 +32,7 @@
             <p id="check_group_length"></p>
           </div>
         </div> -->
-        <input type="hidden" name = "challengeName" th:value="${name}">
+        <input type="hidden" name = "challengeId" th:value="${id}">
     <div class="invite-wrap">
         <p>함께할 친구를 추가해 보세요</p>
         <div class="friends-list">

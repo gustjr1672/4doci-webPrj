@@ -23,11 +23,11 @@ public class StartChallengeController {
 
         switch (type) {
             case "individual":
-                return "redirect:/freeChallenge/freeform?type="+type;
+                return "redirect:/freeChallenge/form?type=";
             case "random":
                 return "redirect:/randomChallenge/choice/category";
             case "group":
-                 return "redirect:/freeChallenge/freeform?type="+type;
+                 return "redirect:/groupChallenge/form?type=";
             case "set":
 
                 break;

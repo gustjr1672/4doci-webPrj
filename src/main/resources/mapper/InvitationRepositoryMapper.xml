@@ -7,13 +7,11 @@
 
     <insert id="save">
         INSERT INTO invitation
-            (free_challenge_id,
-            to_member_id,
-            from_member_id)
+            (group_challenge_id,
+            to_member_id)
         VALUES
-            (#{i.freeChallengeId},
-            #{i.toMemberId},
-            #{i.fromMemberId})
+            (#{i.groupChallengeId},
+            #{i.toMemberId})
 
     </insert>
 
