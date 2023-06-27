@@ -14,9 +14,11 @@
     <script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
     <script src="/js/main.js" module defer="defer"></script>
     <script src="/js/notification.js" defer="defer"></script>
+    <script src="/js/progress-bar.js" defer="defer"></script>
   </head>
 
   <body>
+  <div class="header-wrap">
     <header>
       <div class="header-left">
         <img src="/image/header/whiteLogo.png" alt="4℃" width="50" height="32" />
@@ -26,10 +28,10 @@
         <img th:unless="${isNoti}" id="bell" src="/image/header/whiteBell.png" alt="알림" />
       </button>
     </header>
-
+  </div>
     <div class="profile-wrap">
       <div class="profile-title">
-        <img th:src="${user.profileImage}" alt="profile" width="50" height="50" />
+        <img th:src="${user.profileImage}" alt="profile" />
         <span th:text="${user.nickname} + ' 님'">신도시여신</span>
       </div>
 
@@ -41,12 +43,47 @@
           </div>
           <button type="submit" onclick="location.href='challenge/start/choice/type'">
             시작하기
-            <img src="/image/main/right.png" alt="go" />
+            <img src="/image/main/right.png" alt="go"  width="7px" height="9px"  />
           </button>
         </div>
-        <img src="/image/main/bannerImg.png" alt="banner" />
+        <img src="/image/main/banner.png" alt="banner"  width="77px" height="84px" />
       </div>
     </div>
+
+  <section class="chal-list">
+    <div class="chal-header">
+      <span>진행중인 도전</span>
+      <select id="filter">
+        <option value="all">전체</option>
+        <option value="personal">개인</option>
+        <option value="challenge">도전</option>
+        <option value="random">랜덤</option>
+      </select>
+    </div>
+    <div class="btn-wrap" th:each="all:${allChallengesList}">
+      <button class="chal-btn">
+        <span class="chal-title" th:text="${all.name}">하루에 30분이상 운동하고 치킨먹고 자기</span>
+        <div class="prog-wrap">
+          <div>
+            <span class="achv-Quantity">0</span>
+            <span>/</span>
+            <span th:each="unit:${unitList}"
+                  th:if="${unit.id == all.unitId}"
+                  th:text="${all.goalQuantity} + ' '+ ${unit.name}">1회</span>
+            <span hidden="hidden" th:text="${all.goalQuantity}" class="goal_quantity"></span>
+          </div>
+          <div class="prog-bar">
+            <div class="prog"> </div>
+          </div>
+        </div>
+      </button>
+      <button class="plus-btn"
+              th:data-goal-quantity="${all.goalQuantity}"
+              th:data-challenge-id="${all.uniqueId}">+</button>
+    </div>
+  </section>
+
+
 
     <div class="footer-wrap">
       <footer>
