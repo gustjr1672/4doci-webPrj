@@ -17,10 +17,11 @@
     />
   </head>
   <body>
-    <header>
-      <img src="/image/header/blackLogo.png" alt="4℃" width="60" height="40" />
-    </header>
-
+    <div class="header-wrap">
+      <header>
+        <img src="/image/header/blackLogo.png" alt="4℃" />
+      </header>
+    </div>
     <section class="friends">
       <button>
         <img th:src="${user.profileImage}" alt="friend" />
@@ -51,8 +52,9 @@
           <span th:text="${feed.impression}">오늘도 열시미 불태웠다...</span>
         </div>
         <div class="feed-footer">
-          <div class="comment">
-            <button>
+          <span class="time-message" th:text="${feed.timeMessage}">1시간 전</span>
+          <div class="footer-btn">
+            <button class="comment" th:data-id="${feed.id}">
               <img src="/image/community/comment.png" alt="" />
               <span th:text="${feed.commentCount}">1</span>
             </button>

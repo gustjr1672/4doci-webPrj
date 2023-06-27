@@ -1,11 +1,15 @@
 package com.doci.webPrj.user.service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import com.doci.webPrj.user.entity.Feed;
@@ -29,6 +33,25 @@ public class FeedServiceImp implements FeedService {
             members.add(friend.getId());
         }
         List<Feed> feedList = feedRepository.findFeedList(members);
+
+        LocalDateTime currenTime = LocalDateTime.now();
+        for (Feed feed : feedList) {
+            Timestamp feedTime = feed.getRegDate();
+            LocalDateTime feedDateTime = feedTime.toLocalDateTime();
+            long minutesDiff = ChronoUnit.MINUTES.between(feedDateTime, currenTime);
+
+            if (minutesDiff < 1) {
+                feed.setTimeMessage("방금 전");
+            } else if (minutesDiff < 60) {
+                feed.setTimeMessage(minutesDiff + "분 전");
+            } else if (minutesDiff < 1440) {
+                long hoursDiff = minutesDiff / 60;
+                feed.setTimeMessage(hoursDiff + "시간 전");
+            } else {
+                long daysDiff = minutesDiff / 1440;
+                feed.setTimeMessage(daysDiff + "일 전");
+            }
+        }
         return feedList;
     }
 

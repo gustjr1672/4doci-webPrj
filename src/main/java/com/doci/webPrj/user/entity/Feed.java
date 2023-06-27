@@ -1,6 +1,6 @@
 package com.doci.webPrj.user.entity;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,4 +25,5 @@ public class Feed {
     int freeChallengeId;
     int choiceId;
     int groupStartId;
+    String timeMessage;
 }
