@@ -15,20 +15,19 @@ challengeList.onclick = ((e) => {
     let challengeTypeAndId =button.dataset.challengeId;
     let data = `cid=${challengeTypeAndId}`;
 
-    fetch("/challenge/achv-quantity",{
-        method:'POST',
-        headers : {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: new URLSearchParams(data)
-    })
-        .then(() =>{
-            fetch(`/challenge/achv-quantity?cid=${challengeTypeAndId}`)
-                .then(response => response.json())
-                .then(nowAchvQuantity =>{
-                    achvQuantity.textContent = nowAchvQuantity;
-                })
+    (async () =>{
+        await fetch("/challenge/achv-quantity",{
+            method:'POST',
+            headers : {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams(data)
         });
+
+        let response = await fetch(`/challenge/achv-quantity?cid=${challengeTypeAndId}`);
+        let nowAchvQuantity =  await response.json();
+        achvQuantity.textContent = nowAchvQuantity;
+    })();
 });
 
 function increaseProgress(progressBar,goalQuantity) {
