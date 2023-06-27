@@ -2,6 +2,8 @@ package com.doci.webPrj.user.service;
 
 import java.util.List;
 
+import com.doci.webPrj.user.entity.PerformanceRecords;
+import com.doci.webPrj.user.repository.PerformanceRecordsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +18,25 @@ public class RandomChoiceServiceImp implements RandomChoiceService {
     RandomChallengeRepository randomChallengeRepository;
     @Autowired
     ChoiceRepository choiceRepository;
+    @Autowired
+    PerformanceRecordsRepository recordsRepository;
 
    @Override
     public void addRandomChallenge(Choice choice) {
         choiceRepository.save(choice);
+        int choiceId = choice.getId();
+        savePerformanceRecords(choiceId);
     }
 
     @Override
     public List<RandomChallenge> getRandomList(String[] categoryIdList) {
         return randomChallengeRepository.findRandomByCategory(categoryIdList);
-    } 
+    }
+    private void savePerformanceRecords(int choiceId) {
+        PerformanceRecords record = PerformanceRecords.builder()
+                .round(1)
+                .choiceId(choiceId)
+                .build();
+        recordsRepository.save(record);
+    }
 }
