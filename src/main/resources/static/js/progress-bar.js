@@ -15,25 +15,25 @@ challengeList.onclick = ((e) => {
     let challengeTypeAndId =button.dataset.challengeId;
     let data = `cid=${challengeTypeAndId}`;
 
-    fetch("/challenge/achv-quantity",{
-        method:'POST',
-        headers : {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: new URLSearchParams(data)
-    })
-        .then(() =>{
-            fetch(`/challenge/achv-quantity?cid=${challengeTypeAndId}`)
-                .then(response => response.json())
-                .then(nowAchvQuantity =>{
-                    achvQuantity.textContent = nowAchvQuantity;
-                })
+    (async () =>{
+        await fetch("/challenge/achv-quantity",{
+            method:'POST',
+            headers : {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams(data)
         });
+
+        let response = await fetch(`/challenge/achv-quantity?cid=${challengeTypeAndId}`);
+        let nowAchvQuantity =  await response.json();
+        achvQuantity.textContent = nowAchvQuantity;
+    })();
 });
 
 function increaseProgress(progressBar,goalQuantity) {
+
     let progress = parseInt(progressBar.style.width) || 0;
-    let increment = 100/goalQuantity; // 게이지가 (100 분의 목표량) 씩 증가하도록 설정
+    let increment = 100/goalQuantity; // 게이지가 (목표량 분의 100) 씩 증가하도록 설정
     let target = progress + increment;
 
     //게이지가 스르륵 채워지도록 함
@@ -45,4 +45,17 @@ function increaseProgress(progressBar,goalQuantity) {
             progressBar.style.width = progress + '%';
         }
     }, 8);
+}
+
+window.onload = function (){
+    let progressBars = document.querySelectorAll(".prog");
+
+    for (let progressBar of progressBars) {
+
+        let achvQuantity = parseInt (progressBar.dataset.achvQuantity);
+        let goalQuantity = parseInt(progressBar.dataset.goalQuantity);
+        console.log( "달성량"+ achvQuantity);
+        console.log("목표량 " + goalQuantity);
+        progressBar.style.width = achvQuantity / goalQuantity *100 + '%';
+    }
 }
