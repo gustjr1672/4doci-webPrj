@@ -52,15 +52,13 @@ public class GroupChallengeController {
     }
     @PostMapping("challenge/reg")
     public String challengeReg(
-            Model model,
             GroupChallenge groupChallenge,
             @AuthenticationPrincipal MyUserDetails user,
-            @ModelAttribute("type") String type,
             RedirectAttributes rttr) {
 
         groupChallenge.setGroupLeaderId(user.getId());
         groupChallengeService.addChallenge(groupChallenge);
-        int challengeId = groupChallengeService.getChallengeId(groupChallenge);
+        int challengeId = groupChallenge.getId();
 
         rttr.addFlashAttribute("id",challengeId);
         return "redirect:/groupChallenge/group-invite";

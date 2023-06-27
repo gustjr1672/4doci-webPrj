@@ -26,13 +26,6 @@ public class GroupChallengeServiceImp implements GroupChallengeService {
     }
 
     @Override
-    public int getChallengeId(GroupChallenge groupChallenge) {
-        System.out.println(groupChallenge);
-       int id = groupChallengeRepository.getId(groupChallenge);
-       return id;
-    }
-
-    @Override
     public void delete(int challengeId) {
         groupChallengeRepository.delete(challengeId);
     }

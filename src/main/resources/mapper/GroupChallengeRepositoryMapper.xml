@@ -7,7 +7,7 @@
 
     <!-- save --> 
 
-    <insert id="save" >
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" >
         insert into group_challenge
         (name,
         start_date,
@@ -29,20 +29,6 @@
         #{g.groupLeaderId},
         #{g.categoryId});
     </insert>
-
-    <select id="getId">
-    select id from group_challenge
-        where
-        name=#{g.name}
-        AND start_date= #{g.startDate}
-        AND end_date = #{g.endDate}
-        AND period = #{g.period}
-        AND auth_frequency = #{g.authFrequency}
-        AND goal_quantity = #{g.goalQuantity}
-        AND unit_id = #{g.unitId}
-        AND group_leader_id = #{g.groupLeaderId}
-        AND category_id = #{g.categoryId}
-    </select>
 
     <delete id="delete">
     delete from free_challenge where id=#{challengeId}
