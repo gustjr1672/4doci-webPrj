@@ -7,7 +7,7 @@
 
     <!-- save --> 
 
-    <insert id="save" >
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
         insert into free_challenge
         (name,
         start_date,
