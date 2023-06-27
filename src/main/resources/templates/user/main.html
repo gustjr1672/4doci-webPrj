@@ -73,7 +73,10 @@
             <span hidden="hidden" th:text="${all.goalQuantity}" class="goal_quantity"></span>
           </div>
           <div class="prog-bar">
-            <div class="prog"> </div>
+            <div class="prog"
+                 th:data-achv-quantity="${all.achvQuantity}"
+                 th:data-goal-quantity="${all.goalQuantity}">
+            </div>
           </div>
         </div>
       </button>

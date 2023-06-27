@@ -37,12 +37,27 @@
         from performance_records
         <if test="FCId != null">
             where free_challenge_id = #{FCId}
+            and round = (
+            select max(round)
+            from performance_records
+            where free_challenge_id = #{FCId}
+            )
         </if>
         <if test="CHId != null">
             where choice_id = #{CHId}
+            and round = (
+            select max(round)
+            from performance_records
+            where choice_id = #{CHId}
+            )
         </if>
         <if test="GSId != null">
             where group_start_id = #{GSId}
+            and round = (
+            select max(round)
+            from performance_records
+            where group_start_id = #{GSId}
+            )
         </if>
     </select>
 </mapper>

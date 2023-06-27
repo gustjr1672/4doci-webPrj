@@ -213,7 +213,6 @@ option {
 }
 
 .prog {
-  width: 72%;
   height: 8px;
   border-radius: 8px;
   padding: 0;
@@ -261,9 +260,6 @@ option {
   font-weight: 800;
   color: #57b1e3;
   font-size: 10px;
-  /* box-sizing: content-box; */
-  /* height: 10px; */
-  /* vertical-align:bottom; */
   display: flex;
   align-items: end;
   margin: 1px;
