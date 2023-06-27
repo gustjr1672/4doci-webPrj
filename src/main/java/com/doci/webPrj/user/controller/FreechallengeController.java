@@ -49,7 +49,7 @@ public class FreechallengeController {
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("unitList", unitList);
         model.addAttribute("type", type);
-        return "user/startchallenge/freechallenge/challengeForm";
+        return "user/startchallenge/freechallenge/form";
     }
 
     @PostMapping("challenge/reg")
@@ -75,7 +75,7 @@ public class FreechallengeController {
         System.out.println(friendList);
         model.addAttribute("friendList", friendList);
         // int challengeId = startChallengeService.getFreechallengeId();
-        return "user/startchallenge/group-invite";
+        return "user/startchallenge/groupchallenge/invite";
     }
 
     @PostMapping("group-invite/reg")
@@ -102,7 +102,7 @@ public class FreechallengeController {
     }
         @GetMapping("standby-screen")
         public String standbyScreen(){
-            return "user/startchallenge/standby_screen";
+            return "user/startchallenge/groupchallenge/standby-screen";
         }
 
     

@@ -14,7 +14,7 @@ public class StartChallengeController {
     @GetMapping("choice/type")
     public String type() {
 
-        return "user/startchallenge/choice/type";
+        return "user/startchallenge/type";
     }
 
 
@@ -25,7 +25,7 @@ public class StartChallengeController {
             case "individual":
                 return "redirect:/freeChallenge/freeform?type="+type;
             case "random":
-                return "redirect:/randomChallenge/choice/randomcategory";
+                return "redirect:/randomChallenge/choice/category";
             case "group":
                  return "redirect:/freeChallenge/freeform?type="+type;
             case "set":
