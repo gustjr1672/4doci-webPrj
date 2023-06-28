@@ -7,13 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.doci.webPrj.user.entity.GroupChallenge;
+import com.doci.webPrj.user.entity.Member;
 import com.doci.webPrj.user.repository.GroupChallengeRepository;
+import com.doci.webPrj.user.repository.MemberRepository;
 
 @Service
 public class GroupChallengeServiceImp implements GroupChallengeService {
     @Autowired
     GroupChallengeRepository groupChallengeRepository;
-
+    @Autowired
+    MemberRepository memberRepository;
      public void addChallenge(GroupChallenge groupChallenge) {
         LocalDate startDate = groupChallenge.getStartDate();
         LocalDate endDate = groupChallenge.getEndDate();
@@ -34,5 +37,10 @@ public class GroupChallengeServiceImp implements GroupChallengeService {
     @Override
     public GroupChallenge getChallenge(int challengeId) {
         return groupChallengeRepository.findById(challengeId);
+    }
+
+    @Override
+    public Member getLeader(int userId) {
+       return memberRepository.findById(userId);
     }
 }

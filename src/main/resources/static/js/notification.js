@@ -70,7 +70,7 @@ function groupInvitationLoad(url){
                 >
               </div>
             </div>
-            <button onclick="location.href='group-invite?id=${invitation.groupChallengeId}'">보기</button>
+            <button onclick="location.href='/groupChallenge/invite-request?id=${invitation.groupChallengeId}'">보기</button>
           </div>
         </section>`;
       notification.insertAdjacentHTML("beforeend", groupNotiTemplate);

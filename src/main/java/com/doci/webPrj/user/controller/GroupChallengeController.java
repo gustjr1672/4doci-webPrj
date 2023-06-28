@@ -42,10 +42,11 @@ public class GroupChallengeController {
     @Autowired
     InvitationNotificationService invitationNotificationService;
 
+
      private static final Invitation invitation = new Invitation();
 
     @GetMapping("form")
-    public String resister(Model model) {
+    public String register(Model model) {
         List<Category> categoryList = categoryService.findAll();
         List<Unit> unitList = unitService.findAll();
         model.addAttribute("categoryList", categoryList);
@@ -92,7 +93,7 @@ public class GroupChallengeController {
             for(int friendId : friends){
             invitation.setToMemberId(friendId);
             invitationService.invite(invitation);
-            invitationNotificationService.sendRequestNotice(challengeId, user.getId(), friendId);
+            invitationNotificationService.sendRequestNotice(challengeId, friendId);
             GroupChallenge challenge = groupChallengeService.getChallenge(challengeId);
             rttr.addFlashAttribute("challenge",challenge);
          }
@@ -106,4 +107,37 @@ public class GroupChallengeController {
         return "user/startchallenge/groupchallenge/standby-screen";
     }
 
+    @GetMapping("standby-screen-member")
+    public String standbyScreenMember(){
+        
+        return "user/startchallenge/groupchallenge/standby-screen-member";
+    }
+
+    @GetMapping("invite-request")
+    public String groupInvite(Model model, @RequestParam("id") int challengeId){
+        System.out.println(challengeId);
+        GroupChallenge challenge = groupChallengeService.getChallenge(challengeId);
+        System.out.println(challenge);
+        Member groupLeader = groupChallengeService.getLeader(challenge.getGroupLeaderId());
+        model.addAttribute("challenge",challenge);
+        model.addAttribute("leader", groupLeader);
+        return "user/startchallenge/groupchallenge/invite-request";
+    }
+
+    @PostMapping("invite-request/submit")
+    public String groupInvite(@RequestParam("id") int challengeId,
+                              @RequestParam("action") String action,
+                              @AuthenticationPrincipal MyUserDetails user){
+        System.out.println(challengeId);
+        if(action.equals("refuse")){
+            invitationNotificationService.requestRefuse(user.getId(),challengeId);
+            return "redierct:/main";
+        }
+        invitationNotificationService.requestAccept(user.getId(),challengeId);
+        invitationService.requestAccept(user.getId(),challengeId);
+        return "redirect:/groupChallenge/standby-screen-member";
+
+    }
+
+    
 }

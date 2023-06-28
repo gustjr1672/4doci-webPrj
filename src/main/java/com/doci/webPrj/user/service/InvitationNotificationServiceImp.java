@@ -14,18 +14,32 @@ import com.doci.webPrj.user.repository.InvitationRepository;
 public class InvitationNotificationServiceImp implements InvitationNotificationService
  {
     @Autowired
-    InvitationNotificationRepository repository;
+    InvitationNotificationRepository inviNotirepository;
     @Autowired
     InviNotificationViewRepository viewRepository;
+    @Autowired
+    InvitationRepository invirepository;
 
     @Override
-    public void sendRequestNotice(int challengeId, int userId, int memberId) {
-        repository.send(challengeId, userId, memberId);
+    public void sendRequestNotice(int challengeId,int memberId) {
+        inviNotirepository.send(challengeId, memberId);
     }
 
     @Override
     public List<InvitationNotification> getInvite(int userId) {
        return viewRepository.getList(userId);
+    }
+
+    @Override
+    public void requestAccept(int userId, int challengeId) {
+       inviNotirepository.delete(userId,challengeId);
+       invirepository.update(userId,challengeId,"수락");
+    }
+
+    @Override
+    public void requestRefuse(int userId, int challengeId) {
+       inviNotirepository.delete(userId,challengeId);
+       invirepository.update(userId,challengeId,"거절");
     }
 
 

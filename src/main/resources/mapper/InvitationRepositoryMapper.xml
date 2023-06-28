@@ -15,6 +15,10 @@
 
     </insert>
 
-
+    <update id="update">
+        UPDATE invitation
+        SET is_accept = #{isAccept}
+        WHERE to_member_id = #{userId} and group_challenge_id = #{challengeId} 
+    </update>
 
 </mapper>
