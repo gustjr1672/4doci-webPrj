@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doci.webPrj.user.repository.FeedDetailRepository">
+
+        <!-- findGroupById --> 
+        <select id="findGroupById" resultType="com.doci.webPrj.user.entity.GroupFeed">
+                select * from
+                group_feed where group_start_id = #{gsId}
+        </select>
+        <!-- findRandomById --> 
+
+        <select id="findRandomById" resultType="com.doci.webPrj.user.entity.RandomFeed">
+                select * from
+                random_feed where choice_id = #{chId}
+        </select>
+        <!-- findFreeById --> 
+
+        <select id="findFreeById" resultType="com.doci.webPrj.user.entity.FreeFeed">
+                select * from
+                free_feed where free_challenge_id = #{fcId}
+        </select>        
+</mapper>
