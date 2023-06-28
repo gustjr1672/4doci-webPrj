@@ -3,7 +3,7 @@ package com.doci.webPrj.user.entity;
 import lombok.Builder;
 import lombok.Data;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Data
 @Builder
@@ -14,7 +14,7 @@ public class PerformanceRecords {
     private String impression;
     private int achvQuantity;
     private boolean result;
-    private Date regDate;
+    private Timestamp regDate;
     private Integer freeChallengeId;
     private Integer choiceId;
     private Integer groupStartId;
