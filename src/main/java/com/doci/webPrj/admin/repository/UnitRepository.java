@@ -12,4 +12,6 @@ public interface UnitRepository {
     List<Unit> findAll();
 
     void update(Unit unit);
+
+    Unit findById(int unitId);
 }

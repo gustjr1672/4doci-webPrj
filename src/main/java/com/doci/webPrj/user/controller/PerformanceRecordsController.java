@@ -1,15 +1,52 @@
 package com.doci.webPrj.user.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.doci.webPrj.admin.entity.Unit;
+import com.doci.webPrj.admin.service.UnitService;
+import com.doci.webPrj.user.entity.AllChallenges;
+import com.doci.webPrj.user.entity.PerformanceRecords;
+import com.doci.webPrj.user.service.AllChallengesService;
+import com.doci.webPrj.user.service.PerformanceRecordsService;
 
 @Controller
 public class PerformanceRecordsController {
 
-    @GetMapping("performance-record")
-    public String PerformanceRecords(@RequestParam(name = "cid") String challengeId) {
+    @Autowired
+    PerformanceRecordsService performanceRecordsService;
 
-        return null;
+    @Autowired
+    AllChallengesService allChallengesService;
+
+    @Autowired
+    UnitService unitService;
+
+    @GetMapping("performance-records")
+    public String PerformanceRecords(Model model,
+            @RequestParam(name = "cid") String challengeId) {
+
+        // 전체 수행기록 리스트
+        List<PerformanceRecords> performanceRecordList = performanceRecordsService.getList(challengeId);
+        model.addAttribute("performanceRecordList", performanceRecordList);
+
+        // 현재 수행기록(리스트에서 마지막)
+        int size = performanceRecordList.size();
+        model.addAttribute("perfomanceRecord", performanceRecordList.get(size - 1));
+
+        // 도전정보
+        AllChallenges allChallenges = allChallengesService.getChallenge(challengeId);
+        model.addAttribute("allChallenges", allChallenges);
+
+        // unit정보
+        Unit unit = unitService.getUnit(allChallenges.getUnitId());
+        model.addAttribute("unit", unit);
+
+        return "user/performance-records";
     }
 }

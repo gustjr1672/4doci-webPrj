@@ -10,4 +10,10 @@
         where member_id = #{id}
         order by start_date DESC
     </select>
+
+    <select id="findChallenge" resultType="com.doci.webPrj.user.entity.AllChallenges">
+        select *
+        from all_challenges
+        where unique_id = #{challengeId}
+    </select>
 </mapper>

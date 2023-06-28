@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface AllChallengesService {
     List<AllChallenges> findAll(int id);
+
+    AllChallenges getChallenge(String challengeId);
 }

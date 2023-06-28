@@ -26,4 +26,10 @@ public class UnitServiceImp implements UnitService {
     public void update(Unit unit) {
         unitRepository.update(unit);
     }
+
+    @Override
+    public Unit getUnit(int unitId) {
+        Unit unit = unitRepository.findById(unitId);
+        return unit;
+    }
 }

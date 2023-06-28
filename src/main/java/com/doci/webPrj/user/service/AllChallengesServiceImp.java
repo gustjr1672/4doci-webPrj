@@ -12,9 +12,18 @@ public class AllChallengesServiceImp implements AllChallengesService {
 
     @Autowired
     AllChallengesRepository allChallengesRepository;
+
     @Override
     public List<AllChallenges> findAll(int id) {
 
         return allChallengesRepository.findAll(id);
+    }
+
+    @Override
+    public AllChallenges getChallenge(String challengeId) {
+
+        AllChallenges allChallenges = allChallengesRepository.findChallenge(challengeId);
+
+        return allChallenges;
     }
 }
