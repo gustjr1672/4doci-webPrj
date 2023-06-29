@@ -1,5 +1,6 @@
 package com.doci.webPrj.user.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.doci.webPrj.config.MyUserDetails;
 import com.doci.webPrj.user.entity.Feed;
+import com.doci.webPrj.user.entity.FeedDetail;
 import com.doci.webPrj.user.entity.Member;
 import com.doci.webPrj.user.service.FeedService;
 import com.doci.webPrj.user.service.FriendManageService;
@@ -41,8 +43,24 @@ public class CommunityController {
     @GetMapping("feed/detail")
     public String detail(@RequestParam(name = "fc", defaultValue = "0") int fcId,
             @RequestParam(name = "ch", defaultValue = "0") int chId,
-            @RequestParam(name = "gs", defaultValue = "0") int gsId) {
+            @RequestParam(name = "gs", defaultValue = "0") int gsId,
+            Model model) {
 
+        List<FeedDetail> list = new ArrayList<>();
+        int AllCommentCount = 0;
+        if (fcId != 0) {
+            list = feedService.getFreeFeedList(fcId);
+        } else if (chId != 0) {
+            list = feedService.getRandomFeedList(chId);
+        } else {
+            list = feedService.getGroupFeedList(gsId);
+        }
+        for (FeedDetail feedDetail : list) {
+            AllCommentCount += feedDetail.getCommentCount();
+        }
+        model.addAttribute("challenge", list.get(0));
+        model.addAttribute("count", AllCommentCount);
+        model.addAttribute("list", list);
         return "user/community/feed-detail";
     }
 

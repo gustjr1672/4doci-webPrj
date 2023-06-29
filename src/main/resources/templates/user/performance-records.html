@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"></html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/performance-records.css" />
+    <script src="/js/performance-records.js" defer="defer"></script>
+  </head>
+  <body>
+    <header>
+      <div>
+        <a href="/main">
+          <img class="back" src="/image/header/whiteBack.png" alt="back" />
+        </a>
+        <button><img src="/image/header/more.png" alt="" /></button>
+      </div>
+    </header>
+    <section class="goal">
+      <div>
+        <button th:text="${perfomanceRecord.round}+'회차'">1회차</button>
+        <span th:text="${allChallenges.name}">하루에 물 2000ml이상 마시기</span>
+      </div>
+      <div>
+        <span>목표량</span>
+        <span id="goal" th:text="${allChallenges.goalQuantity} + ${performanceRecordList.unitName}">2000ml</span>
+      </div>
+    </section>
+    <section class="form">
+      <span>도전사진</span>
+      <div id="image-box">
+        <label for="choose-file">
+          <img src="" id="input-image" alt="" />
+        </label>
+      </div>
+      <form class="image-form" id="image-form" method="post" enctype="multipart/form-data">
+        <div class="button">
+          <label for="choose-file"><img src="/image/performance-records/addImage.png" alt="" /></label>
+        </div>
+        <input
+          type="file"
+          id="choose-file"
+          class="choose-file"
+          name="choose-file"
+          accept="image/*"
+          onchange="loadFile(this)"
+        />
+        <span>눌러서 사진 추가</span>
+      </form>
+    </section>
+    <form id="record-submit">
+      <section class="form">
+        <span class="memo">메모</span>
+        <textarea
+          class="text-input"
+          id="text-input"
+          name="text-input"
+          placeholder="간단한 소감을 입력해 주세요"
+          cols="30"
+          rows="10"
+          th:text="${perfomanceRecord.impression}"
+        ></textarea>
+      </section>
+      
+      <section class="achive">
+        <span class="text">달성량</span>
+        <div class="achive-control">
+          <button id="minus-btn" type="button">-</button>
+          <div class="achive-amount">
+            <input 
+            type="number" 
+            min="0"
+            id="achive-amount"
+            th:value="${perfomanceRecord.achvQuantity}" 
+            name="aq"/>
+            <span th:text="${performanceRecordList.unitName}">ml</span>
+          </div>
+          <button id="plus-btn" type="button">+</button>
+        </div>
+        <input type="hidden" name="id" th:value="${perfomanceRecord.id}">
+      </section>
+    </form>
+    <footer>
+      <button type="button" form="record-submit" id="save-btn">저장하기</button>
+    </footer>
+
+   <!-- 삭제모달 -->
+    <div id="delete-modal-wrap" class="delete-modal">
+      <div id="delete-modal-content"class="delete-modal-content">
+        <button>삭제</button>
+        <button class="close-btn">취소</button>
+      </div>
+    </div>
+
+    <!-- 회차모달 -->
+    <div id="turn-modal-wrap" class="turn-modal">
+      <div id="turn-modal-content" class="turn-modal-content">
+        <section class="challeng-name-wrap">
+          <div>
+              <div class="current-turn">
+              <span th:text="${perfomanceRecord.round}+'회차'">1회차</span>
+              </div>
+              <p class="info" th:text="${allChallenges.name}">하루에 물 2000ml이상 마시기</p>
+          </div>
+          <div>
+              <p class="period">도전기간</p>
+              <p class="info" th:text="${allChallenges.startDate}+' ~ '+${allChallenges.endDate}">2023.05.07 ~ 2023.06.08</p>
+          </div>
+      </section>
+  
+      <section class="title">
+      <div>
+          <p>회차</p>
+          <p>달성량</p>
+          <p>성공여부</p>
+      </div>
+      </section>
+      <section class="turn-wrap" th:each="list, iterStat: ${performanceRecordList}">
+          
+          <div>
+              <div th:class="${iterStat.last ? 'turn last-turn' : 'turn'}">
+                  <span th:text="${list.round}+'회차'">1회차</span>
+              </div>
+              <p th:text="${list.achvQuantity}+${performanceRecordList.unitName}">200ml</p>
+              <td th:switch="${list.result}">
+                <p th:case="true" style="color: #71B5CB;">성공</p>
+                <p th:case="false"style="color: rgb(219, 92, 92);">실패</p>
+              </td>
+          </div>
+      </section>
+      <footer>
+          <button>닫기</button>
+        </footer>
+      </div>
+    </div>
+
+    <!-- 메세지 모달 -->
+    <div class="message-modal-wrap hidden">
+      <div class="message-modal-content">
+      </div>
+    </div>
+  </body>
+</html>

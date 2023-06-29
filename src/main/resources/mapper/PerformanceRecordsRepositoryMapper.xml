@@ -67,4 +67,26 @@
             )
         </if>
     </select>
+
+    <select id="findList">
+        select * 
+        from performance_records
+        <if test="FCId != null">
+            where free_challenge_id=#{FCId}
+        </if>
+        <if test="CHId != null">
+            where choice_id=#{CHId}
+        </if>
+        <if test="GSId != null">
+            where group_start_id=#{GSId}
+        </if>
+    </select>
+
+    <update id="updateById">
+        update performance_records
+        set
+        impression = #{imp},
+        achv_quantity = #{achv}
+        where id = #{id}
+    </update>
 </mapper>

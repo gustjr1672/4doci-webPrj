@@ -1,5 +1,6 @@
 package com.doci.webPrj.user.service;
 
+import com.doci.webPrj.user.entity.PerformanceRecords;
 import com.doci.webPrj.user.repository.PerformanceRecordsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,8 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
     private final String GROUPSTART = "GS";
     private final String UNDERBAR = "_";
 
-
-
     @Autowired
     PerformanceRecordsRepository recordsRepository;
-
 
     @Override
     public void updateAchvQuantity(String challengeTypeAndId) {
@@ -27,12 +25,12 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
         String type = (String) typeAndId.get(0);
         int id = (int) typeAndId.get(1);
 
-        switch (type){
+        switch (type) {
             case FREECHALLENGE:
-                recordsRepository.updateAchvQuantity(id,null,null);
+                recordsRepository.updateAchvQuantity(id, null, null);
                 break;
             case CHOICE:
-                recordsRepository.updateAchvQuantity(null, id,null);
+                recordsRepository.updateAchvQuantity(null, id, null);
                 break;
             case GROUPSTART:
                 recordsRepository.updateAchvQuantity(null, null, id);
@@ -47,12 +45,12 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
         int id = (int) typeAndId.get(1);
 
         int achvQuantity = 0;
-        switch (type){
+        switch (type) {
             case FREECHALLENGE:
                 achvQuantity = recordsRepository.getAchvQuantity(id, null, null);
                 break;
             case CHOICE:
-                achvQuantity = recordsRepository.getAchvQuantity(null, id,null);
+                achvQuantity = recordsRepository.getAchvQuantity(null, id, null);
                 break;
             case GROUPSTART:
                 achvQuantity = recordsRepository.getAchvQuantity(null, null, id);
@@ -61,7 +59,38 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
         return achvQuantity;
     }
 
-    private List<Object> SeparateTypeAndId(String challengeId){
+    @Override
+    public List<PerformanceRecords> getList(String challengeId) {
+
+        List<Object> typeAndId = SeparateTypeAndId(challengeId);
+        String type = (String) typeAndId.get(0);
+        int id = (int) typeAndId.get(1);
+
+        List<PerformanceRecords> performanceRecordList = null;
+
+        switch (type) {
+            case FREECHALLENGE:
+                performanceRecordList = recordsRepository.findList(id, null, null);
+                break;
+            case CHOICE:
+                performanceRecordList = recordsRepository.findList(null, id, null);
+                break;
+            case GROUPSTART:
+                performanceRecordList = recordsRepository.findList(null, null, id);
+                break;
+        }
+
+        return performanceRecordList;
+    }
+
+    @Override
+    public void edit(String impression, int achvQuantity, int id) {
+
+        recordsRepository.updateById(impression, achvQuantity, id);
+
+    }
+
+    private List<Object> SeparateTypeAndId(String challengeId) {
         List<Object> result = new ArrayList<>();
 
         int index = challengeId.indexOf(UNDERBAR);
@@ -73,4 +102,5 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
 
         return result;
     }
+
 }
