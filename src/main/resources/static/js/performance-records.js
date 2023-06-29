@@ -71,3 +71,48 @@ function loadFile(input) {
     }, 300);
   
   });
+
+
+/*메세지모달*/
+const messageModalWrap = document.querySelector(".message-modal-wrap");
+const messageModalContent = document.querySelector(".message-modal-content");
+const saveBtn = document.querySelector("#save-btn");
+
+/*데이터 업데이트*/
+saveBtn.addEventListener("click", function(e){
+  
+  const recordForm = document.querySelector("#record-submit");
+  const inputs = recordForm.elements;
+  const impression = inputs["text-input"].value;
+  const achvQuantity = inputs["aq"].value;
+  const id = inputs["id"].value;
+
+  const formData = {impression, achvQuantity, id};
+  const jsonData = JSON.stringify(formData);
+
+  fetch("challenge/performance-records", {
+      method: "PUT",
+      headers: {
+          "Content-Type" : "application/json"
+      },
+      body: jsonData
+      })
+      .then(response => {
+        if(response.ok)
+          showMessage("저장되었습니다");
+        else
+          showMessage("저장에 실패했습니다");
+      });
+
+});
+
+function showMessage(message){
+
+  messageModalContent.innerHTML = "<span>"+message+"</span>";
+  messageModalWrap.classList.remove("hidden");
+
+  setTimeout(function () {
+    messageModalWrap.classList.add("hidden");
+  }, 1000);
+
+}

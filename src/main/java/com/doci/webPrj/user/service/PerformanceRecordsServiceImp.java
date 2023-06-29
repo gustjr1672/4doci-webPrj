@@ -83,6 +83,13 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
         return performanceRecordList;
     }
 
+    @Override
+    public void edit(String impression, int achvQuantity, int id) {
+
+        recordsRepository.updateById(impression, achvQuantity, id);
+
+    }
+
     private List<Object> SeparateTypeAndId(String challengeId) {
         List<Object> result = new ArrayList<>();
 

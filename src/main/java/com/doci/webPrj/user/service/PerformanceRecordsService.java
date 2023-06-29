@@ -10,4 +10,7 @@ public interface PerformanceRecordsService {
     int getAchvQuantity(String challengeId);
 
     List<PerformanceRecords> getList(String challengeId);
+
+    void edit(String impression, int achvQuantity, int id);
+
 }

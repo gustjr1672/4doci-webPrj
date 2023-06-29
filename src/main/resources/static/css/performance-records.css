@@ -202,6 +202,12 @@
     font-weight: 800;
     margin-bottom: 6px;
   }
+  /* 달성량에 위아래 화살표 감추기 */
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+  }
   footer {
     width: 100%;
     height: 110px;
@@ -388,12 +394,39 @@
     transform: translateY(0);
   }
   
-  /* 달성량에 위아래 화살표 감추기 */
-  input[type='number']::-webkit-outer-spin-button,
-  input[type='number']::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-  }
+/* 메세지모달 */
+
+.message-modal-wrap{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  justify-content: center;
+
+  position: fixed;
+  top: 0;
+}
+
+.message-modal-content{
+  max-width: 380px;
+  width: 90%;
+  height: 150px;
+  background-color: #fefefe;
+  border-radius: 16px;
+
+  text-align: center;
+  line-height: 150px;
+  font-size: 14px;
+  font-weight: 500;
+
+  position: fixed;
+  top: 40%;
+}
+
+.hidden{
+  display: none;
+}
   
   
   

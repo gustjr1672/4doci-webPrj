@@ -11,7 +11,6 @@
     />
     <link rel="stylesheet" href="/css/performance-records.css" />
     <script src="/js/performance-records.js" defer="defer"></script>
-    <script src="/js/header.js"></script>
   </head>
   <body>
     <header>
@@ -54,7 +53,7 @@
         <span>눌러서 사진 추가</span>
       </form>
     </section>
-    <form id="record-submit" method="post" th:action="@{/performance-record/submit}">
+    <form id="record-submit">
       <section class="form">
         <span class="memo">메모</span>
         <textarea
@@ -65,7 +64,6 @@
           cols="30"
           rows="10"
           th:text="${perfomanceRecord.impression}"
-          th:name="imp"
         ></textarea>
       </section>
       
@@ -79,16 +77,16 @@
             min="0"
             id="achive-amount"
             th:value="${perfomanceRecord.achvQuantity}" 
-            th:name="aq"/>
+            name="aq"/>
             <span th:text="${unit.name}">ml</span>
           </div>
           <button id="plus-btn" type="button">+</button>
         </div>
-        <input type="hidden" th:name="pid" th:value="${perfomanceRecord.id}">
+        <input type="hidden" name="id" th:value="${perfomanceRecord.id}">
       </section>
     </form>
     <footer>
-      <button type="submit" form="record-submit">저장하기</button>
+      <button type="button" form="record-submit" id="save-btn">저장하기</button>
     </footer>
 
    <!-- 삭제모달 -->
@@ -138,6 +136,12 @@
       <footer>
           <button>닫기</button>
         </footer>
+      </div>
+    </div>
+
+    <!-- 메세지 모달 -->
+    <div class="message-modal-wrap hidden">
+      <div class="message-modal-content">
       </div>
     </div>
   </body>
