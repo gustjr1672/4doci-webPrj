@@ -8,8 +8,7 @@ import java.time.LocalDate;
 public class AllChallenges {
     String uniqueId;
     String name;
-    int unitId;
-    int categoryId;
+    String unitName;
     int memberId;
     LocalDate startDate;
     LocalDate endDate;

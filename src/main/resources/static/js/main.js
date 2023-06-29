@@ -51,6 +51,6 @@ chalListSection.addEventListener("click", function(e){
   let chalBtn = e.target;
   let uniqueId = chalBtn.dataset.uniqueId;
   
-  location.href=`performance-record?cid=${uniqueId}`;
+  location.href=`performance-records?cid=${uniqueId}`;
 
 });
