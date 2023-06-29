@@ -1,0 +1,57 @@
+* {
+  font-family: "SUIT", sans-serif !important;
+}
+
+.start-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.modal-box {
+  transform: translateY(-40%);
+  color: #383d66;
+  background-color: #fff;
+  height: 140px;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  gap: 36px;
+}
+.modal-box span {
+  font-size: 14px;
+  font-weight: bold;
+}
+.modal-box div {
+  width: 100%;
+  min-width: 210px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-box button {
+  font-weight: 600;
+  border: none;
+  border-top: 1px solid #e4e4e4;
+  background-color: #fff;
+  width: 50%;
+  height: 40px;
+}
+.modal-box div :first-child {
+  color: #ff8f8f;
+  border-right: 1px solid #e4e4e4;
+  border-radius: 0 0 0 12px;
+}
+.modal-box div :nth-child(2) {
+  border-radius: 0 0 12px 0;
+}
