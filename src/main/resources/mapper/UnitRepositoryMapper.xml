@@ -18,10 +18,4 @@
         set name= #{name}
         where id = #{id}
     </update>
-
-    <select id="findById" resultType="com.doci.webPrj.admin.entity.Unit">
-        select *
-        from unit
-        where id = #{unitId}
-    </select>
 </mapper>

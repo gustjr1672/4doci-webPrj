@@ -28,7 +28,7 @@
       </div>
       <div>
         <span>목표량</span>
-        <span id="goal" th:text="${allChallenges.goalQuantity} + ${unit.name}">2000ml</span>
+        <span id="goal" th:text="${allChallenges.goalQuantity} + ${performanceRecordList.unitName}">2000ml</span>
       </div>
     </section>
     <section class="form">
@@ -78,7 +78,7 @@
             id="achive-amount"
             th:value="${perfomanceRecord.achvQuantity}" 
             name="aq"/>
-            <span th:text="${unit.name}">ml</span>
+            <span th:text="${performanceRecordList.unitName}">ml</span>
           </div>
           <button id="plus-btn" type="button">+</button>
         </div>
@@ -126,7 +126,7 @@
               <div th:class="${iterStat.last ? 'turn last-turn' : 'turn'}">
                   <span th:text="${list.round}+'회차'">1회차</span>
               </div>
-              <p th:text="${list.achvQuantity}+${unit.name}">200ml</p>
+              <p th:text="${list.achvQuantity}+${performanceRecordList.unitName}">200ml</p>
               <td th:switch="${list.result}">
                 <p th:case="true" style="color: #71B5CB;">성공</p>
                 <p th:case="false"style="color: rgb(219, 92, 92);">실패</p>

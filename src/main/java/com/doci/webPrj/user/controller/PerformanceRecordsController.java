@@ -24,9 +24,6 @@ public class PerformanceRecordsController {
     @Autowired
     AllChallengesService allChallengesService;
 
-    @Autowired
-    UnitService unitService;
-
     @GetMapping("performance-records")
     public String PerformanceRecords(Model model,
             @RequestParam(name = "cid") String challengeId) {
@@ -42,10 +39,6 @@ public class PerformanceRecordsController {
         // 도전정보
         AllChallenges allChallenges = allChallengesService.getChallenge(challengeId);
         model.addAttribute("allChallenges", allChallenges);
-
-        // unit정보
-        Unit unit = unitService.getUnit(allChallenges.getUnitId());
-        model.addAttribute("unit", unit);
 
         return "user/performance-records";
     }

@@ -11,5 +11,4 @@ public interface UnitService {
 
     void update(Unit unit);
 
-    Unit getUnit(int unitId);
 }
