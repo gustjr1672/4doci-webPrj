@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.doci.webPrj.user.entity.Feed;
+import com.doci.webPrj.user.entity.FeedDetail;
 import com.doci.webPrj.user.entity.Member;
 import com.doci.webPrj.user.repository.CommentRepository;
+import com.doci.webPrj.user.repository.FeedDetailRepository;
 import com.doci.webPrj.user.repository.FeedRepository;
 
 @Service
@@ -21,6 +23,8 @@ public class FeedServiceImp implements FeedService {
     FeedRepository feedRepository;
     @Autowired
     CommentRepository commentRepository;
+    @Autowired
+    FeedDetailRepository feedDetailRepository;
 
     @Override
     public List<Feed> getFeedList(List<Member> friendList, int userId) {
@@ -50,6 +54,22 @@ public class FeedServiceImp implements FeedService {
             }
         }
         return feedList;
+    }
+
+    @Override
+    public List<FeedDetail> getFreeFeedList(int fcId) {
+
+        return feedDetailRepository.findFreeById(fcId);
+    }
+
+    @Override
+    public List<FeedDetail> getRandomFeedList(int chId) {
+        return feedDetailRepository.findRandomById(chId);
+    }
+
+    @Override
+    public List<FeedDetail> getGroupFeedList(int gsId) {
+        return feedDetailRepository.findGroupById(gsId);
     }
 
 }
