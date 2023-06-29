@@ -54,8 +54,24 @@ window.onload = function (){
 
         let achvQuantity = parseInt (progressBar.dataset.achvQuantity);
         let goalQuantity = parseInt(progressBar.dataset.goalQuantity);
-        console.log( "달성량"+ achvQuantity);
-        console.log("목표량 " + goalQuantity);
-        progressBar.style.width = achvQuantity / goalQuantity *100 + '%';
+        animateProgressBar(progressBar, achvQuantity, goalQuantity);
+        // progressBar.style.width = achvQuantity / goalQuantity *100 + '%';
+    }
+}
+
+function animateProgressBar(progressBar, achvQuantity, goalQuantity) {
+    let width = 0;
+    // let increment = achvQuantity / goalQuantity * 100 / 100; // 1% 씩 증가
+    let increment = 1;
+
+    let animationInterval = setInterval(frame, 10);
+
+    function frame() {
+        if (width >= achvQuantity / goalQuantity * 100) {
+            clearInterval(animationInterval);
+        } else {
+            width += increment;
+            progressBar.style.width = width + "%";
+        }
     }
 }

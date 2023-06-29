@@ -1,167 +1,167 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Document</title>
-    <link href="/css/main.css" type="text/css" rel="stylesheet" />
-    <link href="/css/notification.css" type="text/css" rel="stylesheet" />
+    <link href="/css/main.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/notification.css" type="text/css" rel="stylesheet"/>
     <link
-      href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
-      rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+            rel="stylesheet"
     />
     <script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
-    <script src="/js/main.js" module defer="defer"></script>
+    <script src="/js/main.js" defer="defer"></script>
     <script src="/js/notification.js" defer="defer"></script>
     <script src="/js/progress-bar.js" defer="defer"></script>
-  </head>
+    <script src="/js/main-filter.js" defer="defer"></script>
+</head>
 
-  <body>
-  <div class="header-wrap">
+<body>
+<div class="header-wrap">
     <header>
-      <div class="header-left">
-        <img src="/image/header/whiteLogo.png" alt="4℃" width="50" height="32" />
-      </div>
-      <button class="bell" onclick="openModal()">
-        <img th:if="${isNoti}" id="bell" src="/image/header/whiteBellAlarm.png" alt="알림" />
-        <img th:unless="${isNoti}" id="bell" src="/image/header/whiteBell.png" alt="알림" />
-      </button>
+        <div class="header-left">
+            <img src="/image/header/whiteLogo.png" alt="4℃" width="60px" height="60px"/>
+        </div>
+        <button class="bell" onclick="openModal()">
+            <img th:if="${isNoti}" id="bell" src="/image/header/whiteBellAlarm.png" alt="알림"/>
+            <img th:unless="${isNoti}" id="bell" src="/image/header/whiteBell.png" alt="알림"/>
+        </button>
     </header>
-  </div>
-    <div class="profile-wrap">
-      <div class="profile-title">
-        <img th:src="${user.profileImage}" alt="profile" />
+</div>
+<div class="profile-wrap">
+    <div class="profile-title">
+        <img th:src="${user.profileImage}" alt="profile"/>
         <span th:text="${user.nickname} + ' 님'">신도시여신</span>
-      </div>
+    </div>
 
-      <div class="start-btn">
+    <div class="start-btn">
         <div>
-          <div>
-            <span>랜덤도전,자유도전,그룹도전까지</span>
-            <span>새로운 도전을 시작해보세요</span>
-          </div>
-          <button type="submit" onclick="location.href='challenge/start/choice/type'">
-            시작하기
-            <img src="/image/main/right.png" alt="go"  width="7px" height="9px"  />
+            <div>
+                <span>랜덤도전,자유도전,그룹도전까지</span>
+                <span>새로운 도전을 시작해보세요</span>
+            </div>
+            <button type="submit" onclick="location.href='challenge/start/choice/type'">
+                시작하기
+                <img src="/image/main/right.png" alt="go" width="7px" height="9px"/>
+            </button>
+        </div>
+        <img src="/image/main/banner.png" alt="banner" width="77px" height="84px"/>
+    </div>
+</div>
+
+<section class="chal-list">
+    <div class="chal-header">
+        <span>나의 도전</span>
+        <select id="filter" onchange="applyFilter()">
+            <option value="on-going">진행 중</option>
+            <option value="waiting">대기 중</option>
+        </select>
+    </div>
+
+    <div class="chal-section" th:data-user-id="${user.id}">
+        <div class="btn-wrap" th:each="all:${allChallengesList}" th:if="${currentDate}>=${all.startDate}">
+            <button class="chal-btn" th:data-unique-id="${all.uniqueId}">
+                <span class="chal-title" th:text="${all.name}">하루에 30분이상 운동하고 치킨먹고 자기</span>
+                <div class="prog-wrap">
+                    <div>
+                        <span class="achv-Quantity" th:text="${all.achvQuantity}">0</span>
+                        <span>/</span>
+                        <span th:text="${all.goalQuantity} + ' '+ ${all.unitName}">1회</span>
+                        <span hidden="hidden" th:text="${all.goalQuantity}" class="goal_quantity"></span>
+                    </div>
+                    <div class="prog-bar">
+                        <div class="prog"
+                             th:data-achv-quantity="${all.achvQuantity}"
+                             th:data-goal-quantity="${all.goalQuantity}">
+                        </div>
+                    </div>
+                </div>
+            </button>
+            <button class="plus-btn"
+                    th:data-goal-quantity="${all.goalQuantity}"
+                    th:data-challenge-id="${all.uniqueId}">+
           </button>
         </div>
-        <img src="/image/main/banner.png" alt="banner"  width="77px" height="84px" />
-      </div>
     </div>
-
-  <section class="chal-list">
-    <div class="chal-header">
-      <span>진행중인 도전</span>
-      <select id="filter">
-        <option value="all">전체</option>
-        <option value="personal">개인</option>
-        <option value="challenge">도전</option>
-        <option value="random">랜덤</option>
-      </select>
-    </div>
-    <div class="btn-wrap" th:each="all:${allChallengesList}">
-      <button class="chal-btn" th:data-unique-id="${all.uniqueId}">
-        <span class="chal-title" th:text="${all.name}">하루에 30분이상 운동하고 치킨먹고 자기</span>
-        <div class="prog-wrap">
-          <div>
-            <span class="achv-Quantity" th:text="${all.achvQuantity}">0</span>
-            <span>/</span>
-            <span th:each="unit:${unitList}"
-                  th:if="${unit.id == all.unitId}"
-                  th:text="${all.goalQuantity} + ' '+ ${unit.name}">1회</span>
-            <span hidden="hidden" th:text="${all.goalQuantity}" class="goal_quantity"></span>
-          </div>
-          <div class="prog-bar">
-            <div class="prog"
-                 th:data-achv-quantity="${all.achvQuantity}"
-                 th:data-goal-quantity="${all.goalQuantity}">
-            </div>
-          </div>
-        </div>
-      </button>
-      <button class="plus-btn"
-              th:data-goal-quantity="${all.goalQuantity}"
-              th:data-challenge-id="${all.uniqueId}">+</button>
-    </div>
-  </section>
+</section>
 
 
+<div class="footer-wrap">
+    <footer>
+        <button>
+            <img src="/image/footer/clickHome.png" alt="홈"/>
+        </button>
+        <button>
+            <img
+                    src="/image/footer/community.png"
+                    alt="커뮤니티"
+                    onclick="location.href = 'community.html' "
+            />
+        </button>
+        <button>
+            <img
+                    src="/image/footer/friendManagement.png"
+                    alt="친구관리"
+                    onclick="location.href = 'friendmanage/main' "
+            />
+        </button>
+        <button>
+            <img
+                    src="/image/footer/myPage.png"
+                    alt="내정보"
+                    onclick="location.href = 'my-page.html' "
+            />
+        </button>
+    </footer>
+</div>
 
-    <div class="footer-wrap">
-      <footer>
+<div class="footer-wrap">
+    <footer>
         <button>
-          <img src="/image/footer/clickHome.png" alt="홈" />
+            <img src="/image/footer/clickHome.png" alt="홈"/>
         </button>
         <button>
-          <img
-            src="/image/footer/community.png"
-            alt="커뮤니티"
-            onclick="location.href = 'community.html' "
-          />
+            <img
+                    src="/image/footer/community.png"
+                    alt="커뮤니티"
+                    onclick="location.href = '/community/feed' "
+            />
         </button>
         <button>
-          <img
-            src="/image/footer/friendManagement.png"
-            alt="친구관리"
-            onclick="location.href = 'friendmanage/main' "
-          />
+            <img
+                    src="/image/footer/friendManagement.png"
+                    alt="친구관리"
+                    onclick="location.href = 'friendmanage/main' "
+            />
         </button>
         <button>
-          <img
-            src="/image/footer/myPage.png"
-            alt="내정보"
-            onclick="location.href = 'my-page.html' "
-          />
+            <img src="/image/footer/myPage.png" alt="내정보" onclick="location.href = '/my-page' "/>
         </button>
-      </footer>
-    </div>
+    </footer>
+</div>
 
-    <div class="footer-wrap">
-      <footer>
-        <button>
-          <img src="/image/footer/clickHome.png" alt="홈" />
-        </button>
-        <button>
-          <img
-            src="/image/footer/community.png"
-            alt="커뮤니티"
-            onclick="location.href = '/community/feed' "
-          />
-        </button>
-        <button>
-          <img
-            src="/image/footer/friendManagement.png"
-            alt="친구관리"
-            onclick="location.href = 'friendmanage/main' "
-          />
-        </button>
-        <button>
-          <img src="/image/footer/myPage.png" alt="내정보" onclick="location.href = '/my-page' " />
-        </button>
-      </footer>
-    </div>
-
-    <!-- ======================알림 모달 ================================== -->
-    <div id="myModal" class="modal">
-      <div class="modal-content">
+<!-- ======================알림 모달 ================================== -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <section id="btns" class="btns">
-          <button class="community-btn active" onclick="toggleContent('community')">
-            커뮤니티
-          </button>
-          <button class="group-invitation-btn" onclick="toggleContent('groupInvitation')">
-            그룹초대
-          </button>
-          <button class="friend-request-btn" onclick="toggleContent('friendRequest')">
-            친구요청
-          </button>
+            <button class="community-btn active" onclick="toggleContent('community')">
+                커뮤니티
+            </button>
+            <button class="group-invitation-btn" onclick="toggleContent('groupInvitation')">
+                그룹초대
+            </button>
+            <button class="friend-request-btn" onclick="toggleContent('friendRequest')">
+                친구요청
+            </button>
         </section>
         <!-- 커뮤니티 알림 -->
         <!--그룹초대 알림 -->
         <!-- 친구요청 알림 -->
         <section class="notification"></section>
-      </div>
     </div>
-  </body>
+</div>
+</body>
 </html>

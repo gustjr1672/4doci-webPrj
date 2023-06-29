@@ -1,5 +1,6 @@
 package com.doci.webPrj.user.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.doci.webPrj.admin.entity.Unit;
@@ -22,17 +23,16 @@ public class MainController {
     NotificationService notificationService;
     @Autowired
     AllChallengesService allChallengesService;
-    @Autowired
-    UnitService unitService;
+
 
     @GetMapping("main")
     public String main(Model model, @AuthenticationPrincipal MyUserDetails user) {
         boolean isNoti = notificationService.getNotiStatus(user.getId());
         List<AllChallenges> allChallengesList = allChallengesService.findAll(user.getId());
-        List<Unit> unitList = unitService.findAll();
 
+        LocalDate currentDate = LocalDate.now();
         model.addAttribute("allChallengesList", allChallengesList);
-        model.addAttribute("unitList", unitList);
+        model.addAttribute("currentDate", currentDate);
         model.addAttribute("user", user);
         model.addAttribute("isNoti", isNoti);
         return "user/main";
