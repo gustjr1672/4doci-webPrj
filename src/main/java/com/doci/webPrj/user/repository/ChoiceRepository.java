@@ -10,4 +10,6 @@ public interface ChoiceRepository {
 
     void save(@Param("c") Choice choice);
 
+    void delete(int id);
+
 }

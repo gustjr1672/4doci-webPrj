@@ -18,7 +18,7 @@
         <a href="/main">
           <img class="back" src="/image/header/whiteBack.png" alt="back" />
         </a>
-        <button><img src="/image/header/more.png" alt="" /></button>
+        <button th:data-unique-id="${allChallenges.uniqueId}"><img src="/image/header/more.png" alt="" /></button>
       </div>
     </header>
     <section class="goal">
@@ -90,12 +90,15 @@
     </footer>
 
    <!-- 삭제모달 -->
-    <div id="delete-modal-wrap" class="delete-modal">
-      <div id="delete-modal-content"class="delete-modal-content">
-        <button>삭제</button>
-        <button class="close-btn">취소</button>
+   <div class="delete-modal hidden">
+    <div class="delete-modal-content">
+      <span>도전을 포기하시겠습니까? <br> 포기할 시 해당 도전이 삭제됩니다</span>
+      <div class="delete-modal-buttons">
+        <button id="close-btn">취소</button>
+        <button id="give-up-btn">포기</button>
       </div>
     </div>
+  </div>
 
     <!-- 회차모달 -->
     <div id="turn-modal-wrap" class="turn-modal">

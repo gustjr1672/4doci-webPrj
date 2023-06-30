@@ -8,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.doci.webPrj.admin.entity.Unit;
-import com.doci.webPrj.admin.service.UnitService;
 import com.doci.webPrj.user.entity.AllChallenges;
 import com.doci.webPrj.user.entity.PerformanceRecords;
 import com.doci.webPrj.user.service.AllChallengesService;
@@ -41,6 +39,14 @@ public class PerformanceRecordsController {
         model.addAttribute("allChallenges", allChallenges);
 
         return "user/performance-records";
+    }
+
+    @GetMapping("performance-records/delete")
+    public String PerformanceRecordsDelete(@RequestParam(name = "cid") String challengeId) {
+
+        performanceRecordsService.deleteChallenge(challengeId);
+
+        return "redirect:/main";
     }
 
 }
