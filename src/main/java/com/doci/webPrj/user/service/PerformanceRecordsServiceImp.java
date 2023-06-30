@@ -1,6 +1,8 @@
 package com.doci.webPrj.user.service;
 
 import com.doci.webPrj.user.entity.PerformanceRecords;
+import com.doci.webPrj.user.repository.ChoiceRepository;
+import com.doci.webPrj.user.repository.FreeChallengeRepository;
 import com.doci.webPrj.user.repository.PerformanceRecordsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,12 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
 
     @Autowired
     PerformanceRecordsRepository recordsRepository;
+
+    @Autowired
+    FreeChallengeRepository freeChallengeRepository;
+
+    @Autowired
+    ChoiceRepository choiceRepository;
 
     @Override
     public void updateAchvQuantity(String challengeTypeAndId) {
@@ -87,6 +95,27 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
     public void edit(String impression, int achvQuantity, int id) {
 
         recordsRepository.updateById(impression, achvQuantity, id);
+
+    }
+
+    @Override
+    public void deleteChallenge(String challengeId) {
+
+        List<Object> typeAndId = SeparateTypeAndId(challengeId);
+        String type = (String) typeAndId.get(0);
+        int id = (int) typeAndId.get(1);
+
+        switch (type) {
+            case FREECHALLENGE:
+                freeChallengeRepository.delete(id);
+                break;
+            case CHOICE:
+                choiceRepository.delete(id);
+                break;
+            case GROUPSTART:
+                // 그룹도전 합치고 구현
+                break;
+        }
 
     }
 

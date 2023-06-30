@@ -29,5 +29,10 @@
         #{f.memberId},
         #{f.categoryId});
     </insert>
+
+    <delete id="delete">
+        delete from free_challenge
+        where id=#{id}
+    </delete>
     
 </mapper>

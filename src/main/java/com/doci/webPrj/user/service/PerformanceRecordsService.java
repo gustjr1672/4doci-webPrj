@@ -13,4 +13,6 @@ public interface PerformanceRecordsService {
 
     void edit(String impression, int achvQuantity, int id);
 
+    void deleteChallenge(String challengeId);
+
 }
