@@ -24,28 +24,31 @@ function loadFile(input) {
   
   
   /**삭제 모달**/
-  const deleteBtn = document.querySelector("header button");
-  const deleteModal = document.querySelector("#delete-modal-wrap");
-  const deleteModalContent = document.querySelector("#delete-modal-content");
-  const closeBtn = document.querySelector(".close-btn");
+const deleteBtn = document.querySelector("header button");
+const deleteModal = document.querySelector(".delete-modal");
+const closeBtn = document.querySelector("#close-btn");
+const giveUpBtn = document.querySelector("#give-up-btn");
+
+deleteBtn.addEventListener("click", function(){
+
+  deleteModal.classList.remove("hidden");
+
+});
+
+closeBtn.addEventListener("click", function(){
   
-  deleteBtn.addEventListener("click", function(e){
-  
-    deleteModal.style.display = "block";
-    setTimeout(function() {
-      deleteModalContent.classList.add('active');
-    }, 20);
-  
-  });
-  
-  closeBtn.addEventListener("click", function(e){
-    
-    deleteModalContent.classList.remove("active");
-    setTimeout(function () {
-      deleteModal.style.display = "none";
-    }, 300);
-    
-  });
+    deleteModal.classList.add("hidden");
+
+});
+
+giveUpBtn.addEventListener("click", function(){
+
+  const uniqueId = deleteBtn.dataset.uniqueId;
+
+  location.href=`performance-records/delete?cid=${uniqueId}`;
+});
+
+
   
   
   /**회차 모달**/

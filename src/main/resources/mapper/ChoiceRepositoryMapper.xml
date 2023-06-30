@@ -18,6 +18,9 @@
             #{c.endDate})
     </insert>
 
-
+    <delete id="delete">
+        delete from choice
+        where id=#{id}
+    </delete>
 
 </mapper>
