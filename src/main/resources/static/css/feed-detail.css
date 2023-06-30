@@ -3,13 +3,14 @@
 }
 
 header {
-  height: 60px;
   width: 100%;
   display: flex;
   max-width: 660px;
+  margin: 20px 12px;
 }
 header img {
-  width: 30px;
+  padding-left: 12px;
+  width: 22px;
 }
 header > button {
   background-color: white;
@@ -59,8 +60,8 @@ body {
   font-weight: 700;
 }
 .comment-btn {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 .space-btwn {
   width: 100%;
