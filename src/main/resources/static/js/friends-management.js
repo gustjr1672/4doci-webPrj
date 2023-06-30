@@ -15,7 +15,13 @@ function connectWs() {
     console.log("close");
   };
 }
-
+//모달
+let modal = document.querySelector(".delete-modal");
+let modalCancelBtn = document.querySelector(".modal-cancel-btn");
+let modalDeleteBtn = document.querySelector(".modal-delete-btn");
+let completeModal = document.querySelector(".complete-modal");
+let modalCloseBtn = document.querySelector(".modal-close");
+//토글버튼
 const btns = document.getElementById("btns");
 const leftBtn = btns.querySelector(".left-btn");
 const rightBtn = btns.querySelector(".right-btn");
@@ -49,6 +55,7 @@ newFriendList.onclick = function (e) {
   if (e.target.id === "add-request") {
     let cancel = e.target.nextElementSibling;
     e.target.classList.add("hidden");
+    completeModal.classList.remove("hidden");
     cancel.classList.remove("hidden");
     fetch(`/friendmanage/newfriend/add?id=${e.target.dataset.id}`).then((response) => {
       if (socket) {
@@ -120,18 +127,33 @@ friendSearchBtn.addEventListener("click", () => {
       }
     });
 });
+
 friendList.onclick = function (e) {
   if (e.target.classList.contains("delete")) {
-    fetch(`/friendmanage/friends?id=${e.target.dataset.id}&n=${friendSearchInput.value}`, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((list) => {
-        console.log(list);
-        friendList.innerHTML = "";
-        friendList.insertAdjacentHTML("beforeend", `<p >친구 ${list.length}명</p>`);
-        for (const friend of list) {
-          let friendListTemplate = `
+    modal.classList.remove("hidden");
+    modalDeleteBtn.dataset.id = e.target.dataset.id;
+  }
+};
+modalCancelBtn.addEventListener("click", () => {
+  modalDeleteBtn.dataset.id = 0;
+  modal.classList.add("hidden");
+});
+modalCloseBtn.addEventListener("click", () => {
+  completeModal.classList.add("hidden");
+});
+modalDeleteBtn.addEventListener("click", (e) => {
+  fetch(`/friendmanage/friends?id=${e.target.dataset.id}&n=${friendSearchInput.value}`, {
+    method: "DELETE",
+  })
+    .then((response) => response.json())
+    .then((list) => {
+      console.log(list);
+      modal.classList.add("hidden");
+      completeModal.classList.remove("hidden");
+      friendList.innerHTML = "";
+      friendList.insertAdjacentHTML("beforeend", `<p >친구 ${list.length}명</p>`);
+      for (const friend of list) {
+        let friendListTemplate = `
         <div class="friend">
           <button class="info">
             <img src="${friend.profileImage}" alt="프로필이미지" />
@@ -142,8 +164,7 @@ friendList.onclick = function (e) {
           </button>
           <button data-id=${friend.id} id="friend-delete" class="delete">삭제</button>
         </div>`;
-          friendList.insertAdjacentHTML("beforeend", friendListTemplate);
-        }
-      });
-  }
-};
+        friendList.insertAdjacentHTML("beforeend", friendListTemplate);
+      }
+    });
+});
