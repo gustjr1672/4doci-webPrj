@@ -48,8 +48,6 @@ giveUpBtn.addEventListener("click", function(){
   location.href=`performance-records/delete?cid=${uniqueId}`;
 });
 
-
-  
   
   /**회차 모달**/
   const turnBtn = document.querySelector(".goal div button");
