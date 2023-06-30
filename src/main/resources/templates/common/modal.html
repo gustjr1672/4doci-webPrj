@@ -11,12 +11,20 @@
     <title>Document</title>
   </head>
   <body>
-    <section class="start-modal">
+    <section class="choice-modal hidden">
       <section class="modal-box">
-        <span>도전을 시작하시겠습니까?</span>
+        <span>정말로 삭제하시겠습니까?</span>
         <div>
-          <button>취소</button>
-          <button>시작</button>
+          <button class="modal-cancel-btn">취소</button>
+          <button class="modal-delete-btn">삭제</button>
+        </div>
+      </section>
+    </section>
+    <section class="complete-modal hidden">
+      <section class="modal-box">
+        <span>완료되었습니다.</span>
+        <div>
+          <button class="modal-close">닫기</button>
         </div>
       </section>
     </section>
