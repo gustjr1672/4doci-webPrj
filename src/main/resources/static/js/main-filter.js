@@ -26,7 +26,7 @@ function myChallengeList(selectedValue) {
 
                         let chalTemplate =
                             `<div class="btn-wrap" >
-                            <button class="chal-btn">
+                            <button class="chal-btn" data-unique-id="${challenge.uniqueId}">
                             <span class="chal-title" >${challenge.name}</span>
                             <div class="prog-wrap">
                               <div>
@@ -64,11 +64,11 @@ function myChallengeList(selectedValue) {
                     if (currentDate <= chalStartDate) {
                         let chalTemplate = `                
                         <div class="btn-wrap">
-                            <button class="chal-btn">
-                                <span class="chal-title">${challenge.name}</span>
-                            </button>
-                            <div class="chal-wait">도전<br>대기중</div>
-                        </div>`
+                            <button class="chal-btn" data-unique-id="${challenge.uniqueId}">
+                            <span class="chal-title">${challenge.name} </span>
+                    </button>
+                        <div class="chal-wait">도전<br>대기중</div>
+                    </div>`
 
                         chalList.insertAdjacentHTML("beforeend", chalTemplate);
                     }
