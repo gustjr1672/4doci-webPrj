@@ -275,11 +275,25 @@
     background-color: #C85D77;
   }
   
-  .last-turn{
+  .record-list :last-child div div{
     background-color: #C85D77;
   }
-  
-  
+
+  .record-list{
+    max-height: 300px;
+    overflow-y: auto;
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+  }
+
+  .record-list::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
+}
+
+  .record-list div{
+    overflow-y: auto;
+  }
+
   .turn-wrap{
     display: flex;
     flex-direction: column;
@@ -342,6 +356,7 @@
     border-radius: 16px 16px 0px 0px;
     transform: translateY(100%);
     transition: transform 0.3s ease-in-out;
+    max-height: 700px;
   }
   
   .turn-modal-content.active {

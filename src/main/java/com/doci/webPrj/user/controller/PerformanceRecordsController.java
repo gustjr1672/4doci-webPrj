@@ -1,7 +1,5 @@
 package com.doci.webPrj.user.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,13 +24,9 @@ public class PerformanceRecordsController {
     public String PerformanceRecords(Model model,
             @RequestParam(name = "cid") String challengeId) {
 
-        // 전체 수행기록 리스트
-        List<PerformanceRecords> performanceRecordList = performanceRecordsService.getList(challengeId);
-        model.addAttribute("performanceRecordList", performanceRecordList);
-
-        // 현재 수행기록(리스트에서 마지막)
-        int size = performanceRecordList.size();
-        model.addAttribute("perfomanceRecord", performanceRecordList.get(size - 1));
+        // 현재 수행기록
+        PerformanceRecords performanceRecords = performanceRecordsService.getCurrentRecord(challengeId);
+        model.addAttribute("perfomanceRecord", performanceRecords);
 
         // 도전정보
         AllChallenges allChallenges = allChallengesService.getChallenge(challengeId);

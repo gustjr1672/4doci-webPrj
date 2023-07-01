@@ -1,6 +1,8 @@
 package com.doci.webPrj.user.service;
 
+import com.doci.webPrj.user.entity.AllChallenges;
 import com.doci.webPrj.user.entity.PerformanceRecords;
+import com.doci.webPrj.user.repository.AllChallengesRepository;
 import com.doci.webPrj.user.repository.ChoiceRepository;
 import com.doci.webPrj.user.repository.FreeChallengeRepository;
 import com.doci.webPrj.user.repository.PerformanceRecordsRepository;
@@ -26,6 +28,9 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
 
     @Autowired
     ChoiceRepository choiceRepository;
+
+    @Autowired
+    AllChallengesRepository allChallengesRepository;
 
     @Override
     public void updateAchvQuantity(String challengeTypeAndId) {
@@ -92,9 +97,9 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
     }
 
     @Override
-    public void edit(String impression, int achvQuantity, int id) {
+    public void editRecords(String impression, int achvQuantity, int id) {
 
-        recordsRepository.updateById(impression, achvQuantity, id);
+        recordsRepository.updateRecords(impression, achvQuantity, id);
 
     }
 
@@ -130,6 +135,27 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
         result.add(id);
 
         return result;
+    }
+
+    @Override
+    public void updateResultOfRound(int achvQuantity, int id, String uniqueId) {
+
+        AllChallenges allChallenges = allChallengesRepository.findChallenge(uniqueId);
+        int goalQuantity = allChallenges.getGoalQuantity();
+
+        recordsRepository.updateResult(achvQuantity, goalQuantity, id);
+    }
+
+    @Override
+    public PerformanceRecords getCurrentRecord(String challengeId) {
+
+        List<Object> typeAndId = SeparateTypeAndId(challengeId);
+        String type = (String) typeAndId.get(0);
+        int id = (int) typeAndId.get(1);
+
+        PerformanceRecords performanceRecords = recordsRepository.findCurrentRecord(type, id);
+
+        return performanceRecords;
     }
 
 }
