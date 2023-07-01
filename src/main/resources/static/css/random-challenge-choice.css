@@ -2,28 +2,31 @@
   font-family: "SUIT", sans-serif !important;
 }
 
-body {
-  margin: 0;
-}
 header {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  max-width: 660px;
   margin: 20px 12px;
 }
-
-.header-left {
-  display: flex;
-  gap: 12px;
+header img {
+  padding-left: 12px;
+  width: 22px;
 }
-
-header button {
+header > button {
   background-color: white;
   border: none;
 }
-.start-order {
+body {
+  margin: 0;
   display: flex;
-  justify-content: center;
-  margin-right: 161px;
+  flex-direction: column;
+  align-items: center;
+}
+.start-order {
+  width: 80%;
+  max-width: 400px;
+  display: flex;
+  justify-content: start;
 }
 .start-order2 {
   display: flex;
@@ -33,17 +36,14 @@ header button {
 }
 
 h1 {
-  margin: 6px 0 12px 24px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
   align-items: start;
 }
 
 h1 p {
   margin: 0;
-  width: 160px;
-
   font-size: 18px;
   font-weight: bold;
 }
@@ -111,24 +111,39 @@ h1 p {
   justify-content: center;
   align-items: center;
 }
+.challenge-option {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .challenge-option label {
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  gap: 4px;
   margin: 16px 0;
-  width: 280px;
-  height: 100px;
+  width: 80%;
+  max-width: 380px;
+  min-width: 280px;
+  height: 110px;
   border: 2px solid #d3d3d3;
   padding-bottom: 24px;
   border-radius: 12px;
   box-shadow: 0px 2px 8px rgba(99, 99, 99, 0.2);
   transform: all 0.15s ease;
 }
+.challenge-option label img {
+  width: 24px;
+}
+.challenge-option label span {
+  font-size: 12px;
+}
 .period {
   margin-top: 4px;
-  width: 250px;
+  width: 90%;
   display: flex;
   justify-content: end;
   align-items: end;
@@ -142,7 +157,7 @@ h1 p {
 }
 .goal {
   margin: 0;
-
+  word-break: keep-all;
   font-size: 14px;
   font-weight: 600;
   color: #333333;
@@ -169,7 +184,7 @@ h1 p {
 }
 .create-btn {
   font-size: 16px;
-
+  width: 100%;
   font-weight: bold;
   display: flex;
   justify-content: center;
@@ -178,7 +193,9 @@ h1 p {
 button[type="submit"] {
   background-color: #383d66;
   color: white;
-  width: 280px;
+  width: 90%;
+  max-width: 360px;
+  min-width: 280px;
   height: 52px;
   font-size: 16px;
   font-weight: semi-bold;

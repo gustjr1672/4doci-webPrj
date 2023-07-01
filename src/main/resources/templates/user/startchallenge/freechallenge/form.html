@@ -14,21 +14,15 @@
   </head>
   <body>
     <header>
-      <div class="header-wrap">
-        <header>
-          <div class="header_left">
-            <button onclick="location.href='/challenge/start/choice/type'">
-              <img src="/image/freechallenge/back.png" alt="뒤로가기" />
-            </button>
-          </div>
-        </header>
-      </div>
+      <a href="javascript:history.go(-1)">
+        <img src="/image/header/blackBack.png" alt="뒤로가기" />
+      </a>
     </header>
 
     <div class="massage">
       <p>도전에 대해 입력해 주세요</p>
     </div>
-    
+
     <form action="/freeChallenge/challenge/reg" method="post">
       <div class="list">
         <div class="category_title">
@@ -48,14 +42,16 @@
 
         <div class="name_set">
           <div class="title">
-            <label for="name">도전명</label>
+            <label for="challenge_name">도전명</label>
             <div>
               <textarea
                 placeholder="3자 이상 30자 이하"
                 id="challenge_name"
                 class="challenge_name"
                 name="name"
-                minlength="3" maxlength="30"
+                minlength="3"
+                maxlength="30"
+                autocomplete="off"
                 required
               ></textarea>
               <p id="check_challenge_length"></p>
@@ -64,7 +60,7 @@
         </div>
 
         <div class="quantity_title">
-          <label for="goalQuantity">목표량</label>
+          <label for="quantity_inside">목표량</label>
           <div class="quantity_set">
             <input
               type="number"
@@ -89,7 +85,7 @@
         </div>
 
         <div class="frequency_title">
-          <label for="authFrequency">인증 빈도</label>
+          <label for="auth_frequency">인증 빈도</label>
           <div class="frequency_set">
             <div>
               <select id="auth_frequency" name="authFrequency" required>
@@ -111,7 +107,7 @@
         <div class="period_title">
           <div class="period_set">
             <div class="start_set">
-              <label for="startDate">시작일</label>
+              <label for="start_inside">시작일</label>
               <div>
                 <input
                   required
@@ -124,7 +120,7 @@
               </div>
             </div>
             <div class="end_set">
-              <label for="endDate">종료일</label>
+              <label for="end_inside">종료일</label>
               <div>
                 <input
                   min="yyyy-mm-dd"

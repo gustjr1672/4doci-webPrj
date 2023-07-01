@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.doci.webPrj.admin.entity.Category;
-import com.doci.webPrj.admin.entity.RandomChallenge;
+import com.doci.webPrj.admin.entity.ChoiceRandomList;
 import com.doci.webPrj.admin.service.CategoryService;
 import com.doci.webPrj.admin.service.UnitService;
 import com.doci.webPrj.config.MyUserDetails;
@@ -40,12 +40,11 @@ public class RandomChoiceController {
     @PostMapping("choice/challenge")
     public String randomCategorySubmit(Model model, @RequestParam("options") String[] categoryIdList) {
 
-        List<RandomChallenge> list = randomChoiceService.getRandomList(categoryIdList);
+        List<ChoiceRandomList> list = randomChoiceService.getRandomList(categoryIdList);
         model.addAttribute("randomList", list);
         model.addAttribute("choice", new Choice());
         return "user/startchallenge/randomchallenge/choice-challenge";
     }
-
 
     @PostMapping("randomchallenge/reg")
     public String randomChallengeReg(Choice choice,

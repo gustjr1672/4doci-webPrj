@@ -3,36 +3,25 @@
 * {
   font-family: "SUIT", sans-serif !important;
 }
+header {
+  width: 100%;
+  display: flex;
+  max-width: 660px;
+  margin: 20px 12px;
+}
+header img {
+  padding-left: 12px;
+  width: 22px;
+}
+header > button {
+  background-color: white;
+  border: none;
+}
 body {
   margin: 0;
-}
-
-/* 헤더 */
-.header-wrap {
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-header {
   display: flex;
-  justify-content: space-between;
-  margin: 6px 12px 12px 12px;
-}
-
-.header_left {
-  display: flex;
-  gap: 12px;
-  width: 90px;
-  height: 40px;
-}
-.header_left img {
-  width: 40px;
-}
-
-header button {
-  border: none;
-  background-color: #fff;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* --------------------본문--------------------- */
@@ -85,7 +74,7 @@ select option {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 48px;
 }
 
 /*카테고리 */
@@ -141,7 +130,6 @@ select option {
   text-align: center;
   padding: 20px 40px 10px 40px;
 }
-
 
 #check_challenge_length {
   margin: 4px 0 0 0;
@@ -233,7 +221,6 @@ select option {
   flex-direction: column;
   justify-content: center;
   gap: 10px;
-
 }
 
 .start_set,
@@ -258,6 +245,7 @@ select option {
 
 /* 다음 버튼 */
 .next_btn {
+  padding-top: 12px;
   margin: 20px 0;
   display: flex;
   justify-content: center;

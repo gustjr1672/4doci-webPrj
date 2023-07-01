@@ -8,4 +8,6 @@ import lombok.Setter;
 public class Category {
     int id;
     String name;
+    String description;
+    String image;
 }

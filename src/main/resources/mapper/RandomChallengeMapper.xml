@@ -41,8 +41,8 @@
         where id=#{r.id}
     </update>
 
-        <select id="findRandomByCategory" resultType="com.doci.webPrj.admin.entity.RandomChallenge">
-        select * from random_challenge
+        <select id="findRandomByCategory" resultType="com.doci.webPrj.admin.entity.ChoiceRandomList">
+        select * from choice_random_list
         where category_id in
         <foreach collection="array" item="arr" open="(" close=")" separator=",">
         #{arr}
