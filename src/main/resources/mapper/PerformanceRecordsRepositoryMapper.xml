@@ -82,11 +82,42 @@
         </if>
     </select>
 
-    <update id="updateById">
+    <update id="updateRecords">
         update performance_records
         set
         impression = #{imp},
         achv_quantity = #{achv}
         where id = #{id}
     </update>
+
+    <update id="updateResult">
+        update performance_records
+        <if test="achvQuantity gte goalQuantity">
+        set result=1
+        </if>
+        <if test="achvQuantity lt goalQuantity">
+        set result=0
+        </if>
+        where id=#{id}
+    </update>
+
+    <select id="findCurrentRecord">
+        select *
+        from performance_records
+        <if test='type.equals("FC")'>
+        where free_challenge_id = #{id}
+        order by id DESC
+        limit 1
+        </if>
+        <if test='type.equals("CH")'>
+        where choice_id = #{id}
+        order by id DESC
+        limit 1
+        </if>
+        <if test='type.equals("GS")'>
+        where group_start_id = #{id}
+        order by id DESC
+        limit 1
+        </if>
+    </select>
 </mapper>

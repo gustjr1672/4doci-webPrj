@@ -11,8 +11,12 @@ public interface PerformanceRecordsService {
 
     List<PerformanceRecords> getList(String challengeId);
 
-    void edit(String impression, int achvQuantity, int id);
+    void editRecords(String impression, int achvQuantity, int id);
 
     void deleteChallenge(String challengeId);
+
+    void updateResultOfRound(int achvQuantity, int id, String uniqueId);
+
+    PerformanceRecords getCurrentRecord(String challengeId);
 
 }
