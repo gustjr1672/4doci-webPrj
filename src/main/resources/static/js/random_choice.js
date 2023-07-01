@@ -5,7 +5,20 @@ startDateInput.setAttribute("min", today);
 
 let inputs = document.querySelectorAll("label");
 
+startDateInput.addEventListener("change", () => {
+  let checked = document.querySelector("input[type=radio]:checked");
+  if (checked) {
+    let startDate = new Date(startDateInput.value);
+    let period = parseInt(checked.dataset.period);
+    let endDate = new Date(startDate.getTime() + period * 24 * 60 * 60 * 1000);
+
+    endDateInput.value = formatDate(endDate);
+  }
+});
+
 inputs.forEach(function (input) {
+  if (endDateInput.value == null) {
+  }
   input.addEventListener("click", handleStartDateChange);
 });
 function handleStartDateChange() {
@@ -13,10 +26,8 @@ function handleStartDateChange() {
 
   let startDate = new Date(startDateInput.value);
   let period = parseInt(this.dataset.period);
-  console.log(period);
   let endDate = new Date(startDate.getTime() + period * 24 * 60 * 60 * 1000);
 
-  console.log(formatDate(endDate));
   endDateInput.value = formatDate(endDate);
 }
 

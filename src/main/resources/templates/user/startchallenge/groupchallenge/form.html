@@ -14,21 +14,15 @@
   </head>
   <body>
     <header>
-      <div class="header-wrap">
-        <header>
-          <div class="header_left">
-            <button onclick="location.href='/challenge/start/choice/type'">
-              <img src="/image/freechallenge/back.png" alt="뒤로가기" />
-            </button>
-          </div>
-        </header>
-      </div>
+      <a href="javascript:history.go(-1)">
+        <img src="/image/header/blackBack.png" alt="뒤로가기" />
+      </a>
     </header>
 
     <div class="massage">
       <p>도전에 대해 입력해 주세요</p>
     </div>
-    
+
     <form action="/groupChallenge/challenge/reg" method="post">
       <div class="list">
         <div class="category_title">
@@ -55,7 +49,8 @@
                 id="challenge_name"
                 class="challenge_name"
                 name="name"
-                minlength="3" maxlength="30"
+                minlength="3"
+                maxlength="30"
                 required
               ></textarea>
               <p id="check_challenge_length"></p>

@@ -7,6 +7,7 @@ import com.doci.webPrj.user.repository.PerformanceRecordsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.doci.webPrj.admin.entity.ChoiceRandomList;
 import com.doci.webPrj.admin.entity.RandomChallenge;
 import com.doci.webPrj.common.repository.RandomChallengeRepository;
 import com.doci.webPrj.user.entity.Choice;
@@ -21,7 +22,7 @@ public class RandomChoiceServiceImp implements RandomChoiceService {
     @Autowired
     PerformanceRecordsRepository recordsRepository;
 
-   @Override
+    @Override
     public void addRandomChallenge(Choice choice) {
         choiceRepository.save(choice);
         int choiceId = choice.getId();
@@ -29,9 +30,10 @@ public class RandomChoiceServiceImp implements RandomChoiceService {
     }
 
     @Override
-    public List<RandomChallenge> getRandomList(String[] categoryIdList) {
+    public List<ChoiceRandomList> getRandomList(String[] categoryIdList) {
         return randomChallengeRepository.findRandomByCategory(categoryIdList);
     }
+
     private void savePerformanceRecords(int choiceId) {
         PerformanceRecords record = PerformanceRecords.builder()
                 .round(1)

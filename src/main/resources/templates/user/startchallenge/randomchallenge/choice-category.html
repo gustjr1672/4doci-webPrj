@@ -18,13 +18,9 @@
   </head>
   <body>
     <header>
-      <div class="header-left">
-        <button onclick="location.href='/challenge/start/choice/type'">
-          <img src="/image/header/blackBack.png" alt="뒤로가기" />
-        </button>
-        <!-- <img src="/image/title.png" alt="4℃" width="60" height="40" /> -->
-      </div>
-      <!-- <button><img src="/image/bell.png" alt="알림" /></button> -->
+      <a href="javascript:history.go(-1)">
+        <img src="/image/header/blackBack.png" alt="뒤로가기" />
+      </a>
     </header>
 
     <div class="top-text">
@@ -32,6 +28,7 @@
       <p>카테고리를 선택해 주세요(복수선택 가능)</p>
     </div>
     <form
+      class="check-form"
       id="check-form"
       th:action="@{/randomChallenge/choice/challenge}"
       action=""
@@ -39,10 +36,11 @@
     >
       <div class="category-checkBox" th:each="cate:${categoryList}">
         <label th:for="${cate.id}">
+          <img th:src="${cate.image}" alt="" />
           <!-- <img src="/image/startchallenge/category/exercise.png" alt="" /> -->
           <div>
             <p th:text="${cate.name}">운동</p>
-            <p>가벼운 산책부터 다양한 운동들을 시도해 보세요.</p>
+            <p th:text="${cate.description}">가벼운 산책부터 다양한 운동들을 시도해 보세요.</p>
           </div>
           <input type="checkbox" name="options" th:value="${cate.id}" th:id="${cate.id}" />
         </label>

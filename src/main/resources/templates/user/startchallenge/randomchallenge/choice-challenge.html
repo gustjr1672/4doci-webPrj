@@ -14,13 +14,9 @@
   </head>
   <body>
     <header>
-      <div class="header-left">
-        <button onclick="location.href='/randomChallenge/choice/randomcategory'">
-          <img src="/image/header/blackBack.png" alt="뒤로가기" />
-        </button>
-        <!-- <img src="/image/title.png" alt="4℃" width="60" height="40" /> -->
-      </div>
-      <!-- <button><img src="/image/bell.png" alt="알림" /></button> -->
+      <a href="javascript:history.go(-1)">
+        <img src="/image/header/blackBack.png" alt="뒤로가기" />
+      </a>
     </header>
     <section class="start-order">
       <h1>
@@ -31,7 +27,7 @@
 
     <form class="random-list" method="post" action="/randomChallenge/randomchallenge/reg">
       <!--    challenge-option 바로 위에 있었는데 옮겼음-->
-      <section class="start-order2">
+      <section class="start-order">
         <div class="date-input">
           <label for="start-date">시작일:</label>
           <input required min="yyyy-mm-dd" type="date" id="start-date" name="startDate" />
@@ -52,14 +48,15 @@
           name="challenge"
           th:name="randomChallengeId"
           type="radio"
+          th:data-period="${challenge.period}"
           required
         />
         <label th:data-period="${challenge.period}" th:for="${challenge.id}" for="17">
           <div class="period">
             <p th:text="${challenge.period}+'DAY'">7DAY</p>
           </div>
-          <img src="/img/random_category/familly.png" alt="" />
-          <p class="frequency">하루에 한 번</p>
+          <img th:src="${challenge.image}" alt="" />
+          <span th:text="${challenge.categoryName}"></span>
           <p th:text="${challenge.name}" class="goal">가족들에게 사랑한다 말하기</p>
         </label>
       </div>

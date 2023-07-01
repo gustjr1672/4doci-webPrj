@@ -4,22 +4,28 @@
 
 body {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-image: linear-gradient(to bottom, #383d66 280px, #ffffff 280px);
   background-repeat: no-repeat;
 }
 
 header {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  max-width: 660px;
   margin: 20px 12px;
 }
 header img {
+  padding-left: 12px;
   width: 22px;
 }
-header button {
-  background-color: #ffffff00;
+header > button {
+  background-color: white;
   border: none;
 }
+
 .title {
   color: #fff;
   display: flex;
