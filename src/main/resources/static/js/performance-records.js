@@ -68,31 +68,25 @@ turnBtn.addEventListener("click", function (e) {
         let template = null;
         if (record.result) {
           template = `
-          <div class="turn-wrap">
-                  
-          <div>
-          <div class="turn">
-          <span>${record.round}회차</span>
-          </div>
-          <p>${record.achvQuantity}${unitName}</p>
-          <p style="color: #71B5CB;">성공</p>
-          </div>
-          </div>
+            <div class="turn-wrap">
+              <div class="turn">
+                <span>${record.round}회차</span>
+              </div>
+              <p>${record.achvQuantity}${unitName}</p>
+              <p style="color: #71B5CB;">성공</p>
+            </div>
           `;
 
 
         } else {
-          template = `
-            <div class="turn-wrap">
-                  
-              <div>
-              <div class="turn">
-              <span>${record.round}회차</span>
-          </div>
-          <p>${record.achvQuantity}${unitName}</p>
-                  <p style="color: rgb(219, 92, 92);">실패</p>
+            template = `
+              <div class="turn-wrap">
+                <div class="turn">
+                  <span>${record.round}회차</span>
+                </div>
+                <p>${record.achvQuantity}${unitName}</p>
+                <p style="color: rgb(219, 92, 92);">실패</p>
               </div>
-            </div>
             `;
         }
 
