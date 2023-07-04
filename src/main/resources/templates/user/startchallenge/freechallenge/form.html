@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>free_challenge_form</title>
     <link rel="stylesheet" href="/css/challenge-form.css" type="text/css" />
+    <link rel="stylesheet" href="/css/modal.css" type="text/css" />
     <script src="/js/challenge-form.js" defer="defer"></script>
     <link
       href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
@@ -137,8 +138,18 @@
         <div class="alert hidden">종료일은 시작일 이후로 설정해주세요.</div>
       </div>
       <div class="next_btn">
-        <button type="submit">다음</button>
+        <div type="submit" id="submit">도전생성</div>
+        <button type="submit" class="hidden" id="submit-button">도전생성</button>
       </div>
     </form>
+    <section class="choice-modal hidden">
+      <section class="modal-box">
+        <span>도전을 시작하시겠습니까?</span>
+        <div>
+          <button>취소</button>
+          <button>시작</button>
+        </div>
+      </section>
+    </section>
   </body>
 </html>
