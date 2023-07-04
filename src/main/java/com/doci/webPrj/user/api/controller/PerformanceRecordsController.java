@@ -17,7 +17,6 @@ public class PerformanceRecordsController {
 
     @Autowired
     PerformanceRecordsService recordsService;
-
     @Autowired
     RecordImageService recordImageService;
 
