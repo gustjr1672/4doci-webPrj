@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,13 +33,13 @@
             <p id="check_group_length"></p>
           </div>
         </div> -->
-        <input type="hidden" name = "challengeId" th:value="${id}">
+        <input type="hidden" name = "challengeId" th:value="${challenge.id}">
     <div class="invite-wrap">
         <p>함께할 친구를 추가해 보세요</p>
         <div class="friends-list">
             <div class="content" th:each="friend : ${friendList}">
               <div class="info">
-                    <img src="${friend.profileImage}" alt="프로필이미지" />
+                    <img th:src="${friend.profileImage}"alt="프로필이미지" />
                     <div>
                         <span th:text="${friend.name}">고민시</span>
                         <span th:text="${friend.nickname}">고민시작</span>

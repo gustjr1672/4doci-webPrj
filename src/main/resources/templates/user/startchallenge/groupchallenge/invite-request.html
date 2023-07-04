@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>group-invite</title>
+    <link rel="stylesheet" href="/css/invite-request.css" />
+    <link
+      href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+      rel="stylesheet"
+    />
+    <script src="/js/header.js"></script>
+  </head>
+  <body>
+    <div class="header-wrap">
+      <header>
+        <div>
+          <button>
+            <img src="/image/header/whiteback.png" alt="뒤로가기" onclick="goBack()" />
+          </button>
+          <!-- <img src="/image/header/whiteLogo.png" alt="" /> -->
+        </div>
+      </header>
+    </div>
+
+    <form action="/groupChallenge/invite-request/submit" method="POST">
+    <div class="profile">
+      <img th:src="${leader.profileImage}" alt="" />
+      <span th:text="${leader.nickname}"></span>
+    </div>
+    <input type="hidden" name="id" th:value="${challenge.id}">
+    <div class="challenge-name">
+      <div><span>대기중인 도전</span></div>
+      <div><p th:text="${challenge.name}"></p></div>
+    </div>
+
+    <section class="challenge-period">
+      <div class="period">
+        <span>도전 기간</span>
+      </div>
+      <div class="date">
+        <span>시작일</span>
+        <span th:text="${challenge.startDate}">2023년 05월 12일</span>
+      </div>
+      <div class="date">
+        <span>종료일</span>
+        <span th:text="${challenge.endDate}">2023년 05월 30일</span>
+      </div>
+    </section>
+    <section class="btn-section">
+      <div class="btns">
+        <button type="submit" name="action" value="refuse">거절하기</button>
+        <button type="submit" name="action" value="accept">수락하기</button>
+      </div>
+    </section>
+    </form>
+  </body>
+</html>

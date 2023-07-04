@@ -22,4 +22,5 @@ public interface MemberRepository {
 
     void save(@Param("m") Member member);
 
+    List<Member> findListNotInvi(@Param("challengeId") int challengeId,@Param("friendList")List<Member> friendList);
 }

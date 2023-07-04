@@ -7,6 +7,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,10 +20,10 @@ import com.doci.webPrj.admin.service.UnitService;
 import com.doci.webPrj.config.MyUserDetails;
 import com.doci.webPrj.user.entity.GroupChallenge;
 import com.doci.webPrj.user.entity.Invitation;
+import com.doci.webPrj.user.entity.InvitationMember;
 import com.doci.webPrj.user.entity.Member;
 import com.doci.webPrj.user.service.FriendManageService;
 import com.doci.webPrj.user.service.GroupChallengeService;
-import com.doci.webPrj.user.service.InvitationNotificationService;
 import com.doci.webPrj.user.service.InvitationService;
 
 @Controller
@@ -39,8 +40,6 @@ public class GroupChallengeController {
     InvitationService invitationService;
     @Autowired
     GroupChallengeService groupChallengeService;
-    @Autowired
-    InvitationNotificationService invitationNotificationService;
 
 
      private static final Invitation invitation = new Invitation();
@@ -54,33 +53,25 @@ public class GroupChallengeController {
         return "user/startchallenge/groupchallenge/form";
     }
     @PostMapping("challenge/reg")
-    public String challengeReg(
-            GroupChallenge groupChallenge,
-            @AuthenticationPrincipal MyUserDetails user,
-            RedirectAttributes rttr) {
+    public String challengeReg(GroupChallenge groupChallenge,@AuthenticationPrincipal MyUserDetails user,
+                               RedirectAttributes rttr) {
 
-        groupChallenge.setGroupLeaderId(user.getId());
-        groupChallengeService.addChallenge(groupChallenge);
-        int challengeId = groupChallenge.getId();
-        
-
-        rttr.addFlashAttribute("id",challengeId);
+        groupChallengeService.addChallenge(groupChallenge,user.getId());
+        rttr.addFlashAttribute("challenge",groupChallenge);
         return "redirect:/groupChallenge/group-invite";
     }
 
     @GetMapping("group-invite")
     public String groupInvite(Model model,@AuthenticationPrincipal MyUserDetails user){
         List<Member> friendList = friendManageService.getFriendList(user.getId());
-        System.out.println(friendList);
         model.addAttribute("friendList", friendList);
-        // int challengeId = startChallengeService.getFreechallengeId();
         return "user/startchallenge/groupchallenge/invite";
     }
 
     @PostMapping("group-invite/reg")
     public String groupRegister(@RequestParam("action") String action,
                                 @RequestParam("challengeId") int challengeId,
-                                @RequestParam("friend") List<Integer> friends,
+                                @RequestParam(name="friend", required=false) List<Integer> friendList,
                                 @AuthenticationPrincipal MyUserDetails user,
                                 RedirectAttributes rttr){
         
@@ -89,53 +80,61 @@ public class GroupChallengeController {
             return "redirect:/main";
         }
         else{
-            invitation.setGroupChallengeId(challengeId);
-            for(int friendId : friends){
-            invitation.setToMemberId(friendId);
-            invitationService.invite(invitation);
-            invitationNotificationService.sendRequestNotice(challengeId, friendId);
-            GroupChallenge challenge = groupChallengeService.getChallenge(challengeId);
-            rttr.addFlashAttribute("challenge",challenge);
-         }
+                invitationService.invite(friendList,challengeId);
+                GroupChallenge challenge = groupChallengeService.getChallenge(challengeId);
+                rttr.addFlashAttribute("challenge",challenge);
+                invitationService.inviteLeader(challengeId,user.getId());
+                groupChallengeService.groupStart(challengeId,user.getId()); //방장만 groupstart 에 insert 하는 코드
+            }
 
         return "redirect:/groupChallenge/standby-screen";
-        }
+        
     }
     @GetMapping("standby-screen")
-    public String standbyScreen(){
-        
-        return "user/startchallenge/groupchallenge/standby-screen";
-    }
+    public String standbyScreen(@ModelAttribute(name="challenge") GroupChallenge challenge,Model model,
+                                @AuthenticationPrincipal MyUserDetails user){
+        int challengeId = challenge.getId();
+        int userId = challenge.getGroupLeaderId();
 
-    @GetMapping("standby-screen-member")
-    public String standbyScreenMember(){
-        
+        List<InvitationMember> inviList = groupChallengeService.getInviList(challengeId);
+        model.addAttribute("inviList", inviList);
+
+        if(userId == user.getId()){ // 방장의 standby 화면으로 가는 코드
+            List<Member> friendList = friendManageService.getFriendList(userId); //방장의 친구목록
+            List<Member> notInviList = groupChallengeService.getNotInviList(challengeId,friendList); //방장의 친구중 초대받지 않은목록
+            model.addAttribute("notInviList", notInviList);
+            return "user/startchallenge/groupchallenge/standby-screen";
+        }
         return "user/startchallenge/groupchallenge/standby-screen-member";
     }
 
+
     @GetMapping("invite-request")
     public String groupInvite(Model model, @RequestParam("id") int challengeId){
-        System.out.println(challengeId);
+
         GroupChallenge challenge = groupChallengeService.getChallenge(challengeId);
-        System.out.println(challenge);
         Member groupLeader = groupChallengeService.getLeader(challenge.getGroupLeaderId());
         model.addAttribute("challenge",challenge);
         model.addAttribute("leader", groupLeader);
         return "user/startchallenge/groupchallenge/invite-request";
     }
 
+
     @PostMapping("invite-request/submit")
     public String groupInvite(@RequestParam("id") int challengeId,
                               @RequestParam("action") String action,
-                              @AuthenticationPrincipal MyUserDetails user){
-        System.out.println(challengeId);
+                              @AuthenticationPrincipal MyUserDetails user,
+                              RedirectAttributes rttr){
+
         if(action.equals("refuse")){
-            invitationNotificationService.requestRefuse(user.getId(),challengeId);
+            invitationService.requestRefuse(user.getId(),challengeId);
             return "redierct:/main";
         }
-        invitationNotificationService.requestAccept(user.getId(),challengeId);
+
         invitationService.requestAccept(user.getId(),challengeId);
-        return "redirect:/groupChallenge/standby-screen-member";
+        GroupChallenge challenge = groupChallengeService.getChallenge(challengeId);
+        rttr.addFlashAttribute("challenge",challenge);
+        return "redirect:/groupChallenge/standby-screen";
 
     }
 
