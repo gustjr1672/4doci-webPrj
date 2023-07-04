@@ -85,23 +85,22 @@ header img {
   display: flex;
   justify-content: start;
   align-items: center;
-  width: 100%;
+  width: 90%;
   max-width: 660px;
   gap: 6px;
   font-size: 12px;
   font-weight: 800;
 }
 .profile img {
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   border-radius: 30px;
-  margin-left: 16px;
 }
 .title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 90%;
   max-width: 660px;
   /* padding:0 16px; */
   height: 36px;
@@ -112,7 +111,6 @@ header img {
   width: 200px;
   text-align: start;
   word-break: keep-all;
-  margin: 0 16px;
 }
 
 /* .title div {
@@ -154,7 +152,6 @@ header img {
   justify-content: center;
   align-items: center;
   gap: 4px;
-  margin: 0 16px;
 }
 .title-btns button {
   background-color: #ffffff;
@@ -176,7 +173,7 @@ header img {
   width: 12px;
 }
 .feed-footer {
-  width: 100%;
+  width: 90%;
   max-width: 660px;
   display: flex;
   justify-content: space-between;
@@ -188,11 +185,8 @@ header img {
   color: #6b6b6b;
   font-size: 10px;
   font-weight: 600;
-  padding-left: 12px;
 }
-.comment {
-  padding-right: 12px;
-}
+
 .footer-btn {
   display: flex;
   justify-content: center;
