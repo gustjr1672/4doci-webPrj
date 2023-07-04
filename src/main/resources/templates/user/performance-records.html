@@ -41,9 +41,11 @@
         <img src="" id="input-image" alt="" />
       </label>
     </div>
-    <form class="image-form" id="image-form" method="post" enctype="multipart/form-data">
-      <div class="button">
-        <label for="choose-file"><img src="/image/performance-records/addImage.png" alt="" /></label>
+    <form th:data-image="${perfomanceRecord.image}" class="image-form" id="image-form" method="post" enctype="multipart/form-data">
+      <div  class="button">
+        <label for="choose-file">
+          <img src="/image/performance-records/addImage.png" alt="" />
+        </label>
       </div>
       <input type="file" id="choose-file" class="choose-file" name="choose-file" accept="image/*"
         onchange="loadFile(this)" />
