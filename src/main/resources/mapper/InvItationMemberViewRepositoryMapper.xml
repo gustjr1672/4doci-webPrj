@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doci.webPrj.user.repository.InvitationMemberViewRepository">
+  <select id="findByChallengeId" resultType="com.doci.webPrj.user.entity.InvitationMember">
+        SELECT *
+        FROM  `startupdb`.`invitation_member_view`
+        WHERE group_challenge_id = #{challengeId} ORDER BY (is_accept = '수락') DESC
+    </select>
+
+</mapper>

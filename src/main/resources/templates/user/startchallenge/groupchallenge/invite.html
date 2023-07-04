@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,7 @@
     <link
     href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
     rel="stylesheet">
+    <script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
     <script src="/js/group-invite.js" defer="defer"></script>
 </head>
 <body>
@@ -32,13 +33,13 @@
             <p id="check_group_length"></p>
           </div>
         </div> -->
-        <input type="hidden" name = "challengeId" th:value="${id}">
+        <input type="hidden" name = "challengeId" th:value="${challenge.id}">
     <div class="invite-wrap">
         <p>함께할 친구를 추가해 보세요</p>
         <div class="friends-list">
             <div class="content" th:each="friend : ${friendList}">
               <div class="info">
-                    <img src="${friend.profileImage}" alt="프로필이미지" />
+                    <img th:src="${friend.profileImage}"alt="프로필이미지" />
                     <div>
                         <span th:text="${friend.name}">고민시</span>
                         <span th:text="${friend.nickname}">고민시작</span>
@@ -49,7 +50,7 @@
         </div>
         <div class="btns">
             <button type="submit" name="action" value="cancel">도전 취소</button>
-            <button type="submit" name="action" value="invite">그룹 초대</button>  
+            <button type="submit" name="action" value="invite" id="invite-btn">그룹 초대</button>  
         </div>   
     </div>
 </form>

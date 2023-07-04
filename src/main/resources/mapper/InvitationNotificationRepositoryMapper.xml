@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doci.webPrj.user.repository.InvitationNotificationRepository">
+ <insert id="send">
+        INSERT INTO invitation_notification
+            (
+            group_challenge_id,
+            to_member_id)
+        VALUES
+        (
+        #{challengeId},
+        #{memberId});
+    </insert>
+<delete id="delete">
+     DELETE FROM invitation_notification
+        WHERE to_member_id = #{userId} and group_challenge_id = #{challengeId}
+</delete>
+</mapper>
