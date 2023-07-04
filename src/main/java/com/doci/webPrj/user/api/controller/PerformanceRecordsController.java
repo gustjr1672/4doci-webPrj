@@ -2,12 +2,14 @@ package com.doci.webPrj.user.api.controller;
 
 import com.doci.webPrj.user.entity.PerformanceRecords;
 import com.doci.webPrj.user.service.PerformanceRecordsService;
+import com.doci.webPrj.user.service.RecordImageService;
 
+import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController("apiRecordController")
 @RequestMapping("challenge")
@@ -15,6 +17,9 @@ public class PerformanceRecordsController {
 
     @Autowired
     PerformanceRecordsService recordsService;
+
+    @Autowired
+    RecordImageService recordImageService;
 
     @PostMapping("achv-quantity")
     public void upAchvQuantity(@RequestParam("cid") String challengeTypeAndId) {
@@ -28,15 +33,22 @@ public class PerformanceRecordsController {
     }
 
     @PutMapping("performance-records")
-    public void edit(@RequestBody Map<String, String> requestData) {
+    public void edit(PerformanceRecords performanceRecords,
+            @RequestParam(name = "uniqueId", required = false) String uniqueId,
+            @RequestParam(name = "file", required = false) MultipartFile file) throws IOException {
 
-        String impression = requestData.get("impression");
-        int achvQuantity = Integer.parseInt(requestData.get("achvQuantity"));
-        int id = Integer.parseInt(requestData.get("id"));
-        String uniqueId = requestData.get("uniqueId");
+        PerformanceRecords record = performanceRecords;
+        System.out.println(record);
 
-        recordsService.editRecords(impression, achvQuantity, id);
-        recordsService.updateResultOfRound(achvQuantity, id, uniqueId);
+        if (file != null) {
+            record = recordImageService.save(file, record);
+            System.out.println(record);
+        }
+
+        recordsService.editRecords(record);
+
+        recordsService.updateResultOfRound(record, uniqueId);
+
     }
 
     @GetMapping("performance-records")

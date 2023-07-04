@@ -1,5 +1,7 @@
+let file = null;
+
 function loadFile(input) {
-  let file = input.files[0]; //선택된 파일 가져오기
+  file = input.files[0]; //선택된 파일 가져오기
   let form = document.getElementById("image-form");
   form.style.visibility = "hidden";
   form.style.height = "0px";
@@ -68,31 +70,25 @@ turnBtn.addEventListener("click", function (e) {
         let template = null;
         if (record.result) {
           template = `
-          <div class="turn-wrap">
-                  
-          <div>
-          <div class="turn">
-          <span>${record.round}회차</span>
-          </div>
-          <p>${record.achvQuantity}${unitName}</p>
-          <p style="color: #71B5CB;">성공</p>
-          </div>
-          </div>
+            <div class="turn-wrap">
+              <div class="turn">
+                <span>${record.round}회차</span>
+              </div>
+              <p>${record.achvQuantity}${unitName}</p>
+              <p style="color: #71B5CB;">성공</p>
+            </div>
           `;
 
 
         } else {
           template = `
-            <div class="turn-wrap">
-                  
-              <div>
-              <div class="turn">
-              <span>${record.round}회차</span>
-          </div>
-          <p>${record.achvQuantity}${unitName}</p>
-                  <p style="color: rgb(219, 92, 92);">실패</p>
+              <div class="turn-wrap">
+                <div class="turn">
+                  <span>${record.round}회차</span>
+                </div>
+                <p>${record.achvQuantity}${unitName}</p>
+                <p style="color: rgb(219, 92, 92);">실패</p>
               </div>
-            </div>
             `;
         }
 
@@ -115,7 +111,7 @@ turnModal.addEventListener("click", function (e) {
   if (e.target.tagName != "BUTTON")
     return;
 
-    turnModalContent.classList.remove("active");
+  turnModalContent.classList.remove("active");
   setTimeout(function () {
     turnModal.style.display = "none";
   }, 300);
@@ -127,32 +123,37 @@ turnModal.addEventListener("click", function (e) {
 const messageModalWrap = document.querySelector(".message-modal-wrap");
 const messageModalContent = document.querySelector(".message-modal-content");
 const saveBtn = document.querySelector("#save-btn");
+const roundBtn = document.querySelector("#round");
 
-saveBtn.addEventListener("click", function (e) {
+saveBtn.addEventListener("click", async function (e) {
 
-  const recordForm = document.querySelector("#record-submit");
-  const inputs = recordForm.elements;
-  const impression = inputs["text-input"].value;
-  const achvQuantity = inputs["aq"].value;
-  const id = inputs["id"].value;
+    const recordForm = document.querySelector("#record-submit");
+    const inputs = recordForm.elements;
+    const impression = inputs["impression"].value;
+    const achvQuantity = inputs["achvQuantity"].value;
+    const id = inputs["id"].value;
+    const round = roundBtn.dataset.round;
 
-  const formData = { impression, achvQuantity, id, uniqueId };
-  const jsonData = JSON.stringify(formData);
+    const formData = new FormData();
+    formData.append("impression", impression);
+    formData.append("achvQuantity", achvQuantity);
+    formData.append("id", id);
+    formData.append("round", round);
+    formData.append("uniqueId", uniqueId);
+    formData.append("file", file);  //loadFile에서 입력된 file 사용
+    formData.append("result", false);
 
-  fetch("challenge/performance-records", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: jsonData
-  })
+    fetch("challenge/performance-records", {    //FormData객체를 보낼때 header 부분은 브라우저가 자동으로 설정해줌
+      method : "PUT",
+      body : formData
+    })
     .then(response => {
-      if (response.ok)
+      if(response.ok)   //HTTP 응답의 상태 코드가 200-299 사이에 있으면 response.ok는 true를 반환
         showMessage("저장되었습니다");
       else
         showMessage("저장에 실패했습니다");
     });
-
+      
 });
 
 function showMessage(message) {

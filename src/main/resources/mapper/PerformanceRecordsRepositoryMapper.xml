@@ -85,20 +85,21 @@
     <update id="updateRecords">
         update performance_records
         set
-        impression = #{imp},
-        achv_quantity = #{achv}
-        where id = #{id}
+        impression = #{record.impression},
+        achv_quantity = #{record.achvQuantity},
+        image = #{record.image}
+        where id = #{record.id}
     </update>
 
     <update id="updateResult">
         update performance_records
-        <if test="achvQuantity gte goalQuantity">
+        <if test="record.achvQuantity gte goalQuantity">
         set result=1
         </if>
-        <if test="achvQuantity lt goalQuantity">
+        <if test="record.achvQuantity lt goalQuantity">
         set result=0
         </if>
-        where id=#{id}
+        where id=#{record.id}
     </update>
 
     <select id="findCurrentRecord">

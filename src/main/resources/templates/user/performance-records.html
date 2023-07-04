@@ -26,7 +26,7 @@
   </header>
   <section class="goal">
     <div>
-      <button th:text="${perfomanceRecord.round}+'회차'">1회차</button>
+      <button id="round" th:data-round="${perfomanceRecord.round}" th:text="${perfomanceRecord.round}+'회차'">1회차</button>
       <span th:text="${allChallenges.name}">하루에 물 2000ml이상 마시기</span>
     </div>
     <div>
@@ -53,7 +53,7 @@
   <form id="record-submit">
     <section class="form">
       <span class="memo">메모</span>
-      <textarea class="text-input" id="text-input" name="text-input" placeholder="간단한 소감을 입력해 주세요" cols="30" rows="10"
+      <textarea class="text-input" id="text-input" name="impression" placeholder="간단한 소감을 입력해 주세요" cols="30" rows="10"
         th:text="${perfomanceRecord.impression}"></textarea>
     </section>
 
@@ -63,7 +63,7 @@
         <button id="minus-btn" type="button">-</button>
         <div class="achive-amount">
           <input hidden="hidden" />
-          <input type="number" min="0" id="achive-amount" th:value="${perfomanceRecord.achvQuantity}" name="aq" />
+          <input type="number" min="0" id="achive-amount" th:value="${perfomanceRecord.achvQuantity}" name="achvQuantity" />
           <span th:text="${allChallenges.unitName}">ml</span>
         </div>
         <button id="plus-btn" type="button">+</button>
@@ -119,10 +119,11 @@
   </div>
 
   <!-- 메세지 모달 -->
-  <div class="message-modal-wrap hidden">
-    <div class="message-modal-content">
-    </div>
-  </div>
+
+  <section class="complete-modal-buttonless message-modal-wrap hidden">
+    <section class="buttonless-modal-box message-modal-content"></section>
+  </section>
+
 </body>
 
 </html>
