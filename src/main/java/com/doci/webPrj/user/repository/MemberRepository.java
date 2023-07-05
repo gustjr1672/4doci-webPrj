@@ -22,4 +22,6 @@ public interface MemberRepository {
 
     void save(@Param("m") Member member);
 
+    void updateNickname(MyUserDetails user);
+
 }

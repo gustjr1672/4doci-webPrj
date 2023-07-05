@@ -1,5 +1,6 @@
 package com.doci.webPrj.user.service;
 
+import com.doci.webPrj.config.MyUserDetails;
 import com.doci.webPrj.user.entity.Member;
 import com.doci.webPrj.user.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,12 @@ public class MemberServiceImp implements MemberService {
     @Override
     public Optional<Member> findOne(String userId) {
         return memberRepository.findByUserId(userId);
+    }
+
+    @Override
+    public void updateNickname(MyUserDetails user, String nickname) {
+        user.setNickname(nickname);
+        memberRepository.updateNickname(user);
     }
 
 }

@@ -28,8 +28,8 @@
 
 
     <div class="info">
-      <p class="nickname">고민시</p>
-      <button class="nickname-edit" onclick="location.href ='edit-nickname.html'"></button>
+      <p class="nickname" th:text="${user.nickname}">고민시</p>
+<!--      <button class="nickname-edit" onclick="location.href ='edit-nickname.html'"></button>-->
     </div>
 
     <div class="challenge-record">
@@ -53,6 +53,11 @@
 
 
 <section class="btns">
+  <button onclick="location.href = '/edit-password.html' ">
+    <span>닉네임 변경</span>
+    <img src="./image/my-page/next.png" alt=">" />
+  </button>
+
   <button onclick="location.href = '/edit-password.html' ">
     <span>비밀번호 변경</span>
     <img src="./image/my-page/next.png" alt=">" />
@@ -113,5 +118,6 @@
               onchange="loadFile(this)"/>
       </div>
     </div>
+
   </body>
 </html>
