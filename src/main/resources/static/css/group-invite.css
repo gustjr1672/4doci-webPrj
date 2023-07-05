@@ -14,44 +14,6 @@
     border: none;
   }
 
-/* .group_title{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-top: 44px;
-    gap : 20px;
-}
-
-.group_title label{
-    width: 312px;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.group_name {
-    width: 304px;
-    height: 48px;
-    border: 1px solid #949494;
-    border-radius: 4px;
-    background-color: #fdfdfd;
-  
-    font-size: 12px;
-    font-weight: medium;
-    color: #333333;
-  
-    text-align: center;
-  }
-
-  #check_group_length {
-    margin: 4px 0 0 0;
-    position: absolute;
-  
-    font-size: 10px;
-    font-weight: 400;
-    color: rgb(219, 92, 92);
-  } */
 
 .invite-wrap{
 

@@ -26,41 +26,10 @@ body {
     animation: shake 1s;
 }
 
-/* 헤더 */
-.header-wrap {
-    max-width: 700px;
-    width: 100%;
-    margin: 0;
-}
-
-header {
-    /* display: flex;
-    justify-content: space-between; */
-    margin: 20px 12px;
-}
-
-.header_left {
-    display: flex;
-    gap: 12px;
-    width: 90px;
-    height: 40px;
-}
-
-header button {
-    background-color: #383D66;
-    border: none;
-}
-
-.header_left button:hover img {
-    content: url("/image/backHover.png");
-}
-
-.bell:hover img {
-    content: url("/image/bellHover.png");
-}
 
 /* 전체 div */
 .content-list{
+    margin-top: 76px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -492,4 +461,6 @@ header button {
     font-weight: 700;
 }
 
-
+.choice-modal{
+    z-index: 4;
+}
