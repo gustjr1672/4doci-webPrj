@@ -23,4 +23,11 @@
         where id=#{id}
     </delete>
 
+    <!-- update --> 
+
+    <update id="update">
+        UPDATE choice
+        SET is_finish = 1
+        WHERE id = #{id};
+    </update>
 </mapper>

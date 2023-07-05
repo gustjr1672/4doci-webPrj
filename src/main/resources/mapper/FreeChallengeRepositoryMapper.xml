@@ -34,5 +34,12 @@
         delete from free_challenge
         where id=#{id}
     </delete>
-    
+
+    <!-- update --> 
+
+    <update id="update">
+        UPDATE free_challenge
+        SET is_finish = 1
+        WHERE id = #{id};
+    </update>    
 </mapper>

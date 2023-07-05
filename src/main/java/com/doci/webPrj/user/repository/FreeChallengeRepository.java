@@ -12,4 +12,6 @@ public interface FreeChallengeRepository {
 
     void delete(int id);
 
+    void update(int id);
+
 }

@@ -37,4 +37,13 @@
     <select id="findById" resultType="com.doci.webPrj.user.entity.GroupChallenge">
         select * from group_challenge where id=#{challengeId}
     </select>
+
+    <!-- update --> 
+
+    <update id="update">
+        UPDATE group_challenge
+        SET is_finish = 1
+        WHERE id = #{id};
+    </update>
+    
 </mapper>
