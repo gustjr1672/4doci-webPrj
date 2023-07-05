@@ -6,10 +6,9 @@ import org.apache.ibatis.annotations.Param;
 
 import com.doci.webPrj.user.entity.GroupChallenge;
 
-
 @Mapper
 public interface GroupChallengeRepository {
-    
+
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void save(@Param("g") GroupChallenge groupChallenge);
 
@@ -18,4 +17,6 @@ public interface GroupChallengeRepository {
     void delete(int challengeId);
 
     GroupChallenge findById(int challengeId);
+
+    void update(int id);
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doci.webPrj.scheduler.repository.UpdateViewRepository">
+    <!-- findAllFree --> 
+    <select id="findAllFree">
+    select * 
+        from free_update_view
+    </select>
+    <!-- findAllRandom --> 
+    <select id="findAllRandom">
+     select * 
+        from choice_update_view
+    </select>
+    <!-- findAllGroup --> 
+    <select id="findAllGroup">
+     select * 
+        from group_update_view
+    </select>
+
+    
+</mapper>
