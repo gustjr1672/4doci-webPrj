@@ -3,20 +3,9 @@
     font-family: "SUIT", sans-serif !important;
   }
 
-  header {
-    display: flex;
-    margin-left: 12px;
-    margin-top: 20px;
-  }
-  
-  header>button {
-    background-color: white;
-    border: none;
-  }
-
 
 .invite-wrap{
-
+    margin-top: 76px;
     border-radius: 12px;
 
     width: 100%;
