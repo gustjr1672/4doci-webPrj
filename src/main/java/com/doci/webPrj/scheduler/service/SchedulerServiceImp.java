@@ -9,10 +9,12 @@ import com.doci.webPrj.scheduler.entity.FreeUpdate;
 import com.doci.webPrj.scheduler.entity.GroupStartUpdate;
 import com.doci.webPrj.scheduler.entity.RandomChoiceUpdate;
 import com.doci.webPrj.scheduler.repository.UpdateViewRepository;
+import com.doci.webPrj.user.entity.PerformanceRecords;
 import com.doci.webPrj.user.repository.ChoiceRepository;
 import com.doci.webPrj.user.repository.FreeChallengeRepository;
 import com.doci.webPrj.user.repository.GroupChallengeRepository;
 import com.doci.webPrj.user.repository.GroupStartRepository;
+import com.doci.webPrj.user.repository.PerformanceRecordsRepository;
 
 @Service
 public class SchedulerServiceImp implements SchedulerService {
@@ -25,6 +27,8 @@ public class SchedulerServiceImp implements SchedulerService {
     ChoiceRepository choiceRepository;
     @Autowired
     GroupChallengeRepository groupChallengeRepository;
+    @Autowired
+    PerformanceRecordsRepository performanceRecordsRepository;
 
     @Override
     public List<FreeUpdate> getFreeList() {
@@ -57,6 +61,37 @@ public class SchedulerServiceImp implements SchedulerService {
     @Override
     public void updateGroup(GroupStartUpdate groupStartUpdate) {
         groupChallengeRepository.update(groupStartUpdate.getId());
+    }
+
+    @Override
+    public void addFreeRecord(int round, int freeChallengeIdid) {
+        PerformanceRecords Records = PerformanceRecords.builder()
+                .round(round)
+                .freeChallengeId(freeChallengeIdid)
+                .build();
+
+        performanceRecordsRepository.save(Records);
+
+    }
+
+    @Override
+    public void addRandomRecord(int round, int choiceId) {
+        PerformanceRecords Records = PerformanceRecords.builder()
+                .round(round)
+                .choiceId(choiceId)
+                .build();
+
+        performanceRecordsRepository.save(Records);
+    }
+
+    @Override
+    public void addGroupRecord(int round, int groupStartid) {
+        PerformanceRecords Records = PerformanceRecords.builder()
+                .round(round)
+                .groupStartId(groupStartid)
+                .build();
+
+        performanceRecordsRepository.save(Records);
     }
 
 }

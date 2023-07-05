@@ -20,4 +20,10 @@ public interface SchedulerService {
 
     void updateGroup(GroupStartUpdate groupStartUpdate);
 
+    void addFreeRecord(int round, int freeChallengeIdid);
+
+    void addRandomRecord(int round, int choiceId);
+
+    void addGroupRecord(int round, int groupStartid);
+
 }

@@ -17,5 +17,6 @@ public class UpdateView {
     int period;
     LocalDate startDate;
     LocalDate endDate;
+    int authFrequency;
     int recordRound;
 }
