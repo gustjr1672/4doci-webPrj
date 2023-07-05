@@ -2,28 +2,25 @@ package com.doci.webPrj.scheduler.service;
 
 import java.util.List;
 
-import com.doci.webPrj.scheduler.entity.FreeUpdate;
-import com.doci.webPrj.scheduler.entity.GroupStartUpdate;
-import com.doci.webPrj.scheduler.entity.RandomChoiceUpdate;
+import com.doci.webPrj.scheduler.entity.UpdateView;
+import com.doci.webPrj.user.entity.PerformanceRecords;
 
 public interface SchedulerService {
 
-    List<FreeUpdate> getFreeList();
+    List<UpdateView> getFreeList();
 
-    List<RandomChoiceUpdate> getRandomList();
+    List<UpdateView> getRandomList();
 
-    List<GroupStartUpdate> getGroupList();
+    List<UpdateView> getGroupList();
 
-    void updateFree(FreeUpdate freeUpdate);
+    void update(UpdateView update, String type);
 
-    void updateRandom(RandomChoiceUpdate randomChoiceUpdate);
+    void addRecord(int round, int freeChallengeId, String type);
 
-    void updateGroup(GroupStartUpdate groupStartUpdate);
+    List<PerformanceRecords> getOngoingRecord();
 
-    void addFreeRecord(int round, int freeChallengeIdid);
+    PerformanceRecords getRecentRecord(String type, int id);
 
-    void addRandomRecord(int round, int choiceId);
-
-    void addGroupRecord(int round, int groupStartid);
+    void updateRecordResult(PerformanceRecords record, String result);
 
 }

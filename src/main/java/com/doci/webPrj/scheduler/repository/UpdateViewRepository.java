@@ -4,17 +4,15 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.doci.webPrj.scheduler.entity.FreeUpdate;
-import com.doci.webPrj.scheduler.entity.GroupStartUpdate;
-import com.doci.webPrj.scheduler.entity.RandomChoiceUpdate;
+import com.doci.webPrj.scheduler.entity.UpdateView;
 
 @Mapper
 public interface UpdateViewRepository {
 
-    List<FreeUpdate> findAllFree();
+    List<UpdateView> findAllFree();
 
-    List<RandomChoiceUpdate> findAllRandom();
+    List<UpdateView> findAllRandom();
 
-    List<GroupStartUpdate> findAllGroup();
+    List<UpdateView> findAllGroup();
 
 }

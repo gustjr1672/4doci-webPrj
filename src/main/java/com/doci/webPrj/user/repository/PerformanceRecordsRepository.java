@@ -29,4 +29,8 @@ public interface PerformanceRecordsRepository {
                         @Param("goalQuantity") int goalQuantity);
 
         PerformanceRecords findCurrentRecord(@Param("type") String type, @Param("id") int id);
+
+        List<PerformanceRecords> findByResult();
+
+        void updateFail(PerformanceRecords record);
 }

@@ -18,5 +18,6 @@ public class UpdateView {
     LocalDate startDate;
     LocalDate endDate;
     int authFrequency;
+    int goalQuantity;
     int recordRound;
 }

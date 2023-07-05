@@ -8,10 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import com.doci.webPrj.scheduler.entity.FreeUpdate;
-import com.doci.webPrj.scheduler.entity.GroupStartUpdate;
-import com.doci.webPrj.scheduler.entity.RandomChoiceUpdate;
+import com.doci.webPrj.scheduler.entity.UpdateView;
 import com.doci.webPrj.scheduler.service.SchedulerService;
+import com.doci.webPrj.user.entity.PerformanceRecords;
 
 @Service
 public class Scheduler {
@@ -20,66 +19,59 @@ public class Scheduler {
     SchedulerService service;
 
     // isfinish 필요없을지도
+    // 끝난도전은 isfinish바꿔주고 안끝났으면 회차계산해서 record 새로 추가해주는 함수
     // @Scheduled(cron = "0 0 0 * * *") // 매일 자정에 실행
     @Scheduled(cron = "*/10 * * * * *") // 매 10초마다 실행
-    void addRecord() {
+    void runScheduleTask() {
         LocalDate currentDate = LocalDate.now();
-        List<FreeUpdate> freeList = service.getFreeList();
+        List<UpdateView> freeList = service.getFreeList();
 
-        for (FreeUpdate freeUpdate : freeList) {
-            long days = freeUpdate.getStartDate().until(currentDate, ChronoUnit.DAYS);
-            if (freeUpdate.isFinish() == false && (currentDate.isAfter(freeUpdate.getStartDate()) ||
-                    currentDate.isEqual(freeUpdate.getStartDate()))) {
-                if (currentDate.isAfter(freeUpdate.getEndDate())) {
-                    service.updateFree(freeUpdate);
-                    // result update기준 정해야함
-                } else if (days % freeUpdate.getAuthFrequency() == 0) {
-                    int round = (int) (days / freeUpdate.getAuthFrequency()) + 1;
-                    if (round > freeUpdate.getRecordRound()) {
-                        service.addFreeRecord(round, freeUpdate.getId());
-                    }
-                }
-            }
+        for (UpdateView freeUpdate : freeList) {
+            checkFinish(currentDate, freeUpdate, "FC");
 
         }
-        List<RandomChoiceUpdate> randomList = service.getRandomList();
+        List<UpdateView> randomList = service.getRandomList();
 
-        for (RandomChoiceUpdate randomChoiceUpdate : randomList) {
-            long days = randomChoiceUpdate.getStartDate().until(currentDate, ChronoUnit.DAYS);
-            if (randomChoiceUpdate.isFinish() == false && (currentDate.isAfter(randomChoiceUpdate.getStartDate()) ||
-                    currentDate.isEqual(randomChoiceUpdate.getStartDate()))) {
-                if (currentDate.isAfter(randomChoiceUpdate.getEndDate())) {
-                    service.updateRandom(randomChoiceUpdate);
-                } else if (days % randomChoiceUpdate.getAuthFrequency() == 0) {
-                    int round = (int) (days / randomChoiceUpdate.getAuthFrequency()) + 1;
-                    if (round > randomChoiceUpdate.getRecordRound()) {
-                        service.addRandomRecord(round, randomChoiceUpdate.getId());
-                    }
-                }
-            }
+        for (UpdateView randomChoiceUpdate : randomList) {
+            checkFinish(currentDate, randomChoiceUpdate, "CH");
 
         }
-        List<GroupStartUpdate> groupList = service.getGroupList();
+        List<UpdateView> groupList = service.getGroupList();
 
-        for (GroupStartUpdate groupStartUpdate : groupList) {
-            long days = groupStartUpdate.getStartDate().until(currentDate, ChronoUnit.DAYS);
-            if (groupStartUpdate.isFinish() == false && (currentDate.isAfter(groupStartUpdate.getStartDate()) ||
-                    currentDate.isEqual(groupStartUpdate.getStartDate()))) {
-                if (currentDate.isAfter(groupStartUpdate.getEndDate())) {
-                    service.updateGroup(groupStartUpdate);
-                } else if (days % groupStartUpdate.getAuthFrequency() == 0) {
-                    int round = (int) (days / groupStartUpdate.getAuthFrequency()) + 1;
-                    if (round > groupStartUpdate.getRecordRound()) {
-                        service.addGroupRecord(round, groupStartUpdate.getId());
-                    }
-                }
+        for (UpdateView groupStartUpdate : groupList) {
+            checkFinish(currentDate, groupStartUpdate, "GS");
+        }
+    }
+
+    private void updateResult(PerformanceRecords record) {
+        if (record.getResult().equals("진행중"))
+            service.updateRecordResult(record, "실패");
+    }
+
+    private void checkFinish(LocalDate currentDate, UpdateView update, String type) {
+        long days = update.getStartDate().until(currentDate, ChronoUnit.DAYS);
+        if (update.isFinish() == false && (currentDate.isAfter(update.getStartDate()) ||
+                currentDate.isEqual(update.getStartDate()))) {
+            updateAndInsert(currentDate, update, type, days);
+        }
+    }
+
+    private void updateAndInsert(LocalDate currentDate, UpdateView update, String type, long days) {
+        if (currentDate.isAfter(update.getEndDate())) {
+            updateRecentRecord(type, update.getId());
+            service.update(update, type);
+            // result update기준 정해야함
+        } else if (days % update.getAuthFrequency() == 0) {
+            int round = (int) (days / update.getAuthFrequency()) + 1;
+            if (round > update.getRecordRound()) {
+                updateRecentRecord(type, update.getId());
+                service.addRecord(round, update.getId(), type);
             }
         }
     }
 
-    // @Scheduled(cron = "0 0 0 * * *") // 매일 자정에 실행
-    @Scheduled(cron = "*/10 * * * * *") // 매 10초마다 실행
-    void updateResult() {
-
+    private void updateRecentRecord(String type, int updateId) {
+        PerformanceRecords record = service.getRecentRecord(type, updateId);
+        updateResult(record);
     }
 }

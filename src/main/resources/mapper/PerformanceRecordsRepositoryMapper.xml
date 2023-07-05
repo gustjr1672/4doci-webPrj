@@ -94,10 +94,10 @@
     <update id="updateResult">
         update performance_records
         <if test="record.achvQuantity gte goalQuantity">
-        set result=1
+        set result='성공'
         </if>
         <if test="record.achvQuantity lt goalQuantity">
-        set result=0
+        set result='진행중'
         </if>
         where id=#{record.id}
     </update>
@@ -121,4 +121,20 @@
         limit 1
         </if>
     </select>
+
+    <!-- findByResult --> 
+
+    <select id="findByResult">
+        select *
+        from performance_records
+        where result = '진행중'
+    </select>
+
+    <!-- updateFail --> 
+
+    <update id="updateFail">
+        update performance_records
+        set result='실패'
+        where id=#{record.id}
+    </update>    
 </mapper>

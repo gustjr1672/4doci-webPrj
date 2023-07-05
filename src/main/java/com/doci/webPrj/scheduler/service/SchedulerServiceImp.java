@@ -5,9 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.doci.webPrj.scheduler.entity.FreeUpdate;
-import com.doci.webPrj.scheduler.entity.GroupStartUpdate;
-import com.doci.webPrj.scheduler.entity.RandomChoiceUpdate;
+import com.doci.webPrj.scheduler.entity.UpdateView;
 import com.doci.webPrj.scheduler.repository.UpdateViewRepository;
 import com.doci.webPrj.user.entity.PerformanceRecords;
 import com.doci.webPrj.user.repository.ChoiceRepository;
@@ -29,69 +27,89 @@ public class SchedulerServiceImp implements SchedulerService {
     GroupChallengeRepository groupChallengeRepository;
     @Autowired
     PerformanceRecordsRepository performanceRecordsRepository;
+    @Autowired
+    GroupStartRepository groupStartRepository;
 
     @Override
-    public List<FreeUpdate> getFreeList() {
+    public List<UpdateView> getFreeList() {
 
         return repository.findAllFree();
     }
 
     @Override
-    public List<RandomChoiceUpdate> getRandomList() {
+    public List<UpdateView> getRandomList() {
 
         return repository.findAllRandom();
     }
 
     @Override
-    public List<GroupStartUpdate> getGroupList() {
+    public List<UpdateView> getGroupList() {
 
         return repository.findAllGroup();
     }
 
     @Override
-    public void updateFree(FreeUpdate freeUpdate) {
-        freeChallengeRepository.update(freeUpdate.getId());
+    public void update(UpdateView update, String type) {
+        switch (type) {
+            case "FC":
+                freeChallengeRepository.update(update.getId());
+
+                break;
+            case "CH":
+                choiceRepository.update(update.getId());
+                break;
+            case "GS":
+                int groupChallengeId = groupStartRepository.getGroupChallengeId(update.getId());
+                groupChallengeRepository.update(groupChallengeId);
+                break;
+        }
     }
 
     @Override
-    public void updateRandom(RandomChoiceUpdate randomChoiceUpdate) {
-        choiceRepository.update(randomChoiceUpdate.getId());
-    }
+    public void addRecord(int round, int challengeId, String type) {
+        PerformanceRecords Records = null;
+        switch (type) {
+            case "FC":
+                Records = PerformanceRecords.builder()
+                        .round(round)
+                        .freeChallengeId(challengeId)
+                        .build();
+                break;
+            case "CH":
+                Records = PerformanceRecords.builder()
+                        .round(round)
+                        .choiceId(challengeId)
+                        .build();
+                break;
+            case "GS":
+                Records = PerformanceRecords.builder()
+                        .round(round)
+                        .groupStartId(challengeId)
+                        .build();
 
-    @Override
-    public void updateGroup(GroupStartUpdate groupStartUpdate) {
-        groupChallengeRepository.update(groupStartUpdate.getId());
-    }
-
-    @Override
-    public void addFreeRecord(int round, int freeChallengeIdid) {
-        PerformanceRecords Records = PerformanceRecords.builder()
-                .round(round)
-                .freeChallengeId(freeChallengeIdid)
-                .build();
+                break;
+        }
 
         performanceRecordsRepository.save(Records);
 
     }
 
     @Override
-    public void addRandomRecord(int round, int choiceId) {
-        PerformanceRecords Records = PerformanceRecords.builder()
-                .round(round)
-                .choiceId(choiceId)
-                .build();
+    public List<PerformanceRecords> getOngoingRecord() {
 
-        performanceRecordsRepository.save(Records);
+        return performanceRecordsRepository.findByResult();
     }
 
     @Override
-    public void addGroupRecord(int round, int groupStartid) {
-        PerformanceRecords Records = PerformanceRecords.builder()
-                .round(round)
-                .groupStartId(groupStartid)
-                .build();
+    public PerformanceRecords getRecentRecord(String type, int id) {
 
-        performanceRecordsRepository.save(Records);
+        return performanceRecordsRepository.findCurrentRecord(type, id);
+    }
+
+    @Override
+    public void updateRecordResult(PerformanceRecords record, String result) {
+
+        performanceRecordsRepository.updateFail(record);
     }
 
 }
