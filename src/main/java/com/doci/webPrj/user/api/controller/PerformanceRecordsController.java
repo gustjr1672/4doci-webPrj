@@ -37,11 +37,9 @@ public class PerformanceRecordsController {
             @RequestParam(name = "file", required = false) MultipartFile file) throws IOException {
 
         PerformanceRecords record = performanceRecords;
-        System.out.println(record);
 
         if (file != null) {
             record = recordImageService.save(file, record);
-            System.out.println(record);
         }
 
         recordsService.editRecords(record);

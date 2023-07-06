@@ -133,7 +133,7 @@ const messageModalContent = document.querySelector(".message-modal-content");
 const saveBtn = document.querySelector("#save-btn");
 const roundBtn = document.querySelector("#round");
 
-saveBtn.addEventListener("click", async function (e) {
+saveBtn.addEventListener("click", function (e) {
   const recordForm = document.querySelector("#record-submit");
   const inputs = recordForm.elements;
   const impression = inputs["impression"].value;
