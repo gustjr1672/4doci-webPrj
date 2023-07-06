@@ -10,7 +10,9 @@
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet"/>
 
   <script src="/js/my-page.js" defer></script>
-  <script src="/js/my-page-modal.js" defer></script>
+  <script src="/js/edit-nickname-modal.js" defer></script>
+  <script src="/js/edit-password-modal.js" defer></script>
+  <script src="../../static/js/join-form.js"></script>
 </head>
 <body>
 <div class="header-wrap">
@@ -57,7 +59,7 @@
     <img src="./image/my-page/next.png" alt=">" />
   </button>
 
-  <button onclick="location.href = '/edit-password.html' ">
+  <button class="password-modal-button">
     <span>비밀번호 변경</span>
     <img src="./image/my-page/next.png" alt=">" />
   </button>
@@ -75,25 +77,17 @@
       <img src="/image/footer/home.png" onclick="location.href = '/main' " alt="홈" />
     </button>
     <button>
-      <img
-              src="/image/footer/community.png"
-              alt="커뮤니티"
-              onclick="location.href = '/community/feed' "
-      />
+      <img src="/image/footer/community.png" alt="커뮤니티" onclick="location.href = '/community/feed'"/>
     </button>
     <button>
-      <img
-              src="/image/footer/friendManagement.png"
-              alt="친구관리"
-              onclick="location.href = 'friendmanage/main' "
-      />
+      <img src="/image/footer/friendManagement.png" alt="친구관리" onclick="location.href = 'friendmanage/main'"/>
     </button>
     <button>
       <img src="/image/footer/clickMyPage.png" alt="내정보" />
     </button>
   </footer>
 </div>
-<!--====================== 모달===================-->
+<!--======================프로필 사진 변경 모달===================-->
     <div class="modal" >
       <div class="modal-content">
         <span class="close">&times;</span>
@@ -135,6 +129,44 @@
         </div>
       </div>
     </div>
+<!--====================비밀번호 변경 모달========================-->
+<div class="bottom-modal-container" id="password-modal-container">
+  <div class="bottom-modal-content" id="password-modal-content">
+    <div class="bottom-modal-header">
+      <button class="modal-close" id="password-modal-close">&times;</button>
+    </div>
+
+
+    <div class="input">
+      <label for="pwd">현재 비밀번호</label>
+      <div class="input-form">
+        <input type="password" id="pwd" name="pwd" required autocomplete="off" />
+        <div id="pwd-error" class="error"></div>
+      </div>
+    </div>
+
+    <div class="input">
+      <label for="pwd-check">새 비밀번호</label>
+      <div class="input-form">
+        <input type="password" id="pwd-check" name="pwdcheck" required autocomplete="off"/>
+        <div id="pwd-check-error" class="error"></div>
+      </div>
+    </div>
+
+    <div class="input">
+      <label for="pwd-check">새 비밀번호 확인</label>
+      <div class="input-form">
+        <input type="password" id="pwd-check" name="pwdcheck" required autocomplete="off"/>
+        <div id="pwd-check-error" class="error"></div>
+      </div>
+    </div>
+
+    <div class="finish-btn">
+      <button disabled>완료</button>
+    </div>
+
+  </div>
+</div>
 
   </body>
 </html>
