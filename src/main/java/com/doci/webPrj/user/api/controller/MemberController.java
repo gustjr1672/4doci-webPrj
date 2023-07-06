@@ -18,7 +18,7 @@ public class MemberController {
     @PutMapping("nickname")
     public String editNickname(@AuthenticationPrincipal MyUserDetails user, String nickname){
         memberService.updateNickname(user,nickname);
-        return "";
+        return nickname;
     }
 
 
