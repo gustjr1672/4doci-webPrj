@@ -28,6 +28,7 @@
   flex-direction: column;
   justify-content: end;
   align-items: center;
+  text-align: center;
   gap: 36px;
 }
 .buttonless-modal-box {
@@ -43,7 +44,7 @@
   justify-content: center;
   align-items: center;
   gap: 36px;
-  font-weight: 500;
+  font-weight: bold;
 }
 .modal-box span {
   font-size: 14px;

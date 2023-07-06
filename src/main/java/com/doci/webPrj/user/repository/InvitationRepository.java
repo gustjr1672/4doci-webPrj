@@ -8,6 +8,10 @@ import com.doci.webPrj.user.entity.Invitation;
 @Mapper
 public interface InvitationRepository {
 
-    void save(@Param("i") Invitation invitation);
-    
+    void save(@Param("i") Invitation invitation,@Param("isAccept") String isAccept);
+
+    void update(@Param("userId") int userId, @Param("challengeId") int challengeId,
+                @Param("isAccept") String isAccept);
+                
+    void delete(@Param("userId") int userId, @Param("challengeId") int challengeId);
 }

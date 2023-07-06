@@ -1,0 +1,345 @@
+
+* {
+    font-family: "SUIT", sans-serif !important;
+  }
+
+body {
+    margin: 0; 
+    background-image: linear-gradient(to bottom,#383D66 312px, #FFFFFF 312px);
+    background-repeat: no-repeat;
+}
+
+/* 헤더 */
+.header-wrap {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 12px;
+}
+
+.header_left {
+    display: flex;
+    gap: 12px;
+    width: 90px;
+    height: 40px;
+}
+
+header button {
+    background-color: #383D66;
+    border: none;
+}
+
+
+
+/* 전체 div */
+.content-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+/* 메세지 */
+.message{
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+
+    margin: 20px 0px;
+}
+
+/* 대기중인 도전 */
+.challenge-title{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;  
+
+    width: 100%;
+    max-width: 400px;
+} 
+
+.challenge-title p{
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+
+    margin-right: 230px;
+}
+
+.challenge-title span{
+    font-size: 14px;
+    font-weight: bold;
+    color: #333333;
+} 
+
+.challenge-title div{
+    border: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+    width: 325px;
+    height: 123px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 함께하는 친구 */
+.friends{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+
+    width: 100%;
+    max-width: 400px;
+}
+
+.friends p{
+    font-size: 14px;
+    font-weight: bold;
+    color:#333333;
+
+    margin-right: 230px;
+}
+.profile img{
+    z-index: 2;
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    position: relative;
+}
+.profile-wrap{
+    display: flex;
+    align-items: center;
+
+    height: 100px;
+    column-gap: 29px;
+    width: 90%;
+    white-space: nowrap;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: thin; /* Firefox 64 이상 버전에서 스크롤바 숨김 */
+    -ms-overflow-style: none;
+} 
+
+.profile-wrap::-webkit-scrollbar{
+    display: none;
+}
+
+.profile {
+    font-size: 10px;
+    font-weight: medium;
+    color: #333333;
+    text-align: center;
+
+    display: inline-block;
+
+    width: 60px;
+    height: 80px;
+}
+
+.profile div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.with-user{
+    position: relative;
+}
+/* 도전기간 */
+.period{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+
+    width: 100%;
+    max-width: 400px;
+}
+
+.period>p{      /*>: 바로 밑 자식에만 먹음 */
+    font-size: 14px;
+    font-weight: bold;
+    color: #333333;
+
+    margin-right: 251px;
+}
+
+/* 시작일 */
+.start-set{
+    display: flex;
+    gap: 40px;
+    
+    font-size: 12px;
+    color:#333333;
+}
+
+.start-set p{
+    line-height: 35px;
+    font-weight: bold;
+}
+
+.start-set span{
+    border-bottom: 1px solid #333333;
+    /* border-radius: 12px; */
+    text-align: center;
+    line-height: 35px;
+
+    width: 167px;
+    height: 35px;
+
+    font-weight: medium;
+}
+/* 종료일 */
+.end-set{
+    display: flex;
+    gap: 40px;
+    
+    font-size: 12px;
+    color: #333333;
+}
+
+.end-set p{
+    line-height: 35px;
+    font-weight: bold;
+}
+
+.end-set span{
+    border-bottom: 1px solid #333333;
+    /* border-radius: 12px; */
+    text-align: center;
+    line-height: 35px;
+
+    width: 167px;
+    height: 35px;
+
+    font-weight: medium;
+}
+
+/* 버튼 */
+.button{
+    display: flex;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.button button{
+    border-radius: 12px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    width: 289px;
+    height: 47px;
+}
+
+.exit-btn{
+    border: 1px solid #383D66;
+    color: #383D66;
+    background-color: #ffffff;
+}
+
+/* 모달 */
+/* 모달 전체 */
+.modal{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    width: 100%;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* 모달 바디 */
+.modal-body{
+    position: absolute;
+    top:30%;
+
+    border-radius: 12px;
+
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+    background-color: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.modal-body p{
+    font-size: 14px;
+    font-weight: bold;
+    color: #333333;
+
+    margin-top: 90px;
+    width: 312px;
+
+    text-align: center;
+}
+
+/* 모달 버튼 */
+.btns{
+    display: flex;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.btns button{
+    border-radius: 12px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    width: 150px;
+    height: 47px;
+}
+
+.cancell-btn{
+    border: 1px solid #383D66;
+    color: #383D66;
+    background-color: #ffffff;
+}
+
+.modal-exit-btn{
+    border: none;
+    color: #ffffff;
+    background-color: #383D66;
+
+}
+.blur{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(185, 185, 185, 0.5);
+    border-radius: 60px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.none{
+    display: none !important;
+}
+
+

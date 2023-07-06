@@ -37,3 +37,18 @@ function formatDate(date) {
   let day = ("0" + date.getDate()).slice(-2);
   return year + "-" + month + "-" + day;
 }
+let submit = document.querySelector("#submit");
+let modal = document.querySelector(".choice-modal");
+let cancelBtn = document.querySelector(".modal-box div :first-child");
+let startBtn = document.querySelector(".modal-box div :nth-child(2)");
+let submitBtn = document.querySelector("#submit-button");
+submit.addEventListener("click", () => {
+  modal.classList.remove("hidden");
+});
+cancelBtn.addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
+startBtn.addEventListener("click", () => {
+  modal.classList.add("hidden");
+  submitBtn.click();
+});

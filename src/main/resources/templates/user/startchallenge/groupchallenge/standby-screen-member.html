@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>standby-screen</title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/standby-screen-member.css" type="text/css">
+    <script src="/js/standby-screen-member.js" defer="defer"></script>
+    <link
+    href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+    rel="stylesheet"/>
+</head>
+<body>
+    <header>
+        <div class="header-wrap">
+            <header>
+              <div class="header_left">
+                <button><img src="/image/wating-page/back.png" alt="뒤로가기" /></button>
+                <img src="/image/wating-page/title.png" alt="4℃" width="50" height="30" />
+              </div>
+              <button class="bell"><img src="/image/wating-page/bell.png" alt="알림" /></button>
+            </header>
+          </div>
+    </header>
+
+    <div class="content-list">
+        <div class="message">
+            <p>그룹도전 시작을 기다리는 중입니다</p>
+        </div>
+
+        <div class="challenge-title">
+            <p>대기중인 도전</p>
+            <div>
+                <span th:text="${challenge.name}"></span>
+            </div>
+        </div>
+
+        <div class="friends">
+            <p>함께하는 친구</p>
+            <div class="profile-wrap">
+                <div class="profile" th:each="inviFriend: ${inviList}">
+                    <div class="with-user">
+                        <img class="img" th:src="${inviFriend.profileImage}" alt="profile-img">
+                        <div th:class="${inviFriend.isAccept =='대기중' ? 'blur' : 'none'}">대기중</div>
+                    </div>
+                    <span th:text="${inviFriend.nickname}"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="period">
+            <p>도전 기간</p>
+            <div class="start-set">
+                <p>시작일</p>
+                <span th:text="${challenge.startDate}"></span>
+            </div>
+            <div class="end-set">
+                <p>종료일</p>
+                <span th:text="${challenge.endDate}"></span>
+            </div>
+        </div>
+
+        <div class="button">
+            <button type="submit" class="exit-btn">그룹 나가기</button>
+        </div>
+    </div>
+
+    <!-- 모달 -->
+<div class="modal" id="modal">
+    <div class="modal-body">
+        <p>정말 나가시겠습니까?</p>
+        <div class="btns">
+            <button type="submit" class="cancell-btn">취소</button>
+            <button type="submit" class="modal-exit-btn">나가기</button>
+        </div>   
+    </div>
+</div>
+
+</body>
+</html>

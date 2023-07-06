@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.doci.webPrj.config.MyUserDetails;
+import com.doci.webPrj.user.entity.InvitationNotification;
 import com.doci.webPrj.user.entity.Member;
+import com.doci.webPrj.user.service.InvitationService;
 import com.doci.webPrj.user.service.NotificationService;
 
 @RestController("apiNotificationController")
@@ -23,7 +25,8 @@ public class NotificationController {
 
     @Autowired
     NotificationService notificationService;
-
+    @Autowired
+    InvitationService invitationService;
     @GetMapping("request")
     public List<Member> request(@AuthenticationPrincipal MyUserDetails user) {
         return notificationService.getRequest(user.getId());
@@ -57,5 +60,10 @@ public class NotificationController {
     public Map<String, List<Member>> modal() {
 
         return null;
+    }
+
+    @GetMapping("invite")
+    public List<InvitationNotification> invite(@AuthenticationPrincipal MyUserDetails user){
+        return invitationService.getInvite(user.getId());
     }
 }

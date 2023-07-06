@@ -11,11 +11,11 @@ public interface PerformanceRecordsService {
 
     List<PerformanceRecords> getList(String challengeId);
 
-    void editRecords(String impression, int achvQuantity, int id);
+    void editRecords(PerformanceRecords performanceRecords);
 
     void deleteChallenge(String challengeId);
 
-    void updateResultOfRound(int achvQuantity, int id, String uniqueId);
+    void updateResultOfRound(PerformanceRecords performanceRecords, String uniqueId);
 
     PerformanceRecords getCurrentRecord(String challengeId);
 

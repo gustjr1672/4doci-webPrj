@@ -30,8 +30,6 @@
         where id = #{id};
     </select>
 
-
-
     <update id="updateProfileImage">
         update member
         set profile_image = #{profileImage}
@@ -45,6 +43,14 @@
         values (#{m.userId},#{m.email},#{m.name},#{m.nickname},#{m.pwd})
     </insert>
 
+    <select id="findListNotInvi">
+        select * from member where id NOT IN (select to_member_id from invitation where group_challenge_id = #{challengeId})
+        AND id IN (
+             <foreach collection="friendList" item="friend" separator=",">
+                #{friend.id}
+             </foreach>
+        );
+    </select>
 
     <update id="updateNickname">
         update member

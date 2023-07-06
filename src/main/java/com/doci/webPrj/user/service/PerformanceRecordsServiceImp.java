@@ -97,9 +97,9 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
     }
 
     @Override
-    public void editRecords(String impression, int achvQuantity, int id) {
+    public void editRecords(PerformanceRecords performanceRecords) {
 
-        recordsRepository.updateRecords(impression, achvQuantity, id);
+        recordsRepository.updateRecords(performanceRecords);
 
     }
 
@@ -138,12 +138,12 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
     }
 
     @Override
-    public void updateResultOfRound(int achvQuantity, int id, String uniqueId) {
+    public void updateResultOfRound(PerformanceRecords performanceRecords, String uniqueId) {
 
         AllChallenges allChallenges = allChallengesRepository.findChallenge(uniqueId);
         int goalQuantity = allChallenges.getGoalQuantity();
 
-        recordsRepository.updateResult(achvQuantity, goalQuantity, id);
+        recordsRepository.updateResult(performanceRecords, goalQuantity);
     }
 
     @Override

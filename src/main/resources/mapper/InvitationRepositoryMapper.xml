@@ -8,13 +8,28 @@
     <insert id="save">
         INSERT INTO invitation
             (group_challenge_id,
-            to_member_id)
+            to_member_id,is_accept)
         VALUES
-            (#{i.groupChallengeId},
-            #{i.toMemberId})
-
+            (#{i.groupChallengeId}, #{i.toMemberId},
+         <choose>
+            <when test="isAccept != null">
+                #{isAccept}
+            </when>
+            <otherwise>
+                '대기중'
+            </otherwise>
+         </choose>
+        )
     </insert>
 
+    <update id="update">
+        UPDATE invitation
+        SET is_accept = #{isAccept}
+        WHERE to_member_id = #{userId} and group_challenge_id = #{challengeId} 
+    </update>
 
-
+    <delete id="delete">
+     DELETE FROM invitation
+        WHERE to_member_id = #{userId} and group_challenge_id = #{challengeId}
+</delete>
 </mapper>

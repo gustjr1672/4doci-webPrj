@@ -23,11 +23,14 @@ public interface PerformanceRecordsRepository {
                         @Param("CHId") Integer ChoiceId,
                         @Param("GSId") Integer GroupStartId);
 
-        void updateRecords(@Param("imp") String impression, @Param("achv") int achvQuantity,
-                        @Param("id") int id);
+        void updateRecords(@Param("record") PerformanceRecords performanceRecords);
 
-        void updateResult(@Param("achvQuantity") int achvQuantity, @Param("goalQuantity") int goalQuantity,
-                        @Param("id") int id);
+        void updateResult(@Param("record") PerformanceRecords performanceRecords,
+                        @Param("goalQuantity") int goalQuantity);
 
         PerformanceRecords findCurrentRecord(@Param("type") String type, @Param("id") int id);
+
+        List<PerformanceRecords> findByResult();
+
+        void updateFail(PerformanceRecords record);
 }

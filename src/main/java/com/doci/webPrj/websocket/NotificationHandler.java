@@ -53,11 +53,12 @@ public class NotificationHandler extends TextWebSocketHandler {
                 Member member = memberRepository.findById(sendedPushUserId);
                 String UserId = member.getUserId();
                 WebSocketSession sendedPushSession = userSessionMap.get(UserId);
-                if ("request".equals(pushCategory) && sendedPushSession != null) {
+                if (sendedPushSession != null) {
                     TextMessage textMsg = new TextMessage("새로운 알람이 도착했습니다.");
                     sendedPushSession.sendMessage(textMsg);
-
                 }
+
+
             }
         }
     }

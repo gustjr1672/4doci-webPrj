@@ -251,14 +251,15 @@ select option {
   justify-content: center;
 }
 
-.next_btn button {
+.next_btn div {
   border: 1px solid #949494;
   border-radius: 12px;
 
   font-size: 14px;
   font-weight: bold;
   color: #ffffff;
-
+  text-align: center;
+  line-height: 47px;
   background-color: #383d66;
   width: 312px;
   height: 47px;

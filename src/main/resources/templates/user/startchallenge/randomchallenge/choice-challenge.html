@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>random_choice</title>
     <link rel="stylesheet" href="/css/random-challenge-choice.css" />
+    <link rel="stylesheet" href="/css/modal.css" />
     <link
       href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
       rel="stylesheet"
@@ -62,8 +63,18 @@
       </div>
 
       <div class="create-btn">
-        <button type="submit" id="submit-button">도전생성</button>
+        <div type="submit" class="submit-button" id="submit">도전생성</div>
+        <button type="submit" class="hidden" id="submit-button"></button>
       </div>
     </form>
+    <section class="choice-modal hidden">
+      <section class="modal-box">
+        <span>도전을 시작하시겠습니까?</span>
+        <div>
+          <button>취소</button>
+          <button>시작</button>
+        </div>
+      </section>
+    </section>
   </body>
 </html>

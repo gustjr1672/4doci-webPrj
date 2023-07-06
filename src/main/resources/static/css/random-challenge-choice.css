@@ -190,7 +190,7 @@ h1 p {
   justify-content: center;
   margin: 24px 14px;
 }
-button[type="submit"] {
+.submit-button {
   background-color: #383d66;
   color: white;
   width: 90%;
@@ -199,7 +199,8 @@ button[type="submit"] {
   height: 52px;
   font-size: 16px;
   font-weight: semi-bold;
-
+  text-align: center;
+  line-height: 52px;
   border: none;
   border-radius: 12px;
   cursor: pointer;
