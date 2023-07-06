@@ -1,5 +1,6 @@
 package com.doci.webPrj.user.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.doci.webPrj.user.entity.PerformanceRecords;
@@ -26,7 +27,13 @@ public class RandomChoiceServiceImp implements RandomChoiceService {
     public void addRandomChallenge(Choice choice) {
         choiceRepository.save(choice);
         int choiceId = choice.getId();
-        savePerformanceRecords(choiceId);
+
+        LocalDate currentDate = LocalDate.now();
+        LocalDate startDate = choice.getStartDate();
+
+        if (currentDate.isEqual(startDate)) {
+            savePerformanceRecords(choiceId);
+        }
     }
 
     @Override
