@@ -43,6 +43,12 @@ public class Scheduler {
         }
     }
 
+    // 그룹도전 시작
+    @Scheduled(cron = "0 0 0/1 * * *") // 매 1시간마다 실행
+    void groupStart() {
+
+    }
+
     private void updateResult(PerformanceRecords record) {
         if (record.getResult().equals("진행중"))
             service.updateRecordResult(record, "실패");
@@ -50,8 +56,8 @@ public class Scheduler {
 
     private void checkFinish(LocalDate currentDate, UpdateView update, String type) {
         long days = update.getStartDate().until(currentDate, ChronoUnit.DAYS);
-        if (update.isFinish() == false && (currentDate.isAfter(update.getStartDate()) ||
-                currentDate.isEqual(update.getStartDate()))) {
+        if (currentDate.isAfter(update.getStartDate()) ||
+                currentDate.isEqual(update.getStartDate())) {
             updateAndInsert(currentDate, update, type, days);
         }
     }
@@ -63,8 +69,10 @@ public class Scheduler {
             // result update기준 정해야함
         } else if (days % update.getAuthFrequency() == 0) {
             int round = (int) (days / update.getAuthFrequency()) + 1;
-            if (round > update.getRecordRound()) {
-                updateRecentRecord(type, update.getId());
+
+            if (round > update.getRecordRound() && !(round == 1 && type.equals("GS"))) {
+                if (update.getRecordRound() != 0)
+                    updateRecentRecord(type, update.getId());
                 service.addRecord(round, update.getId(), type);
             }
         }
@@ -74,4 +82,5 @@ public class Scheduler {
         PerformanceRecords record = service.getRecentRecord(type, updateId);
         updateResult(record);
     }
+
 }
