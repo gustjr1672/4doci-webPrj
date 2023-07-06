@@ -9,6 +9,7 @@ import com.doci.webPrj.user.repository.PerformanceRecordsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -143,7 +144,9 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
         AllChallenges allChallenges = allChallengesRepository.findChallenge(uniqueId);
         int goalQuantity = allChallenges.getGoalQuantity();
 
-        recordsRepository.updateResult(performanceRecords, goalQuantity);
+        Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+
+        recordsRepository.updateResult(performanceRecords, goalQuantity, currentTime);
     }
 
     @Override
