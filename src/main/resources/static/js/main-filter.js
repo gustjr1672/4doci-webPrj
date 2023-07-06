@@ -16,13 +16,14 @@ function myChallengeList(selectedValue) {
     if (selectedValue === 'on-going') {
         fetch(`/api/all-challenges/${userId}`,)
             .then(response => response.json())
-            .then(list => {
+            .then(allChallengelist => {
                 chalList.innerHTML = " ";
 
-                for (let challenge of list) {
+                for (let challenge of allChallengelist) {
+                    console.log(challenge.performanceRecordsId);
                     let chalStartDate = new Date(challenge.startDate);
 
-                    if (currentDate >= chalStartDate) {
+                    if (challenge.performanceRecordsId != null) {
 
                         let chalTemplate =
                             `<div class="btn-wrap" >
@@ -61,7 +62,7 @@ function myChallengeList(selectedValue) {
                 for (let challenge of list) {
                     let chalStartDate = new Date(challenge.startDate);
 
-                    if (currentDate <= chalStartDate) {
+                    if (challenge.performanceRecordsId == null) {
                         let chalTemplate = `                
                         <div class="btn-wrap">
                             <button class="chal-btn" data-unique-id="${challenge.uniqueId}">

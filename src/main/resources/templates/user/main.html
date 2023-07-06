@@ -16,6 +16,7 @@
     <script src="/js/notification.js" defer="defer"></script>
     <script src="/js/progress-bar.js" defer="defer"></script>
     <script src="/js/main-filter.js" defer="defer"></script>
+    <script src="../../static/js/main.js"></script>
 </head>
 
 <body>
@@ -61,7 +62,7 @@
     </div>
 
     <div class="chal-section" th:data-user-id="${user.id}">
-        <div class="btn-wrap" th:each="all:${allChallengesList}" th:if="${currentDate}>=${all.startDate}">
+        <div class="btn-wrap" th:each="all:${allChallengesList}" th:if="${all.performanceRecordsId}!=null">
             <button class="chal-btn" th:data-unique-id="${all.uniqueId}">
                 <span class="chal-title" th:text="${all.name}">하루에 30분이상 운동하고 치킨먹고 자기</span>
                 <div class="prog-wrap">

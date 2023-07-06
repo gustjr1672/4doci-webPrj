@@ -14,4 +14,5 @@ public class AllChallenges {
     LocalDate endDate;
     int goalQuantity;
     int achvQuantity;
+    Integer performanceRecordsId;
 }
