@@ -52,4 +52,9 @@
         );
     </select>
 
+    <update id="updateNickname">
+        update member
+        set nickname = #{nickname}
+        where id =#{id}
+    </update>
 </mapper>

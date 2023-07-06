@@ -5,13 +5,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/css/my-page.css" type="text/css" />
+  <link rel="stylesheet" href="/css/my-page-modal.css">
   <title>myPage</title>
-  <link
-          href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
-          rel="stylesheet"
-  />
+  <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet"/>
 
-  <script src="/js/my-page.js"></script>
+  <script src="/js/my-page.js" defer></script>
+  <script src="/js/my-page-modal.js" defer></script>
 </head>
 <body>
 <div class="header-wrap">
@@ -28,8 +27,8 @@
 
 
     <div class="info">
-      <p class="nickname">고민시</p>
-      <button class="nickname-edit" onclick="location.href ='edit-nickname.html'"></button>
+      <p class="nickname" th:text="${user.nickname}">고민시</p>
+<!--      <button class="nickname-edit" onclick="location.href ='edit-nickname.html'"></button>-->
     </div>
 
     <div class="challenge-record">
@@ -53,6 +52,11 @@
 
 
 <section class="btns">
+  <button class="nickname-modal-button">
+    <span>닉네임 변경</span>
+    <img src="./image/my-page/next.png" alt=">" />
+  </button>
+
   <button onclick="location.href = '/edit-password.html' ">
     <span>비밀번호 변경</span>
     <img src="./image/my-page/next.png" alt=">" />
@@ -113,5 +117,24 @@
               onchange="loadFile(this)"/>
       </div>
     </div>
+<!--=================닉네임 변경 모달===================-->
+    <div class="bottom-modal-container" id="nickname-modal-container">
+      <div class="bottom-modal-content" id="nickname-modal-content">
+        <div class="bottom-modal-header">
+          <button class="modal-close" id="nickname-modal-close">&times;</button>
+        </div>
+        <div class="input">
+          <label for="nickname">닉네임</label>
+          <div class="input-form">
+            <input type="text" id="nickname" name="nickname" th:value="${user.nickname}" required autocomplete="off" />
+            <div id="nickname-error" class="error"></div>
+          </div>
+        </div>
+        <div class="finish-btn" >
+          <button disabled >변경</button>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>

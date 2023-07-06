@@ -66,7 +66,7 @@ header button {
 .profile .info {
   display: flex;
   align-items: center; /* 세로 중앙 정렬 */
-  padding-left: 30px;
+  /*padding-left: 30px;*/
   gap: 4px;
 }
 
