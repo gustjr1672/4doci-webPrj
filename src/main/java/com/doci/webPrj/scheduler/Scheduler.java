@@ -1,6 +1,7 @@
 package com.doci.webPrj.scheduler;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.doci.webPrj.scheduler.entity.UpdateView;
 import com.doci.webPrj.scheduler.service.SchedulerService;
+import com.doci.webPrj.user.entity.GroupChallenge;
 import com.doci.webPrj.user.entity.PerformanceRecords;
 
 @Service
@@ -45,8 +47,15 @@ public class Scheduler {
 
     // 그룹도전 시작
     @Scheduled(cron = "0 0 0/1 * * *") // 매 1시간마다 실행
-    void groupStart() {
+    void runScheduleGroupTask() {
+        LocalDate currentDate = LocalDate.now();
+        LocalTime currentTime = LocalTime.now();
+        int hour = currentTime.getHour();
 
+        List<GroupChallenge> ChallengeList = service.getTodayGroupChallengeList(currentDate);
+        for (GroupChallenge challenge : ChallengeList) {
+            groupStart(challenge, hour);
+        }
     }
 
     private void updateResult(PerformanceRecords record) {
@@ -59,6 +68,7 @@ public class Scheduler {
         if (currentDate.isAfter(update.getStartDate()) ||
                 currentDate.isEqual(update.getStartDate())) {
             updateAndInsert(currentDate, update, type, days);
+            // 초대,알림 삭제
         }
     }
 
@@ -83,4 +93,13 @@ public class Scheduler {
         updateResult(record);
     }
 
+    private void groupStart(GroupChallenge challenge, int hour) {
+        List<UpdateView> list = null;
+        if (challenge.getStartTime() == hour) {
+            list = service.getGroupListByChallengeId(challenge.getId());
+            for (UpdateView groupStart : list) {
+                service.addRecord(1, groupStart.getId(), "GS");
+            }
+        }
+    }
 }

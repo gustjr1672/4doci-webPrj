@@ -15,4 +15,6 @@ public interface UpdateViewRepository {
 
     List<UpdateView> findAllGroup();
 
+    List<UpdateView> findGroupByChallengeId(int id);
+
 }

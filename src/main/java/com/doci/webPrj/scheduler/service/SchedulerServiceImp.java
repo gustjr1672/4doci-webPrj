@@ -1,5 +1,6 @@
 package com.doci.webPrj.scheduler.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.doci.webPrj.scheduler.entity.UpdateView;
 import com.doci.webPrj.scheduler.repository.UpdateViewRepository;
+import com.doci.webPrj.user.entity.GroupChallenge;
 import com.doci.webPrj.user.entity.PerformanceRecords;
 import com.doci.webPrj.user.repository.ChoiceRepository;
 import com.doci.webPrj.user.repository.FreeChallengeRepository;
@@ -110,6 +112,17 @@ public class SchedulerServiceImp implements SchedulerService {
     public void updateRecordResult(PerformanceRecords record, String result) {
 
         performanceRecordsRepository.updateFail(record);
+    }
+
+    @Override
+    public List<GroupChallenge> getTodayGroupChallengeList(LocalDate currentDate) {
+
+        return groupChallengeRepository.getTodayStartList(currentDate);
+    }
+
+    @Override
+    public List<UpdateView> getGroupListByChallengeId(int id) {
+        return repository.findGroupByChallengeId(id);
     }
 
 }
