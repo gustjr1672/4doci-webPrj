@@ -9,6 +9,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.doci.webPrj.user.entity.Comment;
+import com.doci.webPrj.user.entity.CommentView;
 import com.doci.webPrj.user.entity.Feed;
 import com.doci.webPrj.user.entity.FeedDetail;
 import com.doci.webPrj.user.entity.Member;
@@ -70,6 +72,38 @@ public class FeedServiceImp implements FeedService {
     @Override
     public List<FeedDetail> getGroupFeedList(int gsId) {
         return feedDetailRepository.findGroupById(gsId);
+    }
+
+    @Override
+    public List<CommentView> getCommentList(int recordId) {
+
+        List<CommentView> list = commentRepository.findViewByRecordId(recordId);
+
+        LocalDateTime currenTime = LocalDateTime.now();
+        for (CommentView comment : list) {
+            Timestamp commentTime = comment.getRegDate();
+            LocalDateTime commentDateTime = commentTime.toLocalDateTime();
+            long minutesDiff = ChronoUnit.MINUTES.between(commentDateTime, currenTime);
+
+            if (minutesDiff < 1) {
+                comment.setTimeMessage("방금 전");
+            } else if (minutesDiff < 60) {
+                comment.setTimeMessage(minutesDiff + "분 전");
+            } else if (minutesDiff < 1440) {
+                long hoursDiff = minutesDiff / 60;
+                comment.setTimeMessage(hoursDiff + "시간 전");
+            } else {
+                long daysDiff = minutesDiff / 1440;
+                comment.setTimeMessage(daysDiff + "일 전");
+            }
+        }
+
+        return list;
+    }
+
+    @Override
+    public void addComment(Comment comment) {
+        commentRepository.insert(comment);
     }
 
 }

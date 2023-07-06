@@ -234,3 +234,9 @@ footer button {
 footer img {
   width: 30px;
 }
+
+
+/* 댓글모달 */
+.modal-inside{
+  overflow-y: scroll;
+}
