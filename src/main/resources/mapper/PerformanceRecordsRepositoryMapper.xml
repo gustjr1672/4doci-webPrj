@@ -94,7 +94,7 @@
     <update id="updateResult">
         update performance_records
         <if test="record.achvQuantity gte goalQuantity">
-        set result='성공'
+        set result='성공',reg_date=#{currentTime}
         </if>
         <if test="record.achvQuantity lt goalQuantity">
         set result='진행중'
