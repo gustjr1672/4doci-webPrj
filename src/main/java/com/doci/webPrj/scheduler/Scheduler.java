@@ -23,7 +23,8 @@ public class Scheduler {
     // isfinish 필요없을지도
     // 끝난도전은 isfinish바꿔주고 안끝났으면 회차계산해서 record 새로 추가해주는 함수
     // @Scheduled(cron = "0 0 0 * * *") // 매일 자정에 실행
-    @Scheduled(cron = "*/10 * * * * *") // 매 10초마다 실행
+
+    // @Scheduled(cron = "*/10 * * * * *") // 매 10초마다 실행
     void runScheduleTask() {
         LocalDate currentDate = LocalDate.now();
         List<UpdateView> freeList = service.getFreeList();
@@ -63,20 +64,24 @@ public class Scheduler {
             service.updateRecordResult(record, "실패");
     }
 
-    private void checkFinish(LocalDate currentDate, UpdateView update, String type) {
-        long days = update.getStartDate().until(currentDate, ChronoUnit.DAYS);
-        if (currentDate.isAfter(update.getStartDate()) ||
-                currentDate.isEqual(update.getStartDate())) {
-            updateAndInsert(currentDate, update, type, days);
+
+    
             // 초대,알림 삭제
+
+    private void checkFinish(LocalDate currentDate, UpdateView challenge, String type) {
+        if (challenge.isFinish() == false && (currentDate.isAfter(challenge.getStartDate()) ||
+                currentDate.isEqual(challenge.getStartDate()))) {
+            long days = challenge.getStartDate().until(currentDate, ChronoUnit.DAYS);
+            updateAndInsert(currentDate, challenge, type, days);
         }
     }
 
-    private void updateAndInsert(LocalDate currentDate, UpdateView update, String type, long days) {
-        if (currentDate.isAfter(update.getEndDate())) {
-            updateRecentRecord(type, update.getId());
-            service.update(update, type);
+    private void updateAndInsert(LocalDate currentDate, UpdateView challenge, String type, long days) {
+        if (currentDate.isAfter(challenge.getEndDate())) {
+            updateRecentRecord(type, challenge.getId());
+            service.update(challenge, type);
             // result update기준 정해야함
+          
         } else if (days % update.getAuthFrequency() == 0) {
             int round = (int) (days / update.getAuthFrequency()) + 1;
 
@@ -84,6 +89,7 @@ public class Scheduler {
                 if (update.getRecordRound() != 0)
                     updateRecentRecord(type, update.getId());
                 service.addRecord(round, update.getId(), type);
+
             }
         }
     }

@@ -39,8 +39,6 @@ function closeNicknameModal() {
 // ===========================닉네임 유효성 검사==============================
 
 
-
-
 nickname.addEventListener("input", chkNicknameValidity);
 function chkNicknameValidity(){    // 닉네임 중복검사
     let nicknameValue = nickname.value;

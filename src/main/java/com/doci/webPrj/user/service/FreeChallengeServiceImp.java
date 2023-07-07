@@ -20,6 +20,8 @@ public class FreeChallengeServiceImp implements FreeChallengeService {
     PerformanceRecordsRepository recordsRepository;
     @Override
     public void addChallenge(FreeChallenge freeChallenge) {
+        LocalDate currentDate = LocalDate.now();
+
         LocalDate startDate = freeChallenge.getStartDate();
         LocalDate endDate = freeChallenge.getEndDate();
         Period period = startDate.until(endDate);
@@ -30,7 +32,9 @@ public class FreeChallengeServiceImp implements FreeChallengeService {
         freeChallengeRepository.save(freeChallenge);
         int freeChallengeId = freeChallenge.getId();
 
-        savePerformanceRecords(freeChallengeId);
+        if (currentDate.isEqual(startDate)) {
+            savePerformanceRecords(freeChallengeId);
+        }
     }
 
     private void savePerformanceRecords(int freeChallengeId) {
