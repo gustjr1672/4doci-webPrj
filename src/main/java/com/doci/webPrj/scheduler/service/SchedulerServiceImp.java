@@ -9,11 +9,14 @@ import org.springframework.stereotype.Service;
 import com.doci.webPrj.scheduler.entity.UpdateView;
 import com.doci.webPrj.scheduler.repository.UpdateViewRepository;
 import com.doci.webPrj.user.entity.GroupChallenge;
+import com.doci.webPrj.user.entity.Invitation;
 import com.doci.webPrj.user.entity.PerformanceRecords;
 import com.doci.webPrj.user.repository.ChoiceRepository;
 import com.doci.webPrj.user.repository.FreeChallengeRepository;
 import com.doci.webPrj.user.repository.GroupChallengeRepository;
 import com.doci.webPrj.user.repository.GroupStartRepository;
+import com.doci.webPrj.user.repository.InvitationNotificationRepository;
+import com.doci.webPrj.user.repository.InvitationRepository;
 import com.doci.webPrj.user.repository.PerformanceRecordsRepository;
 
 @Service
@@ -31,6 +34,10 @@ public class SchedulerServiceImp implements SchedulerService {
     PerformanceRecordsRepository performanceRecordsRepository;
     @Autowired
     GroupStartRepository groupStartRepository;
+    @Autowired
+    InvitationRepository invitationRepository;
+    @Autowired
+    InvitationNotificationRepository invitationNotificationRepository;
 
     @Override
     public List<UpdateView> getFreeList() {
@@ -122,6 +129,9 @@ public class SchedulerServiceImp implements SchedulerService {
 
     @Override
     public List<UpdateView> getGroupListByChallengeId(int id) {
+        invitationRepository.deleteAll(id);
+        invitationNotificationRepository.deleteAll(id);
+
         return repository.findGroupByChallengeId(id);
     }
 
