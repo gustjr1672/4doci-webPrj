@@ -129,8 +129,8 @@ public class SchedulerServiceImp implements SchedulerService {
 
     @Override
     public List<UpdateView> getGroupListByChallengeId(int id) {
-        invitationRepository.deleteAll(id);
-        invitationNotificationRepository.deleteAll(id);
+        // invitationRepository.deleteAll(id);
+        // invitationNotificationRepository.deleteAll(id);
 
         return repository.findGroupByChallengeId(id);
     }

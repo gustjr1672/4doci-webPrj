@@ -47,7 +47,7 @@ public class Scheduler {
     }
 
     // 그룹도전 시작
-    @Scheduled(cron = "0 0 0/1 * * *") // 매 1시간마다 실행
+    // @Scheduled(cron = "0 0 0/1 * * *") // 매 1시간마다 실행
     void runScheduleGroupTask() {
         LocalDate currentDate = LocalDate.now();
         LocalTime currentTime = LocalTime.now();
@@ -64,9 +64,7 @@ public class Scheduler {
             service.updateRecordResult(record, "실패");
     }
 
-
-    
-            // 초대,알림 삭제
+    // 초대,알림 삭제
 
     private void checkFinish(LocalDate currentDate, UpdateView challenge, String type) {
         if (challenge.isFinish() == false && (currentDate.isAfter(challenge.getStartDate()) ||
@@ -81,14 +79,14 @@ public class Scheduler {
             updateRecentRecord(type, challenge.getId());
             service.update(challenge, type);
             // result update기준 정해야함
-          
-        } else if (days % update.getAuthFrequency() == 0) {
-            int round = (int) (days / update.getAuthFrequency()) + 1;
 
-            if (round > update.getRecordRound() && !(round == 1 && type.equals("GS"))) {
-                if (update.getRecordRound() != 0)
-                    updateRecentRecord(type, update.getId());
-                service.addRecord(round, update.getId(), type);
+        } else if (days % challenge.getAuthFrequency() == 0) {
+            int round = (int) (days / challenge.getAuthFrequency()) + 1;
+
+            if (round > challenge.getRecordRound() && !(round == 1 && type.equals("GS"))) {
+                if (challenge.getRecordRound() != 0)
+                    updateRecentRecord(type, challenge.getId());
+                service.addRecord(round, challenge.getId(), type);
 
             }
         }
@@ -101,11 +99,11 @@ public class Scheduler {
 
     private void groupStart(GroupChallenge challenge, int hour) {
         List<UpdateView> list = null;
-        if (challenge.getStartTime() == hour) {
-            list = service.getGroupListByChallengeId(challenge.getId());
-            for (UpdateView groupStart : list) {
-                service.addRecord(1, groupStart.getId(), "GS");
-            }
-        }
+        // if (challenge.getStartTime() == hour) {
+        // list = service.getGroupListByChallengeId(challenge.getId());
+        // for (UpdateView groupStart : list) {
+        // service.addRecord(1, groupStart.getId(), "GS");
+        // }
+        // }
     }
 }
