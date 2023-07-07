@@ -1,6 +1,7 @@
 package com.doci.webPrj.scheduler;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.doci.webPrj.scheduler.entity.UpdateView;
 import com.doci.webPrj.scheduler.service.SchedulerService;
+import com.doci.webPrj.user.entity.GroupChallenge;
 import com.doci.webPrj.user.entity.PerformanceRecords;
 
 @Service
@@ -44,10 +46,27 @@ public class Scheduler {
         }
     }
 
+    // 그룹도전 시작
+    @Scheduled(cron = "0 0 0/1 * * *") // 매 1시간마다 실행
+    void runScheduleGroupTask() {
+        LocalDate currentDate = LocalDate.now();
+        LocalTime currentTime = LocalTime.now();
+        int hour = currentTime.getHour();
+
+        List<GroupChallenge> ChallengeList = service.getTodayGroupChallengeList(currentDate);
+        for (GroupChallenge challenge : ChallengeList) {
+            groupStart(challenge, hour);
+        }
+    }
+
     private void updateResult(PerformanceRecords record) {
         if (record.getResult().equals("진행중"))
             service.updateRecordResult(record, "실패");
     }
+
+
+    
+            // 초대,알림 삭제
 
     private void checkFinish(LocalDate currentDate, UpdateView challenge, String type) {
         if (challenge.isFinish() == false && (currentDate.isAfter(challenge.getStartDate()) ||
@@ -62,11 +81,15 @@ public class Scheduler {
             updateRecentRecord(type, challenge.getId());
             service.update(challenge, type);
             // result update기준 정해야함
-        } else if (days % challenge.getAuthFrequency() == 0) {
-            int round = (int) (days / challenge.getAuthFrequency()) + 1;
-            if (round > challenge.getRecordRound()) {
-                updateRecentRecord(type, challenge.getId());
-                service.addRecord(round, challenge.getId(), type);
+          
+        } else if (days % update.getAuthFrequency() == 0) {
+            int round = (int) (days / update.getAuthFrequency()) + 1;
+
+            if (round > update.getRecordRound() && !(round == 1 && type.equals("GS"))) {
+                if (update.getRecordRound() != 0)
+                    updateRecentRecord(type, update.getId());
+                service.addRecord(round, update.getId(), type);
+
             }
         }
     }
@@ -74,5 +97,15 @@ public class Scheduler {
     private void updateRecentRecord(String type, int updateId) {
         PerformanceRecords record = service.getRecentRecord(type, updateId);
         updateResult(record);
+    }
+
+    private void groupStart(GroupChallenge challenge, int hour) {
+        List<UpdateView> list = null;
+        if (challenge.getStartTime() == hour) {
+            list = service.getGroupListByChallengeId(challenge.getId());
+            for (UpdateView groupStart : list) {
+                service.addRecord(1, groupStart.getId(), "GS");
+            }
+        }
     }
 }

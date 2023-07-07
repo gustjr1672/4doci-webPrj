@@ -1,5 +1,8 @@
 package com.doci.webPrj.user.repository;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
@@ -19,4 +22,6 @@ public interface GroupChallengeRepository {
     GroupChallenge findById(int challengeId);
 
     void update(int id);
+
+    List<GroupChallenge> getTodayStartList(LocalDate currentDate);
 }
