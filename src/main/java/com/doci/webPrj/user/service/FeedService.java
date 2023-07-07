@@ -20,6 +20,10 @@ public interface FeedService {
 
     List<CommentView> getCommentList(int recordId);
 
-    void addComment(Comment comment);
+    void add(Comment comment);
+
+    void delete(int commentId);
+
+    Comment getCommentById(int commentId);
 
 }

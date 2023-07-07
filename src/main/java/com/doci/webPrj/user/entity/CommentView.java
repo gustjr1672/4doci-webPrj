@@ -15,6 +15,7 @@ public class CommentView {
     int id;
     Timestamp regDate;
     String content;
+    int memberId;
     String nickName;
     String profileImage;
     int performanceRecordsId;

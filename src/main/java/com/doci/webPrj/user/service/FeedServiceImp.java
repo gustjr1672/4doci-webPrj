@@ -102,8 +102,21 @@ public class FeedServiceImp implements FeedService {
     }
 
     @Override
-    public void addComment(Comment comment) {
+    public void add(Comment comment) {
         commentRepository.insert(comment);
+    }
+
+    @Override
+    public void delete(int commentId) {
+        commentRepository.delete(commentId);
+    }
+
+    @Override
+    public Comment getCommentById(int commentId) {
+        Comment comment = commentRepository.findById(commentId);
+
+        return comment;
+
     }
 
 }

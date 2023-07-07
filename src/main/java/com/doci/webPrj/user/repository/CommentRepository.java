@@ -15,4 +15,8 @@ public interface CommentRepository {
 
     void insert(@Param("comment") Comment comment);
 
+    void delete(int commentId);
+
+    Comment findById(int commentId);
+
 }

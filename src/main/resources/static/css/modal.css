@@ -141,15 +141,16 @@
 }
 .comment-content-text {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   gap: 12px;
 }
-.comment-content-text div {
+.comment-content-section{
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-.comment-content-text div :nth-child(2) {
+.comment-content-input {
   font-size: 12px;
 }
 .comment-content-nickname {
@@ -158,6 +159,7 @@
 }
 .comment-content-period {
   font-size: 10px;
+  padding-top: 5px;
   color: #858585;
 }
 

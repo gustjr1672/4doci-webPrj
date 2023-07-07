@@ -240,3 +240,22 @@ footer img {
 .modal-inside{
   overflow-y: scroll;
 }
+
+.comment-content-footer{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+
+.comment-content-buttons{
+  display: flex;
+  justify-content: right;
+  
+}
+
+.comment-content-buttons button{
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  background-color: #fff;
+}
