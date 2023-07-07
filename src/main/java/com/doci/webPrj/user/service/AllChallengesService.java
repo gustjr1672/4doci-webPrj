@@ -8,4 +8,6 @@ public interface AllChallengesService {
     List<AllChallenges> findAll(int id);
 
     AllChallenges getChallenge(String challengeId);
+
+    void editVisibility(String uniqueId, boolean visibility);
 }
