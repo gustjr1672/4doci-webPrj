@@ -19,5 +19,7 @@ public interface GroupChallengeService {
 
     List<Member> getNotInviList(int challengeId, List<Member> friendList);
 
-    void groupStart(int challengeId, int userId);
+    void groupStart(int userId,int challengeId);
+
+    void groupStartNow(int challengeId);
 }

@@ -34,9 +34,9 @@ public class GroupChallengeController {
     FriendManageService friendManageService;
 
 
-   @PutMapping
+   @PutMapping("invitation")
    public void add(@RequestParam("friendList") List<Integer> friendList,
-                                     @RequestParam("challengeId") Integer challengeId){
+                                @RequestParam("challengeId") Integer challengeId){
        invitationService.invite(friendList,challengeId);
    }
 
@@ -53,9 +53,14 @@ public class GroupChallengeController {
     }
 
    @DeleteMapping("{challengeId}/members/{userId}")
-    public void delete(@PathVariable("userId") Integer userId,
+    public void deleteInvitation(@PathVariable("userId") Integer userId,
                        @PathVariable("challengeId") Integer challengeId){
-       System.out.println("잘됨");
-                        invitationService.cancelInvitation(userId,challengeId);
+      invitationService.cancelInvitation(userId,challengeId);
+}
+
+    @PutMapping("{challengeId}")
+    public void startChallenge(@PathVariable("challengeId") Integer challengeId){
+        groupChallengeService.groupStartNow(challengeId);
+        System.out.println("잘됨");
 }
 }

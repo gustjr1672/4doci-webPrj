@@ -11,6 +11,7 @@
         insert into group_challenge
         (name,
         start_date,
+        start_time,
         end_date,
         period,
         auth_frequency,
@@ -21,6 +22,7 @@
         values
         (#{g.name},
         #{g.startDate},
+        #{g.startTime},
         #{g.endDate},
         #{g.period},
         #{g.authFrequency},
@@ -37,4 +39,9 @@
     <select id="findById" resultType="com.doci.webPrj.user.entity.GroupChallenge">
         select * from group_challenge where id=#{challengeId}
     </select>
+
+    <update id="updateDate">
+        update group_challenge set start_date = #{currentDate}, start_time = #{currentHour}
+        where id = #{challengeId}
+    </update>
 </mapper>

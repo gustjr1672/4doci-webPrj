@@ -42,7 +42,9 @@
                             <button class="delete-btn hidden" ><img class = "delete-img" src="/image/startchallenge/delete.png" th:data-id="${inviFriend.toMemberId}" ></button>
                             
                             <img class="img" th:src="${inviFriend.profileImage}" alt="profile-img">
-                            <div th:class="${inviFriend.isAccept =='대기중' ? 'blur' : 'hidden'}">대기중</div>
+                            <div th:class="${inviFriend.isAccept =='대기중' ? 'wait' : 'hidden'}">대기중</div>
+                            <div th:class="${inviFriend.isAccept =='거절' ? 'refuse' : 'hidden'}">거절</div>
+                            <input type="hidden" class="isAcceptValue" th:value="${inviFriend.isAccept}" />
                         </div>
                         <span th:text="${inviFriend.nickname}">신도시여신</span>
                     </div>
@@ -55,17 +57,18 @@
             <p>도전 기간</p>
             <div class="start-set">
                 <p>시작일</p>
-                <span th:text="${challenge.startDate}">2023년 05월 12일</span>
+                <span id="startDate" th:text="${challenge.startDate}"></span>
+                <p>시간</p>
+                <span id="startTime" th:text="${challenge.startTime}+'시'"></span>
             </div>
             <div class="end-set">
                 <p>종료일</p>
                 <span th:text="${challenge.endDate}">2023년 05월 30일</span>
             </div>
         </div>
-
         <div class="buttons" id="buttons">
-            <!-- <button type="submit" class="invite-btn">초대 더보내기</button> -->
-            <button type="submit" class="start-btn">바로 시작하기</button>
+            <button class="close-btn" onclick="location.href = '/main' ">닫기</button>
+            <button type="button" class="start-btn" id="start-btn">바로 시작하기</button>
         </div>
     </div>
 
@@ -97,13 +100,36 @@
 
 </div>
 
-<section class="choice-modal hidden">
+<section class="choice-modal hidden" id="cancelModal">
     <section class="modal-box">
       <span>정말로 초대를 삭제하시겠습니까?</span>
       <div>
         <button class="closeBtn">취소</button>
-        <button class="cancelBtn">확인</button>
+        <button class="okBtn">확인</button>
       </div>
+    </section>
+  </section>
+
+  <section class="choice-modal hidden" id="startModal">
+    <section class="modal-box">
+      <span>도전을 바로 시작하시겠습니까?</span>
+      <span>※ 아직 도전을 수락하지 않은 친구는 삭제됩니다.</span>
+      <div>
+        <button class="closeBtn">취소</button>
+        <button class="okBtn">시작</button>
+      </div>
+    </section>
+  </section>
+
+  <section class="complete-modal-buttonless hidden" id="alertErrorModal">
+    <section class="buttonless-modal-box">
+      <span>친구가 1명이상 모여야 바로시작가능합니다.</span>
+    </section>
+  </section>
+
+  <section class="complete-modal-buttonless hidden" id="alertStartModal">
+    <section class="buttonless-modal-box">
+      <span>도전이 시작되었습니다.</span>
     </section>
   </section>
 

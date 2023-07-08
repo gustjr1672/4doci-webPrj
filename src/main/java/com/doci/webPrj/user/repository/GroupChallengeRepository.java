@@ -18,4 +18,7 @@ public interface GroupChallengeRepository {
     void delete(int challengeId);
 
     GroupChallenge findById(int challengeId);
+
+    void updateDate(@Param("challengeId")int challengeId,@Param("currentDate") String currentDate,
+                    @Param("currentHour") int currentHour);
 }

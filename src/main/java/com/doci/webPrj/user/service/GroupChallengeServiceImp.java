@@ -1,7 +1,9 @@
 package com.doci.webPrj.user.service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +68,19 @@ public class GroupChallengeServiceImp implements GroupChallengeService {
     }
 
     @Override
-    public void groupStart(int challengeId, int userId){
-        groupStartRepository.save(challengeId, userId);
+    public void groupStart(int userId,int challengeId){
+        groupStartRepository.save(userId, challengeId);
+    }
+
+    @Override
+    public void groupStartNow(int challengeId){
+        LocalDate currentDate = LocalDate.now();
+        String formattedDate = currentDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        int currentHour = currentDateTime.getHour();
+
+        System.out.println(currentDateTime);
+        System.out.println(currentHour);
+        groupChallengeRepository.updateDate(challengeId,formattedDate,currentHour);
     }
 }
