@@ -124,6 +124,11 @@ body {
     display: none;
 }
 
+.profile-wrap {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+
 .profile {
     font-size: 10px;
     font-weight: medium;
@@ -141,6 +146,8 @@ body {
     flex-direction: column;
     gap: 5px;
 }
+
+
 /* ============함께하는 친구 수정버튼 기능=================== */
 .add-friend{
     width: 60px;
@@ -220,7 +227,6 @@ body {
     font-size: 12px;
     color: #333333;
 }
-
 .start-set p{
     line-height: 35px;
     font-weight: bold;
@@ -232,7 +238,7 @@ body {
     text-align: center;
     line-height: 35px;
 
-    width: 80%;
+    width: 35%;
     height: 35px;
 
     font-weight: medium;
@@ -277,9 +283,10 @@ body {
     font-size: 14px;
     font-weight: bold;
     height: 47px;
+    width: 40%;
 }
 
-.invite-btn{
+.close-btn{
     border: 1px solid #383D66;
     color: #383D66;
     background-color: #ffffff;
@@ -445,7 +452,7 @@ body {
     left:84%;
 }
 
-.blur{
+.wait{
     position: absolute;
     top: 0;
     left: 0;
@@ -460,7 +467,35 @@ body {
     font-size: 14px;
     font-weight: 700;
 }
-
-.choice-modal{
+.refuse{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    background-color:rgba(255, 218, 218, 0.8);
+    border-radius: 60px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color : #c11111;
+}
+.choice-modal, #alertErrorModal, #alertStartModal{
     z-index: 4;
+}
+
+.modal-box{
+    gap:20px !important;
+}
+
+.modal-box span:nth-child(2){
+    font-size: 10px;
+    color:#c11111;
+}
+
+#alertErrorModal , #alertStartModal{
+    font-size: 14px;
 }

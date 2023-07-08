@@ -103,7 +103,7 @@ btnSection.addEventListener("click", (e) => {
     notification.innerHTML = "";
     notification.insertAdjacentHTML("beforeend", commuNotiTemplate);
   } else if (e.target.classList.contains("group-invitation-btn")) {
-    groupInvitationLoad(`/notification/invite`);
+    groupInvitationLoad(`/notifications/invite`);
   } else if (e.target.classList.contains("friend-request-btn")) {
     friendRequestLoad(`/notifications/request`, "GET");
   }

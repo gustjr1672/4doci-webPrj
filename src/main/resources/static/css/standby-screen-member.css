@@ -9,35 +9,11 @@ body {
     background-repeat: no-repeat;
 }
 
-/* 헤더 */
-.header-wrap {
-    max-width: 400px;
-    width: 100%;
-    margin: 0 auto;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 12px;
-}
-
-.header_left {
-    display: flex;
-    gap: 12px;
-    width: 90px;
-    height: 40px;
-}
-
-header button {
-    background-color: #383D66;
-    border: none;
-}
-
 
 
 /* 전체 div */
 .content-list{
+    margin-top: 76px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -133,7 +109,10 @@ header button {
 .profile-wrap::-webkit-scrollbar{
     display: none;
 }
-
+.profile-wrap {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
 .profile {
     font-size: 10px;
     font-weight: medium;
@@ -225,27 +204,40 @@ header button {
 }
 
 /* 버튼 */
-.button{
+.btn-section {
+    width: 100%;
     display: flex;
-    gap: 25px;
-    margin-top: 30px;
-}
-
-.button button{
+    justify-content: center;
+    align-items: center;
+  }
+  .btns {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 450px;
+    width: 100%;
+    box-sizing: border-box;
+    /* margin: 80px auto; */
+    padding: 0 30px 100px 30px;
+    gap: 10%;
+  }
+  .btns button {
+    font-size: 16px;
+    font-weight: 400;
+    border: solid 1px #383d66;
     border-radius: 12px;
-
-    font-size: 14px;
-    font-weight: bold;
-
-    width: 289px;
-    height: 47px;
-}
-
-.exit-btn{
-    border: 1px solid #383D66;
-    color: #383D66;
     background-color: #ffffff;
-}
+    color: #383d66;
+    outline: 0;
+    width: 140px;
+    height: 50px;
+  }
+  .btns :nth-child(2) {
+    border: solid 1px #383d66;
+    background-color: #383d66;
+    color: #ffffff;
+  }
 
 /* 모달 */
 /* 모달 전체 */
@@ -295,36 +287,8 @@ header button {
     text-align: center;
 }
 
-/* 모달 버튼 */
-.btns{
-    display: flex;
-    gap: 25px;
-    margin-top: 20px;
-}
 
-.btns button{
-    border-radius: 12px;
-
-    font-size: 14px;
-    font-weight: bold;
-
-    width: 150px;
-    height: 47px;
-}
-
-.cancell-btn{
-    border: 1px solid #383D66;
-    color: #383D66;
-    background-color: #ffffff;
-}
-
-.modal-exit-btn{
-    border: none;
-    color: #ffffff;
-    background-color: #383D66;
-
-}
-.blur{
+.wait{
     position: absolute;
     width: 60px;
     height: 60px;
@@ -338,8 +302,10 @@ header button {
     font-weight: 700;
 }
 
-.none{
+.hidden{
     display: none !important;
 }
 
-
+.choice-modal{
+    z-index: 5;
+}
