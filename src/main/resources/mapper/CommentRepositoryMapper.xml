@@ -16,4 +16,21 @@
         values
         (#{comment.content}, #{comment.memberId}, #{comment.performanceRecordsId})
     </insert>
+
+    <delete id="delete">
+        delete from comment
+        where id=#{commentId}
+    </delete>
+
+    <select id="findById">
+        select * from comment
+        where id=#{commentId}
+    </select>
+
+    <update id="edit">
+        update comment
+        set 
+        content=#{comment.content}
+        where id=#{comment.id}
+    </update>
 </mapper>
