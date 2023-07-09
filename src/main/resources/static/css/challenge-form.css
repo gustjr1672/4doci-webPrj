@@ -74,7 +74,7 @@ select option {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 30px;
 }
 
 /*카테고리 */
@@ -87,12 +87,12 @@ select option {
   align-items: center;
   justify-content: start;
 
-  gap: 20px;
+  gap: 56px;
   width: 312px;
 }
 
 .category_title select {
-  width: 120px;
+  width: 204px;
 }
 
 /*그룹명, 도전명 */
@@ -182,16 +182,16 @@ select option {
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 70px;
+  gap: 50px;
 
-  width: 312px;
+  width: 310px;
 }
 
 .frequency_set {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 
   font-size: 12px;
   font-weight: bold;
@@ -199,7 +199,7 @@ select option {
 }
 
 .frequency_set select {
-  width: 120px;
+  width: 150px;
 }
 
 /*기간 설정*/
@@ -219,7 +219,7 @@ select option {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  gap: 30px;
 }
 
 .start_set,
@@ -227,11 +227,20 @@ select option {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 12px;
+  font-size: 14px;
 }
-
+.start_time{
+  display: flex;
+  gap:56px;
+  align-items: center;
+}
+.start_time div{
+  display : flex;
+  gap : 10px;
+  align-items: center;
+}
 .inside {
-  width: 140px;
+  width: 204px;
   height: 37px;
   border: 1px solid #949494;
   background-color: #fdfdfd;
@@ -240,8 +249,11 @@ select option {
   font-weight: medium;
   color: #333333;
   text-align: center;
+  padding: 0;
 }
-
+.time{
+  width: 80px;
+}
 /* 다음 버튼 */
 
 .next_btn div,button {

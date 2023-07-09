@@ -1,17 +1,15 @@
 const modal = document.querySelector("#modal");
 const buttons = document.querySelector("#buttons");
-
 const closeBtn = modal.querySelector(".btns button:nth-child(2)");
 const checkBoxes = modal.querySelectorAll(".content input");
-
 const friendsSection = document.querySelector(".profile-wrap");
 let profiles = document.querySelectorAll(".profile");
 const friendModalSection = document.querySelector(".friends-list");
-const submitBtn = document.querySelector(".submitBtn");
-const cancelModal = document.getElementById("cancelModal");
+const submitBtn = document.querySelector(".submit-btn");
+const cancelModal = document.getElementById("cancel-modal");
 
-let leaderId = document.querySelector(".leaderId").value;
-let challengeId = document.querySelector(".challengeId").value;
+let leaderId = document.querySelector(".leader-id").value;
+let challengeId = document.querySelector(".challenge-id").value;
 let userId;
 
 friendsSection.addEventListener("click", function (e) {
@@ -67,13 +65,9 @@ friendsSection.addEventListener("click", function (e) {
 cancelModal.addEventListener("click", function (e) {
     if (e.target.classList.contains("closeBtn")) {
         cancelModal.classList.add("hidden");
-        console.log("취소");
     }
     else if (e.target.classList.contains("okBtn")) {
-        console.log("삭제");
         cancelModal.classList.add("hidden");
-        console.log(userId);
-        console.log(challengeId);
         (async () => {
             const deleteResponse = await fetch(`/api/groupchallenge/${challengeId}/members/${userId}`, {
                 method: 'DELETE',
@@ -85,12 +79,12 @@ cancelModal.addEventListener("click", function (e) {
 })
 
 // 친구 수정 눌렀을 때 수정취소로 바뀌고 - 생김
-let button = document.querySelector(".modifyBtn");
-function modify() {
+let friendModifyBtn = document.querySelector(".modify-friend");
+friendModifyBtn.onclick = function (e) {
     let profiles = document.querySelectorAll(".profile");
 
-    if (button.textContent === "수정") {
-        button.textContent = "수정취소";
+    if (friendModifyBtn.textContent === "수정") {
+        friendModifyBtn.textContent = "수정취소";
         profiles.forEach((profile) => {
             let deleteBtn = profile.querySelector(".delete-btn");
             deleteBtn.classList.remove("hidden");
@@ -102,7 +96,7 @@ function modify() {
         })
     }
     else {
-        button.textContent = "수정";
+        friendModifyBtn.textContent = "수정";
 
         profiles.forEach((profile) => {
             let deleteBtn = profile.querySelector(".delete-btn");
@@ -127,9 +121,10 @@ async function reprintFreindSection() {
 
     for (const friend of friendList) {
         if (friend.toMemberId !== parseInt(leaderId)) {
-            let isAcceptClass = friend.isAccept === '대기중' ? 'wait' : 'hidden';
+            let isWait = friend.isAccept === '대기중' ? 'wait' : 'hidden';
+            let isRefuse = friend.isAccept === '거절' ? 'refuse' : 'hidden';
             let deleteBtnClass = 'delete-btn hidden';
-            if (button.textContent === "수정취소")
+            if (friendModifyBtn.textContent === "수정취소")
                 deleteBtnClass = 'delete-btn'
             let newFriendTemplate = `
         <div class="profile"> 
@@ -138,7 +133,8 @@ async function reprintFreindSection() {
                     <button class="${deleteBtnClass}" ><img class="delete-img" src="/image/startchallenge/delete.png" data-id="${friend.toMemberId}" ></button>
                     
                     <img class="img" src="${friend.profileImage}" alt="profile-img">
-                    <div class="${isAcceptClass}">대기중</div>
+                    <div class="${isWait}">대기중</div>
+                    <div class="${isRefuse}">거절</div>
                 </div>
                 <span>${friend.nickname}</span>
             </div>
@@ -165,15 +161,47 @@ async function reprintFreindSection() {
     }
 }
 
+
+let dateModifyBtn = document.querySelector(".modify-date");
+
+dateModifyBtn.onclick = function (e) {
+    let profiles = document.querySelectorAll(".profile");
+
+    if (friendModifyBtn.textContent === "수정") {
+        friendModifyBtn.textContent = "수정취소";
+        profiles.forEach((profile) => {
+            let deleteBtn = profile.querySelector(".delete-btn");
+            deleteBtn.classList.remove("hidden");
+            deleteBtn.classList.add("shake-animation");
+
+            setTimeout(() => {
+                deleteBtn.classList.remove("shake-animation");
+            }, 2000);
+        })
+    }
+    else {
+        friendModifyBtn.textContent = "수정";
+
+        profiles.forEach((profile) => {
+            let deleteBtn = profile.querySelector(".delete-btn");
+            deleteBtn.classList.add("hidden");
+        });
+    }
+}
+
+
+
+
+
 let startBtn = document.getElementById("start-btn");
-let startModal = document.getElementById("startModal");
-let alertErrorModal = document.getElementById("alertErrorModal");
-let alertStartModal = document.getElementById("alertStartModal");
+let startModal = document.getElementById("start-modal");
+let alertErrorModal = document.getElementById("alert-error-modal");
+let alertStartModal = document.getElementById("alert-start-modal");
+let acceptedCount = 0;
+
 startBtn.onclick = function () {
     startModal.classList.remove("hidden");
 }
-let acceptedCount = 0;
-
 
 // 바로시작하기 버튼 모달뜨고 시작일 업데이트
 startModal.addEventListener("click", function (e) {
@@ -182,12 +210,12 @@ startModal.addEventListener("click", function (e) {
     else if (e.target.classList.contains("okBtn")) {
         let inviFriends = document.querySelectorAll('.profile');
         inviFriends.forEach(inviFriend => {
-            let isAccept = inviFriend.querySelector('.isAcceptValue').value;
+            let isAccept = inviFriend.querySelector('.is-accept-value').value;
             if (isAccept === '수락')
                 acceptedCount++;
         });
         console.log(acceptedCount);
-
+        //수락한 친구가 2명이상일때만 시작
         if (acceptedCount >= 1) {
             startModal.classList.add("hidden");
                 fetch(`/api/groupchallenge/${challengeId}`,{
@@ -201,7 +229,7 @@ startModal.addEventListener("click", function (e) {
                 } 
             })
         }
-        else {
+        else { //아무도 초대를 수락하지 않을경우 시작안함
             startModal.classList.add("hidden");
             alertErrorModal.classList.remove("hidden")
             setTimeout(function () {

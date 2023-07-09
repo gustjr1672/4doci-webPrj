@@ -1,6 +1,6 @@
 
 let exitBtn = document.getElementById("exit-btn");
-let exitModal = document.getElementById("exitModal");
+let exitModal = document.getElementById("exit-modal");
 
 exitBtn.onclick = function(e){
     e.preventDefault();

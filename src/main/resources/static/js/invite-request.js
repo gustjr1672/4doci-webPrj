@@ -1,7 +1,7 @@
 let acceptBtn = document.getElementById("accept-btn");
 let refuseBtn = document.getElementById("refuse-btn");
-let refuseModal = document.getElementById("refuseModal");
-let acceptModal = document.getElementById("acceptModal");
+let refuseModal = document.getElementById("refuse-modal");
+let acceptModal = document.getElementById("accept-modal");
 const form = document.querySelector("form");
 
 acceptBtn.onclick = function(e){

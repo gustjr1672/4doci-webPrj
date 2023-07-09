@@ -18,8 +18,8 @@ function connectWs() {
 
 let inviteBtn = document.getElementById("invite-btn");
 let cancelBtn = document.getElementById("cancel-btn");
-let inviteModal = document.getElementById("inviteModal");
-let cancelModal = document.getElementById("cancelModal");
+let inviteModal = document.getElementById("invite-modal");
+let cancelModal = document.getElementById("cancel-modal");
 const form = document.querySelector("form");
    
 
