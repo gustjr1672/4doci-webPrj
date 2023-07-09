@@ -1,3 +1,22 @@
+let socket = null;
+
+document.addEventListener("DOMContentLoaded", function () {
+  // 소켓 연결
+  connectWs();
+});
+
+function connectWs() {
+  let ws = new SockJS("/community");
+  socket = ws;
+  ws.onopen = function () {
+    console.log("open");
+  };
+
+  ws.close = function () {
+    console.log("close");
+  };
+}
+
 let main = document.querySelector("main");
 let box = document.querySelector(".comment-box");
 let commentModal = document.querySelector(".comment-modal");
@@ -163,6 +182,16 @@ commentRegBtn.addEventListener("click", (e) => {
             let commentCount = Object.keys(list).length;
             let span = document.getElementById(list[0].performanceRecordsId);
             span.innerText = commentCount;
+
+            //해당 피드 주인한테 알림 메세지 보내기
+            if (socket) {     //소켓이 있으면(socket = ws 가 꽂아졌으면)
+                
+                if(userId == commentBtn.dataset.memberId)
+                    return;
+
+                let socketMsg = "request," + commentBtn.dataset.memberId + "," + "2," + "1";    //e.target.dataset.id : member id
+                socket.send(socketMsg);
+              }
 
         })
         .catch(error => alert(error.message));
@@ -362,3 +391,5 @@ CommentContentList.addEventListener("click", (e) => {
     });
     
 })
+
+

@@ -19,6 +19,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
         registry.addHandler(notificationHandler, "/main").setAllowedOriginPatterns("*").withSockJS();
         registry.addHandler(notificationHandler, "/friendmanage").setAllowedOriginPatterns("*").withSockJS();
         registry.addHandler(notificationHandler, "/groupChallenge").setAllowedOriginPatterns("*").withSockJS();
+        registry.addHandler(notificationHandler, "/community").setAllowedOriginPatterns("*").withSockJS();
     }
 
 }
