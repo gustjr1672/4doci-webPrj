@@ -28,6 +28,12 @@ body {
   display: flex;
   justify-content: start;
 }
+.end-order {
+  width: 80%;
+  max-width: 400px;
+  display: flex;
+  justify-content: space-between;
+}
 .start-order2 {
   display: flex;
   justify-content: center;
@@ -181,6 +187,14 @@ h1 p {
   border-radius: 8px;
   background-color: #f5f5f5;
   color: #333333;
+}
+.visibility {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 8px;
+  margin-right: 24px;
+  font-weight: 600;
 }
 .create-btn {
   font-size: 16px;

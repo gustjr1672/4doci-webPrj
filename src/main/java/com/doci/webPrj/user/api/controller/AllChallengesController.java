@@ -15,9 +15,17 @@ public class AllChallengesController {
     AllChallengesService allChallengesService;
 
     @GetMapping("{userId}")
-    public List<AllChallenges> list(@PathVariable int userId){
+    public List<AllChallenges> list(@PathVariable int userId) {
         List<AllChallenges> allChallenges = allChallengesService.findAll(userId);
         return allChallenges;
+    }
+
+    @PutMapping("{uniqueId}/{visibility}")
+    public void editVisibility(
+            @PathVariable("uniqueId") String uniqueId,
+            @PathVariable("visibility") boolean visibility) {
+
+        allChallengesService.editVisibility(uniqueId, visibility);
     }
 
 }

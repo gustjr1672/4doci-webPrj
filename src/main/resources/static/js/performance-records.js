@@ -27,14 +27,24 @@ function loadFile(input, image) {
   }
   imageBox.style.marginTop = "20px";
 }
-
-document.getElementById("plus-btn").addEventListener("click", function () {
+let plusBtn = document.getElementById("plus-btn");
+let minusBtn = document.getElementById("minus-btn");
+plusBtn.addEventListener("click", function () {
   document.getElementById("achive-amount").value++;
+  plusBtn.classList.add("push");
+  setTimeout(() => {
+    plusBtn.classList.remove("push");
+  }, 100);
 });
 
-document.getElementById("minus-btn").addEventListener("click", function () {
-  if (document.getElementById("achive-amount").value > 0)
+minusBtn.addEventListener("click", function () {
+  if (document.getElementById("achive-amount").value > 0) {
     document.getElementById("achive-amount").value--;
+    minusBtn.classList.add("push");
+    setTimeout(() => {
+      minusBtn.classList.remove("push");
+    }, 100);
+  }
 });
 
 /**삭제 모달**/
@@ -170,3 +180,17 @@ function showMessage(message) {
     messageModalWrap.classList.add("hidden");
   }, 1000);
 }
+let visibilityBtn = document.querySelector("input[type=checkbox]");
+visibilityBtn.addEventListener("change", (e) => {
+  //console.log(e.target.dataset.uniqueId);
+  console.log(visibilityBtn.checked);
+  if (visibilityBtn.checked) {
+    fetch(`api/all-challenges/${e.target.dataset.uniqueId}/0`, {
+      method: "PUT",
+    });
+  } else {
+    fetch(`api/all-challenges/${e.target.dataset.uniqueId}/1`, {
+      method: "PUT",
+    });
+  }
+});
