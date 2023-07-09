@@ -31,12 +31,12 @@ main.addEventListener("click", function (e) {
                     <div class="comment-content-section" id=${comment.id}>
                         <span class="comment-content-nickname">${comment.nickName}</span>
                         <span class="comment-content-input" data-content="${comment.content}">${comment.content}</span>
-                        <input type="text" value="${comment.content}" class="comment-content-input-edit hidden">
+                        <input type="text" value="${comment.content}" class="comment-content-input-edit hidden" >
                         <div class="comment-content-footer">
                             <div class="comment-content-period">${comment.timeMessage}</div>
                             <div class="comment-content-buttons">
                                 <button class="comment-edit-button" data-id="${comment.id}">수정</button>
-                                <button class="comment-delete-button" data-id="${comment.id}">삭제</button>
+                                <button class="comment-delete-button" data-id="${comment.id}" data-record-id="${comment.performanceRecordsId}">삭제</button>
                             </div>
                             <div class="comment-edit-buttons hidden">
                                 <button class="comment-edit-cancel-button" data-id="${comment.id}">취소</button>
@@ -93,6 +93,10 @@ commentModal.addEventListener("click", (e) => {
 commentRegBtn.addEventListener("click", (e) => {
 
     let content = document.querySelector(".comment-footer input").value;
+
+    if(!content)
+        return;
+
     let recordsId = commentBtn.dataset.recordId;
 
     let formData = new FormData();
@@ -123,12 +127,12 @@ commentRegBtn.addEventListener("click", (e) => {
                     <div class="comment-content-section" id=${comment.id}>
                         <span class="comment-content-nickname">${comment.nickName}</span>
                         <span class="comment-content-input" data-content="${comment.content}">${comment.content}</span>
-                        <input type="text" value="${comment.content}" class="comment-content-input-edit hidden">
+                        <input type="text" value="${comment.content}" class="comment-content-input-edit hidden" >
                         <div class="comment-content-footer">
                             <div class="comment-content-period">${comment.timeMessage}</div>
                             <div class="comment-content-buttons">
                                 <button class="comment-edit-button" data-id="${comment.id}">수정</button>
-                                <button class="comment-delete-button" data-id="${comment.id}">삭제</button>
+                                <button class="comment-delete-button" data-id="${comment.id}" data-record-id="${comment.performanceRecordsId}">삭제</button>
                             </div>
                             <div class="comment-edit-buttons hidden">
                                 <button class="comment-edit-cancel-button" data-id="${comment.id}">취소</button>
@@ -178,6 +182,7 @@ CommentContentList.addEventListener("click", (e) => {
 
     let commentDeleteButton = e.target;
     commentId = commentDeleteButton.dataset.id;
+    let recordId = commentDeleteButton.dataset.recordId;
 
     let deleteCheckButton = document.querySelector(".delete-Confirm-button");
     let deleteCancelButton = document.querySelector(".delete-cancel-button");
@@ -202,7 +207,7 @@ CommentContentList.addEventListener("click", (e) => {
                 return response.json();
         })
         .then(list => {
-
+    
             CommentContentList.innerHTML = "";
             let template = null;
             for (let comment of list) {
@@ -215,12 +220,12 @@ CommentContentList.addEventListener("click", (e) => {
                     <div class="comment-content-section" id=${comment.id}>
                         <span class="comment-content-nickname">${comment.nickName}</span>
                         <span class="comment-content-input" data-content="${comment.content}">${comment.content}</span>
-                        <input type="text" value="${comment.content}" class="comment-content-input-edit hidden">
+                        <input type="text" value="${comment.content}" class="comment-content-input-edit hidden" >
                         <div class="comment-content-footer">
                             <div class="comment-content-period">${comment.timeMessage}</div>
                             <div class="comment-content-buttons">
                                 <button class="comment-edit-button" data-id="${comment.id}">수정</button>
-                                <button class="comment-delete-button" data-id="${comment.id}">삭제</button>
+                                <button class="comment-delete-button" data-id="${comment.id}" data-record-id="${comment.performanceRecordsId}">삭제</button>
                             </div>
                             <div class="comment-edit-buttons hidden">
                                 <button class="comment-edit-cancel-button" data-id="${comment.id}">취소</button>
@@ -248,9 +253,14 @@ CommentContentList.addEventListener("click", (e) => {
 
             document.querySelector(".comment-footer input").value = null;
             
-            let commentCount = Object.keys(list).length;
-            let span = document.getElementById(list[0].performanceRecordsId);
+            let commentCount = 0;
+
+            if(list)
+                commentCount = Object.keys(list).length;
+
+            let span = document.getElementById(recordId);
             span.innerText = commentCount;
+            
 
         })
         .catch(error => alert(error.message));
@@ -299,6 +309,10 @@ CommentContentList.addEventListener("click", (e) => {
     editFixBtn.addEventListener("click", function edit(){
         
         let newContent = commentInputEdit.value;    //newContent를 이벤트 밖에 선언하면 기존 html의 value="${comment.content}"로 초기화 된다
+        
+        if(!newContent)
+        return;
+
         let formData = new FormData();
         formData.append("id", commentId);
         formData.append("content", newContent);
