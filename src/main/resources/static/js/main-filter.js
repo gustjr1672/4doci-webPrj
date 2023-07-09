@@ -16,17 +16,18 @@ function myChallengeList(selectedValue) {
     if (selectedValue === 'on-going') {
         fetch(`/api/all-challenges/${userId}`,)
             .then(response => response.json())
-            .then(list => {
+            .then(allChallengelist => {
                 chalList.innerHTML = " ";
 
-                for (let challenge of list) {
+                for (let challenge of allChallengelist) {
+                    console.log(challenge.performanceRecordsId);
                     let chalStartDate = new Date(challenge.startDate);
 
-                    if (currentDate >= chalStartDate) {
+                    if (challenge.performanceRecordsId != null) {
 
                         let chalTemplate =
                             `<div class="btn-wrap" >
-                            <button class="chal-btn" data-unique-id="${challenge.uniqueId}">
+                            <button class="chal-btn" data-unique-id="${challenge.uniqueId}" data-challenge-state="진행중">
                             <span class="chal-title" >${challenge.name}</span>
                             <div class="prog-wrap">
                               <div>
@@ -61,10 +62,10 @@ function myChallengeList(selectedValue) {
                 for (let challenge of list) {
                     let chalStartDate = new Date(challenge.startDate);
 
-                    if (currentDate <= chalStartDate) {
+                    if (challenge.performanceRecordsId == null) {
                         let chalTemplate = `                
                         <div class="btn-wrap">
-                            <button class="chal-btn" data-unique-id="${challenge.uniqueId}">
+                            <button class="chal-btn" data-unique-id="${challenge.uniqueId}" data-challenge-state="대기중">
                             <span class="chal-title">${challenge.name} </span>
                     </button>
                         <div class="chal-wait">도전<br>대기중</div>
