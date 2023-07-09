@@ -128,10 +128,48 @@ header > button {
     font-size: 14px;
 }
 
+/* ===================대기중 도전중 필터================ */
+.filter{
+    width: 190px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.options{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 120px;
+    width: 80%;
+}
+
+.options button{
+    width: 50%;
+    height: 32px;
+    font-family: "suit";
+    font-weight: 700;
+    border: none;
+}
+
+.filter .on-going.active,
+.filter .waiting.active{
+    background: #383d66;
+    color: #ffffff;
+    border-bottom: 1px solid #ffffff;
+}
+
+.filter .on-going,
+.filter .waiting{
+    color: #b4b4b4;
+    background: #383d66;
+    border-bottom: 1px solid #b4b4b4;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
 /* ==================도전 리스트==================== */
 .chal-header {
-    width: 80%;
-    max-width: 500px;
+    width: 90%;
+    max-width: 600px;
     display: flex;
     justify-content: space-between;
     align-items: center;
