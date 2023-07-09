@@ -74,7 +74,7 @@
           <div class="footer-btn">
             <button class="comment-button" id="comment-button" th:data-record-id="${feed.id}" >
               <img th:data-record-id="${feed.id}" src="/image/community/comment.png" alt="" />
-              <span th:data-record-id="${feed.id}" th:text="${feed.commentCount}">1</span>
+              <span th:data-record-id="${feed.id}" th:id="${feed.id}" th:text="${feed.commentCount}">1</span>
             </button>
           </div>
         </div>
