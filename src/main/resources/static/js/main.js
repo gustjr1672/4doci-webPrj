@@ -44,13 +44,20 @@ function closeModal() {
 let chalListSection = document.querySelector(".chal-list");
 
 chalListSection.addEventListener("click", function(e){
-
-  if(e.target.className !== "chal-btn")
+  if(!e.target.closest(".chal-btn"))
     return;
 
-  let chalBtn = e.target;
+  let chalBtn = document.querySelector('.chal-btn');
   let uniqueId = chalBtn.dataset.uniqueId;
-  
-  location.href=`performance-records?cid=${uniqueId}`;
+  let challengeState = chalBtn.dataset.challengeState;
+  console.log(challengeState)
+
+  if (challengeState === "진행중"){
+    location.href=`performance-records?cid=${uniqueId}`;
+  }
+  else if(challengeState === "대기중"){
+    location.href = `performance-waiting?cid=${uniqueId}`;
+  }
+
 
 });
