@@ -16,7 +16,7 @@
     <script src="/js/notification.js" defer="defer"></script>
     <script src="/js/progress-bar.js" defer="defer"></script>
     <script src="/js/main-filter.js" defer="defer"></script>
-    <script src="../../static/js/main.js"></script>
+
 </head>
 
 <body>
@@ -55,10 +55,16 @@
 <section class="chal-list">
     <div class="chal-header">
         <span>나의 도전</span>
-        <select id="filter" onchange="applyFilter()">
-            <option value="on-going">진행 중</option>
-            <option value="waiting">대기 중</option>
-        </select>
+        <section class="filter">
+            <div class="options">
+                <button class="on-going active">진행중</button>
+                <button class="waiting">대기중</button>
+            </div>
+        </section>
+<!--        <select id="filter" onchange="applyFilter()">-->
+<!--            <option value="on-going">진행 중</option>-->
+<!--            <option value="waiting">대기 중</option>-->
+<!--        </select>-->
     </div>
 
     <div class="chal-section" th:data-user-id="${user.id}">
