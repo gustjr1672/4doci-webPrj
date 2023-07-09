@@ -82,7 +82,7 @@ commentModal.addEventListener("click", (e) => {
 
         setTimeout(function () {
             commentModal.classList.add("hidden");
-        }, 1000);
+        }, 400);
     }
 
 });
@@ -110,7 +110,7 @@ commentRegBtn.addEventListener("click", (e) => {
 
             return response.json();
         }).then(list => {
-
+            
             CommentContentList.innerHTML = "";
             let template = null;
             for (let comment of list) {
@@ -155,6 +155,10 @@ commentRegBtn.addEventListener("click", (e) => {
             }
 
             document.querySelector(".comment-footer input").value = null;
+
+            let commentCount = Object.keys(list).length;
+            let span = document.getElementById(list[0].performanceRecordsId);
+            span.innerText = commentCount;
 
         })
         .catch(error => alert(error.message));
@@ -243,6 +247,10 @@ CommentContentList.addEventListener("click", (e) => {
             }
 
             document.querySelector(".comment-footer input").value = null;
+            
+            let commentCount = Object.keys(list).length;
+            let span = document.getElementById(list[0].performanceRecordsId);
+            span.innerText = commentCount;
 
         })
         .catch(error => alert(error.message));
