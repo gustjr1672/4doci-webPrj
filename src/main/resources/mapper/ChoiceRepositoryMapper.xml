@@ -10,11 +10,17 @@
             (member_id,
             random_challenge_id,
             start_date,
+            <if test='c.visibility == true'>
+             visibility,
+            </if>
             end_date)
         VALUES
             (#{c.memberId},
             #{c.randomChallengeId},
             #{c.startDate},
+            <if test='c.visibility == true'>
+            '0',
+            </if>
             #{c.endDate})
     </insert>
 

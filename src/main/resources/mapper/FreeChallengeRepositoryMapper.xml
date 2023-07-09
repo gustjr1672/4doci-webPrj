@@ -16,6 +16,10 @@
         auth_frequency,
         goal_quantity,
         unit_id,
+        <if test='f.visibility == true'>
+        visibility,
+        </if>
+        
         member_id,
         category_id) 
         values
@@ -26,6 +30,9 @@
         #{f.authFrequency},
         #{f.goalQuantity},
         #{f.unitId},
+        <if test='f.visibility == true'>
+        '0',
+        </if>
         #{f.memberId},
         #{f.categoryId});
     </insert>
