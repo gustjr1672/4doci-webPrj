@@ -11,10 +11,16 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comment {
+public class CommentView {
     int id;
     Timestamp regDate;
     String content;
     int memberId;
+    String nickName;
+    String profileImage;
     int performanceRecordsId;
+    int choiceId;
+    int freeChallengeId;
+    String timeMessage;
+
 }
