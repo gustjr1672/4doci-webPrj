@@ -26,4 +26,6 @@ public interface FeedService {
 
     Comment getCommentById(int commentId);
 
+    void edit(Comment comment);
+
 }

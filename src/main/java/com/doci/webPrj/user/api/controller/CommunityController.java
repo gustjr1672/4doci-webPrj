@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,10 +44,20 @@ public class CommunityController {
     public List<CommentView> delete(@PathVariable("id") int commentId) {
 
         Comment comment = feedService.getCommentById(commentId);
+        int PerformanceRecordsId = comment.getPerformanceRecordsId();
         feedService.delete(commentId);
-        List<CommentView> list = feedService.getCommentList(comment.getPerformanceRecordsId());
+        List<CommentView> list = feedService.getCommentList(PerformanceRecordsId);
 
         return list;
+    }
+
+    @PutMapping
+    public Comment edit(Comment comment) {
+
+        feedService.edit(comment);
+        Comment modifiedComment = feedService.getCommentById(comment.getId());
+
+        return modifiedComment;
     }
 
 }

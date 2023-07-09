@@ -19,4 +19,6 @@ public interface CommentRepository {
 
     Comment findById(int commentId);
 
+    void edit(@Param("comment") Comment comment);
+
 }

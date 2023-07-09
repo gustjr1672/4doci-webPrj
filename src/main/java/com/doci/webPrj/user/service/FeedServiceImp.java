@@ -119,4 +119,9 @@ public class FeedServiceImp implements FeedService {
 
     }
 
+    @Override
+    public void edit(Comment comment) {
+        commentRepository.edit(comment);
+    }
+
 }

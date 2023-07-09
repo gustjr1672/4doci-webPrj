@@ -105,7 +105,7 @@
   width: 100%;
   max-width: 660px;
   transform: translateY(100%);
-  transition: transform 1s;
+  transition: transform 0.4s;
 }
 .comment-box-show {
   transform: translateY(0);
@@ -152,6 +152,9 @@
 }
 .comment-content-input {
   font-size: 12px;
+  height: 17px;
+  border: 1px solid #fff;
+  padding: 0 5px;
 }
 .comment-content-nickname {
   font-size: 12px;
@@ -188,6 +191,8 @@
   background-color: #fff;
   border: none;
   font-weight: 600;
+  color: #333333 !important;
+  cursor: pointer;
 }
 
 .hidden {
