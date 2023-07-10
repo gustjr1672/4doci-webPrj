@@ -146,8 +146,7 @@ header > button {
 .options button{
     width: 50%;
     height: 32px;
-    font-family: "suit";
-    font-weight: 700;
+    font-weight: 600;
     border: none;
 }
 
