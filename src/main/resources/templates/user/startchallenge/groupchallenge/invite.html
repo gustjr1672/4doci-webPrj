@@ -1,58 +1,57 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/group-invite.css" type="text/css">
-    <link
-    href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
-    rel="stylesheet">
-    <script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
-    <script src="/js/group-invite.js" defer="defer"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/group-invite.css" type="text/css">
+  <link rel="stylesheet" href="/css/modal.css" />
+  <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet">
+  <script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
+  <script src="/js/group-invite.js" defer="defer"></script>
 </head>
+
 <body>
-    <header>
-        <button onclick="goBack()">
-          <img src="image/header/blackBack.png" alt="뒤로가기" />
-        </button>
-      </header>
-      <form action="/groupChallenge/group-invite/reg" method="post">
-        <!-- <div class="group_title">
-          <label for="group_name">그룹명</label>
-          <div>
-            <input
-              type="text"
-              placeholder="3자 이상 20자 이하"
-              id="group_name"
-              class="group_name"d
-              name="group_name"
-              minlength ="3"
-              maxlength="20"
-            />
-            <p id="check_group_length"></p>
-          </div>
-        </div> -->
-        <input type="hidden" name = "challengeId" th:value="${challenge.id}">
+  <form action="/groupChallenge/group-invite/reg" method="post">
     <div class="invite-wrap">
-        <p>함께할 친구를 추가해 보세요</p>
-        <div class="friends-list">
-            <div class="content" th:each="friend : ${friendList}">
-              <div class="info">
-                    <img th:src="${friend.profileImage}"alt="프로필이미지" />
-                    <div>
-                        <span th:text="${friend.name}">고민시</span>
-                        <span th:text="${friend.nickname}">고민시작</span>
-                    </div>
-              </div>
-              <input type="checkbox" name ="friend" th:value="${friend.id}">
+      <p>함께할 친구를 추가해 보세요</p>
+      <div class="friends-list">
+        <div class="content" th:each="friend : ${friendList}">
+          <div class="info">
+            <img th:src="${friend.profileImage}" alt="프로필이미지" />
+            <div>
+              <span th:text="${friend.name}">고민시</span>
+              <span th:text="${friend.nickname}">고민시작</span>
             </div>
+          </div>
+          <input type="checkbox" name="friend" th:value="${friend.id}">
         </div>
-        <div class="btns">
-            <button type="submit" name="action" value="cancel">도전 취소</button>
-            <button type="submit" name="action" value="invite" id="invite-btn">그룹 초대</button>  
-        </div>   
+      </div>
+      <div class="btns">
+        <button type="submit" name="action" value="cancel" id="cancel-btn">도전 취소</button>
+        <button type="submit" name="action" value="invite" id="invite-btn">그룹 초대</button>
+      </div>
     </div>
-</form>
+  </form>
+  <section class="choice-modal hidden" id="cancel-modal">
+    <section class="modal-box">
+      <span>정말 도전을 취소하시겠습니까?</span>
+      <div>
+        <button class="closeBtn">닫기</button>
+        <button class="okBtn">취소</button>
+      </div>
+    </section>
+  </section>
+  <section class="choice-modal hidden" id="invite-modal">
+    <section class="modal-box">
+      <span>도전을 등록하시겠습니까?</span>
+      <div>
+        <button class="closeBtn">닫기</button>
+        <button class="okBtn">등록</button>
+      </div>
+    </section>
+  </section>
 </body>
+
 </html>

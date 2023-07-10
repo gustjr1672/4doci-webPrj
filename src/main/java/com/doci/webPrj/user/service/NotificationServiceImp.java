@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.doci.webPrj.user.entity.Member;
 import com.doci.webPrj.user.repository.FriendRequestNotificationRepository;
 import com.doci.webPrj.user.repository.FriendRequestRepository;
+import com.doci.webPrj.user.repository.InvitationNotificationRepository;
 import com.doci.webPrj.user.repository.MemberRepository;
 
 @Service
@@ -16,6 +17,8 @@ public class NotificationServiceImp implements NotificationService {
 
     @Autowired
     FriendRequestNotificationRepository repository;
+    @Autowired
+    InvitationNotificationRepository invirepository;
     @Autowired
     MemberRepository memberRepository;
     @Autowired
@@ -59,7 +62,8 @@ public class NotificationServiceImp implements NotificationService {
     public boolean getNotiStatus(int userId) {
         boolean result = true;
         List<Integer> idList = repository.findList(userId);
-        if (idList.size() == 0)
+        List<Integer> inviIdList = invirepository.findList(userId);
+        if (idList.size() == 0 && inviIdList.size() == 0)
             result = false;
         return result;
     }

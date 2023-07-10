@@ -19,12 +19,13 @@ import com.doci.webPrj.admin.service.CategoryService;
 import com.doci.webPrj.admin.service.UnitService;
 import com.doci.webPrj.config.MyUserDetails;
 import com.doci.webPrj.user.entity.GroupChallenge;
-import com.doci.webPrj.user.entity.Invitation;
 import com.doci.webPrj.user.entity.InvitationMember;
 import com.doci.webPrj.user.entity.Member;
 import com.doci.webPrj.user.service.FriendManageService;
 import com.doci.webPrj.user.service.GroupChallengeService;
 import com.doci.webPrj.user.service.InvitationService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("groupChallenge")
@@ -42,8 +43,6 @@ public class GroupChallengeController {
     GroupChallengeService groupChallengeService;
 
 
-     private static final Invitation invitation = new Invitation();
-
     @GetMapping("form")
     public String register(Model model) {
         List<Category> categoryList = categoryService.findAll();
@@ -53,59 +52,59 @@ public class GroupChallengeController {
         return "user/startchallenge/groupchallenge/form";
     }
     @PostMapping("challenge/reg")
-    public String challengeReg(GroupChallenge groupChallenge,@AuthenticationPrincipal MyUserDetails user,
-                               RedirectAttributes rttr) {
-
-        groupChallengeService.addChallenge(groupChallenge,user.getId());
-        rttr.addFlashAttribute("challenge",groupChallenge);
+    public String challengeReg(GroupChallenge groupChallenge,HttpSession session) {                   
+        session.setAttribute("groupChallenge", groupChallenge);
         return "redirect:/groupChallenge/group-invite";
     }
 
     @GetMapping("group-invite")
-    public String groupInvite(Model model,@AuthenticationPrincipal MyUserDetails user){
+    public String groupInvite(Model model,@AuthenticationPrincipal MyUserDetails user,HttpSession session){
         List<Member> friendList = friendManageService.getFriendList(user.getId());
         model.addAttribute("friendList", friendList);
         return "user/startchallenge/groupchallenge/invite";
     }
 
     @PostMapping("group-invite/reg")
-    public String groupRegister(@RequestParam("action") String action,
-                                @RequestParam("challengeId") int challengeId,
+    public String groupRegister( HttpSession session,
+                                @RequestParam("action") String action,
                                 @RequestParam(name="friend", required=false) List<Integer> friendList,
                                 @AuthenticationPrincipal MyUserDetails user,
-                                RedirectAttributes rttr){
-        
+                                RedirectAttributes rttr,Model model){
         if(action.equals("cancel")){
-            groupChallengeService.delete(challengeId);
+            session.removeAttribute("groupChallenge");
             return "redirect:/main";
         }
         else{
-                invitationService.invite(friendList,challengeId);
-                GroupChallenge challenge = groupChallengeService.getChallenge(challengeId);
-                rttr.addFlashAttribute("challenge",challenge);
-                invitationService.inviteLeader(challengeId,user.getId());
-                groupChallengeService.groupStart(challengeId,user.getId()); //방장만 groupstart 에 insert 하는 코드
-            }
+            GroupChallenge groupChallenge = (GroupChallenge) session.getAttribute("groupChallenge");
+            groupChallengeService.addChallenge(groupChallenge,user.getId());
+            invitationService.invite(friendList,groupChallenge.getId());
+            invitationService.inviteLeader(groupChallenge.getId(),user.getId());
+            groupChallengeService.groupStart(user.getId(),groupChallenge.getId()); //방장만 groupstart 에 insert 하는 코드
+            // }
 
         return "redirect:/groupChallenge/standby-screen";
-        
     }
+}
     @GetMapping("standby-screen")
-    public String standbyScreen(@ModelAttribute(name="challenge") GroupChallenge challenge,Model model,
+    public String standbyScreen(HttpSession session,Model model,
                                 @AuthenticationPrincipal MyUserDetails user){
+                               
+        GroupChallenge challenge = (GroupChallenge) session.getAttribute("groupChallenge");
+     
         int challengeId = challenge.getId();
         int userId = challenge.getGroupLeaderId();
 
         List<InvitationMember> inviList = groupChallengeService.getInviList(challengeId);
+        model.addAttribute("challenge", challenge);
         model.addAttribute("inviList", inviList);
 
-        if(userId == user.getId()){ // 방장의 standby 화면으로 가는 코드
+         if(userId == user.getId()){ // 방장의 standby 화면으로 가는 코드
             List<Member> friendList = friendManageService.getFriendList(userId); //방장의 친구목록
             List<Member> notInviList = groupChallengeService.getNotInviList(challengeId,friendList); //방장의 친구중 초대받지 않은목록
             model.addAttribute("notInviList", notInviList);
             return "user/startchallenge/groupchallenge/standby-screen";
-        }
-        return "user/startchallenge/groupchallenge/standby-screen-member";
+         }
+         return "user/startchallenge/groupchallenge/standby-screen-member";
     }
 
 
@@ -121,21 +120,19 @@ public class GroupChallengeController {
 
 
     @PostMapping("invite-request/submit")
-    public String groupInvite(@RequestParam("id") int challengeId,
+    public String groupInvite(HttpSession session,@RequestParam("id") int challengeId,
                               @RequestParam("action") String action,
-                              @AuthenticationPrincipal MyUserDetails user,
-                              RedirectAttributes rttr){
+                              @AuthenticationPrincipal MyUserDetails user){
 
         if(action.equals("refuse")){
             invitationService.requestRefuse(user.getId(),challengeId);
-            return "redierct:/main";
+            return "redirect:/main";
         }
-
         invitationService.requestAccept(user.getId(),challengeId);
-        GroupChallenge challenge = groupChallengeService.getChallenge(challengeId);
-        rttr.addFlashAttribute("challenge",challenge);
-        return "redirect:/groupChallenge/standby-screen";
+        GroupChallenge groupChallenge = groupChallengeService.getChallenge(challengeId);
 
+        session.setAttribute("groupChallenge", groupChallenge);
+        return "redirect:/groupChallenge/standby-screen";
     }
 
     

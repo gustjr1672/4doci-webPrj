@@ -1,17 +1,18 @@
-const modal = document.querySelector("#modal");
-const exitBtn = document.querySelector(".exit-btn");
-const cancellBtn = modal.querySelector(".cancell-btn");
 
+let exitBtn = document.getElementById("exit-btn");
+let exitModal = document.getElementById("exit-modal");
 
-exitBtn.addEventListener("click", ()=>{
-    modal.style.display = "flex";
-});
+exitBtn.onclick = function(e){
+    e.preventDefault();
+    exitModal.classList.remove("hidden");
+  }
 
-cancellBtn.addEventListener("click",()=>{
-     modal.style.display = "none";
-});
-
-
- 
-
+  exitModal.addEventListener("click",function(e){
+    if(e.target.classList.contains("closeBtn"))
+        exitModal.classList.add("hidden");
+    else if(e.target.classList.contains("okBtn")){
+        exitModal.classList.add("hidden");
+      form.submit();
+    }
+    })
 

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>standby-screen</title>
     <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/modal.css" type="text/css">
     <link rel="stylesheet" href="/css/standby-screen-member.css" type="text/css">
     <script src="/js/standby-screen-member.js" defer="defer"></script>
     <link
@@ -13,18 +14,7 @@
     rel="stylesheet"/>
 </head>
 <body>
-    <header>
-        <div class="header-wrap">
-            <header>
-              <div class="header_left">
-                <button><img src="/image/wating-page/back.png" alt="뒤로가기" /></button>
-                <img src="/image/wating-page/title.png" alt="4℃" width="50" height="30" />
-              </div>
-              <button class="bell"><img src="/image/wating-page/bell.png" alt="알림" /></button>
-            </header>
-          </div>
-    </header>
-
+    <form action="/groupChallenge/invite-request/submit?action=refuse" method="POST">
     <div class="content-list">
         <div class="message">
             <p>그룹도전 시작을 기다리는 중입니다</p>
@@ -43,7 +33,8 @@
                 <div class="profile" th:each="inviFriend: ${inviList}">
                     <div class="with-user">
                         <img class="img" th:src="${inviFriend.profileImage}" alt="profile-img">
-                        <div th:class="${inviFriend.isAccept =='대기중' ? 'blur' : 'none'}">대기중</div>
+                        <div th:class="${inviFriend.isAccept =='대기중' ? 'wait' : 'hidden'}">대기중</div>
+                        <div th:class="${inviFriend.isAccept =='거절' ? 'refuse' : 'hidden'}">거절</div>
                     </div>
                     <span th:text="${inviFriend.nickname}"></span>
                 </div>
@@ -61,22 +52,26 @@
                 <span th:text="${challenge.endDate}"></span>
             </div>
         </div>
+        <input type="hidden" name="id" th:value="${challenge.id}">
+        <section class="btn-section">
+            <div class="btns">
+              <button type="button" onclick="location.href = '/main' ">닫기</button>
+              <button type="submit" id="exit-btn">그룹나가기</button>
+            </div>
+         </section>
 
-        <div class="button">
-            <button type="submit" class="exit-btn">그룹 나가기</button>
-        </div>
+         <section class="choice-modal hidden" id="exit-modal">
+            <section class="modal-box">
+              <span>그룹을 나가시겠습니까?</span>
+              <div>
+                <button class="closeBtn">닫기</button>
+                <button class="okBtn">나가기</button>
+              </div>
+            </section>
+          </section>
+          
     </div>
-
-    <!-- 모달 -->
-<div class="modal" id="modal">
-    <div class="modal-body">
-        <p>정말 나가시겠습니까?</p>
-        <div class="btns">
-            <button type="submit" class="cancell-btn">취소</button>
-            <button type="submit" class="modal-exit-btn">나가기</button>
-        </div>   
-    </div>
-</div>
+    </form>
 
 </body>
 </html>

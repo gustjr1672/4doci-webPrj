@@ -9,6 +9,7 @@ public class GroupChallenge {
     int id;
     String name;
     LocalDate startDate;
+    int startTime;
     LocalDate endDate;
     int period;
     int authFrequency;
