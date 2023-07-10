@@ -54,13 +54,13 @@ function friendRequestLoad(url, method) {
     });
 }
 
-function groupInvitationLoad(url){
+function groupInvitationLoad(url) {
   fetch(url)
-  .then((response) => response.json())
-  .then((list) => {
-    notification.innerHTML = "";
-    for (const invitation of list) {
-      let groupNotiTemplate = ` 
+    .then((response) => response.json())
+    .then((list) => {
+      notification.innerHTML = "";
+      for (const invitation of list) {
+        let groupNotiTemplate = ` 
         <section id="group-invitation-content" class="contents">
           <div class="content">
             <div class="info">
@@ -75,9 +75,39 @@ function groupInvitationLoad(url){
             <button onclick="location.href='/groupChallenge/invite-request?id=${invitation.groupChallengeId}'">보기</button>
           </div>
         </section>`;
-      notification.insertAdjacentHTML("beforeend", groupNotiTemplate);
-    }
-  });
+        notification.insertAdjacentHTML("beforeend", groupNotiTemplate);
+      }
+    });
+}
+
+function commentNotificationLoad(url) {
+
+  fetch(url)
+    .then(response => response.json())
+    .then(commentNotiList => {
+      console.log(commentNotiList);
+      notification.innerHTML = "";
+
+      for (let commentNoti of commentNotiList) {
+      
+        let commuNotiTemplate = `
+        <section id="community-content" class="contents">
+          <button class="content" onclick="location.href = 'comments.html' ">
+            <div class="info">
+              <img src=${commentNoti.profileImage} alt="프로필이미지" />
+              <div>
+                <span>${commentNoti.nickName} 님이 댓글을 남겼습니다.</span>
+                <span class="time">${commentNoti.timeMessage}</span>
+              </div>
+            </div>
+          </button>
+        </section>`;
+
+        notification.insertAdjacentHTML("beforeend", commuNotiTemplate);
+      }
+
+    });
+
 }
 
 let notificationBtns = document.querySelector(".notification");
@@ -100,8 +130,7 @@ let btnSection = document.querySelector("#btns");
 let notification = document.querySelector(".notification");
 btnSection.addEventListener("click", (e) => {
   if (e.target.classList.contains("community-btn")) {
-    notification.innerHTML = "";
-    notification.insertAdjacentHTML("beforeend", commuNotiTemplate);
+    commentNotificationLoad("/notifications/comment");
   } else if (e.target.classList.contains("group-invitation-btn")) {
     groupInvitationLoad(`/notification/invite`);
   } else if (e.target.classList.contains("friend-request-btn")) {
@@ -109,35 +138,5 @@ btnSection.addEventListener("click", (e) => {
   }
 });
 
-let commuNotiTemplate = `
-  <section id="community-content" class="contents">
-    <button class="content" onclick="location.href = 'comments.html' ">
-      <div class="info">
-        <img src="/image/notification/profile.png" alt="프로필이미지" />
-        <div>
-          <span>고민시작 님이 댓글을 남겼습니다.</span>
-          <span class="time">1분전</span>
-        </div>
-      </div>
-    </button>
-    <button class="content">
-      <div class="info">
-        <img src="/image/notification/progileImg2.png" alt="프로필이미지" />
-        <div>
-          <span>재혁짱 님이 댓글을 남겼습니다.</span>
-          <span class="time">11분전</span>
-        </div>
-      </div>
-    </button>
-    <button class="content">
-      <div class="info">
-        <img src="/image/notification/progileImg2.png" alt="프로필이미지" />
-        <div>
-          <span>재혁짱 님이 댓글을 남겼습니다.</span>
-          <span class="time">17분전</span>
-        </div>
-      </div>
-    </button>
-  </section>`;
 
 

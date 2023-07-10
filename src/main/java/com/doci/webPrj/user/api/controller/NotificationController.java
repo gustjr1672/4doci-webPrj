@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.doci.webPrj.config.MyUserDetails;
+import com.doci.webPrj.user.entity.CommentNotificationView;
 import com.doci.webPrj.user.entity.InvitationNotification;
 import com.doci.webPrj.user.entity.Member;
+import com.doci.webPrj.user.service.CommentNotificationService;
 import com.doci.webPrj.user.service.InvitationService;
 import com.doci.webPrj.user.service.NotificationService;
 
@@ -27,6 +29,9 @@ public class NotificationController {
     NotificationService notificationService;
     @Autowired
     InvitationService invitationService;
+    @Autowired
+    CommentNotificationService CommentNotificationService;
+
     @GetMapping("request")
     public List<Member> request(@AuthenticationPrincipal MyUserDetails user) {
         return notificationService.getRequest(user.getId());
@@ -63,7 +68,15 @@ public class NotificationController {
     }
 
     @GetMapping("invite")
-    public List<InvitationNotification> invite(@AuthenticationPrincipal MyUserDetails user){
+    public List<InvitationNotification> invite(@AuthenticationPrincipal MyUserDetails user) {
         return invitationService.getInvite(user.getId());
+    }
+
+    @GetMapping("comment")
+    public List<CommentNotificationView> commentNotification(@AuthenticationPrincipal MyUserDetails user) {
+
+        List<CommentNotificationView> list = CommentNotificationService.getList(user.getId());
+
+        return list;
     }
 }
