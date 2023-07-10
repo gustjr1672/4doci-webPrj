@@ -99,7 +99,10 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
 
     @Override
     public void editRecords(PerformanceRecords performanceRecords) {
+        if (performanceRecords.getImpression().equals(""))
+            performanceRecords.setImpression(null);
 
+        System.out.println(performanceRecords.getImpression());
         recordsRepository.updateRecords(performanceRecords);
 
     }
