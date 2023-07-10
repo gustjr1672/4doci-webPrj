@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.doci.webPrj.user.repository.ChallengeViewRepository">
+
+    <!-- getPastList --> 
+
+    <select id="getPastList">
+    select * from
+    past_challenge_view
+    where member_id = #{id}
+    </select>
+    <!-- getOngoingList --> 
+
+    <select id="getOngoingList">
+    select * from
+    ongoing_challenge_view
+    where member_id = #{id}
+    </select>   
+</mapper>

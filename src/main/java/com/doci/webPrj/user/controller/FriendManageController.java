@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.doci.webPrj.config.MyUserDetails;
 import com.doci.webPrj.user.entity.Member;
+import com.doci.webPrj.user.entity.OngoingChallengeView;
+import com.doci.webPrj.user.entity.PastChallengeView;
 import com.doci.webPrj.user.service.FriendManageService;
 import com.doci.webPrj.user.service.NotificationService;
 
@@ -52,5 +54,17 @@ public class FriendManageController {
         friendManageService.cancel(id, user.getId());
         notificationService.deleteRequestNotice(user.getId(), id);
         return "user/friendmanage/main";
+    }
+
+    @GetMapping("challenge")
+    public String challenge(@RequestParam(name = "id", required = false) int id,
+            Model model) {
+        Member friend = friendManageService.getFriendById(id);
+        List<OngoingChallengeView> ongoingList = friendManageService.getOngoingList(id);
+        List<PastChallengeView> pastList = friendManageService.getPastList(id);
+        model.addAttribute("friend", friend);
+        model.addAttribute("pastList", pastList);
+        model.addAttribute("ongoingList", ongoingList);
+        return "user/friendmanage/challenge-of-friend";
     }
 }

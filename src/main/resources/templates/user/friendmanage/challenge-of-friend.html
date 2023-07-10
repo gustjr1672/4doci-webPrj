@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>friend_challenge</title>
+    <script src="/js/challenge-of-friend.js" defer="defer"></script>
+    <script src="/js/header.js"></script>
+    <link rel="stylesheet" href="/css/challenge-of-friend.css" />
+    <link
+      href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <a href="javascript:history.go(-1)">
+        <img src="/image/header/whiteBack.png" alt="뒤로가기" />
+      </a>
+    </header>
+
+    <section class="friend-info">
+      <div class="profile">
+        <img class="friend-photo" th:src="${friend.profileImage}" alt="" />
+        <div>
+          <span th:text="${friend.name}">최재혁</span>
+          <span th:text="${friend.nickname}">멋을아는자</span>
+        </div>
+      </div>
+      <div class="challenge-num">
+        <div>
+          <span>20</span>
+          <span>총 도전횟수</span>
+        </div>
+        <div>
+          <span>12</span>
+          <span>성공횟수</span>
+        </div>
+      </div>
+    </section>
+    <section class="btns" id="btns">
+      <button class="ongoing-btn active" onclick="toggleContent('ongoing')">진행중인 도전</button>
+      <button class="past-btn" onclick="toggleContent('past')">지난 도전</button>
+    </section>
+    <section id="ongoing-content" class="content">
+      <div class="ongoing-challenge">
+        <section class="challenge" th:each="challenge:${ongoingList}">
+          <div class="challenge-header">
+            <div class="period">
+              <span th:text="${#temporals.format(challenge.startDate, 'yy.MM.dd')}">23.06.05</span>
+              <span>~</span>
+              <span th:text="${#temporals.format(challenge.endDate, 'yy.MM.dd')}">23.07.05</span>
+            </div>
+            <button type="submit" name="24" id="24">
+              <img class="btn" src="/image/challenge-of-friend/btn.png" alt="" />
+              <span>도전하기</span>
+            </button>
+          </div>
+          <span th:text="${challenge.name}" class="title">영어 문장 3개씩 외우기</span>
+        </section>
+      </div>
+    </section>
+    <section id="past-content" class="content hidden">
+      <div class="past-challenge">
+        <section class="challenge" th:each="challenge:${pastList}">
+          <div class="challenge-header past">
+            <div class="period">
+              <span th:text="${#temporals.format(challenge.startDate, 'yy.MM.dd')}">23.06.05</span>
+              <span>~</span>
+              <span th:text="${#temporals.format(challenge.endDate, 'yy.MM.dd')}">23.07.05</span>
+            </div>
+            <button>
+              <img class="btn" src="/image/challenge-of-friend/btn.png" alt="" />
+              <span>도전하기</span>
+            </button>
+          </div>
+          <div class="past-title">
+            <span th:text="${challenge.name}" class="title">영어 문장 3개씩 외우기</span>
+          </div>
+          <div class="challenge-footer">
+            <span th:text="${challenge.result}" class="fail result">실패</span>
+            <div>
+              <span>성공률 : </span>
+              <span th:text="${challenge.successRate}+'%'">56%</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </body>
+</html>
