@@ -28,4 +28,6 @@ public interface GroupChallengeRepository {
 
     List<GroupChallenge> getTodayStartList(LocalDate currentDate);
 
+    int getGroupChallengeIdByGsId(int groupStartId);
+
 }
