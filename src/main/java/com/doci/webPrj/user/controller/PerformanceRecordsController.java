@@ -45,8 +45,9 @@ public class PerformanceRecordsController {
 
     @GetMapping("performance-waiting")
     public String performanceWaiting(Model model, @RequestParam(name="cid") String challengeId){
-        PerformanceRecords performanceRecords = performanceRecordsService.getCurrentRecord(challengeId);
-        model.addAttribute("performanceRecord", performanceRecords);
+        AllChallenges challenge = allChallengesService.getChallenge(challengeId);
+        model.addAttribute("challenge", challenge);
+        System.out.println("challenge = " + challenge);
 
         return "user/performance-waiting";
     }
