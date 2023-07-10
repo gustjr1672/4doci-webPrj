@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Comment {
     int id;
-    Timestamp reg_date;
+    Timestamp regDate;
     String content;
-    int member_id;
-    int performance_records_id;
+    int memberId;
+    int performanceRecordsId;
 }

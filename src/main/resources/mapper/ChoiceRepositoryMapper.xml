@@ -10,11 +10,17 @@
             (member_id,
             random_challenge_id,
             start_date,
+            <if test='c.visibility == true'>
+             visibility,
+            </if>
             end_date)
         VALUES
             (#{c.memberId},
             #{c.randomChallengeId},
             #{c.startDate},
+            <if test='c.visibility == true'>
+            '0',
+            </if>
             #{c.endDate})
     </insert>
 
@@ -23,4 +29,11 @@
         where id=#{id}
     </delete>
 
+    <!-- update --> 
+
+    <update id="update">
+        UPDATE choice
+        SET is_finish = 1
+        WHERE id = #{id};
+    </update>
 </mapper>

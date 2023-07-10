@@ -8,4 +8,6 @@ public interface GroupStartRepository {
 
     void save(@Param("memberId") int userId, @Param("challengeId") int challengeId);
 
+    int getGroupChallengeId(int groupStartId);
+
 }

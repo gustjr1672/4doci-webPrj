@@ -25,7 +25,7 @@
         <p class="h2">도전 종류를 선택해주세요</p>
       </h1>
     </div>
-    <div>
+    <div class="challenge-list-wrap">
       <form class="challenge-list" method="post" th:action="@{/challenge/start/choice/type/submit}">
         <div class="challenge-option">
           <input value="individual" id="personal" name="challenge" type="radio" />
@@ -58,7 +58,7 @@
           </label>
         </div>
         <div class="challenge-option">
-          <input value="set" id="set" name="challenge" type="radio" />
+          <input readonly value="set" id="set" name="challenge" type="radio" />
           <label for="set">
             <div class="explain-wrap">
               <div><span>도전세트</span><span class="explain">으로</span></div>

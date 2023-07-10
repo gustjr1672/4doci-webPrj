@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 import com.doci.webPrj.admin.entity.Category;
 import com.doci.webPrj.admin.entity.Unit;
 import com.doci.webPrj.admin.service.CategoryService;
@@ -30,7 +29,6 @@ public class FreechallengeController {
     @Autowired
     FreeChallengeService freeChallengeService;
 
-
     @GetMapping("form")
     public String resister(Model model) {
         List<Category> categoryList = categoryService.findAll();
@@ -43,13 +41,9 @@ public class FreechallengeController {
     @PostMapping("challenge/reg")
     public String challengeReg(FreeChallenge freeChallenge,
             @AuthenticationPrincipal MyUserDetails user) {
-
         freeChallenge.setMemberId(user.getId());
         freeChallengeService.addChallenge(freeChallenge);
         return "redirect:/main";
     }
 
-    
-
-    
 }

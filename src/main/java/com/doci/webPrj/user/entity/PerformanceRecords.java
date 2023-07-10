@@ -13,7 +13,7 @@ public class PerformanceRecords {
     private String image;
     private String impression;
     private int achvQuantity;
-    private boolean result;
+    private String result;
     private Timestamp regDate;
     private Integer freeChallengeId;
     private Integer choiceId;

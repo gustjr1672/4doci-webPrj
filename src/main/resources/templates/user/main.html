@@ -16,6 +16,7 @@
     <script src="/js/notification.js" defer="defer"></script>
     <script src="/js/progress-bar.js" defer="defer"></script>
     <script src="/js/main-filter.js" defer="defer"></script>
+
 </head>
 
 <body>
@@ -54,15 +55,21 @@
 <section class="chal-list">
     <div class="chal-header">
         <span>나의 도전</span>
-        <select id="filter" onchange="applyFilter()">
-            <option value="on-going">진행 중</option>
-            <option value="waiting">대기 중</option>
-        </select>
+        <section class="filter">
+            <div class="options">
+                <button class="on-going active">진행중</button>
+                <button class="waiting">대기중</button>
+            </div>
+        </section>
+<!--        <select id="filter" onchange="applyFilter()">-->
+<!--            <option value="on-going">진행 중</option>-->
+<!--            <option value="waiting">대기 중</option>-->
+<!--        </select>-->
     </div>
 
     <div class="chal-section" th:data-user-id="${user.id}">
-        <div class="btn-wrap" th:each="all:${allChallengesList}" th:if="${currentDate}>=${all.startDate}">
-            <button class="chal-btn" th:data-unique-id="${all.uniqueId}">
+        <div class="btn-wrap" th:each="all:${allChallengesList}" th:if="${all.performanceRecordsId}!=null">
+            <button class="chal-btn" th:data-unique-id="${all.uniqueId}" data-challenge-state="진행중">
                 <span class="chal-title" th:text="${all.name}">하루에 30분이상 운동하고 치킨먹고 자기</span>
                 <div class="prog-wrap">
                     <div>

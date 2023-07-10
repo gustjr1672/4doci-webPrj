@@ -51,4 +51,14 @@
         </set>
         WHERE id = #{challengeId}
     </update>
+
+    <!-- update --> 
+
+    <update id="update">
+        UPDATE group_challenge
+        SET is_finish = 1
+        WHERE id = #{id};
+    </update>
+    
+
 </mapper>

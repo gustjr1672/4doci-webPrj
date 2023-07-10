@@ -13,5 +13,7 @@ public class AllChallenges {
     LocalDate startDate;
     LocalDate endDate;
     int goalQuantity;
+    int authFrequency;
     int achvQuantity;
+    Integer performanceRecordsId;
 }

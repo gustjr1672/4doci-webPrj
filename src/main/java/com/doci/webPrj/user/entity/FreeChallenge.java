@@ -16,7 +16,7 @@ public class FreeChallenge {
     int goalQuantity;
     int unitId;
     String result;
-    boolean isVisibility;
+    boolean visibility;
     int memberId;
     int categoryId;
 }

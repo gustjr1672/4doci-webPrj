@@ -1,32 +1,34 @@
-const currentDate = new Date();
+const onGoingChallengeBtn = document.querySelector(".on-going");
+const waitingChallengeBtn = document.querySelector(".waiting");
+onGoingChallengeBtn.addEventListener('click', () => {
+    waitingChallengeBtn.classList.remove("active");
+    onGoingChallengeBtn.classList.add("active");
+    bringOngoingChallenge();
+});
 
-function applyFilter() {
-    let selectedValue = filter.value;
+waitingChallengeBtn.addEventListener('click', () => {
+    onGoingChallengeBtn.classList.remove("active");
+    waitingChallengeBtn.classList.add("active");
+    bringWaitingChallenge();
+});
 
-    myChallengeList(selectedValue);
-}
 
-
-function myChallengeList(selectedValue) {
+function bringOngoingChallenge() {
     let chalListSection = document.querySelector(".chal-list");
     let chalList = chalListSection.querySelector(".chal-section");
     let userId = chalList.dataset.userId;
+    fetch(`/api/all-challenges/${userId}`,)
+        .then(response => response.json())
+        .then(allChallengelist => {
+            chalList.innerHTML = " ";
 
+            for (let challenge of allChallengelist) {
 
-    if (selectedValue === 'on-going') {
-        fetch(`/api/all-challenges/${userId}`,)
-            .then(response => response.json())
-            .then(list => {
-                chalList.innerHTML = " ";
+                if (challenge.performanceRecordsId != null) {
 
-                for (let challenge of list) {
-                    let chalStartDate = new Date(challenge.startDate);
-
-                    if (currentDate >= chalStartDate) {
-
-                        let chalTemplate =
-                            `<div class="btn-wrap" >
-                            <button class="chal-btn" data-unique-id="${challenge.uniqueId}">
+                    let chalTemplate =
+                        `<div class="btn-wrap" >
+                            <button class="chal-btn" data-unique-id="${challenge.uniqueId}" data-challenge-state="진행중">
                             <span class="chal-title" >${challenge.name}</span>
                             <div class="prog-wrap">
                               <div>
@@ -48,33 +50,36 @@ function myChallengeList(selectedValue) {
                                   data-challenge-id="${challenge.uniqueId}">+</button>
                         <div>`
 
-                        chalList.insertAdjacentHTML("beforeend", chalTemplate);
-                    }
-                    progBar();
+                    chalList.insertAdjacentHTML("beforeend", chalTemplate);
                 }
-            });
-    } else if (selectedValue === 'waiting') {
-        fetch(`/api/all-challenges/${userId}`,)
-            .then(response => response.json())
-            .then(list => {
-                chalList.innerHTML = " ";
-                for (let challenge of list) {
-                    let chalStartDate = new Date(challenge.startDate);
+                progBar();
+            }
+        });
+}
 
-                    if (currentDate <= chalStartDate) {
-                        let chalTemplate = `                
+function bringWaitingChallenge() {
+    let chalListSection = document.querySelector(".chal-list");
+    let chalList = chalListSection.querySelector(".chal-section");
+    let userId = chalList.dataset.userId;
+    fetch(`/api/all-challenges/${userId}`,)
+        .then(response => response.json())
+        .then(list => {
+            chalList.innerHTML = " ";
+            for (let challenge of list) {
+
+                if (challenge.performanceRecordsId == null) {
+                    let chalTemplate = `
                         <div class="btn-wrap">
-                            <button class="chal-btn" data-unique-id="${challenge.uniqueId}">
+                            <button class="chal-btn" data-unique-id="${challenge.uniqueId}" data-challenge-state="대기중">
                             <span class="chal-title">${challenge.name} </span>
                     </button>
                         <div class="chal-wait">도전<br>대기중</div>
                     </div>`
 
-                        chalList.insertAdjacentHTML("beforeend", chalTemplate);
-                    }
+                    chalList.insertAdjacentHTML("beforeend", chalTemplate);
                 }
-            })
-    }
+            }
+        })
 }
 
 function progBar() {

@@ -43,4 +43,13 @@ public class PerformanceRecordsController {
         return "redirect:/main";
     }
 
+    @GetMapping("performance-waiting")
+    public String performanceWaiting(Model model, @RequestParam(name="cid") String challengeId){
+        AllChallenges challenge = allChallengesService.getChallenge(challengeId);
+        model.addAttribute("challenge", challenge);
+        System.out.println("challenge = " + challenge);
+
+        return "user/performance-waiting";
+    }
+
 }

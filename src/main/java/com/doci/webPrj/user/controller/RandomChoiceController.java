@@ -50,6 +50,7 @@ public class RandomChoiceController {
     public String randomChallengeReg(Choice choice,
             @AuthenticationPrincipal MyUserDetails user) {
         choice.setMemberId(user.getId());
+        System.out.println(choice);
         randomChoiceService.addRandomChallenge(choice);
         return "redirect:/main";
 

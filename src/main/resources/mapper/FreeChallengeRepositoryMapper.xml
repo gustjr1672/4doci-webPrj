@@ -16,6 +16,10 @@
         auth_frequency,
         goal_quantity,
         unit_id,
+        <if test='f.visibility == true'>
+        visibility,
+        </if>
+        
         member_id,
         category_id) 
         values
@@ -26,6 +30,9 @@
         #{f.authFrequency},
         #{f.goalQuantity},
         #{f.unitId},
+        <if test='f.visibility == true'>
+        '0',
+        </if>
         #{f.memberId},
         #{f.categoryId});
     </insert>
@@ -34,5 +41,12 @@
         delete from free_challenge
         where id=#{id}
     </delete>
-    
+
+    <!-- update --> 
+
+    <update id="update">
+        UPDATE free_challenge
+        SET is_finish = 1
+        WHERE id = #{id};
+    </update>    
 </mapper>

@@ -8,7 +8,7 @@
         select *
         from all_challenges
         where member_id = #{id}
-        order by start_date DESC
+        order by performance_records_id DESC
     </select>
 
     <select id="findChallenge" resultType="com.doci.webPrj.user.entity.AllChallenges">

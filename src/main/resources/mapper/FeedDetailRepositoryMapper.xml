@@ -7,18 +7,24 @@
         <!-- findGroupById --> 
         <select id="findGroupById" resultType="com.doci.webPrj.user.entity.GroupFeed">
                 select * from
-                group_feed where group_start_id = #{gsId}
+                group_feed where group_start_id = #{gsId} 
+                and result = '성공'
+                and (impression is not null or image is not null)
         </select>
         <!-- findRandomById --> 
 
         <select id="findRandomById" resultType="com.doci.webPrj.user.entity.RandomFeed">
                 select * from
                 random_feed where choice_id = #{chId}
+                and result = '성공'
+                and (impression is not null or image is not null)
         </select>
         <!-- findFreeById --> 
 
         <select id="findFreeById" resultType="com.doci.webPrj.user.entity.FreeFeed">
                 select * from
                 free_feed where free_challenge_id = #{fcId}
+                and result = '성공'
+                and (impression is not null or image is not null)
         </select>        
 </mapper>

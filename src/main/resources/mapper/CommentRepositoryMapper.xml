@@ -4,15 +4,33 @@
 
 <mapper namespace="com.doci.webPrj.user.repository.CommentRepository">
 
-    <!-- findFeedList --> 
-
-
-    <!-- findByChallengeId --> 
-
-    <select id="findByRecordId">
-        select * from comment
+    <select id="findViewByRecordId">
+        select * from comment_view
         where performance_records_id = #{recordId}
         order by reg_date
-
     </select>
+
+    <insert id="insert">
+        insert into comment
+        (content, member_id, performance_records_id)
+        values
+        (#{comment.content}, #{comment.memberId}, #{comment.performanceRecordsId})
+    </insert>
+
+    <delete id="delete">
+        delete from comment
+        where id=#{commentId}
+    </delete>
+
+    <select id="findById">
+        select * from comment
+        where id=#{commentId}
+    </select>
+
+    <update id="edit">
+        update comment
+        set 
+        content=#{comment.content}
+        where id=#{comment.id}
+    </update>
 </mapper>
