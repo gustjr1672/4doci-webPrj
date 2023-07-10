@@ -41,7 +41,14 @@
     </select>
 
     <update id="updateDate">
-        update group_challenge set start_date = #{currentDate}, start_time = #{currentHour}
-        where id = #{challengeId}
+        UPDATE group_challenge
+        <set>
+            start_date = #{newStartDate},
+            start_time = #{newHour},
+            <if test="newEndDate != null">
+            end_date = #{newEndDate},
+            </if>
+        </set>
+        WHERE id = #{challengeId}
     </update>
 </mapper>

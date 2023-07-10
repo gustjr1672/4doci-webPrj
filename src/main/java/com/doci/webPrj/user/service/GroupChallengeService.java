@@ -1,6 +1,7 @@
 package com.doci.webPrj.user.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.doci.webPrj.user.entity.GroupChallenge;
 import com.doci.webPrj.user.entity.InvitationMember;
@@ -22,4 +23,6 @@ public interface GroupChallengeService {
     void groupStart(int userId,int challengeId);
 
     void groupStartNow(int challengeId);
+
+    void updateDate(Map<String, String> requestData);
 }

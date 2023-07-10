@@ -1,9 +1,6 @@
 const modal = document.querySelector("#modal");
-const buttons = document.querySelector("#buttons");
 const closeBtn = modal.querySelector(".btns button:nth-child(2)");
-const checkBoxes = modal.querySelectorAll(".content input");
 const friendsSection = document.querySelector(".profile-wrap");
-let profiles = document.querySelectorAll(".profile");
 const friendModalSection = document.querySelector(".friends-list");
 const submitBtn = document.querySelector(".submit-btn");
 const cancelModal = document.getElementById("cancel-modal");
@@ -36,7 +33,6 @@ friendModalSection.addEventListener("change", function (e) {
 
 //초대 더보내기 보냈을 때 친구 데이터 추가
 submitBtn.addEventListener("click", function (e) {
-    console.log("실행됨");
     (async () => {
         modal.classList.add("hidden");
         let formdata = new FormData();
@@ -51,7 +47,6 @@ submitBtn.addEventListener("click", function (e) {
             await reprintFreindSection();
     })();
 })
-
 
 
 friendsSection.addEventListener("click", function (e) {
@@ -109,10 +104,8 @@ friendModifyBtn.onclick = function (e) {
 async function reprintFreindSection() {
     let getResponse = await fetch(`/api/groupchallenge/${challengeId}`);
     let data = await getResponse.json();
-    console.log(data);
     const friendList = data.newFriendList;
     const notInviList = data.notInviList;
-    console.log("친구목록", friendList);
     friendsSection.innerHTML = "";
     friendsSection.insertAdjacentHTML("beforeend",
         `<div class="add-friend">
@@ -161,38 +154,128 @@ async function reprintFreindSection() {
     }
 }
 
+//도전기간 수정 모달
+let dateSection = document.querySelector(".period")
+//let dateModifyBtn = document.querySelector(".modify-date");
+const dateModal = document.getElementById("date-modal-container");
+let modalCloseBtn = document.querySelector(".modal-close");
 
-let dateModifyBtn = document.querySelector(".modify-date");
-
-dateModifyBtn.onclick = function (e) {
-    let profiles = document.querySelectorAll(".profile");
-
-    if (friendModifyBtn.textContent === "수정") {
-        friendModifyBtn.textContent = "수정취소";
-        profiles.forEach((profile) => {
-            let deleteBtn = profile.querySelector(".delete-btn");
-            deleteBtn.classList.remove("hidden");
-            deleteBtn.classList.add("shake-animation");
-
-            setTimeout(() => {
-                deleteBtn.classList.remove("shake-animation");
-            }, 2000);
-        })
+dateSection.addEventListener("click",function(e){
+    if(e.target.classList.contains("modify-date")){
+    dateModal.classList.add("modal-show");
     }
-    else {
-        friendModifyBtn.textContent = "수정";
-
-        profiles.forEach((profile) => {
-            let deleteBtn = profile.querySelector(".delete-btn");
-            deleteBtn.classList.add("hidden");
-        });
-    }
+})
+// dateModifyBtn.onclick = function (e) {
+//     dateModal.classList.add("modal-show");
+// }
+modalCloseBtn.onclick = function (e) {
+    dateModal.classList.remove("modal-show");
 }
 
+//도전기간 수정완료시 db에 저장
+let dateBtn = document.querySelector(".date-finish-btn");
+let startAmPmSelect = document.getElementById('new_start_time');
+let alertChangeModal = document.getElementById("alert-change-modal");
+dateBtn.onclick = function (e) {
+    let startDate = document.getElementById('start_inside').value;
+    let endDate = document.getElementById('end_inside').value;
+    let startTime = document.getElementById('new_start_hour').value;
+    const data = {
+        startDate: startDate,
+        startTime: startTime,
+        endDate: endDate,
+        challengeId: challengeId
+    };
+    fetch('/api/groupchallenge/date', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    
+    }).then(response => response.json())
+    .then(challenge=>{
+            //변경완료 모달띄우고
+            alertChangeModal.classList.remove("hidden");
+            dateModal.classList.remove("modal-show");
+            setTimeout(function () {
+                alertChangeModal.classList.add("hidden");
+            }, 3000);
+
+            //도전기간 재출력
+           
+            dateSection.innerHTML="";
+            let newDateTemplate = `
+                <div class="modify">
+                    <p>도전 기간</p>
+                    <button class="modify-date">수정</button>
+                </div>
+                <div class="start-set">
+                    <p>시작일</p>
+                    <div>
+                        <span id="startDate">${challenge.startDate}</span>
+                        <span id="startTime">${challenge.startTime}시</span>
+                    </div>
+                </div>
+                <div class="end-set">
+                    <p>종료일</p>
+                    <div>
+                    <span>${challenge.endDate}</span>
+                    </div>
+                </div>
+            `
+         dateSection.insertAdjacentHTML("beforeend",newDateTemplate);
+        })
+}
+
+// ampm 변경시 value 값 변경 js
+startAmPmSelect.addEventListener('change', function () {
+    let startHourSelect = document.getElementById('new_start_hour');
+    let options = startHourSelect.options;
+    if (startAmPmSelect.value === 'pm') {
+        // 나머지 select 요소들의 값을 +12로 변경
 
 
+        for (let i = 0; i < options.length; i++) {
+            let value = parseInt(options[i].value);
+            options[i].value = (value + 12).toString();
+        }
+    }
+    else {
+        // am 선택 시 원래 value 값 유지
+        for (let i = 0; i < options.length; i++) {
+            let value = parseInt(options[i].value);
+            if (value > 12) {
+                options[i].value = (value - 12).toString();
+            }
+        }
+    }
+})
+
+let startDate = document.querySelector("#start_inside");
+let endDate = document.querySelector("#end_inside");
+let alert = document.querySelector(".alert");
+
+let today = new Date().toISOString().split("T")[0];
+
+startDate.setAttribute("min", today);
+endDate.setAttribute("min", today);
+
+startDate.addEventListener("change", () => {
+  endDate.value = null;
+});
+
+endDate.addEventListener("change", () => {
+  if (startDate.value >= endDate.value) {
+    alert.classList.remove("hidden");
+    endDate.value = null;
+  } else {
+    alert.classList.add("hidden");
+  }
+});
 
 
+// 바로시작하기 버튼 모달뜨고 시작일 업데이트
 let startBtn = document.getElementById("start-btn");
 let startModal = document.getElementById("start-modal");
 let alertErrorModal = document.getElementById("alert-error-modal");
@@ -203,7 +286,6 @@ startBtn.onclick = function () {
     startModal.classList.remove("hidden");
 }
 
-// 바로시작하기 버튼 모달뜨고 시작일 업데이트
 startModal.addEventListener("click", function (e) {
     if (e.target.classList.contains("closeBtn"))
         startModal.classList.add("hidden");
@@ -214,19 +296,18 @@ startModal.addEventListener("click", function (e) {
             if (isAccept === '수락')
                 acceptedCount++;
         });
-        console.log(acceptedCount);
         //수락한 친구가 2명이상일때만 시작
         if (acceptedCount >= 1) {
             startModal.classList.add("hidden");
-                fetch(`/api/groupchallenge/${challengeId}`,{
-                    method:'PUT'
-                }).then(response=>{
-                if(response.ok){
+            fetch(`/api/groupchallenge/${challengeId}`, {
+                method: 'PUT'
+            }).then(response => {
+                if (response.ok) {
                     alertStartModal.classList.remove("hidden");
                     setTimeout(function () {
                         window.location.href = "/main";
-                      }, 3000);
-                } 
+                    }, 3000);
+                }
             })
         }
         else { //아무도 초대를 수락하지 않을경우 시작안함
@@ -234,7 +315,7 @@ startModal.addEventListener("click", function (e) {
             alertErrorModal.classList.remove("hidden")
             setTimeout(function () {
                 alertErrorModal.classList.add("hidden")
-                }, 3000);
+            }, 3000);
 
         }
     }

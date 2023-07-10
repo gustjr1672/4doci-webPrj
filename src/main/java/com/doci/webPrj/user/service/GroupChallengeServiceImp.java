@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,6 +82,15 @@ public class GroupChallengeServiceImp implements GroupChallengeService {
 
         System.out.println(currentDateTime);
         System.out.println(currentHour);
-        groupChallengeRepository.updateDate(challengeId,formattedDate,currentHour);
+        groupChallengeRepository.updateDate(challengeId,formattedDate,currentHour,null);
+    }
+
+    @Override
+    public void updateDate(Map<String, String> requestData) {
+        String startDate = requestData.get("startDate");
+        int startTime =  Integer.parseInt(requestData.get("startTime"));
+        String endDate = requestData.get("endDate");
+        int challengeId = Integer.parseInt(requestData.get("challengeId"));
+        groupChallengeRepository.updateDate(challengeId,startDate,startTime,endDate);
     }
 }

@@ -19,6 +19,6 @@ public interface GroupChallengeRepository {
 
     GroupChallenge findById(int challengeId);
 
-    void updateDate(@Param("challengeId")int challengeId,@Param("currentDate") String currentDate,
-                    @Param("currentHour") int currentHour);
+    void updateDate(@Param("challengeId")int challengeId,@Param("newStartDate") String newStartDate,
+                    @Param("newHour") int newHour,@Param("newEndDate") String newEndDate);
 }
