@@ -25,4 +25,6 @@ public interface GroupChallengeService {
     void groupStartNow(int challengeId);
 
     void updateDate(Map<String, String> requestData);
+
+    int getGroupChallengeIdByGsId(int groupStartId);
 }

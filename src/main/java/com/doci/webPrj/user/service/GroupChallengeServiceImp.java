@@ -93,4 +93,9 @@ public class GroupChallengeServiceImp implements GroupChallengeService {
         int challengeId = Integer.parseInt(requestData.get("challengeId"));
         groupChallengeRepository.updateDate(challengeId,startDate,startTime,endDate);
     }
+
+    @Override
+    public int getGroupChallengeIdByGsId(int groupStartId) {
+        return groupChallengeRepository.getGroupChallengeIdByGsId(groupStartId);
+    }
 }

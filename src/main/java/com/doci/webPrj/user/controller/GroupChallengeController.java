@@ -87,23 +87,32 @@ public class GroupChallengeController {
 }
     @GetMapping("standby-screen")
     public String standbyScreen(HttpSession session,Model model,
-                                @AuthenticationPrincipal MyUserDetails user){
-                               
-        GroupChallenge challenge = (GroupChallenge) session.getAttribute("groupChallenge");
-     
-        int challengeId = challenge.getId();
-        int userId = challenge.getGroupLeaderId();
+                                @AuthenticationPrincipal MyUserDetails user,
+                                @RequestParam(name = "cid",required = false) Integer groupStartId){
+        GroupChallenge challenge = null;
+        int challengeId = 0;
 
-        List<InvitationMember> inviList = groupChallengeService.getInviList(challengeId);
-        model.addAttribute("challenge", challenge);
-        model.addAttribute("inviList", inviList);
+        if (groupStartId != null) {
+            challengeId = groupChallengeService.getGroupChallengeIdByGsId(groupStartId);
+            challenge = groupChallengeService.getChallenge(challengeId);
+        }
+        else {
+            challenge = (GroupChallenge) session.getAttribute("groupChallenge");
+            challengeId = challenge.getId();
 
-         if(userId == user.getId()){ // 방장의 standby 화면으로 가는 코드
-            List<Member> friendList = friendManageService.getFriendList(userId); //방장의 친구목록
-            List<Member> notInviList = groupChallengeService.getNotInviList(challengeId,friendList); //방장의 친구중 초대받지 않은목록
-            model.addAttribute("notInviList", notInviList);
-            return "user/startchallenge/groupchallenge/standby-screen";
-         }
+        }
+            int userId = challenge.getGroupLeaderId();
+
+            List<InvitationMember> inviList = groupChallengeService.getInviList(challengeId);
+            model.addAttribute("challenge", challenge);
+            model.addAttribute("inviList", inviList);
+
+             if(userId == user.getId()){ // 방장의 standby 화면으로 가는 코드
+                List<Member> friendList = friendManageService.getFriendList(userId); //방장의 친구목록
+                List<Member> notInviList = groupChallengeService.getNotInviList(challengeId,friendList); //방장의 친구중 초대받지 않은목록
+                model.addAttribute("notInviList", notInviList);
+                return "user/startchallenge/groupchallenge/standby-screen";
+             }
          return "user/startchallenge/groupchallenge/standby-screen-member";
     }
 
