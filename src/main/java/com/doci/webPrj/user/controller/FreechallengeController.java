@@ -9,12 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.doci.webPrj.admin.entity.Category;
 import com.doci.webPrj.admin.entity.Unit;
 import com.doci.webPrj.admin.service.CategoryService;
 import com.doci.webPrj.admin.service.UnitService;
 import com.doci.webPrj.config.MyUserDetails;
+import com.doci.webPrj.user.entity.ChallengeFormView;
 import com.doci.webPrj.user.entity.FreeChallenge;
 import com.doci.webPrj.user.service.FreeChallengeService;
 
@@ -36,6 +38,17 @@ public class FreechallengeController {
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("unitList", unitList);
         return "user/startchallenge/freechallenge/form";
+    }
+
+    @GetMapping("friend/form")
+    public String friendForm(Model model, @RequestParam("uid") String uniqueId) {
+        List<Category> categoryList = categoryService.findAll();
+        List<Unit> unitList = unitService.findAll();
+        ChallengeFormView challenge = freeChallengeService.getFriendForm(uniqueId);
+        model.addAttribute("challenge", challenge);
+        model.addAttribute("categoryList", categoryList);
+        model.addAttribute("unitList", unitList);
+        return "user/startchallenge/freechallenge/friend-form";
     }
 
     @PostMapping("challenge/reg")

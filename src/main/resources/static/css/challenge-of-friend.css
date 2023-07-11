@@ -1,0 +1,222 @@
+* {
+  font-family: "SUIT", sans-serif !important;
+}
+body {
+  margin: 0;
+  background-image: linear-gradient(to bottom, #383d66 260px, #fff 260px);
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+header {
+  width: 100%;
+  display: flex;
+  max-width: 660px;
+  margin: 20px 12px;
+}
+header img {
+  padding-left: 12px;
+  width: 22px;
+}
+header > button {
+  background-color: white;
+  border: none;
+}
+.friend-info {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  max-width: 600px;
+  width: 100%;
+  margin: 32px auto;
+}
+.friend-photo {
+  width: 50px;
+  border-radius: 50px;
+}
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+  margin-left: 20px;
+}
+.profile div {
+  font-size: 12px;
+
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+.challenge-num {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+  margin-right: 20px;
+}
+.challenge-num div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  font-weight: bold;
+}
+.challenge-num div span {
+  font-size: 22px;
+}
+.challenge-num div :nth-child(2) {
+  font-size: 10px;
+  font-weight: 500;
+}
+.btns {
+  width: 80%;
+  max-width: 600px;
+  background-color: #383d66;
+  display: flex;
+  justify-content: center;
+  padding: 12px 0;
+}
+.btns button {
+  width: 50%;
+  background-color: #ffffff00;
+  font-weight: 400;
+  font-size: 12px;
+  height: 40px;
+  /* border-radius: 12px; */
+}
+.ongoing-btn.active {
+  border: none;
+  background-color: #ffffff00;
+  border-bottom: solid 1px;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.past-btn.active {
+  border: none;
+  background-color: #ffffff00;
+  border-bottom: solid 1px;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.past-btn {
+  border: none;
+  background-color: #fff;
+  border-bottom: solid 1px;
+  border-color: #b3b3b3;
+  color: #aaaaaa;
+  transition: border 0.3s, color 0.3s;
+}
+.ongoing-btn {
+  border: none;
+  background-color: #fff;
+  border-bottom: solid 1px;
+  border-color: #b3b3b3;
+  color: #aaaaaa;
+  transition: border 0.3s, color 0.3s;
+}
+.ongoing-challenge,
+.past-challenge {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.content {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  width: 100%;
+}
+.challenge-header {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.past {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.past-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.fail {
+  font-weight: 500;
+  color: red;
+}
+.success {
+  font-weight: 500;
+  color: #1128f3;
+}
+.challenge-header div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 400;
+}
+.title {
+  font-weight: 600;
+  font-size: 14px;
+}
+.challenge-header button {
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 0;
+  outline: 0;
+  background-color: #ffffff;
+}
+.challenge {
+  font-weight: 500;
+  margin: 12px;
+  padding-top: 12px;
+  width: 80%;
+  max-width: 540px;
+  height: 106px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  border: solid 1px #adadad;
+  border-radius: 12px;
+  gap: 24px;
+}
+.challenge-footer {
+  color: #aaaaaa;
+  font-size: 10px;
+  width: 90%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 8px;
+}
+.hidden {
+  display: none;
+}
+
+.btn {
+  width: 14px;
+}
+.result {
+  font-size: 10px;
+}
