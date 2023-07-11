@@ -19,4 +19,9 @@
     ongoing_challenge_view
     where member_id = #{id}
     </select>   
+    <select id="getChallengeFormById">
+    select * from
+    challenge_form_view
+    where unique_id = #{uniqueId}
+    </select>
 </mapper>

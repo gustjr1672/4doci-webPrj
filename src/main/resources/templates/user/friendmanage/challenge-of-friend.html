@@ -7,6 +7,12 @@
     <title>friend_challenge</title>
     <script src="/js/challenge-of-friend.js" defer="defer"></script>
     <script src="/js/header.js"></script>
+    <script>
+      function redirectToFriendForm(uniqueId) {
+        var url = "/freeChallenge/friend/form?uid=" + uniqueId;
+        location.href = url;
+      }
+    </script>
     <link rel="stylesheet" href="/css/challenge-of-friend.css" />
     <link
       href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
@@ -52,7 +58,10 @@
               <span>~</span>
               <span th:text="${#temporals.format(challenge.endDate, 'yy.MM.dd')}">23.07.05</span>
             </div>
-            <button type="submit" name="24" id="24">
+            <button
+              th:attr="data-uid=${challenge.uniqueId}"
+              onclick="redirectToFriendForm(this.getAttribute('data-uid'))"
+            >
               <img class="btn" src="/image/challenge-of-friend/btn.png" alt="" />
               <span>도전하기</span>
             </button>
@@ -70,7 +79,10 @@
               <span>~</span>
               <span th:text="${#temporals.format(challenge.endDate, 'yy.MM.dd')}">23.07.05</span>
             </div>
-            <button>
+            <button
+              th:attr="data-uid=${challenge.uniqueId}"
+              onclick="redirectToFriendForm(this.getAttribute('data-uid'))"
+            >
               <img class="btn" src="/image/challenge-of-friend/btn.png" alt="" />
               <span>도전하기</span>
             </button>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.doci.webPrj.user.entity.ChallengeFormView;
 import com.doci.webPrj.user.entity.OngoingChallengeView;
 import com.doci.webPrj.user.entity.PastChallengeView;
 
@@ -13,5 +14,7 @@ public interface ChallengeViewRepository {
     List<OngoingChallengeView> getOngoingList(int id);
 
     List<PastChallengeView> getPastList(int id);
+
+    ChallengeFormView getChallengeFormById(String uniqueId);
 
 }

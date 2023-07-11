@@ -8,16 +8,21 @@ import com.doci.webPrj.user.repository.PerformanceRecordsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.doci.webPrj.user.entity.ChallengeFormView;
 import com.doci.webPrj.user.entity.FreeChallenge;
+import com.doci.webPrj.user.repository.ChallengeViewRepository;
 import com.doci.webPrj.user.repository.FreeChallengeRepository;
 
 @Service
 public class FreeChallengeServiceImp implements FreeChallengeService {
-    
+
     @Autowired
     FreeChallengeRepository freeChallengeRepository;
     @Autowired
     PerformanceRecordsRepository recordsRepository;
+    @Autowired
+    ChallengeViewRepository challengeViewRepository;
+
     @Override
     public void addChallenge(FreeChallenge freeChallenge) {
         LocalDate currentDate = LocalDate.now();
@@ -44,6 +49,10 @@ public class FreeChallengeServiceImp implements FreeChallengeService {
                 .build();
         recordsRepository.save(record);
     }
-    
+
+    @Override
+    public ChallengeFormView getFriendForm(String uniqueId) {
+        return challengeViewRepository.getChallengeFormById(uniqueId);
+    }
 
 }
