@@ -45,6 +45,8 @@ public class AllChallengesServiceImp implements AllChallengesService {
     @Override
     public void editVisibility(String uniqueId, boolean visibility) {
         int index = uniqueId.indexOf(UNDERBAR);
+
+        System.out.println(visibility);
         String challengeType = uniqueId.substring(0, index);
         int id = Integer.parseInt(uniqueId.substring(index + 1));
         switch (challengeType) {

@@ -16,4 +16,6 @@ public interface FreeChallengeRepository {
 
     void editVisibility(@Param("id") int id, @Param("visibility") boolean visibility);
 
+    boolean getVisibility(int id);
+
 }
