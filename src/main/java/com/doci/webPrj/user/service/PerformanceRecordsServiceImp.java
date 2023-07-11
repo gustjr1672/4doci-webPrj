@@ -164,4 +164,22 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
         return performanceRecords;
     }
 
+    @Override
+    public boolean getVisibility(String uniqueId) {
+        boolean visibility = true;
+        int index = uniqueId.indexOf(UNDERBAR);
+
+        String challengeType = uniqueId.substring(0, index);
+        int id = Integer.parseInt(uniqueId.substring(index + 1));
+        switch (challengeType) {
+            case FREECHALLENGE:
+                visibility = freeChallengeRepository.getVisibility(id);
+                break;
+            case CHOICE:
+                visibility = choiceRepository.getVisibility(id);
+                break;
+        }
+        return visibility;
+    }
+
 }

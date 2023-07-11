@@ -22,7 +22,7 @@
         <img class="back" src="/image/header/whiteBack.png" alt="back" />
       </a>
       <section>
-        <label class="switch">
+        <label id="challenge-visibility" th:data-visibility="${visibility}" class="switch">
           <input th:data-unique-id="${allChallenges.uniqueId}" type="checkbox">
           <span class="slider"></span>
         </label>

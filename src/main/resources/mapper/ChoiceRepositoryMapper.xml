@@ -36,4 +36,16 @@
         SET is_finish = 1
         WHERE id = #{id};
     </update>
+        <!-- editVisibility --> 
+
+    <update id="editVisibility">
+        update choice
+        set visibility = #{visibility}
+        where id = #{id}
+    </update>
+    <select id="getVisibility">
+    select visibility
+    from choice
+    where id = #{id}
+    </select>
 </mapper>

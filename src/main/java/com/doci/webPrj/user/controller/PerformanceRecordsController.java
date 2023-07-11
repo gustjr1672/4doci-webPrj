@@ -24,12 +24,14 @@ public class PerformanceRecordsController {
     public String PerformanceRecords(Model model,
             @RequestParam(name = "cid") String challengeId) {
 
+        boolean visibility = performanceRecordsService.getVisibility(challengeId);
         // 현재 수행기록
         PerformanceRecords performanceRecords = performanceRecordsService.getCurrentRecord(challengeId);
         model.addAttribute("perfomanceRecord", performanceRecords);
 
         // 도전정보
         AllChallenges allChallenges = allChallengesService.getChallenge(challengeId);
+        model.addAttribute("visibility", visibility);
         model.addAttribute("allChallenges", allChallenges);
 
         return "user/performance-records";
@@ -44,7 +46,7 @@ public class PerformanceRecordsController {
     }
 
     @GetMapping("performance-waiting")
-    public String performanceWaiting(Model model, @RequestParam(name="cid") String challengeId){
+    public String performanceWaiting(Model model, @RequestParam(name = "cid") String challengeId) {
         AllChallenges challenge = allChallengesService.getChallenge(challengeId);
         model.addAttribute("challenge", challenge);
 
