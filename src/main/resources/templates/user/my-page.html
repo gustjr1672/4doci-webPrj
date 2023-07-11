@@ -12,7 +12,6 @@
   <script src="/js/my-page.js" defer></script>
   <script src="/js/edit-nickname-modal.js" defer></script>
   <script src="/js/edit-password-modal.js" defer></script>
-  <script src="../../static/js/join-form.js"></script>
 </head>
 <body>
 <div class="header-wrap">
@@ -148,8 +147,8 @@
     <div class="input">
       <label for="pwd-check">새 비밀번호</label>
       <div class="input-form">
-        <input type="password" id="pwd-check" name="pwdcheck" required autocomplete="off"/>
-        <div id="pwd-check-error" class="error"></div>
+        <input type="password" id="new-pwd" name="pwdcheck" required autocomplete="off"/>
+        <div id="new-pwd-error" class="error"></div>
       </div>
     </div>
 
@@ -161,10 +160,18 @@
       </div>
     </div>
 
-    <div class="finish-btn">
-      <button disabled>완료</button>
+    <div class="finish-btn" >
+      <button id="password-finish-btn" disabled>완료</button>
     </div>
-
+<!--    =============변경 완료 모달============-->
+    <section class="complete-modal hidden">
+      <section class="modal-box">
+        <span>완료되었습니다.</span>
+        <div>
+          <button class="modal-close">닫기</button>
+        </div>
+      </section>
+    </section>
   </div>
 </div>
 
