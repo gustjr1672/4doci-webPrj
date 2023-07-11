@@ -13,7 +13,10 @@ header > button {
     background-color: white;
     border: none;
 }
-
+header img {
+    width: 22px;
+    height: 22px;
+}
 .h1 {
     display: flex;
     justify-content: center;
