@@ -123,4 +123,9 @@ public class GroupChallengeServiceImp implements GroupChallengeService {
         return groupChallengeRepository.getGroupChallengeIdByGsId(groupStartId);
     }
 
+    @Override
+    public void exit(int memberId, int challengeId) {
+       groupStartRepository.delete(memberId, challengeId);
+    }
+
 }
