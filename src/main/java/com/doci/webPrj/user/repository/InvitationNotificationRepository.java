@@ -13,4 +13,6 @@ public interface InvitationNotificationRepository {
     List<Integer> findList(int userId);
 
     void delete(@Param("userId") int userId, @Param("challengeId") int challengeId);
+
+    void deleteAll(int challengeId);
 }

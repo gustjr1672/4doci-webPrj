@@ -31,5 +31,11 @@
     <delete id="delete">
      DELETE FROM invitation
         WHERE to_member_id = #{userId} and group_challenge_id = #{challengeId}
-</delete>
+    </delete>
+
+    <delete id="deleteAll">
+    DELETE FROM invitation
+        WHERE group_challenge_id = #{challengeId};
+    </delete>
+
 </mapper>
