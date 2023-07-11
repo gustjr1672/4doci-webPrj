@@ -48,7 +48,7 @@ public class FreechallengeController {
         model.addAttribute("challenge", challenge);
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("unitList", unitList);
-        return "user/startchallenge/freechallenge/friend-form";
+        return "user/startchallenge/freechallenge/completed-form";
     }
 
     @PostMapping("challenge/reg")

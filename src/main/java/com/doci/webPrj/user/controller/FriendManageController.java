@@ -57,7 +57,7 @@ public class FriendManageController {
     }
 
     @GetMapping("challenge")
-    public String challenge(@RequestParam(name = "id", required = false) int id,
+    public String challengeOfFriend(@RequestParam(name = "id", required = false) int id,
             Model model) {
         Member friend = friendManageService.getFriendById(id);
         List<OngoingChallengeView> ongoingList = friendManageService.getOngoingList(id);
