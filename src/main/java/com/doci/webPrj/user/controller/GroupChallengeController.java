@@ -137,6 +137,7 @@ public class GroupChallengeController {
 
         if (action.equals("refuse")) {
             invitationService.requestRefuse(user.getId(), challengeId);
+            groupChallengeService.exit(user.getId(), challengeId);
             return "redirect:/main";
         }
         invitationService.requestAccept(user.getId(), challengeId);
