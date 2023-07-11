@@ -299,8 +299,9 @@ startModal.addEventListener("click", function (e) {
         //수락한 친구가 2명이상일때만 시작
         if (acceptedCount >= 1) {
             startModal.classList.add("hidden");
-            fetch(`/api/groupchallenge/${challengeId}`, {
-                method: 'PUT'
+
+            fetch(`/groupChallenge/start-now?id=${challengeId}`, {
+                method: 'POST'
             }).then(response => {
                 if (response.ok) {
                     alertStartModal.classList.remove("hidden");
@@ -309,6 +310,7 @@ startModal.addEventListener("click", function (e) {
                     }, 3000);
                 }
             })
+
         }
         else { //아무도 초대를 수락하지 않을경우 시작안함
             startModal.classList.add("hidden");

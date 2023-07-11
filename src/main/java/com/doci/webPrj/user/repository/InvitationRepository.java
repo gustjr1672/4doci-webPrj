@@ -14,4 +14,7 @@ public interface InvitationRepository {
                 @Param("isAccept") String isAccept);
                 
     void delete(@Param("userId") int userId, @Param("challengeId") int challengeId);
+
+    void deleteAll(int challengeId);
+
 }

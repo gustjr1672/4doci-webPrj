@@ -9,14 +9,20 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.standard.expression.Each;
 
 import com.doci.webPrj.user.entity.GroupChallenge;
+import com.doci.webPrj.user.entity.Invitation;
 import com.doci.webPrj.user.entity.InvitationMember;
 import com.doci.webPrj.user.entity.Member;
+import com.doci.webPrj.user.entity.PerformanceRecords;
 import com.doci.webPrj.user.repository.GroupChallengeRepository;
 import com.doci.webPrj.user.repository.GroupStartRepository;
 import com.doci.webPrj.user.repository.InvitationMemberViewRepository;
+import com.doci.webPrj.user.repository.InvitationNotificationRepository;
+import com.doci.webPrj.user.repository.InvitationRepository;
 import com.doci.webPrj.user.repository.MemberRepository;
+import com.doci.webPrj.user.repository.PerformanceRecordsRepository;
 
 @Service
 public class GroupChallengeServiceImp implements GroupChallengeService {
@@ -28,14 +34,20 @@ public class GroupChallengeServiceImp implements GroupChallengeService {
     InvitationMemberViewRepository inviMemViewRepository;
     @Autowired
     GroupStartRepository groupStartRepository;
+    @Autowired
+    InvitationRepository inviRepository;
+    @Autowired
+    InvitationNotificationRepository inviNotiRepository;
+    @Autowired
+    PerformanceRecordsRepository performanceRecordsRepository;
 
-     public void addChallenge(GroupChallenge groupChallenge,int userId) {
-         LocalDate startDate = groupChallenge.getStartDate();
-         LocalDate endDate = groupChallenge.getEndDate();
-         Period period = startDate.until(endDate);
-         
-         int days = period.getDays();
-         
+    public void addChallenge(GroupChallenge groupChallenge, int userId) {
+        LocalDate startDate = groupChallenge.getStartDate();
+        LocalDate endDate = groupChallenge.getEndDate();
+        Period period = startDate.until(endDate);
+
+        int days = period.getDays();
+
         groupChallenge.setGroupLeaderId(userId);
         groupChallenge.setPeriod(days);
         groupChallengeRepository.save(groupChallenge);
@@ -54,7 +66,7 @@ public class GroupChallengeServiceImp implements GroupChallengeService {
 
     @Override
     public Member getLeader(int userId) {
-       return memberRepository.findById(userId);
+        return memberRepository.findById(userId);
     }
 
     @Override
@@ -62,40 +74,53 @@ public class GroupChallengeServiceImp implements GroupChallengeService {
         return inviMemViewRepository.findByChallengeId(challengeId);
     }
 
-
     @Override
     public List<Member> getNotInviList(int challengeId, List<Member> friendList) {
-        return memberRepository.findListNotInvi(challengeId,friendList);
+        return memberRepository.findListNotInvi(challengeId, friendList);
     }
 
     @Override
-    public void groupStart(int userId,int challengeId){
+    public void groupStart(int userId, int challengeId) {
         groupStartRepository.save(userId, challengeId);
     }
 
     @Override
-    public void groupStartNow(int challengeId){
+    public void groupStartNow(int challengeId) {
         LocalDate currentDate = LocalDate.now();
         String formattedDate = currentDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDateTime currentDateTime = LocalDateTime.now();
         int currentHour = currentDateTime.getHour();
 
-        System.out.println(currentDateTime);
-        System.out.println(currentHour);
-        groupChallengeRepository.updateDate(challengeId,formattedDate,currentHour,null);
+        // 시작일 update
+        groupChallengeRepository.updateDate(challengeId, formattedDate, currentHour, null);
+
+        // 초대, 초대알림 삭제로직
+        inviRepository.deleteAll(challengeId);
+        inviNotiRepository.deleteAll(challengeId);
+
+        // 퍼포먼스레코드 추가
+        List<Integer> groupStartList = groupStartRepository.findList(challengeId);
+        for (int id : groupStartList) {
+            PerformanceRecords Records = PerformanceRecords.builder()
+                    .round(1)
+                    .groupStartId(id)
+                    .build();
+            performanceRecordsRepository.save(Records);
+        }
     }
 
     @Override
     public void updateDate(Map<String, String> requestData) {
         String startDate = requestData.get("startDate");
-        int startTime =  Integer.parseInt(requestData.get("startTime"));
+        int startTime = Integer.parseInt(requestData.get("startTime"));
         String endDate = requestData.get("endDate");
         int challengeId = Integer.parseInt(requestData.get("challengeId"));
-        groupChallengeRepository.updateDate(challengeId,startDate,startTime,endDate);
+        groupChallengeRepository.updateDate(challengeId, startDate, startTime, endDate);
     }
 
     @Override
     public int getGroupChallengeIdByGsId(int groupStartId) {
         return groupChallengeRepository.getGroupChallengeIdByGsId(groupStartId);
     }
+
 }

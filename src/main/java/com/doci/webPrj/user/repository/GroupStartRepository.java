@@ -1,5 +1,7 @@
 package com.doci.webPrj.user.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,4 +12,5 @@ public interface GroupStartRepository {
 
     int getGroupChallengeId(int groupStartId);
 
+    List<Integer> findList(int challengeId);
 }
