@@ -85,14 +85,13 @@ function commentNotificationLoad(url) {
   fetch(url)
     .then(response => response.json())
     .then(commentNotiList => {
-      console.log(commentNotiList);
       notification.innerHTML = "";
 
       for (let commentNoti of commentNotiList) {
-      
+        ///community/feed로 url 요청 -> get매핑. 쿼리스트링으로 수행기록 id 인자 전달하기
         let commuNotiTemplate = `
         <section id="community-content" class="contents">
-          <button class="content" onclick="location.href = 'comments.html' ">
+          <button class="content" onclick="location.href = '/community/feed?recordId=${commentNoti.performanceRecordsId}' ">
             <div class="info">
               <img src=${commentNoti.profileImage} alt="프로필이미지" />
               <div>

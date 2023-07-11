@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.doci.webPrj.user.entity.CommentNotificationView;
-import com.doci.webPrj.user.entity.CommentView;
 import com.doci.webPrj.user.repository.CommentNotificationRepository;
 
 @Service

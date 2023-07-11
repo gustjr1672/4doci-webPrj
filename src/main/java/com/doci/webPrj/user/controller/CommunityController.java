@@ -30,12 +30,18 @@ public class CommunityController {
     @GetMapping("feed")
     public String feed(
             Model model,
-            @AuthenticationPrincipal MyUserDetails user) {
+            @AuthenticationPrincipal MyUserDetails user,
+            @RequestParam(name = "recordId", required = false) Integer recordIdOfNewComment) {
         List<Member> friendList = friendManageService.getFriendList(user.getId());
         List<Feed> feedList = feedService.getFeedList(friendList, user.getId());
         model.addAttribute("user", user);
         model.addAttribute("friendList", friendList);
         model.addAttribute("feedList", feedList);
+
+        if (recordIdOfNewComment != null)
+            model.addAttribute("recordIdOfNewComment", recordIdOfNewComment);
+        else
+            model.addAttribute("recordIdOfNewComment", "not-id");
 
         return "user/community/feed";
     }

@@ -393,3 +393,10 @@ CommentContentList.addEventListener("click", (e) => {
 })
 
 
+//댓글 알림 클릭 시 해당 수행기록 댓글창 모달 자동 클릭
+let recordIdOfNewComment = document.querySelector("#move-record-id").value;
+
+if(recordIdOfNewComment !== "not-id"){
+    let opneModalBtnId = document.getElementById(recordIdOfNewComment);
+    opneModalBtnId.click();
+}
