@@ -56,6 +56,17 @@ chalListSection.addEventListener("click", function (e) {
     if (challengeState === "진행중") {
         location.href = `performance-records?cid=${uniqueId}`;
     } else if (challengeState === "대기중") {
+        if (uniqueId.includes("GS")){
+            groupChallengeStandby(uniqueId)
+            return;
+        }
         location.href = `performance-waiting?cid=${uniqueId}`;
     }
 });
+
+function groupChallengeStandby(uniqueId){
+    let waitingGroupCid = uniqueId.split("_")[1];
+
+    location.href = `groupChallenge/standby-screen?cid=${waitingGroupCid}`;
+
+}

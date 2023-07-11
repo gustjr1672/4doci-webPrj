@@ -405,3 +405,18 @@ footer img {
 footer img {
     width: 30px;
 }
+
+@keyframes push-effect {
+    from {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+.push {
+    animation: push-effect 0.1s both;
+}

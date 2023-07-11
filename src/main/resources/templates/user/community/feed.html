@@ -24,18 +24,21 @@
       </header>
     </div>
     <section class="friends">
-      <button>
+      <button th:onclick="|location.href = '/friendmanage/challenge?id=${user.id}'|">
         <img th:src="${user.profileImage}" alt="friend" />
         <span th:text="${user.nickname}">신도시아지매</span>
       </button>
-      <button th:each="friend:${friendList}">
+      <button
+        th:each="friend:${friendList}"
+        th:onclick="|location.href = '/friendmanage/challenge?id=${friend.id}'|"
+      >
         <img th:src="${friend.profileImage}" alt="friend" />
         <span th:text="${friend.nickname}">멋을아는자</span>
       </button>
     </section>
 
     <main>
-      <section class="feed" th:each="feed:${feedList}" >
+      <section class="feed" th:each="feed:${feedList}">
         <div class="profile">
           <img th:src="${feed.profileImage}" alt="friend" />
           <span th:text="${feed.nickname}">멋을아는자</span>
@@ -46,19 +49,22 @@
           >
           <div class="title-btns">
             <button
-              th:if="${feed.freeChallengeId}" th:value="${feed.freeChallengeId}" 
+              th:if="${feed.freeChallengeId}"
+              th:value="${feed.freeChallengeId}"
               th:onclick="|location.href = '/community/feed/detail?fc=${feed.freeChallengeId}'|"
             >
               <img src="/image/community/more.png" alt="" /><span>자세히 보기</span>
             </button>
             <button
-              th:if="${feed.choiceId}" th:value="${feed.choiceId}" 
+              th:if="${feed.choiceId}"
+              th:value="${feed.choiceId}"
               th:onclick="|location.href = '/community/feed/detail?ch=${feed.choiceId}'|"
             >
               <img src="/image/community/more.png" alt="" /><span>자세히 보기</span>
             </button>
             <button
-              th:if="${feed.groupStartId}" th:value="${feed.groupStartId}"
+              th:if="${feed.groupStartId}"
+              th:value="${feed.groupStartId}"
               th:onclick="|location.href = '/community/feed/detail?gs=${feed.groupStartId}'|"
             >
               <img src="/image/community/more.png" alt="" /><span>자세히 보기</span>
@@ -72,9 +78,11 @@
         <div class="feed-footer">
           <span class="time-message" th:text="${feed.timeMessage}">1시간 전</span>
           <div class="footer-btn">
-            <button class="comment-button" id="comment-button" th:data-record-id="${feed.id}" >
+            <button class="comment-button" id="comment-button" th:data-record-id="${feed.id}">
               <img th:data-record-id="${feed.id}" src="/image/community/comment.png" alt="" />
-              <span th:data-record-id="${feed.id}" th:id="${feed.id}" th:text="${feed.commentCount}">1</span>
+              <span th:data-record-id="${feed.id}" th:id="${feed.id}" th:text="${feed.commentCount}"
+                >1</span
+              >
             </button>
           </div>
         </div>
@@ -103,12 +111,10 @@
     </div>
 
     <!-- 댓글 모달-->
-    <section class="comment-modal hidden ">
+    <section class="comment-modal hidden">
       <section class="comment-box">
         <div class="comment-header">댓글</div>
-        <section class="comment-content-list modal-inside">
-          
-        </section>
+        <section class="comment-content-list modal-inside"></section>
         <div class="comment-footer">
           <img class="comment-user-profile-img" th:src="${user.profileImage}" alt="" />
           <input id="comment-input" placeholder="댓글을 입력해 주세요" type="text" />

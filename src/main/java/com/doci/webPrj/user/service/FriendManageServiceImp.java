@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import com.doci.webPrj.config.MyUserDetails;
 import com.doci.webPrj.user.entity.FriendRequest;
 import com.doci.webPrj.user.entity.Member;
+import com.doci.webPrj.user.entity.OngoingChallengeView;
+import com.doci.webPrj.user.entity.PastChallengeView;
+import com.doci.webPrj.user.repository.ChallengeViewRepository;
 import com.doci.webPrj.user.repository.FriendRequestRepository;
 import com.doci.webPrj.user.repository.MemberRepository;
 
@@ -21,6 +24,8 @@ public class FriendManageServiceImp implements FriendManageService {
     private MemberRepository memberRepository;
     @Autowired
     private FriendRequestRepository friendRequestRepository;
+    @Autowired
+    private ChallengeViewRepository challengeViewRepository;
 
     @Override
     public List<Member> getListByNickname(String nickname, String userNickname) {
@@ -112,6 +117,21 @@ public class FriendManageServiceImp implements FriendManageService {
     public void delete(int memberId, int id) {
         friendRequestRepository.delete(memberId, id);
         friendRequestRepository.delete(id, memberId);
+    }
+
+    @Override
+    public List<OngoingChallengeView> getOngoingList(int id) {
+        return challengeViewRepository.getOngoingList(id);
+    }
+
+    @Override
+    public List<PastChallengeView> getPastList(int id) {
+        return challengeViewRepository.getPastList(id);
+    }
+
+    @Override
+    public Member getFriendById(int id) {
+        return memberRepository.findById(id);
     }
 
 }

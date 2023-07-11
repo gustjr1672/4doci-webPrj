@@ -59,6 +59,11 @@
         SET is_finish = 1
         WHERE id = #{id};
     </update>
-    
+
+    <select id="getGroupChallengeIdByGsId">
+        select group_challenge_id
+        from group_start
+        where id = #{groupStartId}
+    </select>
 
 </mapper>
