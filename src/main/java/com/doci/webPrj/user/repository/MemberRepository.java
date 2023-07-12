@@ -25,6 +25,7 @@ public interface MemberRepository {
 
     void updateNickname(MyUserDetails user);
 
+    void updatePassword(MyUserDetails user);
 
     List<Member> findListNotInvi(@Param("challengeId") int challengeId,@Param("friendList")List<Member> friendList);
 

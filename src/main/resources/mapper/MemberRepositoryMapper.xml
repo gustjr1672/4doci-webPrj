@@ -57,4 +57,11 @@
         set nickname = #{nickname}
         where id =#{id}
     </update>
+
+    <update id="updatePassword">
+        update member
+        set pwd = #{pwd}
+        where id = #{id}
+    </update>
+
 </mapper>
