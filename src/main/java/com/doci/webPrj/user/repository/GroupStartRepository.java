@@ -15,4 +15,6 @@ public interface GroupStartRepository {
     List<Integer> findList(int challengeId);
 
     void delete(@Param("memberId") int userId, @Param("challengeId") int challengeId);
+
+    void update(@Param("id") int id, @Param("result") String groupStartTotalResult);
 }

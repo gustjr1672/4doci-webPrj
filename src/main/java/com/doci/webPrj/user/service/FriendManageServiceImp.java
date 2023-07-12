@@ -120,13 +120,24 @@ public class FriendManageServiceImp implements FriendManageService {
     }
 
     @Override
-    public List<OngoingChallengeView> getOngoingList(int id) {
-        return challengeViewRepository.getOngoingList(id);
+    public List<OngoingChallengeView> getOngoingList(int id, int userId) {
+        List<OngoingChallengeView> list = null;
+        if (id == userId)
+            list = challengeViewRepository.getUserOngoingList(userId);
+        else
+            list = challengeViewRepository.getOngoingList(id);
+        return list;
     }
 
     @Override
-    public List<PastChallengeView> getPastList(int id) {
-        return challengeViewRepository.getPastList(id);
+    public List<PastChallengeView> getPastList(int id, int userId) {
+        List<PastChallengeView> list = null;
+        if (id == userId)
+            list = challengeViewRepository.getUserPastList(userId);
+        else
+            list = challengeViewRepository.getPastList(id);
+
+        return list;
     }
 
     @Override
