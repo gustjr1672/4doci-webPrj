@@ -57,11 +57,13 @@ public class FriendManageController {
     }
 
     @GetMapping("challenge")
-    public String challengeOfFriend(@RequestParam(name = "id", required = false) int id,
+    public String challengeOfFriend(
+            @RequestParam(name = "id", required = false) int id,
+            @AuthenticationPrincipal MyUserDetails user,
             Model model) {
         Member friend = friendManageService.getFriendById(id);
-        List<OngoingChallengeView> ongoingList = friendManageService.getOngoingList(id);
-        List<PastChallengeView> pastList = friendManageService.getPastList(id);
+        List<OngoingChallengeView> ongoingList = friendManageService.getOngoingList(id, user.getId());
+        List<PastChallengeView> pastList = friendManageService.getPastList(id, user.getId());
         model.addAttribute("friend", friend);
         model.addAttribute("pastList", pastList);
         model.addAttribute("ongoingList", ongoingList);

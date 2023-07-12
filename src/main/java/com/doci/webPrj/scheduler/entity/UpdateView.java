@@ -20,4 +20,5 @@ public class UpdateView {
     int authFrequency;
     int goalQuantity;
     int recordRound;
+    int successRate;
 }

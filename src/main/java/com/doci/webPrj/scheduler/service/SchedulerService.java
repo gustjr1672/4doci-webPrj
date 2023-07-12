@@ -29,4 +29,6 @@ public interface SchedulerService {
 
     List<UpdateView> getGroupListByChallengeId(int id);
 
+    void updateGroupResult(UpdateView challenge);
+
 }
