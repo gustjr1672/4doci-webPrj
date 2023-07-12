@@ -57,6 +57,7 @@ public class GroupChallengeController {
 
     @PostMapping("challenge/reg")
     public String challengeReg(GroupChallenge groupChallenge, HttpSession session) {
+        System.out.println(groupChallenge.getStartTime());
         session.setAttribute("groupChallenge", groupChallenge);
         return "redirect:/groupChallenge/group-invite";
     }
@@ -89,34 +90,34 @@ public class GroupChallengeController {
     }
 
     @GetMapping("standby-screen")
-    public String standbyScreen(HttpSession session,Model model,
-                                @AuthenticationPrincipal MyUserDetails user,
-                                @RequestParam(name = "cid",required = false) Integer groupStartId){
+    public String standbyScreen(HttpSession session, Model model,
+            @AuthenticationPrincipal MyUserDetails user,
+            @RequestParam(name = "cid", required = false) Integer groupStartId) {
         GroupChallenge challenge = null;
         int challengeId = 0;
 
         if (groupStartId != null) {
             challengeId = groupChallengeService.getGroupChallengeIdByGsId(groupStartId);
             challenge = groupChallengeService.getChallenge(challengeId);
-        }
-        else {
+        } else {
             challenge = (GroupChallenge) session.getAttribute("groupChallenge");
             challengeId = challenge.getId();
 
         }
-            int userId = challenge.getGroupLeaderId();
+        int userId = challenge.getGroupLeaderId();
 
-            List<InvitationMember> inviList = groupChallengeService.getInviList(challengeId);
-            model.addAttribute("challenge", challenge);
-            model.addAttribute("inviList", inviList);
+        List<InvitationMember> inviList = groupChallengeService.getInviList(challengeId);
+        model.addAttribute("challenge", challenge);
+        model.addAttribute("inviList", inviList);
 
-             if(userId == user.getId()){ // 방장의 standby 화면으로 가는 코드
-                List<Member> friendList = friendManageService.getFriendList(userId); //방장의 친구목록
-                List<Member> notInviList = groupChallengeService.getNotInviList(challengeId,friendList); //방장의 친구중 초대받지 않은목록
-                model.addAttribute("notInviList", notInviList);
-                return "user/startchallenge/groupchallenge/standby-screen";
-             }
-         return "user/startchallenge/groupchallenge/standby-screen-member";
+        if (userId == user.getId()) { // 방장의 standby 화면으로 가는 코드
+            List<Member> friendList = friendManageService.getFriendList(userId); // 방장의 친구목록
+            List<Member> notInviList = groupChallengeService.getNotInviList(challengeId, friendList); // 방장의 친구중 초대받지
+                                                                                                      // 않은목록
+            model.addAttribute("notInviList", notInviList);
+            return "user/startchallenge/groupchallenge/standby-screen";
+        }
+        return "user/startchallenge/groupchallenge/standby-screen-member";
 
     }
 

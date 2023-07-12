@@ -65,5 +65,12 @@
         from group_start
         where id = #{groupStartId}
     </select>
+        <!-- getTodayStartList --> 
+
+    <select id="getTodayStartList">
+        select * 
+        from group_challenge
+        where start_date = #{currentDate}
+    </select>
 
 </mapper>
