@@ -152,7 +152,7 @@ async function reprintFreindSection() {
 let dateSection = document.querySelector(".period");
 //let dateModifyBtn = document.querySelector(".modify-date");
 const dateModal = document.getElementById("date-modal-container");
-let modalCloseBtn = document.querySelector(".modal-close");
+let modalCloseBtn = document.querySelector(".edit-modal-close");
 
 dateSection.addEventListener("click", function (e) {
   if (e.target.classList.contains("modify-date")) {
@@ -167,7 +167,7 @@ modalCloseBtn.onclick = function (e) {
 };
 
 //도전기간 수정완료시 db에 저장
-let dateBtn = document.querySelector(".date-finish-btn");
+let dateBtn = document.querySelector(".finish-btn");
 let selectAmPm = document.getElementById("new_start_time");
 let alertChangeModal = document.getElementById("alert-change-modal");
 let selectHour = document.getElementById("new_start_hour");
