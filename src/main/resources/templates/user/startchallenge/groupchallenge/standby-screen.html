@@ -176,6 +176,7 @@
                     th:selected="${(hour + 12) == challenge.startTime}" th:text="${hour}"></option>
                 </th:block>
               </select>
+             
               <span>시</span>
             </div>
           </div>
@@ -190,6 +191,7 @@
       </div>
       <div class="alert-container">
       <div class="alert hidden">종료일은 시작일 이후로 설정해주세요.</div>
+      <div class="end-date-alert hidden">종료일을 설정해주세요.</div>
       </div>
       <div class="date-finish-btn">
         <button>완료</button>

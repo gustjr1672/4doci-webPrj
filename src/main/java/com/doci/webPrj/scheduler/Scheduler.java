@@ -23,7 +23,6 @@ public class Scheduler {
     // isfinish 필요없을지도
     // 끝난도전은 isfinish바꿔주고 안끝났으면 회차계산해서 record 새로 추가해주는 함수
     // @Scheduled(cron = "0 0 0 * * *") // 매일 자정에 실행
-
     // @Scheduled(cron = "*/10 * * * * *") // 매 10초마다 실행
     void runScheduleTask() {
         LocalDate currentDate = LocalDate.now();
@@ -48,11 +47,12 @@ public class Scheduler {
 
     // 그룹도전 시작
     // @Scheduled(cron = "0 0 0/1 * * *") // 매 1시간마다 실행
+    // @Scheduled(cron = "*/10 * * * * *") // 매 10초마다 실행
     void runScheduleGroupTask() {
         LocalDate currentDate = LocalDate.now();
         LocalTime currentTime = LocalTime.now();
         int hour = currentTime.getHour();
-
+        System.out.println(hour);
         List<GroupChallenge> ChallengeList = service.getTodayGroupChallengeList(currentDate);
         for (GroupChallenge challenge : ChallengeList) {
             groupStart(challenge, hour);
@@ -99,11 +99,11 @@ public class Scheduler {
 
     private void groupStart(GroupChallenge challenge, int hour) {
         List<UpdateView> list = null;
-        // if (challenge.getStartTime() == hour) {
-        // list = service.getGroupListByChallengeId(challenge.getId());
-        // for (UpdateView groupStart : list) {
-        // service.addRecord(1, groupStart.getId(), "GS");
-        // }
-        // }
+        if (challenge.getStartTime() == hour) {
+            list = service.getGroupListByChallengeId(challenge.getId());
+            for (UpdateView groupStart : list) {
+                service.addRecord(1, groupStart.getId(), "GS");
+            }
+        }
     }
 }

@@ -85,18 +85,17 @@
         <div class="frequency_title">
           <label for="authFrequency">인증 빈도</label>
           <div class="frequency_set">
-            
-              <select id="auth_frequency" name="authFrequency" required>
-                <option value="">선택</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-              </select>
-            
+            <select id="auth_frequency" name="authFrequency" required>
+              <option value="">선택</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+            </select>
+
             <p>일에 한 번</p>
           </div>
         </div>
@@ -119,18 +118,24 @@
             <div class="start_time">
               <label for="start_inside">시작시간</label>
               <div>
-                <select id="start_time" class="inside time">
+                <select id="start_time" class="inside time" required>
                   <option value="am">AM</option>
                   <option value="pm">PM</option>
                 </select>
-                <select id="start_hour" class="inside time" name="startTime">
-                  <option value="" selected>선택</option>
-                  <option th:each="hour : ${#numbers.sequence(1, 12)}"
-                  th:value="${hour}"
-                  th:text="${hour}"></option>
+                <select id="start_hour" class="inside time" required>
+                  <option selected>선택</option>
+                  <option
+                    th:each="hour : ${#numbers.sequence(1, 12)}"
+                    th:value="${hour}"
+                    th:text="${hour}"
+                  ></option>
                 </select>
                 <span>시</span>
+                <input type="hidden" id="start-time-hidden" name="startTime" />
               </div>
+            </div>
+            <div class="alert hidden" id="time-alert">
+              <span>현재시간보다 이후로 설정해주세요.</span>
             </div>
             <div class="end_set">
               <label for="endDate">종료일</label>
