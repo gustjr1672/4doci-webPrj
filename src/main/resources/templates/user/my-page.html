@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/css/my-page.css" type="text/css" />
   <link rel="stylesheet" href="/css/my-page-modal.css">
+  <link rel="stylesheet" href="/css/modal.css">
   <title>myPage</title>
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet"/>
 
@@ -114,7 +115,7 @@
     <div class="bottom-modal-container" id="nickname-modal-container">
       <div class="bottom-modal-content" id="nickname-modal-content">
         <div class="bottom-modal-header">
-          <button class="modal-close" id="nickname-modal-close">&times;</button>
+          <button class="edit-modal-close" id="nickname-modal-close">&times;</button>
         </div>
         <div class="input">
           <label for="nickname">닉네임</label>
@@ -132,7 +133,7 @@
 <div class="bottom-modal-container" id="password-modal-container">
   <div class="bottom-modal-content" id="password-modal-content">
     <div class="bottom-modal-header">
-      <button class="modal-close" id="password-modal-close">&times;</button>
+      <button class="edit-modal-close" id="password-modal-close">&times;</button>
     </div>
 
 
@@ -163,17 +164,17 @@
     <div class="finish-btn" >
       <button id="password-finish-btn" disabled>완료</button>
     </div>
+  </div>
+</div>
 <!--    =============변경 완료 모달============-->
     <section class="complete-modal hidden">
       <section class="modal-box">
-        <span>완료되었습니다.</span>
+        <span class="result-text">완료되었습니다.</span>
         <div>
           <button class="modal-close">닫기</button>
         </div>
       </section>
     </section>
-  </div>
-</div>
 
   </body>
 </html>

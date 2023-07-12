@@ -38,10 +38,13 @@ function closePasswordModal() {
 function inputFormReset(){
     newPwd.value = "";
     checkNewPwd.value = "";
+    nowPwd.value = "";
     checkNewPwdError.innerHTML = "";
     newPwdError.innerHTML = "";
     newPasswordCheck = false;
     duplicateCheck = false;
+    editFinishBtn.disabled = true;
+    editFinishBtn.style.backgroundColor = '#ccc';
 }
 
 // ====================비밀번호 유효성========================
@@ -62,7 +65,7 @@ nowPwd.addEventListener('input',()=>{
 })
 
 newPwd.addEventListener('input', checkNewPassword);
-checkNewPwd.addEventListener('input', checkDuplicate);
+checkNewPwd.addEventListener('input', checkPwdDuplicate);
 function checkNewPassword() {
 
     let passwordValue = newPwd.value;
@@ -77,7 +80,7 @@ function checkNewPassword() {
     turnOnFinishBtn();
 }
 
-function checkDuplicate() {
+function checkPwdDuplicate() {
     let passwordValue = newPwd.value;
     let pwdCheckValue = checkNewPwd.value;
 
@@ -102,21 +105,35 @@ function turnOnFinishBtn(){
     }
 }
 
-editFinishBtn.addEventListener('click',matchNowPassword);
+let submitCompleteModal = document.querySelector(".complete-modal");
+let resultText = submitCompleteModal.querySelector(".result-text");
+let okayButton = submitCompleteModal.querySelector(".modal-close");
 
+editFinishBtn.addEventListener('click',matchNowPassword);
 
 function matchNowPassword(){
     let inputNowPwd = nowPwd.value;
+    let inputNewPwd = newPwd.value;
+
     let data = new URLSearchParams();
-    data.append("inputNowPwd",inputNowPwd)
+    data.append("nowPwd", inputNowPwd);
+    data.append("newPwd", inputNewPwd);
     fetch(`api/user/password`,{
         method:'POST',
         body: data
     })
         .then(response => response.json())
         .then(result =>{
-            console.log(result);
-            closePasswordModal();
-        })
 
+            closePasswordModal();
+            if (result) resultText.innerHTML = "비밀번호가 변경되었습니다.";
+            else {
+                resultText.innerHTML = "현재 비밀번호가 일치하지 않습니다";
+                // resultText.style.color = "#ff8f8f"
+            }
+            submitCompleteModal.classList.remove('hidden');
+        })
 }
+okayButton.addEventListener('click',()=>{
+    submitCompleteModal.classList.add('hidden')
+})
