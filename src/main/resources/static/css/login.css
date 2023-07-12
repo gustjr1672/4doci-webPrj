@@ -97,6 +97,7 @@ button[type="submit"] {
 .util .a {
     display: flex;
     flex-direction: row;
+    transform: translateX(12px);
     gap: 20px;
 }
 a {
