@@ -9,4 +9,6 @@ public interface MemberService {
     Optional<Member> findOne(String userId);
 
     void updateNickname(MyUserDetails user, String nickname);
+
+    void updatePassword(MyUserDetails user, String password);
 }
