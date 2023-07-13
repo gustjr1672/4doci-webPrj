@@ -7,6 +7,7 @@
     <title>Document</title>
     <link href="/css/main.css" type="text/css" rel="stylesheet"/>
     <link href="/css/notification.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/animation.css" type="text/css" rel="stylesheet"/>
     <link
             href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
             rel="stylesheet"
@@ -26,8 +27,8 @@
             <img src="/image/header/whiteLogo.png" alt="4℃" width="60px" height="60px"/>
         </div>
         <button class="bell" onclick="openModal()">
-            <img th:if="${isNoti}" id="bell" src="/image/header/whiteBellAlarm.png" alt="알림"/>
-            <img th:unless="${isNoti}" id="bell" src="/image/header/whiteBell.png" alt="알림"/>
+            <img th:if="${isNoti}" id="bell" class="cursor shake" src="/image/header/whiteBellAlarm.png" alt="알림"/>
+            <img th:unless="${isNoti}" id="bell" class="shake cursor"src="/image/header/whiteBell.png" alt="알림"/>
         </button>
     </header>
 </div>
@@ -43,7 +44,7 @@
                 <span>랜덤도전,자유도전,그룹도전까지</span>
                 <span>새로운 도전을 시작해보세요</span>
             </div>
-            <button type="submit" onclick="location.href='challenge/start/choice/type'">
+            <button type="submit" onclick="location.href='challenge/start/choice/type'" class="cursor zoom-3">
                 시작하기
                 <img src="/image/main/right.png" alt="go" width="7px" height="9px"/>
             </button>
@@ -57,8 +58,8 @@
         <span>나의 도전</span>
         <section class="filter">
             <div class="options">
-                <button class="on-going active">진행중</button>
-                <button class="waiting">대기중</button>
+                <button class="on-going active cursor bold">진행중</button>
+                <button class="waiting cursor bold">대기중</button>
             </div>
         </section>
 <!--        <select id="filter" onchange="applyFilter()">-->
@@ -69,7 +70,7 @@
 
     <div class="chal-section" th:data-user-id="${user.id}">
         <div class="btn-wrap" th:each="all:${allChallengesList}" th:if="${all.performanceRecordsId}!=null">
-            <button class="chal-btn" th:data-unique-id="${all.uniqueId}" data-challenge-state="진행중">
+            <button class="chal-btn cursor zoom-2" th:data-unique-id="${all.uniqueId}" data-challenge-state="진행중">
                 <span class="chal-title" th:text="${all.name}">하루에 30분이상 운동하고 치킨먹고 자기</span>
                 <div class="prog-wrap">
                     <div>
@@ -86,7 +87,7 @@
                     </div>
                 </div>
             </button>
-            <button class="plus-btn"
+            <button class="plus-btn cursor brighten"
                     th:data-goal-quantity="${all.goalQuantity}"
                     th:data-challenge-id="${all.uniqueId}">+
           </button>
@@ -98,13 +99,14 @@
 <div class="footer-wrap">
     <footer>
         <button>
-            <img src="/image/footer/clickHome.png" alt="홈"/>
+            <img src="/image/footer/clickHome.png" alt="홈" class="cursor zoom-1"/>
         </button>
         <button>
             <img
                     src="/image/footer/community.png"
                     alt="커뮤니티"
                     onclick="location.href = 'community.html' "
+                    class="cursor zoom-1"
             />
         </button>
         <button>
@@ -112,6 +114,7 @@
                     src="/image/footer/friendManagement.png"
                     alt="친구관리"
                     onclick="location.href = 'friendmanage/main' "
+                    class="cursor zoom-1"
             />
         </button>
         <button>
@@ -119,32 +122,8 @@
                     src="/image/footer/myPage.png"
                     alt="내정보"
                     onclick="location.href = 'my-page.html' "
+                    class="cursor zoom-1"
             />
-        </button>
-    </footer>
-</div>
-
-<div class="footer-wrap">
-    <footer>
-        <button>
-            <img src="/image/footer/clickHome.png" alt="홈"/>
-        </button>
-        <button>
-            <img
-                    src="/image/footer/community.png"
-                    alt="커뮤니티"
-                    onclick="location.href = '/community/feed' "
-            />
-        </button>
-        <button>
-            <img
-                    src="/image/footer/friendManagement.png"
-                    alt="친구관리"
-                    onclick="location.href = 'friendmanage/main' "
-            />
-        </button>
-        <button>
-            <img src="/image/footer/myPage.png" alt="내정보" onclick="location.href = '/my-page' "/>
         </button>
     </footer>
 </div>

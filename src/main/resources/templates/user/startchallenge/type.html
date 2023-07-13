@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="/css/challenge-type-choice.css" />
+    <link href="/css/animation.css" type="text/css" rel="stylesheet"/>
     <link
       href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
       rel="stylesheet"
@@ -27,27 +28,27 @@
     </div>
     <div class="challenge-list-wrap">
       <form class="challenge-list" method="post" th:action="@{/challenge/start/choice/type/submit}">
-        <div class="challenge-option">
+        <div class="challenge-option zoom-2">
           <input value="individual" id="personal" name="challenge" type="radio" />
           <label for="personal">
-            <div class="explain-wrap">
+            <div class="explain-wrap ">
               <div><span>개인도전</span><span class="explain">으로</span></div>
               <p class="explain">자유롭게 본인의 도전을 시작해보세요</p>
             </div>
             <img src="/image/startchallenge/personal.png" alt="" />
           </label>
         </div>
-        <div class="challenge-option">
+        <div class="challenge-option zoom-2">
           <input value="random" id="random" name="challenge" type="radio" />
           <label for="random">
-            <div class="explain-wrap">
+            <div class="explain-wrap zoom-2">
               <div><span>랜덤도전</span><span class="explain">으로</span></div>
               <p class="explain">다양하고 새로운 도전을 시도해보세요</p>
             </div>
             <img src="/image/startchallenge/random.png" alt="" />
           </label>
         </div>
-        <div class="challenge-option">
+        <div class="challenge-option zoom-2">
           <input value="group" id="group" name="challenge" type="radio" />
           <label for="group">
             <div class="explain-wrap">
@@ -57,7 +58,7 @@
             <img src="/image/startchallenge/group.png" alt="" />
           </label>
         </div>
-        <div class="challenge-option">
+        <div class="challenge-option zoom-2">
           <input readonly value="set" id="set" name="challenge" type="radio" />
           <label for="set">
             <div class="explain-wrap">
@@ -69,9 +70,9 @@
         </div>
         <div class="create-btn">
           <button
-            oonclick="location.href='group_free_challenge_form.html'"
             type="submit"
             id="submit-button"
+            class="brighten"
           >
             선택완료
           </button>
