@@ -73,7 +73,7 @@
         <div class="feed-footer">
           <span class="time-message" th:text="${feed.timeMessage}">1시간 전</span>
           <div class="footer-btn">
-            <button class="comment-button" th:id="${feed.id}" th:data-record-id="${feed.id}" th:data-member-id="${feed.memberId}">
+            <button class="comment-button" th:data-record-id="${feed.id}" th:data-member-id="${feed.memberId}">
               <img th:data-record-id="${feed.id}" th:data-member-id="${feed.memberId}" src="/image/community/comment.png" alt="" />
               <span th:data-record-id="${feed.id}" th:data-member-id="${feed.memberId}" th:id="${feed.id}" th:text="${feed.commentCount}">1</span>
             </button>

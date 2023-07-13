@@ -16,4 +16,17 @@
         where to_member_id = #{toMemberId}
          and from_member_id != #{toMemberId}
     </select>
+
+    <delete id="delete">
+        delete from comment_notification
+        where comment_id = #{notoficationId}
+    </delete>
+
+    <delete id="deleteAll">
+        delete from comment_notification
+        where comment_id in
+            <foreach collection="list" item="item" open="(" close=")" separator=",">
+                #{item.id}
+            </foreach>
+    </delete>
 </mapper>

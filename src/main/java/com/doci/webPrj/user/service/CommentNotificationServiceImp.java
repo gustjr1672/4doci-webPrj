@@ -43,4 +43,18 @@ public class CommentNotificationServiceImp implements CommentNotificationService
         return list;
     }
 
+    @Override
+    public void delete(int notoficationId) {
+        commentNotificationRepository.delete(notoficationId);
+    }
+
+    @Override
+    public int deleteAll(int toMemberId) {
+
+        List<CommentNotificationView> list = commentNotificationRepository.getList(toMemberId);
+        int result = commentNotificationRepository.deleteAll(list);
+
+        return result;
+    }
+
 }

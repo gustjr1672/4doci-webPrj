@@ -15,4 +15,8 @@ public interface CommentNotificationRepository {
 
     List<CommentNotificationView> getList(int toMemberId);
 
+    void delete(int notoficationId);
+
+    int deleteAll(List<CommentNotificationView> list);
+
 }

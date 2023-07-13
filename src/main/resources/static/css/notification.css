@@ -22,6 +22,7 @@
   font-family: "suit";
   font-weight: 600;
   border: none;
+  cursor: pointer;
 }
 
 .btns .community-btn.active,
@@ -86,6 +87,7 @@
   font-size: 11px;
   font-weight: 500;
   font-family: "suit";
+  color: #333333;
 }
 .contents .content .time {
   color: #737373;
@@ -121,4 +123,29 @@
 
 .hidden {
   display: none;
+}
+
+/* ==============댓글 알림 삭제============== */
+
+.delete-comment-alarm-button{
+  display: flex;
+  border: none;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333333 !important;
+  cursor: pointer;
+  margin-left: 75%;
+  position: fixed;
+  top: 15%;
+}
+
+.delete-comment-alarm-button span{
+  color: #333333;
+  font-size: 12px;
+  font-weight: 500px;
+}
+
+.delete-comment-alarm-button img{
+  height: 20px;
+  width: 20px;
 }

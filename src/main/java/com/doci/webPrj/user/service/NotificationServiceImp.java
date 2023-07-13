@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.doci.webPrj.user.entity.CommentNotificationView;
 import com.doci.webPrj.user.entity.Member;
+import com.doci.webPrj.user.repository.CommentNotificationRepository;
 import com.doci.webPrj.user.repository.FriendRequestNotificationRepository;
 import com.doci.webPrj.user.repository.FriendRequestRepository;
 import com.doci.webPrj.user.repository.MemberRepository;
@@ -20,6 +22,8 @@ public class NotificationServiceImp implements NotificationService {
     MemberRepository memberRepository;
     @Autowired
     FriendRequestRepository friendRequestRepository;
+    @Autowired
+    CommentNotificationRepository commentNotificationRepository;
 
     @Override
     public List<Member> getRequest(int userId) {
@@ -58,9 +62,13 @@ public class NotificationServiceImp implements NotificationService {
     @Override
     public boolean getNotiStatus(int userId) {
         boolean result = true;
+
         List<Integer> idList = repository.findList(userId);
-        if (idList.size() == 0)
+        List<CommentNotificationView> notiList = commentNotificationRepository.getList(userId);
+
+        if (idList.size() == 0 && notiList.size() == 0)
             result = false;
+
         return result;
     }
 

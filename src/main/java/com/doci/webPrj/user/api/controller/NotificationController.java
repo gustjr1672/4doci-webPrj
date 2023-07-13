@@ -79,4 +79,12 @@ public class NotificationController {
 
         return list;
     }
+
+    @DeleteMapping("comment/{memberId}")
+    public int delete(@PathVariable("memberId") int toMemberId) {
+
+        int result = CommentNotificationService.deleteAll(toMemberId);
+
+        return result;
+    }
 }

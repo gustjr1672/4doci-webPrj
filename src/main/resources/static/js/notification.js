@@ -87,11 +87,20 @@ function commentNotificationLoad(url) {
     .then(commentNotiList => {
       notification.innerHTML = "";
 
+      let deleteTemplate =`
+      <button class="delete-comment-alarm-button">
+      <span>전체 삭제</span>
+      <img src="/image/community/dustbin.svg" alt="삭제">
+      </button>
+      `;
+
+      notification.insertAdjacentHTML("beforeend", deleteTemplate);
+
       for (let commentNoti of commentNotiList) {
         ///community/feed로 url 요청 -> get매핑. 쿼리스트링으로 수행기록 id 인자 전달하기
         let commuNotiTemplate = `
         <section id="community-content" class="contents">
-          <button class="content" onclick="location.href = '/community/feed?recordId=${commentNoti.performanceRecordsId}' ">
+          <button class="content" onclick="location.href = '/community/feed?rid=${commentNoti.performanceRecordsId}&nid=${commentNoti.id}' ">
             <div class="info">
               <img src=${commentNoti.profileImage} alt="프로필이미지" />
               <div>
@@ -104,6 +113,26 @@ function commentNotificationLoad(url) {
 
         notification.insertAdjacentHTML("beforeend", commuNotiTemplate);
       }
+
+      //알림 전체 삭제
+      let deleteCommentAlarmBtn =document.querySelector(".delete-comment-alarm-button");
+
+      deleteCommentAlarmBtn.addEventListener("click", (e) => {
+        console.log("알람 삭제 버튼");
+        console.log(commentNotiList[0].toMemberId);
+        fetch(`/notifications/comment/${commentNotiList[0].toMemberId}`, {
+          method: "DELETE"
+        })
+        .then(response => {
+          if(!response.ok)
+            alert("삭제에 실패했습니다");
+          else{
+            notification.innerHTML = "";
+            notification.insertAdjacentHTML("beforeend", deleteTemplate);
+          }
+        });
+
+      });
 
     });
 
@@ -136,6 +165,3 @@ btnSection.addEventListener("click", (e) => {
     friendRequestLoad(`/notifications/request`, "GET");
   }
 });
-
-
-

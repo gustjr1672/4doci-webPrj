@@ -15,6 +15,7 @@ import com.doci.webPrj.config.MyUserDetails;
 import com.doci.webPrj.user.entity.Feed;
 import com.doci.webPrj.user.entity.FeedDetail;
 import com.doci.webPrj.user.entity.Member;
+import com.doci.webPrj.user.service.CommentNotificationService;
 import com.doci.webPrj.user.service.FeedService;
 import com.doci.webPrj.user.service.FriendManageService;
 
@@ -26,21 +27,26 @@ public class CommunityController {
     FriendManageService friendManageService;
     @Autowired
     FeedService feedService;
+    @Autowired
+    CommentNotificationService commentNotificationService;
 
     @GetMapping("feed")
     public String feed(
             Model model,
             @AuthenticationPrincipal MyUserDetails user,
-            @RequestParam(name = "recordId", required = false) Integer recordIdOfNewComment) {
+            @RequestParam(name = "rid", required = false) Integer recordIdOfNewComment,
+            @RequestParam(name = "nid", required = false) Integer notiIdOfNewComment) {
         List<Member> friendList = friendManageService.getFriendList(user.getId());
         List<Feed> feedList = feedService.getFeedList(friendList, user.getId());
         model.addAttribute("user", user);
         model.addAttribute("friendList", friendList);
         model.addAttribute("feedList", feedList);
 
-        if (recordIdOfNewComment != null)
+        // 알림 모달에서 comment알림 클릭했을 때
+        if (recordIdOfNewComment != null) {
             model.addAttribute("recordIdOfNewComment", recordIdOfNewComment);
-        else
+            commentNotificationService.delete(notiIdOfNewComment);
+        } else
             model.addAttribute("recordIdOfNewComment", "not-id");
 
         return "user/community/feed";

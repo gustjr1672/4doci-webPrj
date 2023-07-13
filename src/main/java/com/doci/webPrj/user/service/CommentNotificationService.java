@@ -8,4 +8,8 @@ public interface CommentNotificationService {
 
     List<CommentNotificationView> getList(int toMemberId);
 
+    void delete(int notoficationId);
+
+    int deleteAll(int toMemberId);
+
 }
