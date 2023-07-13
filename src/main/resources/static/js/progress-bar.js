@@ -1,7 +1,7 @@
 let challengeList = document.querySelector(".chal-list");
 
 challengeList.onclick = ((e) => {
-    if (e.target.className !== 'plus-btn') {
+    if (!e.target.classList.contains("plus-btn")) {
         return;
     }
     let button = e.target; // 클릭된 버튼
