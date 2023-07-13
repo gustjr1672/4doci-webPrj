@@ -406,6 +406,13 @@ footer img {
     width: 30px;
 }
 
+.notification{
+    height: 75%;
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+}
+
 @keyframes push-effect {
     from {
         transform: scale(1);

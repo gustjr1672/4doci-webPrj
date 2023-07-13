@@ -10,7 +10,7 @@
         order by reg_date
     </select>
 
-    <insert id="insert">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into comment
         (content, member_id, performance_records_id)
         values

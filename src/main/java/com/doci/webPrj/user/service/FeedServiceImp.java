@@ -14,6 +14,7 @@ import com.doci.webPrj.user.entity.CommentView;
 import com.doci.webPrj.user.entity.Feed;
 import com.doci.webPrj.user.entity.FeedDetail;
 import com.doci.webPrj.user.entity.Member;
+import com.doci.webPrj.user.repository.CommentNotificationRepository;
 import com.doci.webPrj.user.repository.CommentRepository;
 import com.doci.webPrj.user.repository.FeedDetailRepository;
 import com.doci.webPrj.user.repository.FeedRepository;
@@ -27,6 +28,8 @@ public class FeedServiceImp implements FeedService {
     CommentRepository commentRepository;
     @Autowired
     FeedDetailRepository feedDetailRepository;
+    @Autowired
+    CommentNotificationRepository commentNotificationRepository;
 
     @Override
     public List<Feed> getFeedList(List<Member> friendList, int userId) {
@@ -104,6 +107,7 @@ public class FeedServiceImp implements FeedService {
     @Override
     public void add(Comment comment) {
         commentRepository.insert(comment);
+        commentNotificationRepository.insert(comment);
     }
 
     @Override

@@ -54,13 +54,13 @@ function friendRequestLoad(url, method) {
     });
 }
 
-function groupInvitationLoad(url){
+function groupInvitationLoad(url) {
   fetch(url)
-  .then((response) => response.json())
-  .then((list) => {
-    notification.innerHTML = "";
-    for (const invitation of list) {
-      let groupNotiTemplate = ` 
+    .then((response) => response.json())
+    .then((list) => {
+      notification.innerHTML = "";
+      for (const invitation of list) {
+        let groupNotiTemplate = ` 
         <section id="group-invitation-content" class="contents">
           <div class="content">
             <div class="info">
@@ -75,9 +75,67 @@ function groupInvitationLoad(url){
             <button onclick="location.href='/groupChallenge/invite-request?id=${invitation.groupChallengeId}'">보기</button>
           </div>
         </section>`;
-      notification.insertAdjacentHTML("beforeend", groupNotiTemplate);
-    }
-  });
+        notification.insertAdjacentHTML("beforeend", groupNotiTemplate);
+      }
+    });
+}
+
+function commentNotificationLoad(url) {
+
+  fetch(url)
+    .then(response => response.json())
+    .then(commentNotiList => {
+      notification.innerHTML = "";
+
+      let deleteTemplate =`
+      <button class="delete-comment-alarm-button">
+      <span>전체 삭제</span>
+      <img src="/image/community/dustbin.svg" alt="삭제">
+      </button>
+      `;
+
+      notification.insertAdjacentHTML("beforeend", deleteTemplate);
+
+      for (let commentNoti of commentNotiList) {
+        ///community/feed로 url 요청 -> get매핑. 쿼리스트링으로 수행기록 id 인자 전달하기
+        let commuNotiTemplate = `
+        <section id="community-content" class="contents">
+          <button class="content" onclick="location.href = '/community/feed?rid=${commentNoti.performanceRecordsId}&nid=${commentNoti.id}' ">
+            <div class="info">
+              <img src=${commentNoti.profileImage} alt="프로필이미지" />
+              <div>
+                <span>${commentNoti.nickName} 님이 댓글을 남겼습니다.</span>
+                <span class="time">${commentNoti.timeMessage}</span>
+              </div>
+            </div>
+          </button>
+        </section>`;
+
+        notification.insertAdjacentHTML("beforeend", commuNotiTemplate);
+      }
+
+      //알림 전체 삭제
+      let deleteCommentAlarmBtn =document.querySelector(".delete-comment-alarm-button");
+
+      deleteCommentAlarmBtn.addEventListener("click", (e) => {
+        console.log("알람 삭제 버튼");
+        console.log(commentNotiList[0].toMemberId);
+        fetch(`/notifications/comment/${commentNotiList[0].toMemberId}`, {
+          method: "DELETE"
+        })
+        .then(response => {
+          if(!response.ok)
+            alert("삭제에 실패했습니다");
+          else{
+            notification.innerHTML = "";
+            notification.insertAdjacentHTML("beforeend", deleteTemplate);
+          }
+        });
+
+      });
+
+    });
+
 }
 
 let notificationBtns = document.querySelector(".notification");
@@ -100,44 +158,10 @@ let btnSection = document.querySelector("#btns");
 let notification = document.querySelector(".notification");
 btnSection.addEventListener("click", (e) => {
   if (e.target.classList.contains("community-btn")) {
-    notification.innerHTML = "";
-    notification.insertAdjacentHTML("beforeend", commuNotiTemplate);
+    commentNotificationLoad("/notifications/comment");
   } else if (e.target.classList.contains("group-invitation-btn")) {
     groupInvitationLoad(`/notifications/invite`);
   } else if (e.target.classList.contains("friend-request-btn")) {
     friendRequestLoad(`/notifications/request`, "GET");
   }
 });
-
-let commuNotiTemplate = `
-  <section id="community-content" class="contents">
-    <button class="content" onclick="location.href = 'comments.html' ">
-      <div class="info">
-        <img src="/image/notification/profile.png" alt="프로필이미지" />
-        <div>
-          <span>고민시작 님이 댓글을 남겼습니다.</span>
-          <span class="time">1분전</span>
-        </div>
-      </div>
-    </button>
-    <button class="content">
-      <div class="info">
-        <img src="/image/notification/progileImg2.png" alt="프로필이미지" />
-        <div>
-          <span>재혁짱 님이 댓글을 남겼습니다.</span>
-          <span class="time">11분전</span>
-        </div>
-      </div>
-    </button>
-    <button class="content">
-      <div class="info">
-        <img src="/image/notification/progileImg2.png" alt="프로필이미지" />
-        <div>
-          <span>재혁짱 님이 댓글을 남겼습니다.</span>
-          <span class="time">17분전</span>
-        </div>
-      </div>
-    </button>
-  </section>`;
-
-

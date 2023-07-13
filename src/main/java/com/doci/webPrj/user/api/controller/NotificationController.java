@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.doci.webPrj.config.MyUserDetails;
+import com.doci.webPrj.user.entity.CommentNotificationView;
 import com.doci.webPrj.user.entity.InvitationNotification;
 import com.doci.webPrj.user.entity.Member;
+import com.doci.webPrj.user.service.CommentNotificationService;
 import com.doci.webPrj.user.service.InvitationService;
 import com.doci.webPrj.user.service.NotificationService;
 
@@ -27,6 +29,9 @@ public class NotificationController {
     NotificationService notificationService;
     @Autowired
     InvitationService invitationService;
+    @Autowired
+    CommentNotificationService CommentNotificationService;
+
     @GetMapping("request")
     public List<Member> request(@AuthenticationPrincipal MyUserDetails user) {
         return notificationService.getRequest(user.getId());
@@ -66,5 +71,21 @@ public class NotificationController {
     public List<InvitationNotification> invite(@AuthenticationPrincipal MyUserDetails user){
          List<InvitationNotification> inviteList = invitationService.getInvite(user.getId());
         return inviteList;
+    }
+
+    @GetMapping("comment")
+    public List<CommentNotificationView> commentNotification(@AuthenticationPrincipal MyUserDetails user) {
+
+        List<CommentNotificationView> list = CommentNotificationService.getList(user.getId());
+
+        return list;
+    }
+
+    @DeleteMapping("comment/{memberId}")
+    public int delete(@PathVariable("memberId") int toMemberId) {
+
+        int result = CommentNotificationService.deleteAll(toMemberId);
+
+        return result;
     }
 }

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>community</title>
+    <script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
     <script src="/js/feed.js" defer="defer"></script>
     <link rel="stylesheet" href="/css/feed.css" />
     <link rel="stylesheet" href="/css/modal.css" />
@@ -78,11 +79,10 @@
         <div class="feed-footer">
           <span class="time-message" th:text="${feed.timeMessage}">1시간 전</span>
           <div class="footer-btn">
-            <button class="comment-button" id="comment-button" th:data-record-id="${feed.id}">
-              <img th:data-record-id="${feed.id}" src="/image/community/comment.png" alt="" />
-              <span th:data-record-id="${feed.id}" th:id="${feed.id}" th:text="${feed.commentCount}"
-                >1</span
-              >
+
+            <button class="comment-button" th:data-record-id="${feed.id}" th:data-member-id="${feed.memberId}">
+              <img th:data-record-id="${feed.id}" th:data-member-id="${feed.memberId}" src="/image/community/comment.png" alt="" />
+              <span th:data-record-id="${feed.id}" th:data-member-id="${feed.memberId}" th:id="${feed.id}" th:text="${feed.commentCount}">1</span>
             </button>
           </div>
         </div>
@@ -122,6 +122,7 @@
         </div>
       </section>
     </section>
+    <input type="hidden" th:value="${recordIdOfNewComment}" id="move-record-id">
 
     <!-- 댓글 삭제 확인 모달 -->
     <section class="choice-modal hidden">
