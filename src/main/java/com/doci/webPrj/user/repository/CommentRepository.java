@@ -23,4 +23,6 @@ public interface CommentRepository {
 
     void edit(@Param("comment") Comment comment);
 
+    List<CommentView> findViewByChallengeId(int challengeId);
+
 }

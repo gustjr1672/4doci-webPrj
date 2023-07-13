@@ -8,8 +8,9 @@
       href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
       rel="stylesheet"
     />
-    <script src="/js/free-detail.js" defer="defer"></script>
+    <script src="/js/feed-detail.js" defer="defer"></script>
     <link rel="stylesheet" href="/css/feed-detail.css" />
+    <link rel="stylesheet" href="/css/modal.css" />  
   </head>
   <body>
     <header>
@@ -43,6 +44,27 @@
       </div>
       <img th:src="${feed.image}" alt="" />
       <div class="content"><span th:text="${feed.impression}">자전거탐</span></div>
+    </section>
+
+    <section class="comment-modal hidden">
+      <section class="comment-box">
+        <div class="comment-header">댓글</div>
+        <section class="comment-content-list">
+          <div class="comment-content" th:each="comment : ${commentViewList}">
+            <img class="comment-profile-img" th:src="${comment.profileImage}" alt="" />
+            <div class="comment-content-text">
+              <div class="comment-content-section">
+                <span class="comment-content-nickname" th:text="${comment.nickName}">멋을아는자</span>
+                <span th:text="${comment.content}">안녕하세요 테스트입니다.ㅁㅁㅁ</span>
+                <div class="comment-content-footer">
+                  <div class="comment-content-period" th:text="${comment.timeMessage}">5분전</div>
+                  <span th:text="${comment.round}+'회차'">회차</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
     </section>
   </body>
 </html>

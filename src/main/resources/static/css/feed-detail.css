@@ -129,3 +129,19 @@ body {
   padding-left: 12px;
   font-weight: 500;
 }
+
+/**댓글 모달**/
+.comment-content-list{
+  overflow-y: scroll;
+  margin-bottom: 20px;
+}
+
+.comment-content-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment-modal span{
+  font-size: 12px;
+}

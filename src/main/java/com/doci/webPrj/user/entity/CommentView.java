@@ -21,6 +21,8 @@ public class CommentView {
     int performanceRecordsId;
     int choiceId;
     int freeChallengeId;
+    int groupStartId;
     String timeMessage;
+    int round;
 
 }
