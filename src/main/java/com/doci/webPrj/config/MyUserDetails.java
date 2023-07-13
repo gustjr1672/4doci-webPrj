@@ -6,16 +6,14 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Setter
 @Getter
 @Builder
-public class MyUserDetails implements UserDetails {
+public class MyUserDetails implements UserDetails, OAuth2User {
     private int id;
     private String userId;
     private String email;
@@ -25,11 +23,23 @@ public class MyUserDetails implements UserDetails {
     private String profileImage;
     private Date regDate;
     private String roles;
+
+
+    private String provider;
+    private String providerId;
+    private Map<String, Object> attributes;
+    @Override
+
+    public Map<String, Object> getAttributes() {
+        System.out.println("어트리뷰트");
+        return attributes;
+    }
+
     @Override
     //return 결과가 CustomAuthenticationSuccessHandler 에 onAuthenticationSuccess함수로 전달 된다.
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_"+roles));  //ROLE_ 을 붙여야 SpringSecurity에서 hasRoles에서 인식함
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + roles));  //ROLE_ 을 붙여야 SpringSecurity에서 hasRoles에서 인식함
         return authorities;
     }
 
