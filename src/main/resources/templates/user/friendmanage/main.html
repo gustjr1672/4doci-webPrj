@@ -40,7 +40,10 @@
         <p th:text="'친구 '+${total}+'명'">친구 2명</p>
 
         <div class="friend" th:each="friend : ${friendList}">
-          <button class="info">
+          <button
+            class="info"
+            th:onclick="|location.href = '/friendmanage/challenge?id=${friend.id}'|"
+          >
             <img th:src="${friend.profileImage}" alt="프로필이미지" />
             <div class="user-name">
               <span th:text="${friend.name}">고민시</span>

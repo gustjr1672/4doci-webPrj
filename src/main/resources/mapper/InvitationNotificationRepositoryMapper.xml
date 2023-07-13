@@ -17,4 +17,16 @@
      DELETE FROM invitation_notification
         WHERE to_member_id = #{userId} and group_challenge_id = #{challengeId}
 </delete>
+
+<delete id="deleteAll">
+     DELETE FROM invitation_notification
+        WHERE group_challenge_id = #{challengeId}
+</delete>
+
+<select id="findList">
+    SELECT group_challenge_id 
+    FROM invitation_notification
+        where to_member_id = #{userId}
+</select>
+
 </mapper>

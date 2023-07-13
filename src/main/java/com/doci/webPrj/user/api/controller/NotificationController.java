@@ -68,8 +68,9 @@ public class NotificationController {
     }
 
     @GetMapping("invite")
-    public List<InvitationNotification> invite(@AuthenticationPrincipal MyUserDetails user) {
-        return invitationService.getInvite(user.getId());
+    public List<InvitationNotification> invite(@AuthenticationPrincipal MyUserDetails user){
+         List<InvitationNotification> inviteList = invitationService.getInvite(user.getId());
+        return inviteList;
     }
 
     @GetMapping("comment")

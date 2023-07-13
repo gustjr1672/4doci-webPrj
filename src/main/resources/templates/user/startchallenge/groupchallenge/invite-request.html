@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>group-invite</title>
     <link rel="stylesheet" href="/css/invite-request.css" />
+    <link rel="stylesheet" href="/css/modal.css" />
     <link
       href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
       rel="stylesheet"
     />
     <script src="/js/header.js"></script>
+    <script src="/js/invite-request.js" defer="defer"></script>
   </head>
   <body>
     <div class="header-wrap">
@@ -50,10 +52,29 @@
     </section>
     <section class="btn-section">
       <div class="btns">
-        <button type="submit" name="action" value="refuse">거절하기</button>
-        <button type="submit" name="action" value="accept">수락하기</button>
+        <button type="submit" id="refuse-btn">거절하기</button>
+        <button type="submit" id="accept-btn">수락하기</button>
       </div>
     </section>
     </form>
+    <section class="choice-modal hidden" id="refuse-modal">
+      <section class="modal-box">
+        <span>도전을 거절하겠습니까?</span>
+        <div>
+          <button class="closeBtn">닫기</button>
+          <button class="okBtn">거절</button>
+        </div>
+      </section>
+    </section>
+    <section class="choice-modal hidden" id="accept-modal">
+      <section class="modal-box">
+        <span>도전을 수락하시겠습니까?</span>
+        <div>
+          <button class="closeBtn">닫기</button>
+          <button class="okBtn">수락</button>
+        </div>
+      </section>
+    </section>
+    
   </body>
 </html>

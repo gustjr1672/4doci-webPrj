@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/css/my-page.css" type="text/css" />
   <link rel="stylesheet" href="/css/my-page-modal.css">
+  <link rel="stylesheet" href="/css/modal.css">
   <title>myPage</title>
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet"/>
 
   <script src="/js/my-page.js" defer></script>
   <script src="/js/edit-nickname-modal.js" defer></script>
   <script src="/js/edit-password-modal.js" defer></script>
-  <script src="../../static/js/join-form.js"></script>
 </head>
 <body>
 <div class="header-wrap">
@@ -115,7 +115,7 @@
     <div class="bottom-modal-container" id="nickname-modal-container">
       <div class="bottom-modal-content" id="nickname-modal-content">
         <div class="bottom-modal-header">
-          <button class="modal-close" id="nickname-modal-close">&times;</button>
+          <button class="edit-modal-close" id="nickname-modal-close">&times;</button>
         </div>
         <div class="input">
           <label for="nickname">닉네임</label>
@@ -133,7 +133,7 @@
 <div class="bottom-modal-container" id="password-modal-container">
   <div class="bottom-modal-content" id="password-modal-content">
     <div class="bottom-modal-header">
-      <button class="modal-close" id="password-modal-close">&times;</button>
+      <button class="edit-modal-close" id="password-modal-close">&times;</button>
     </div>
 
 
@@ -148,8 +148,8 @@
     <div class="input">
       <label for="pwd-check">새 비밀번호</label>
       <div class="input-form">
-        <input type="password" id="pwd-check" name="pwdcheck" required autocomplete="off"/>
-        <div id="pwd-check-error" class="error"></div>
+        <input type="password" id="new-pwd" name="pwdcheck" required autocomplete="off"/>
+        <div id="new-pwd-error" class="error"></div>
       </div>
     </div>
 
@@ -161,12 +161,20 @@
       </div>
     </div>
 
-    <div class="finish-btn">
-      <button disabled>완료</button>
+    <div class="finish-btn" >
+      <button id="password-finish-btn" disabled>완료</button>
     </div>
-
   </div>
 </div>
+<!--    =============변경 완료 모달============-->
+    <section class="complete-modal hidden">
+      <section class="modal-box">
+        <span class="result-text">완료되었습니다.</span>
+        <div>
+          <button class="modal-close">닫기</button>
+        </div>
+      </section>
+    </section>
 
   </body>
 </html>

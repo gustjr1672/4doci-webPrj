@@ -21,7 +21,13 @@ public interface GroupChallengeRepository {
 
     GroupChallenge findById(int challengeId);
 
+    void updateDate(@Param("challengeId")int challengeId,@Param("newStartDate") String newStartDate,
+                    @Param("newHour") int newHour,@Param("newEndDate") String newEndDate);
+
     void update(int id);
 
     List<GroupChallenge> getTodayStartList(LocalDate currentDate);
+
+    int getGroupChallengeIdByGsId(int groupStartId);
+
 }

@@ -11,6 +11,7 @@
         insert into group_challenge
         (name,
         start_date,
+        start_time,
         end_date,
         period,
         auth_frequency,
@@ -21,6 +22,7 @@
         values
         (#{g.name},
         #{g.startDate},
+        #{g.startTime},
         #{g.endDate},
         #{g.period},
         #{g.authFrequency},
@@ -38,6 +40,18 @@
         select * from group_challenge where id=#{challengeId}
     </select>
 
+    <update id="updateDate">
+        UPDATE group_challenge
+        <set>
+            start_date = #{newStartDate},
+            start_time = #{newHour},
+            <if test="newEndDate != null">
+            end_date = #{newEndDate},
+            </if>
+        </set>
+        WHERE id = #{challengeId}
+    </update>
+
     <!-- update --> 
 
     <update id="update">
@@ -45,5 +59,18 @@
         SET is_finish = 1
         WHERE id = #{id};
     </update>
-    
+
+    <select id="getGroupChallengeIdByGsId">
+        select group_challenge_id
+        from group_start
+        where id = #{groupStartId}
+    </select>
+        <!-- getTodayStartList --> 
+
+    <select id="getTodayStartList">
+        select * 
+        from group_challenge
+        where start_date = #{currentDate}
+    </select>
+
 </mapper>

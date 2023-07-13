@@ -11,6 +11,7 @@ import com.doci.webPrj.user.entity.Member;
 import com.doci.webPrj.user.repository.CommentNotificationRepository;
 import com.doci.webPrj.user.repository.FriendRequestNotificationRepository;
 import com.doci.webPrj.user.repository.FriendRequestRepository;
+import com.doci.webPrj.user.repository.InvitationNotificationRepository;
 import com.doci.webPrj.user.repository.MemberRepository;
 
 @Service
@@ -18,6 +19,8 @@ public class NotificationServiceImp implements NotificationService {
 
     @Autowired
     FriendRequestNotificationRepository repository;
+    @Autowired
+    InvitationNotificationRepository invirepository;
     @Autowired
     MemberRepository memberRepository;
     @Autowired

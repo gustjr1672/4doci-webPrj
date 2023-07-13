@@ -18,6 +18,8 @@ header {
   padding-left: 12px;
   /* margin: 12px; */
   align-items: center;
+  width: 100%;
+  max-width: 660px;
 }
 header div {
   display: flex;
@@ -29,6 +31,12 @@ header button {
   border: none;
   background-color: rgba(255, 255, 255, 0);
 }
+
+header img {
+  padding-left: 12px;
+  width: 22px;
+}
+
 .profile {
   padding: 36px 0;
   display: flex;
@@ -130,13 +138,14 @@ header button {
 .btns {
   margin-top: 80px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   max-width: 450px;
   width: 100%;
   box-sizing: border-box;
   /* margin: 80px auto; */
   padding: 0 30px 100px 30px;
+  gap: 10%;
 }
 .btns button {
   font-size: 16px;

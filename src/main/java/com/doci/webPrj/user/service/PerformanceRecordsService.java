@@ -19,4 +19,6 @@ public interface PerformanceRecordsService {
 
     PerformanceRecords getCurrentRecord(String challengeId);
 
+    boolean getVisibility(String challengeId);
+
 }

@@ -10,4 +10,5 @@ public interface AllChallengesRepository {
     List<AllChallenges> findAll(int id);
 
     AllChallenges findChallenge(String challengeId);
+
 }

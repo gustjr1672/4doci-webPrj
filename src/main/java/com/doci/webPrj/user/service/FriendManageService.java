@@ -5,6 +5,8 @@ import java.util.Map;
 
 import com.doci.webPrj.config.MyUserDetails;
 import com.doci.webPrj.user.entity.Member;
+import com.doci.webPrj.user.entity.OngoingChallengeView;
+import com.doci.webPrj.user.entity.PastChallengeView;
 
 public interface FriendManageService {
 
@@ -23,4 +25,10 @@ public interface FriendManageService {
     List<Member> getFriendListByNickname(int id, String nickname);
 
     void delete(int memberId, int id);
+
+    List<OngoingChallengeView> getOngoingList(int id, int userId);
+
+    List<PastChallengeView> getPastList(int id, int userId);
+
+    Member getFriendById(int id);
 }

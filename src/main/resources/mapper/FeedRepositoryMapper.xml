@@ -13,6 +13,8 @@
             #{arr}
         </foreach>
         and result = '성공'
+        and (impression is not null or image is not null)
+        and visibility = 1
         order by reg_date DESC;
     </select>
 </mapper>

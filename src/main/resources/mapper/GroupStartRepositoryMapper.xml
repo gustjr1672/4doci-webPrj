@@ -15,6 +15,20 @@
 
     </insert>
 
-   
+   <select id="findList">
+        SELECT id from group_start
+        where group_challenge_id = #{challengeId}
+    </select>
 
+    <delete id="delete">
+        DELETE from group_start
+        where group_challenge_id = #{challengeId} and to_member_id = #{memberId};
+    </delete>
+        <update id="update">
+        UPDATE group_start
+        SET result = #{result}
+        WHERE id = #{id};
+    </update>
+    
+    
 </mapper>

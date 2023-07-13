@@ -5,19 +5,23 @@
 <mapper namespace="com.doci.webPrj.scheduler.repository.UpdateViewRepository">
     <!-- findAllFree --> 
     <select id="findAllFree">
-    select * 
+        select * 
         from free_update_view
     </select>
     <!-- findAllRandom --> 
     <select id="findAllRandom">
-     select * 
+        select * 
         from choice_update_view
     </select>
     <!-- findAllGroup --> 
     <select id="findAllGroup">
-     select * 
+        select * 
         from group_update_view
     </select>
-
+    <select id="findGroupByChallengeId">
+        select * 
+        from group_update_view
+        where id = #{id}
+    </select>
     
 </mapper>

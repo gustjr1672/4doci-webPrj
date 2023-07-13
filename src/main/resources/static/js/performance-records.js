@@ -1,12 +1,19 @@
 let file = null;
 let imageForm = document.querySelector("#image-form");
 let recordImage = imageForm.dataset.image;
+let visibilityLabel = document.querySelector("#challenge-visibility");
+let visibilityInput = visibilityLabel.querySelector("input[type=checkbox]");
 window.onload = function () {
-  console.log(imageForm);
-  console.log(recordImage);
   if (recordImage) {
     loadFile(null, recordImage);
   }
+  console.log(visibilityLabel.dataset.visibility);
+  if (visibilityLabel.dataset.visibility == "false") {
+    visibilityInput.checked = true;
+    console.log("체크");
+  }
+
+  console.log(visibilityInput.checked);
 };
 function loadFile(input, image) {
   let form = document.getElementById("image-form");
@@ -182,8 +189,6 @@ function showMessage(message) {
 }
 let visibilityBtn = document.querySelector("input[type=checkbox]");
 visibilityBtn.addEventListener("change", (e) => {
-  //console.log(e.target.dataset.uniqueId);
-  console.log(visibilityBtn.checked);
   if (visibilityBtn.checked) {
     fetch(`api/all-challenges/${e.target.dataset.uniqueId}/0`, {
       method: "PUT",

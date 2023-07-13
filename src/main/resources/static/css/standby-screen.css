@@ -1,495 +1,557 @@
-
 * {
-    font-family: "SUIT", sans-serif !important;
-  }
+  font-family: "SUIT", sans-serif !important;
+}
 
 body {
-    margin: 0; 
-    background-image: linear-gradient(to bottom,#383D66 312px, #FFFFFF 312px);
-    background-repeat: no-repeat;
+  margin: 0;
+  background-image: linear-gradient(to bottom, #383d66 312px, #ffffff 312px);
+  background-repeat: no-repeat;
 }
 @keyframes shake {
-    0% { transform: translateX(0); }
-    10% { transform: translateX(-1px); }
-    20% { transform: translateX(1px); }
-    30% { transform: translateX(-1px); }
-    40% { transform: translateX(1px); }
-    50% { transform: translateX(-1px); }
-    60% { transform: translateX(1px); }
-    70% { transform: translateX(-1px); }
-    80% { transform: translateX(1px); }
-    90% { transform: translateX(-1px); }
-    100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
   }
-  
+  10% {
+    transform: translateX(-1px);
+  }
+  20% {
+    transform: translateX(1px);
+  }
+  30% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  50% {
+    transform: translateX(-1px);
+  }
+  60% {
+    transform: translateX(1px);
+  }
+  70% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  90% {
+    transform: translateX(-1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .shake-animation {
-    animation: shake 1s;
-}
-
-/* 헤더 */
-.header-wrap {
-    max-width: 700px;
-    width: 100%;
-    margin: 0;
-}
-
-header {
-    /* display: flex;
-    justify-content: space-between; */
-    margin: 20px 12px;
-}
-
-.header_left {
-    display: flex;
-    gap: 12px;
-    width: 90px;
-    height: 40px;
-}
-
-header button {
-    background-color: #383D66;
-    border: none;
-}
-
-.header_left button:hover img {
-    content: url("/image/backHover.png");
-}
-
-.bell:hover img {
-    content: url("/image/bellHover.png");
+  animation: shake 1s;
 }
 
 /* 전체 div */
-.content-list{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;  
+.content-list {
+  margin-top: 76px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
 }
 
 /* 메세지 */
-.message{
-    font-size: 14px;
-    font-weight: bold;
-    color: #ffffff;
+.message {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
 
-    margin: 20px 0px;
+  margin: 20px 0px;
 }
 
 /* 대기중인 도전 */
-.challenge-title{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;  
+.challenge-title {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
 
-    width: 100%;
-    max-width: 700px;
-} 
-
-.challenge-title p{
-    font-size: 14px;
-    font-weight: bold;
-    color: #ffffff;
-    width: 90%;
+  width: 100%;
+  max-width: 700px;
 }
 
-.challenge-title span{
-    font-size: 14px;
-    font-weight: bold;
-    color: #333333;
-} 
+.challenge-title p {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  width: 90%;
+}
 
-.challenge-title div{
-    border: none;
-    border-radius: 12px;
-    background-color: #ffffff;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+.challenge-title span {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+}
 
-    height: 123px;
-    width: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.challenge-title div {
+  border: none;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+
+  height: 123px;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 함께하는 친구 */
-.friends{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
+.friends {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
 
-    max-width: 700px;
-    width: 100%;
+  max-width: 700px;
+  width: 100%;
 }
 
-.friends .modify{
-    display: flex;
-    justify-content: space-between;
-    width: 90%;
-    
+.modify {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
 }
 
-.friends p{
-    font-size: 14px;
-    font-weight: bold;
-    color: #333333;
+.profile-wrap {
+  display: flex;
+  align-items: center;
 
-    /* margin-right: 230px; */
+  height: 100px;
+  column-gap: 29px;
+  width: 90%;
+  white-space: nowrap;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
 }
 
-.profile-wrap{
-    display: flex;
-    align-items: center;
+.profile-wrap::-webkit-scrollbar {
+  display: none;
+}
 
-    height: 100px;
-    column-gap: 29px;
-    width: 90%;
-    white-space: nowrap;
-    overflow-x: scroll;
-    scroll-behavior: smooth;
-} 
-
-.profile-wrap::-webkit-scrollbar{
-    display: none;
+.profile-wrap {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
 }
 
 .profile {
-    font-size: 10px;
-    font-weight: medium;
-    color: #333333;
-    text-align: center;
+  font-size: 10px;
+  font-weight: medium;
+  color: #333333;
+  text-align: center;
 
-    display: inline-block;
+  display: inline-block;
 
-    width: 60px;
-    height: 80px;
+  width: 60px;
+  height: 80px;
 }
 
-.profile>div{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.profile > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
+
 /* ============함께하는 친구 수정버튼 기능=================== */
-.add-friend{
-    width: 60px;
-    height: 80px;
+.add-friend {
+  width: 60px;
+  height: 80px;
 }
-.add-btn{
-    width: 60px;
-    height: 60px;
-    background-color: white;
-    /* border: none; */
-    border: solid 1px rgb(153, 147, 147);
-    color: rgb(153, 147, 147);
-    border-radius: 60px;
-    padding: 0px;
-    font-size: 30px;
-}
-
-.modify button{
-    background-color: white;
-    border: none;
-    color: rgb(179, 179, 179);
+.add-btn {
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  /* border: none; */
+  border: solid 1px rgb(153, 147, 147);
+  color: rgb(153, 147, 147);
+  border-radius: 60px;
+  padding: 0px;
+  font-size: 30px;
 }
 
-.profile .with-user{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    position: relative;
+.modify button {
+  background-color: white;
+  border: none;
+  color: rgb(179, 179, 179);
 }
 
-.with-user .delete-btn{
-    /* visibility: hidden; */
-    position: absolute;
-    z-index: 1;
-    border: none;
-    background-color:white;
-    top: -8px;
-    left: 38px;
+.profile .with-user {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: relative;
 }
-.delete-btn img{
-    width: 15px;
-    height: 15px;
+
+.with-user .delete-btn {
+  /* visibility: hidden; */
+  position: absolute;
+  z-index: 1;
+  border: none;
+  background-color: white;
+  top: -8px;
+  left: 38px;
 }
-.img{
-    z-index: 2;
-    width: 60px;
-    height: 60px;
-    border-radius: 60px;
-    position: relative;
+.delete-btn img {
+  width: 15px;
+  height: 15px;
+}
+.img {
+  z-index: 2;
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  position: relative;
 }
 
 /* ================================================ */
 /* 도전기간 */
-.period{
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-items: center;
+.period {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
 
-    width: 100%;
-    max-width: 700px;
+  width: 100%;
+  max-width: 700px;
 }
 
-.period>p{      /*>: 바로 밑 자식에만 먹음 */
-    font-size: 14px;
-    font-weight: bold;
-    color: #333333;
-    width: 90%;
+.modify > p {
+  /*>: 바로 밑 자식에만 먹음 */
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+  width: 80%;
 }
 
 /* 시작일 */
-.start-set{
-    display: flex;
-    justify-content: space-between;
-    /* gap: 80px; */
-    width: 90%;
-    font-size: 12px;
-    color: #333333;
+.start-set {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* gap: 80px; */
+  width: 90%;
+  font-size: 12px;
+  color: #333333;
 }
-
-.start-set p{
-    line-height: 35px;
-    font-weight: bold;
+.start-set p {
+  line-height: 35px;
+  font-weight: bold;
 }
+.start-set div {
+  width: 80%;
+  height: 40px;
+  border: none;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.start-set span {
+  /* border-bottom: 1px solid #333333; */
+  /* border-radius: 12px; */
+  line-height: 35px;
 
-.start-set span{
-    border-bottom: 1px solid #333333;
-    /* border-radius: 12px; */
-    text-align: center;
-    line-height: 35px;
+  height: 35px;
 
-    width: 80%;
-    height: 35px;
-
-    font-weight: medium;
+  font-weight: medium;
 }
 /* 종료일 */
-.end-set{
-    display: flex;
-    justify-content: space-between;
-    width: 90%;
-    font-size: 12px;
-    color: #333333;
+.end-set {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  font-size: 12px;
+  color: #333333;
 }
 
-.end-set p{
-    line-height: 35px;
-    font-weight: bold;
+.end-set p {
+  line-height: 35px;
+  font-weight: bold;
 }
+.end-set div {
+  width: 80%;
+  height: 40px;
+  border: none;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.end-set span {
+  /* border-bottom: 1px solid #333333; */
+  /* border-radius: 12px; */
+  line-height: 35px;
 
-.end-set span{
-    border-bottom: 1px solid #333333;
-    /* border-radius: 12px; */
-    text-align: center;
-    line-height: 35px;
-    width: 80%;
-    height: 35px;
+  height: 35px;
 
-    font-weight: medium;
+  font-weight: medium;
 }
 
 /* 버튼 */
-.buttons{
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    margin-top: 30px;
-    max-width: 700px;
-    width: 100%;
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 30px;
+  max-width: 700px;
+  width: 100%;
 }
 
-.buttons button{
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: bold;
-    height: 47px;
+.buttons button {
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  height: 47px;
+  width: 40%;
 }
 
-.invite-btn{
-    border: 1px solid #383D66;
-    color: #383D66;
-    background-color: #ffffff;
+.close-btn {
+  border: 1px solid #383d66;
+  color: #383d66;
+  background-color: #ffffff;
 }
 
-.start-btn{
-    border: none;
-    color: #ffffff;
-    background-color: #383D66;
-    width: 90%;
+.start-btn {
+  border: none;
+  color: #ffffff;
+  background-color: #383d66;
+  width: 90%;
 }
 
 /* 모달 */
 /* 모달 전체 */
-.modal{
-    z-index: 4;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+.modal {
+  z-index: 4;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.7);
 }
-.hidden{
-    display: none !important;
+.hidden {
+  display: none !important;
 }
 /* 모달 바디 */
-.modal-body{
-    position: absolute;
-    top:10%;
+.modal-body {
+  position: absolute;
+  top: 10%;
 
-    border-radius: 12px;
+  border-radius: 12px;
 
-    width: 100%;
-    max-width: 400px;
-    height: 680px;
-    background-color: #ffffff;
+  width: 100%;
+  max-width: 400px;
+  height: 680px;
+  background-color: #ffffff;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
 }
 
-.modal-body p{
-    font-size: 14px;
-    font-weight: bold;
-    color: #333333;
+.modal-body p {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
 
-    margin-top: 90px;
-    width: 312px;
+  margin-top: 90px;
+  width: 312px;
 
-    text-align: center;
+  text-align: center;
 }
 
 /* 모달 바디 -친구 목록 */
 .friends-list {
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 
-    height: 348px;
-    width: 100%;
-    overflow: scroll;
+  height: 348px;
+  width: 100%;
+  overflow: scroll;
 }
 
-.friends-list::-webkit-scrollbar{
-    display: none;
+.friends-list::-webkit-scrollbar {
+  display: none;
 }
 
 .friends-list .content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 450px;
-    width: 90%;
-    padding: 10px 30px;
-    background-color: white;
-    border: none;
-    height: 68px;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 450px;
+  width: 90%;
+  padding: 10px 30px;
+  background-color: white;
+  border: none;
+  height: 68px;
+  box-sizing: border-box;
 }
 
 .friends-list .content .info {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
 }
 
 .friends-list .content .info div {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
 }
 
 .content img {
-    width: 60px;
-    height: 60px;
-    border-radius: 60px;
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
 }
-  
+
 .content span {
-    margin: 0px;
-    font-size: 12px;
-    font-weight: medium;
-    color:#333333;
+  margin: 0px;
+  font-size: 12px;
+  font-weight: medium;
+  color: #333333;
 }
 
 /* 모달버튼 */
-.content input[type=checkbox]{
-    appearance: none;   /*기본스타일 없애기 */
-    border: 1px solid #949494;
-    border-radius: 30px;
-    width: 30px;
-    height: 30px;
+.content input[type="checkbox"] {
+  appearance: none; /*기본스타일 없애기 */
+  border: 1px solid #949494;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
 }
-.content input[type=checkbox]:checked{
-    background-image: url("/image/groupchallenge/select.png");
-    background-repeat: no-repeat;
-    border: none;
-    
+.content input[type="checkbox"]:checked {
+  background-image: url("/image/groupchallenge/select.png");
+  background-repeat: no-repeat;
+  border: none;
 }
-.btns{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    
+.btns {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
-.btns button:nth-child(1){
-    border: none;
-    border-radius: 12px;
+.btns button:nth-child(1) {
+  border: none;
+  border-radius: 12px;
 
-    font-size: 14px;
-    font-weight: bold;
-    color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
 
-    background-color: #383D66;
-    width: 80%;
-    height: 47px;
-
+  background-color: #383d66;
+  width: 80%;
+  height: 47px;
 }
 
-.btns button:nth-child(2){
-    border: none;
-    width: 40px;
-    background-color: #ffffff;
+.btns button:nth-child(2) {
+  border: none;
+  width: 40px;
+  background-color: #ffffff;
 
-    position: absolute;
-    top:30px;
-    left:84%;
+  position: absolute;
+  top: 30px;
+  left: 84%;
 }
 
-.blur{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60px;
-    height: 60px;
-    background-color: rgba(185, 185, 185, 0.5);
-    border-radius: 60px;
-    z-index: 3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: 700;
+.wait {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  background-color: rgba(185, 185, 185, 0.5);
+  border-radius: 60px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+.refuse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  background-color: rgba(255, 218, 218, 0.8);
+  border-radius: 60px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #c11111;
+}
+.choice-modal,
+.complete-modal-buttonless {
+  z-index: 4;
+}
+#start-modal-box {
+  gap: 20px !important;
+}
+
+.modal-box span:nth-child(2) {
+  font-size: 10px;
+  color: #c11111;
+}
+
+#alert-error-modal,
+#alert-start-modal {
+  font-size: 14px;
 }
 
 
+
+select {
+  width: 36%;
+  height: 44px;
+  border-radius: 8px;
+  background: #fdfdfd;
+  border: 1px solid #a3a3a3f3;
+  text-align: center;
+}
+
+.finish-btn button {
+  background-color: #383d66 !important;
+}
+
+.alert-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+.alert,
+.end-date-alert {
+  width: 80%;
+  color: #c11111;
+  font-size: 12px;
+}

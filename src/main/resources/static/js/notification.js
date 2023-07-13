@@ -160,7 +160,7 @@ btnSection.addEventListener("click", (e) => {
   if (e.target.classList.contains("community-btn")) {
     commentNotificationLoad("/notifications/comment");
   } else if (e.target.classList.contains("group-invitation-btn")) {
-    groupInvitationLoad(`/notification/invite`);
+    groupInvitationLoad(`/notifications/invite`);
   } else if (e.target.classList.contains("friend-request-btn")) {
     friendRequestLoad(`/notifications/request`, "GET");
   }

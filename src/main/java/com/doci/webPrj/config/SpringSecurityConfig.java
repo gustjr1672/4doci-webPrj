@@ -25,13 +25,13 @@ public class SpringSecurityConfig {
         http.csrf(csrf -> csrf.disable()).cors(cors -> cors.disable())
                 .authorizeHttpRequests(request -> request
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                        .requestMatchers("/image/**", "/css/**", "/js/**","/join/**","api/join/**").permitAll()
+                        .requestMatchers("/image/**", "/css/**", "/js/**","/join/**","/api/join/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/**").hasRole("USER")
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
-                        .loginPage("/member/login")
+                        .loginPage("/")
                         .loginProcessingUrl("/login")
                         .successHandler(customAuthenticationSuccessHandler)   // 로그인 성공시: 회원의 역할에 따라 다른 페이지로 들어가짐
                         .usernameParameter("userId")

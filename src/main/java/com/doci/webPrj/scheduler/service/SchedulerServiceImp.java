@@ -59,17 +59,21 @@ public class SchedulerServiceImp implements SchedulerService {
 
     @Override
     public void update(UpdateView update, String type) {
+        String totalResult = "";
+        if (update.getSuccessRate() >= 70)
+            totalResult = "성공";
+        else
+            totalResult = "실패";
+
         switch (type) {
             case "FC":
-                freeChallengeRepository.update(update.getId());
-
+                freeChallengeRepository.update(update.getId(), totalResult);
                 break;
             case "CH":
-                choiceRepository.update(update.getId());
+                choiceRepository.update(update.getId(), totalResult);
                 break;
             case "GS":
-                int groupChallengeId = groupStartRepository.getGroupChallengeId(update.getId());
-                groupChallengeRepository.update(groupChallengeId);
+                groupStartRepository.update(update.getId(), totalResult);
                 break;
         }
     }
@@ -129,10 +133,16 @@ public class SchedulerServiceImp implements SchedulerService {
 
     @Override
     public List<UpdateView> getGroupListByChallengeId(int id) {
-        // invitationRepository.deleteAll(id);
-        // invitationNotificationRepository.deleteAll(id);
+        invitationRepository.deleteAll(id);
+        invitationNotificationRepository.deleteAll(id);
 
         return repository.findGroupByChallengeId(id);
+    }
+
+    @Override
+    public void updateGroupResult(UpdateView challenge) {
+        int groupChallengeId = groupChallengeRepository.getGroupChallengeIdByGsId(challenge.getId());
+        groupChallengeRepository.update(groupChallengeId);
     }
 
 }

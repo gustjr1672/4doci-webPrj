@@ -25,4 +25,10 @@ public class MemberServiceImp implements MemberService {
         memberRepository.updateNickname(user);
     }
 
+    @Override
+    public void updatePassword(MyUserDetails user, String password) {
+        user.setPwd(password);
+        memberRepository.updatePassword(user);
+    }
+
 }

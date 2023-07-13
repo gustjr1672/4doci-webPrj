@@ -46,7 +46,19 @@
 
     <update id="update">
         UPDATE free_challenge
-        SET is_finish = 1
+        SET 
+            is_finish = 1,
+            result = #{totalResult}
         WHERE id = #{id};
-    </update>    
+    </update>
+    <update id="editVisibility">
+        update free_challenge
+        set visibility = #{visibility}
+        where id = #{id}
+    </update>
+    <select id="getVisibility">
+        select visibility
+        from free_challenge
+        where id = #{id}
+    </select>
 </mapper>

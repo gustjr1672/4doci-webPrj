@@ -12,8 +12,10 @@ public interface ChoiceRepository {
 
     void delete(int id);
 
-    void update(int id);
+    void update(@Param("id") int id, @Param("totalResult") String totalResult);
 
     void editVisibility(@Param("id") int id, @Param("visibility") boolean visibility);
+
+    boolean getVisibility(int id);
 
 }

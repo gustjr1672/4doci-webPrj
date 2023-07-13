@@ -10,12 +10,15 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.doci.webPrj.config.MyUserDetails;
+import com.doci.webPrj.user.entity.GroupChallenge;
 import com.doci.webPrj.user.entity.InvitationMember;
 import com.doci.webPrj.user.entity.Member;
 import com.doci.webPrj.user.service.FriendManageService;
@@ -34,9 +37,9 @@ public class GroupChallengeController {
     FriendManageService friendManageService;
 
 
-   @PutMapping
+   @PutMapping("invitation")
    public void add(@RequestParam("friendList") List<Integer> friendList,
-                                     @RequestParam("challengeId") Integer challengeId){
+                                @RequestParam("challengeId") Integer challengeId){
        invitationService.invite(friendList,challengeId);
    }
 
@@ -53,9 +56,16 @@ public class GroupChallengeController {
     }
 
    @DeleteMapping("{challengeId}/members/{userId}")
-    public void delete(@PathVariable("userId") Integer userId,
+    public void deleteInvitation(@PathVariable("userId") Integer userId,
                        @PathVariable("challengeId") Integer challengeId){
-       System.out.println("잘됨");
-                        invitationService.cancelInvitation(userId,challengeId);
+      invitationService.cancelInvitation(userId,challengeId);
 }
+
+
+    @PutMapping("date")
+    public GroupChallenge updateDate(@RequestBody Map<String, String> requestData){
+        groupChallengeService.updateDate(requestData);
+        GroupChallenge challenge = groupChallengeService.getChallenge(Integer.parseInt(requestData.get("challengeId")));
+        return challenge;
+    }
 }
