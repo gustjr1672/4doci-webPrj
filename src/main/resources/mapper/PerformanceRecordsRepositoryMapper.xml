@@ -136,5 +136,12 @@
         update performance_records
         set result='실패'
         where id=#{record.id}
-    </update>    
+    </update>  
+    <update id="updateSuccess">
+        update performance_records
+        set 
+        result='성공',
+        reg_date = #{record.regDate}
+        where id=#{record.id}
+    </update>     
 </mapper>
