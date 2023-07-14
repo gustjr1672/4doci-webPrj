@@ -7,6 +7,8 @@
     <title>free_challenge_form</title>
     <link rel="stylesheet" href="/css/individual-form.css" type="text/css" />
     <link rel="stylesheet" href="/css/modal.css" type="text/css" />
+    <link rel="stylesheet" href="/css/toggle.css" type="text/css" />
+    <link href="/css/animation.css" type="text/css" rel="stylesheet"/>
     <script src="/js/free-challenge-form.js" defer="defer"></script>
     <link
       href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
@@ -39,12 +41,14 @@
               ></option>
             </select>
           </div>
-          <div>
-            <span>비공개</span>
-            <input type="checkbox" value="true" name="visibility" />
-          </div>
         </div>
-
+        <div class="visibility_title">
+          <label for="visibility">공개여부</label>
+          <label id="visibility" class="switch">
+            <input type="checkbox" value = true name="visibility" >
+            <span class="slider"></span>
+          </label>
+        </div>
         <div class="name_set">
           <div class="title">
             <label for="challenge_name">도전명</label>
@@ -74,7 +78,7 @@
               name="goalQuantity"
               required
             />
-            <div>
+            
               <!--              id="quantity_inside"-->
               <select name="unitId" required>
                 <option value="">단위 선택</option>
@@ -85,7 +89,7 @@
                   th:text="${unit.name}"
                 ></option>
               </select>
-            </div>
+            
           </div>
         </div>
 
@@ -142,8 +146,8 @@
         <div class="alert hidden">종료일은 시작일 이후로 설정해주세요.</div>
       </div>
       <div class="next_btn">
-        <div type="submit" id="submit">도전생성</div>
-        <button type="submit" class="hidden" id="submit-button">도전생성</button>
+        <div type="submit" id="submit" class="brighten-2 zoom-2 cursor">도전생성</div>
+        <button type="submit" class="hidden " id="submit-button">도전생성</button>
       </div>
     </form>
     <section class="choice-modal hidden">

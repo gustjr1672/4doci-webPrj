@@ -61,3 +61,11 @@
 .brighten:hover {
     filter: brightness(1.1);
   }
+
+  .brighten-2 {
+    transition: filter 0.2s ease;
+    filter: brightness(1);
+  }
+.brighten-2:hover {
+    filter: brightness(1.3);
+  }
