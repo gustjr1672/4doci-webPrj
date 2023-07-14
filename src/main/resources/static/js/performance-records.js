@@ -3,17 +3,14 @@ let imageForm = document.querySelector("#image-form");
 let recordImage = imageForm.dataset.image;
 let visibilityLabel = document.querySelector("#challenge-visibility");
 let visibilityInput = visibilityLabel.querySelector("input[type=checkbox]");
+
 window.onload = function () {
   if (recordImage) {
     loadFile(null, recordImage);
   }
-  console.log(visibilityLabel.dataset.visibility);
   if (visibilityLabel.dataset.visibility == "false") {
     visibilityInput.checked = true;
-    console.log("체크");
   }
-
-  console.log(visibilityInput.checked);
 };
 function loadFile(input, image) {
   let form = document.getElementById("image-form");
@@ -199,3 +196,14 @@ visibilityBtn.addEventListener("change", (e) => {
     });
   }
 });
+let nextRound = document.querySelector("#next-round");
+let startDateString = nextRound.dataset.startDate;
+let authFrequency = nextRound.dataset.authFrequency;
+let round = nextRound.dataset.round;
+let nextRoundDate = new Date(startDateString);
+nextRoundDate.setDate(nextRoundDate.getDate() + authFrequency * round);
+let year = nextRoundDate.getFullYear();
+let month = (nextRoundDate.getMonth() + 1).toString().padStart(2, "0");
+let day = nextRoundDate.getDate().toString().padStart(2, "0");
+let formattedDate = year + "-" + month + "-" + day;
+nextRound.textContent = formattedDate;
