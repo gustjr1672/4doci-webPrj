@@ -39,7 +39,6 @@ select {
   text-align: center;
 
   height: 38px;
-  border: 1px solid #949494;
   background-color: #fdfdfd;
 }
 
@@ -49,12 +48,10 @@ select option {
   color: #333333;
 }
 
-/* .category_title select:hover{
-   border-color: #383D66; 
-} */
 
 /*메세지*/
 .massage {
+  width: 100%;
   display: flex;
   justify-content: center;
 }
@@ -64,13 +61,17 @@ select option {
   font-weight: bold;
   color: #333333;
 
-  margin: 40px 0;
+  margin-bottom: 40px;
 
-  width: 312px;
+  width: 80%;
+  max-width: 440px;
 }
-
+form {
+  width: 100%;
+}
 /*입력폼 리스트 전체 묶는 div*/
 .list {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -87,12 +88,15 @@ select option {
   align-items: center;
   justify-content: start;
 
-  gap: 56px;
-  width: 312px;
+
+  gap: 18px;
+  width: 80%;
+  max-width: 440px;
 }
 
 .category_title select {
-  width: 204px;
+  width: 100px;
+  height: 30px;
 }
 
 /*그룹명, 도전명 */
@@ -102,9 +106,12 @@ select option {
   flex-direction: column;
   align-items: center;
   gap: 30px;
+  width: 100%;
 }
 
 .title {
+  width: 80%;
+  max-width: 440px;
   font-size: 14px;
   font-weight: bold;
   color: #333333;
@@ -113,19 +120,21 @@ select option {
   flex-direction: column;
   gap: 10px;
 }
-
+.title div{
+  display: flex;
+  align-items: center;
+}
 .challenge_name {
   resize: none;
-  width: 229px;
-  height: 32px;
-  border: 1px solid #949494;
+  width: 80%;
+  height: 60px;
   background-color: #fdfdfd;
+  /* box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1); */
 
   font-size: 12px;
   font-weight: medium;
   color: #333333;
 
-  position: relative;
   text-align: center;
   padding: 20px 40px 10px 40px;
 }
@@ -148,18 +157,21 @@ select option {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 312px;
+  width: 80%;
+  max-width: 440px;
+  margin-top: 20px;
 }
 
 .quantity_set {
   display: flex;
+  justify-content: space-between;
   gap: 20px;
 }
 
 .quantity_set input {
-  width: 140px;
-  height: 37px;
-  border: 1px solid #949494;
+  width: 48%;
+  height: 34px;
+  /* border: 1px solid #949494; */
   background-color: #fdfdfd;
 
   font-size: 12px;
@@ -169,8 +181,11 @@ select option {
   text-align: center;
 }
 
+.quantity_set div {
+  width: 48%;
+}
 .quantity_set select {
-  width: 145px;
+  width: 100%;
 }
 
 /* 인증 빈도 */
@@ -180,26 +195,27 @@ select option {
   color: #333333;
 
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
-  gap: 50px;
-
-  width: 310px;
+  width: 80%;
+  max-width: 440px;
 }
 
 .frequency_set {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
-
+  gap: 20px;
+  width: 77%;
   font-size: 12px;
   font-weight: bold;
   color: #333333;
 }
-
+.frequency_set div {
+  width: 90%;
+}
 .frequency_set select {
-  width: 150px;
+  width: 100%;
 }
 
 /*기간 설정*/
@@ -210,16 +226,23 @@ select option {
 
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
-
-  width: 310px;
+  width: 100%;
 }
-
+.period_title label{
+  width: 20%;
+  font-size: 14px;
+}
 .period_set {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 30px;
+  gap: 20px;
+  width: 80%;
+  max-width: 440px;
+  margin-top:20px;
 }
 
 .start_set,
@@ -227,22 +250,28 @@ select option {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 14px;
+  font-size: 12px;
+  width: 100%;
+}
+.start_set div, .end_set div {
+  width: 77%;
 }
 .start_time{
   display: flex;
-  gap:56px;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 .start_time div{
   display : flex;
-  gap : 10px;
+  justify-content: space-between;
   align-items: center;
+  width: 77%;
 }
 .inside {
-  width: 204px;
+  width: 100%;
   height: 37px;
-  border: 1px solid #949494;
+  /* border: 1px solid #949494; */
   background-color: #fdfdfd;
 
   font-size: 12px;
@@ -252,21 +281,26 @@ select option {
   padding: 0;
 }
 .time{
-  width: 80px;
+  width:48% ;
 }
 /* 다음 버튼 */
-
+.next_btn {
+  padding-top: 24px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
 .next_btn div,button {
-  border: 1px solid #949494;
   border-radius: 12px;
-  margin-top: 48px;
+
   font-size: 14px;
   font-weight: bold;
   color: #ffffff;
   text-align: center;
   line-height: 47px;
   background-color: #383d66;
-  width: 312px;
+  width: 80%;
+  max-width: 440px;
   height: 47px;
 }
 input,
@@ -275,6 +309,9 @@ option,
 select {
   font-weight: 700;
   border-radius: 4px;
+  border:1px solid #e2e2e2;
+  background-color: #fdfdfd;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
 }
 .alert {
   padding-left: 120px;
