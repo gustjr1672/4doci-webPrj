@@ -101,8 +101,6 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
     public void editRecords(PerformanceRecords performanceRecords) {
         if (performanceRecords.getImpression().equals(""))
             performanceRecords.setImpression(null);
-
-        System.out.println(performanceRecords.getImpression());
         recordsRepository.updateRecords(performanceRecords);
 
     }
@@ -180,6 +178,19 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
                 break;
         }
         return visibility;
+    }
+
+    @Override
+    public void updateToSuccess(String uniqueId) {
+        List<Object> typeAndId = SeparateTypeAndId(uniqueId);
+        String type = (String) typeAndId.get(0);
+        int id = (int) typeAndId.get(1);
+        PerformanceRecords record = recordsRepository.findCurrentRecord(type, id);
+        Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+        record.setResult("성공");
+        record.setRegDate(currentTime);
+        recordsRepository.updateSuccess(record);
+
     }
 
 }

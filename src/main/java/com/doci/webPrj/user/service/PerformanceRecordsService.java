@@ -21,4 +21,6 @@ public interface PerformanceRecordsService {
 
     boolean getVisibility(String challengeId);
 
+    void updateToSuccess(String uniqueId);
+
 }

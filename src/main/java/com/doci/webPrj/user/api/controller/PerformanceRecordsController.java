@@ -20,7 +20,7 @@ public class PerformanceRecordsController {
     @Autowired
     RecordImageService recordImageService;
 
-    @PostMapping("achv-quantity")
+    @PutMapping("achv-quantity")
     public void upAchvQuantity(@RequestParam("cid") String challengeTypeAndId) {
         recordsService.updateAchvQuantity(challengeTypeAndId);
     }
@@ -29,6 +29,11 @@ public class PerformanceRecordsController {
     public int getAchvQuantity(@RequestParam("cid") String challengeTypeAndId) {
         int achvQuantity = recordsService.getAchvQuantity(challengeTypeAndId);
         return achvQuantity;
+    }
+
+    @PutMapping("result/{uniqueId}")
+    public void edit(@PathVariable("uniqueId") String uniqueId) {
+        recordsService.updateToSuccess(uniqueId);
     }
 
     @PutMapping("performance-records")
