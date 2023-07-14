@@ -140,7 +140,7 @@
     <update id="updateSuccess">
         update performance_records
         set 
-        result='성공',
+        result=#{record.result},
         reg_date = #{record.regDate}
         where id=#{record.id}
     </update>     
