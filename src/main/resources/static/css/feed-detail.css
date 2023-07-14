@@ -84,7 +84,7 @@ body {
 }
 .period {
   font-size: 12px;
-  color: #7b7b7b;
+  color: #858585;
   padding-left: 12px;
 }
 .feed {
@@ -110,7 +110,7 @@ body {
   max-width: 660px;
 }
 .date span {
-  color: #a5a5a5;
+  color: #858585;
 
   line-height: 25px;
   font-size: 12px;
@@ -130,6 +130,10 @@ body {
   font-weight: 500;
 }
 
+.feed-section{
+  margin-bottom: 30px;
+}
+
 /**댓글 모달**/
 .comment-content-list{
   overflow-y: scroll;
@@ -140,6 +144,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.comment-content-footer span{
+  color: #858585;
+}
+
+.comment-content-section > :nth-child(2){
+  color: #333333;
 }
 
 .comment-modal span{

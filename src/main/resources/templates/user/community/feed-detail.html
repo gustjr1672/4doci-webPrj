@@ -38,12 +38,14 @@
       </div>
     </section>
 
-    <section class="feed" th:each="feed:${list}">
-      <div class="date">
-        <span th:text="${#dates.format(feed.regDate, 'yy.MM.dd')}">23.06.05</span>
-      </div>
-      <img th:src="${feed.image}" alt="" />
-      <div class="content"><span th:text="${feed.impression}">자전거탐</span></div>
+    <section class="feed-section">
+      <section class="feed" th:each="feed:${list}">
+        <div class="date">
+          <span th:text="${#dates.format(feed.regDate, 'yy.MM.dd')}">23.06.05</span>
+        </div>
+        <img th:src="${feed.image}" alt="" />
+        <div class="content"><span th:text="${feed.impression}">자전거탐</span></div>
+      </section>
     </section>
 
     <section class="comment-modal hidden">
