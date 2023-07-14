@@ -118,8 +118,7 @@ function commentNotificationLoad(url) {
       let deleteCommentAlarmBtn =document.querySelector(".delete-comment-alarm-button");
 
       deleteCommentAlarmBtn.addEventListener("click", (e) => {
-        console.log("알람 삭제 버튼");
-        console.log(commentNotiList[0].toMemberId);
+        
         fetch(`/notifications/comment/${commentNotiList[0].toMemberId}`, {
           method: "DELETE"
         })

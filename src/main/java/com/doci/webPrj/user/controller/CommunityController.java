@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.doci.webPrj.config.MyUserDetails;
+import com.doci.webPrj.user.entity.CommentView;
 import com.doci.webPrj.user.entity.Feed;
 import com.doci.webPrj.user.entity.FeedDetail;
 import com.doci.webPrj.user.entity.Member;
@@ -59,13 +60,18 @@ public class CommunityController {
             Model model) {
 
         List<FeedDetail> list = new ArrayList<>();
+        List<CommentView> commentViewList = new ArrayList<>();
+
         int AllCommentCount = 0;
         if (fcId != 0) {
             list = feedService.getFreeFeedList(fcId);
+            commentViewList = feedService.getCommentListByChallengeId(fcId);
         } else if (chId != 0) {
             list = feedService.getRandomFeedList(chId);
+            commentViewList = feedService.getCommentListByChallengeId(chId);
         } else {
             list = feedService.getGroupFeedList(gsId);
+            commentViewList = feedService.getCommentListByChallengeId(gsId);
         }
         for (FeedDetail feedDetail : list) {
             AllCommentCount += feedDetail.getCommentCount();
@@ -73,6 +79,8 @@ public class CommunityController {
         model.addAttribute("challenge", list.get(0));
         model.addAttribute("count", AllCommentCount);
         model.addAttribute("list", list);
+        model.addAttribute("commentViewList", commentViewList);
+
         return "user/community/feed-detail";
     }
 

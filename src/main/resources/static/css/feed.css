@@ -182,7 +182,7 @@ header img {
   padding-bottom: 10px;
 }
 .time-message {
-  color: #6b6b6b;
+  color: #858585;
   font-size: 10px;
   font-weight: 600;
 }
@@ -253,7 +253,7 @@ footer img {
   border-radius: 8px;
   font-size: 12px;
   background-color: #fff;
-  color: #333333 !important;
+  color: #858585 !important;
   cursor: pointer;
 }
 
