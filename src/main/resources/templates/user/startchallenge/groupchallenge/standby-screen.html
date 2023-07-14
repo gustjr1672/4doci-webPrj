@@ -16,10 +16,12 @@
 <body>
 
   <div class="content-list">
+    <header>
     <div class="message">
-      <p>그룹도전 시작을 기다리는 중입니다</p>
+      <p>그룹도전 시작까지</p>
+      <div id=timer></div>
     </div>
-
+  </header>
     <div class="challenge-title">
       <p>대기중인 도전</p>
       <div>
@@ -63,8 +65,8 @@
       <div class="start-set">
         <p>시작일</p>
         <div>
-          <span id="startDate" th:text="${challenge.startDate}"></span>
-          <span id="startTime" th:text="${challenge.startTime}+'시'"></span>
+          <span id="startDate" th:text="${challenge.startDate}" th:data-date="${challenge.startDate}"></span>
+          <span id="startTime" th:text="${challenge.startTime}+'시'" th:data-time="${challenge.startTime}"></span>
         </div>
       </div>
       <div class="end-set">
