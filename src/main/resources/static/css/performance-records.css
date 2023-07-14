@@ -92,6 +92,25 @@ header section {
   background-color: #fff;
   line-height: 35px;
 }
+.goal :nth-child(3) :first-child {
+  text-align: center;
+  width: 65px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+.goal :nth-child(3) :nth-child(2) {
+  text-align: center;
+  width: 80%;
+  max-width: 280px;
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 12px;
+  height: 35px;
+  background-color: #fff;
+  line-height: 35px;
+}
 
 .form {
   width: 100%;
