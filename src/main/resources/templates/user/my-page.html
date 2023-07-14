@@ -59,7 +59,7 @@
     <img src="./image/my-page/next.png" alt=">" />
   </button>
 
-  <button class="password-modal-button">
+  <button class="password-modal-button" th:if="${user.pwd} != null">
     <span>비밀번호 변경</span>
     <img src="./image/my-page/next.png" alt=">" />
   </button>
@@ -124,7 +124,7 @@
             <div id="nickname-error" class="error"></div>
           </div>
         </div>
-        <div class="finish-btn" >
+        <div class="finish-btn">
           <button disabled >변경</button>
         </div>
       </div>

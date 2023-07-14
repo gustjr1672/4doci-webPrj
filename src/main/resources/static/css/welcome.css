@@ -1,0 +1,47 @@
+* {
+    font-family: "SUIT", sans-serif !important;
+}
+
+body {
+    margin: 0;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    height: 200px;
+}
+
+.content-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 52px;
+    gap: 20px;
+}
+
+.content-wrap a {
+    font-size: 16px;
+    font-weight: 500;
+    width: 300px;
+    height: 52px;
+
+    font-style: normal;
+    color: #FFFFFF;
+
+    background-color: #383d66;
+    border-radius: 8px;
+    border: none;
+    margin-top: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+p {
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+}
