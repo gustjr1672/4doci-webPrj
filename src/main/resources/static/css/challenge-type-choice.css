@@ -30,8 +30,8 @@ header > button {
   color: #fff;
   display: flex;
   justify-content: center;
-  margin-right: 108px;
-  margin-top: 40px;
+  margin-top: 20px;
+  width: 100%;
 }
 
 h1 {
@@ -54,18 +54,20 @@ h1 {
   line-height: 16px;
   margin: 0;
   font-weight: 400;
+  text-align: center;
+  width: 100%;
 }
 .challenge-list-wrap {
   width: 100%;
 }
 .challenge-list {
-  margin-top: 28px;
+  margin-top: 48px;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
 }
 .challenge-option {
   width: 100%;
@@ -110,17 +112,17 @@ label span:first-child {
 }
 
 .challenge-option input:checked + label {
-  border: solid 2px #383d66;
+  background-color: #ebf9ff;
 }
 
 .create-btn {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin: 24px 14px;
+  margin: 30px 14px;
 }
 button[type="submit"] {
-  background-color: #71b5cb;
+  background-color: #383d66;
   color: white;
   max-width: 450px;
   width: 80%;
