@@ -33,6 +33,13 @@ function friendRequestLoad(url, method) {
     .then((response) => response.json())
     .then((list) => {
       notification.innerHTML = "";
+
+      let deleteTemplate =`
+      <div class="blank"></div>
+      `;
+
+      notification.insertAdjacentHTML("beforeend", deleteTemplate);
+
       for (const member of list) {
         let requestListTemplate = `
           <section id="friend-request-content" class="contents">
@@ -59,6 +66,13 @@ function groupInvitationLoad(url) {
     .then((response) => response.json())
     .then((list) => {
       notification.innerHTML = "";
+
+      let deleteTemplate =`
+      <div class="blank"></div>
+      `;
+
+      notification.insertAdjacentHTML("beforeend", deleteTemplate);
+
       for (const invitation of list) {
         let groupNotiTemplate = ` 
         <section id="group-invitation-content" class="contents">
@@ -88,10 +102,12 @@ function commentNotificationLoad(url) {
       notification.innerHTML = "";
 
       let deleteTemplate =`
-      <button class="delete-comment-alarm-button">
-      <span>전체 삭제</span>
-      <img src="/image/community/dustbin.svg" alt="삭제">
-      </button>
+      <div class="delete-wrap">
+        <button class="delete-comment-alarm-button">
+        <span>전체 삭제</span>
+        <img src="/image/community/dustbin.svg" alt="삭제">
+        </button>
+      </div>
       `;
 
       notification.insertAdjacentHTML("beforeend", deleteTemplate);
@@ -123,11 +139,17 @@ function commentNotificationLoad(url) {
           method: "DELETE"
         })
         .then(response => {
-          if(!response.ok)
-            alert("삭제에 실패했습니다");
-          else{
-            notification.innerHTML = "";
-            notification.insertAdjacentHTML("beforeend", deleteTemplate);
+          if(response.ok){
+
+            let fadeOutSection = document.querySelectorAll(".contents");
+            fadeOutSection.forEach((element, index)=>{
+              setTimeout(()=>{
+                element.classList.add("fade-out-box");
+              }, index*150);
+            });
+              
+            //notification.innerHTML = "";
+            //notification.insertAdjacentHTML("beforeend", deleteTemplate);
           }
         });
 
