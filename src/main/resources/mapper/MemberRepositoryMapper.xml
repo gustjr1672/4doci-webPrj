@@ -37,7 +37,7 @@
     </update>
 
     
-    <insert id="save">
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
         insert into
         member(user_id,email,name,nickname,pwd)
         values (#{m.userId},#{m.email},#{m.name},#{m.nickname},#{m.pwd})

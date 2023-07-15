@@ -16,6 +16,9 @@ public class SpringSecurityConfig {
     @Autowired
     private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
+    @Autowired
+    private Oauth2UserService oauth2UserService;
+
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -27,6 +30,7 @@ public class SpringSecurityConfig {
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                         .requestMatchers("/image/**", "/css/**", "/js/**","/join/**","/api/join/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/register/nickname").hasRole("GOOGLE")
                         .requestMatchers("/**").hasRole("USER")
                         .anyRequest().authenticated()
                 )
@@ -37,6 +41,12 @@ public class SpringSecurityConfig {
                         .usernameParameter("userId")
                         .passwordParameter("pwd")
                         .permitAll()
+                )
+                .oauth2Login( login -> login
+                        .loginPage("/")
+                        .defaultSuccessUrl("/login")
+                        .userInfoEndpoint(userInfo -> userInfo.userService(oauth2UserService))
+                        .successHandler(customAuthenticationSuccessHandler)
                 )
                 .logout(Customizer.withDefaults());
 

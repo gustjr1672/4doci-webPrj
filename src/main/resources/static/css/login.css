@@ -129,3 +129,8 @@ a {
     margin-top: 24px;
     gap: 20px;
 }
+
+.sns-img img {
+    width: 50px;
+    height: 50px;
+}
