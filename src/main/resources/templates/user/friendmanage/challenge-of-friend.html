@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>friend_challenge</title>
     <script src="/js/challenge-of-friend.js" defer="defer"></script>
-    <script src="/js/header.js"></script>
     <script>
       function redirectToFriendForm(uniqueId) {
         var url = "/freeChallenge/friend/form?uid=" + uniqueId;
@@ -30,24 +29,26 @@
       <div class="profile">
         <img class="friend-photo" th:src="${friend.profileImage}" alt="" />
         <div>
-          <span th:text="${friend.name}">최재혁</span>
           <span th:text="${friend.nickname}">멋을아는자</span>
         </div>
       </div>
       <div class="challenge-num">
         <div>
-          <span>20</span>
+          <span th:text="${totalChallenge}">20</span>
           <span>총 도전횟수</span>
         </div>
         <div>
-          <span>12</span>
+          <span th:text="${successChallenge}">12</span>
           <span>성공횟수</span>
         </div>
       </div>
     </section>
     <section class="btns" id="btns">
-      <button class="ongoing-btn active" onclick="toggleContent('ongoing')">진행중인 도전</button>
-      <button class="past-btn" onclick="toggleContent('past')">지난 도전</button>
+      <span>도전 리스트</span>
+      <div class="options">
+        <button class="ongoing-btn active" onclick="toggleContent('ongoing')">진행중인 도전</button>
+        <button class="past-btn" onclick="toggleContent('past')">지난 도전</button>
+      </div>
     </section>
     <section id="ongoing-content" class="content">
       <div class="ongoing-challenge">
