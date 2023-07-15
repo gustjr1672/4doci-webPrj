@@ -1,0 +1,71 @@
+.cursor {
+    cursor: pointer;
+}
+
+.shake {
+    transition: transform 0.2s ease;
+
+}
+
+.shake:hover {
+    animation: shake 0.8s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0) rotate(0); }
+    10% { transform: translateX(-5px) rotate(-5deg); }
+    20% { transform: translateX(5px) rotate(5deg); }
+    30% { transform: translateX(-5px) rotate(-5deg); }
+    40% { transform: translateX(5px) rotate(5deg); }
+    50% { transform: translateX(0) rotate(0); }
+    100% { transform: translateX(0) rotate(0); }
+}
+
+.shadow {
+    transition: box-shadow 0.2s ease;
+  }
+.shadow:hover {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.zoom-1 {
+    transition: transform 0.2s ease;
+  }
+.zoom-1:hover {
+    transform: scale(1.2);
+  }
+.zoom-2 {
+    transition: transform 0.2s ease;
+    z-index:1;
+  }
+.zoom-2:hover {
+    transform: scale(1.03);
+  }
+.zoom-3 {
+    transition: transform 0.2s ease;
+    z-index:1;
+  }
+.zoom-3:hover {
+    transform: scale(1.1) translateX(2px);
+  }
+.bold {
+    transition: font-weight 0.2s ease;
+}
+.bold:hover {
+    font-weight: 800;
+  }
+.brighten {
+    transition: filter 0.2s ease;
+    filter: brightness(1);
+  }
+.brighten:hover {
+    filter: brightness(1.1);
+  }
+
+  .brighten-2 {
+    transition: filter 0.2s ease;
+    filter: brightness(1);
+  }
+.brighten-2:hover {
+    filter: brightness(1.3);
+  }

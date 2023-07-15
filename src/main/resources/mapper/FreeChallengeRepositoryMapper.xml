@@ -46,7 +46,9 @@
 
     <update id="update">
         UPDATE free_challenge
-        SET is_finish = 1
+        SET 
+            is_finish = 1,
+            result = #{totalResult}
         WHERE id = #{id};
     </update>
     <update id="editVisibility">

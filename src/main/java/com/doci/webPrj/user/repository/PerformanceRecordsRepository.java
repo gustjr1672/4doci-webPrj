@@ -34,4 +34,6 @@ public interface PerformanceRecordsRepository {
         List<PerformanceRecords> findByResult();
 
         void updateFail(@Param("record") PerformanceRecords record);
+
+        void updateSuccess(@Param("record") PerformanceRecords record);
 }

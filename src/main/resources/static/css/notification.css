@@ -7,7 +7,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 40px 5px;
+  margin-top: 40px;
+  margin-left: 5px;
+  margin-right: 5px;
   /* gap: 36px; */
 }
 
@@ -22,6 +24,7 @@
   font-family: "suit";
   font-weight: 600;
   border: none;
+  cursor: pointer;
 }
 
 .btns .community-btn.active,
@@ -62,12 +65,14 @@
   align-items: center;
   max-width: 450px;
   width: 100%;
-  padding: 0px 30px;
+  padding: 0px 10%;
   background-color: white;
   border: none;
   height: 68px;
   box-sizing: border-box;
+  cursor: pointer;
 }
+
 .contents .content .info {
   display: flex;
   flex-direction: row;
@@ -86,9 +91,10 @@
   font-size: 11px;
   font-weight: 500;
   font-family: "suit";
+  color: #333333;
 }
 .contents .content .time {
-  color: #737373;
+  color: #858585;
 }
 .contents .content button {
   width: 48px;
@@ -122,3 +128,58 @@
 .hidden {
   display: none;
 }
+
+/* ==============댓글 알림 삭제============== */
+.delete-wrap{
+  width: 100%;
+  display: flex;
+}
+
+.delete-comment-alarm-button{
+  display: flex;
+  align-items:flex-end;
+  border: none;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333333 !important;
+  cursor: pointer;
+  padding-left: 74%;
+  height: 40px;
+  /* margin-left: 75%;
+  position: fixed;
+  top: 15%; */
+}
+
+.blank{
+  height: 40px;
+}
+
+.delete-comment-alarm-button span{
+  color: #333333;
+  font-size: 12px;
+  font-weight: 500px;
+  margin-bottom: 2px;
+}
+
+.delete-comment-alarm-button img{
+  height: 20px;
+  width: 20px;
+}
+
+.fade-out-box{
+  animation: fadeout 0.5s;
+ 
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeout{
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+

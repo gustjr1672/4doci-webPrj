@@ -152,7 +152,7 @@ async function reprintFreindSection() {
 let dateSection = document.querySelector(".period");
 //let dateModifyBtn = document.querySelector(".modify-date");
 const dateModal = document.getElementById("date-modal-container");
-let modalCloseBtn = document.querySelector(".modal-close");
+let modalCloseBtn = document.querySelector(".edit-modal-close");
 
 dateSection.addEventListener("click", function (e) {
   if (e.target.classList.contains("modify-date")) {
@@ -167,7 +167,7 @@ modalCloseBtn.onclick = function (e) {
 };
 
 //도전기간 수정완료시 db에 저장
-let dateBtn = document.querySelector(".date-finish-btn");
+let dateBtn = document.querySelector(".finish-btn");
 let selectAmPm = document.getElementById("new_start_time");
 let alertChangeModal = document.getElementById("alert-change-modal");
 let selectHour = document.getElementById("new_start_hour");
@@ -226,8 +226,8 @@ dateBtn.onclick = function (e) {
                 <div class="start-set">
                     <p>시작일</p>
                     <div>
-                        <span id="startDate">${challenge.startDate}</span>
-                        <span id="startTime">${challenge.startTime}시</span>
+                        <span id="startDate" data-date="${challenge.startDate}">${challenge.startDate}</span>
+                        <span id="startTime" data-time="${challenge.startTime}">${challenge.startTime}시</span>
                     </div>
                 </div>
                 <div class="end-set">
@@ -328,3 +328,39 @@ startModal.addEventListener("click", function (e) {
     }
   }
 });
+//타이머
+function updateTimer() {
+  const startDateSpan = document.querySelector("#startDate");
+  let startDate = startDateSpan.dataset.date;
+  const startTimeSpan = document.querySelector("#startTime");
+  let startTime = startTimeSpan.dataset.time;
+  const future = Date.parse(`${startDate} ${startTime}:00:00`);
+  const now = new Date();
+  const diff = future - now;
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(diff / (1000 * 60 * 60));
+  const mins = Math.floor(diff / (1000 * 60));
+  const secs = Math.floor(diff / 1000);
+
+  const d = days;
+  const h = hours - days * 24;
+  const m = mins - hours * 60;
+  const s = secs - mins * 60;
+
+  document.getElementById("timer").innerHTML =
+    "<div>" +
+    d +
+    "<span>Days</span></div>" +
+    "<div>" +
+    h +
+    "<span>Hours</span></div>" +
+    "<div>" +
+    m +
+    "<span>Minutes</span></div>" +
+    "<div>" +
+    s +
+    "<span>Seconds</span></div>";
+}
+updateTimer();
+setInterval(updateTimer, 1000);

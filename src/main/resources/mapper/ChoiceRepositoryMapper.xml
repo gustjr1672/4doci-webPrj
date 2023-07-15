@@ -33,7 +33,9 @@
 
     <update id="update">
         UPDATE choice
-        SET is_finish = 1
+        SET 
+            is_finish = 1,
+            result = #{totalResult}
         WHERE id = #{id};
     </update>
         <!-- editVisibility --> 

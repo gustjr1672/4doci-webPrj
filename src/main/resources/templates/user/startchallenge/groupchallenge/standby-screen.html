@@ -8,6 +8,7 @@
   <title>standby-screen</title>
   <link rel="stylesheet" href="/css/standby-screen.css" type="text/css">
   <link rel="stylesheet" href="/css/modal.css" type="text/css" />
+  <link rel="stylesheet" href="/css/my-page-modal.css" type="text/css">
   <script src="/js/standby-screen.js" defer="defer"></script>
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" />
 </head>
@@ -15,10 +16,12 @@
 <body>
 
   <div class="content-list">
+    <header>
     <div class="message">
-      <p>그룹도전 시작을 기다리는 중입니다</p>
+      <p>그룹도전 시작까지</p>
+      <div id=timer></div>
     </div>
-
+  </header>
     <div class="challenge-title">
       <p>대기중인 도전</p>
       <div>
@@ -62,8 +65,8 @@
       <div class="start-set">
         <p>시작일</p>
         <div>
-          <span id="startDate" th:text="${challenge.startDate}"></span>
-          <span id="startTime" th:text="${challenge.startTime}+'시'"></span>
+          <span id="startDate" th:text="${challenge.startDate}" th:data-date="${challenge.startDate}"></span>
+          <span id="startTime" th:text="${challenge.startTime}+'시'" th:data-time="${challenge.startTime}"></span>
         </div>
       </div>
       <div class="end-set">
@@ -143,7 +146,7 @@
   <div class="bottom-modal-container" id="date-modal-container">
     <div class="bottom-modal-content" id="date-modal-content">
       <div class="bottom-modal-header">
-        <button class="modal-close">&times;</button>
+        <button class="edit-modal-close">&times;</button>
       </div>
 
       <!-- 시작일,종료일 변경 모달 -->
@@ -193,7 +196,7 @@
       <div class="alert hidden">종료일은 시작일 이후로 설정해주세요.</div>
       <div class="end-date-alert hidden">종료일을 설정해주세요.</div>
       </div>
-      <div class="date-finish-btn">
+      <div class="finish-btn">
         <button>완료</button>
       </div>
     </div>

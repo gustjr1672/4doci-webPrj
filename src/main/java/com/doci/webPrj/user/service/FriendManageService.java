@@ -26,9 +26,9 @@ public interface FriendManageService {
 
     void delete(int memberId, int id);
 
-    List<OngoingChallengeView> getOngoingList(int id);
+    List<OngoingChallengeView> getOngoingList(int id, int userId);
 
-    List<PastChallengeView> getPastList(int id);
+    List<PastChallengeView> getPastList(int id, int userId);
 
     Member getFriendById(int id);
 }

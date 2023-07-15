@@ -28,4 +28,6 @@ public interface FeedService {
 
     void edit(Comment comment);
 
+    List<CommentView> getCommentListByChallengeId(int gsId);
+
 }

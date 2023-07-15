@@ -1,8 +1,8 @@
 .switch {
   position: relative;
   display: inline-block;
-  width: 120px;
-  height: 34px;
+  width: 90px;
+  height: 28px;
 }
 
 .switch input {
@@ -25,10 +25,10 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  height: 18px;
+  width: 18px;
+  left: 6px;
+  bottom: 5px;
   background-color: white;
   -webkit-transition: 0.4s;
   transition: 0.4s;
@@ -46,7 +46,7 @@ input:focus + .slider {
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
-  transform: translateX(85px);
+  transform: translateX(58px);
 }
 
 /*------ ADDED CSS ---------*/
@@ -55,15 +55,16 @@ input:checked + .slider:before {
   color: white;
   display: block;
   position: absolute;
-  transform: translate(-50%, -50%);
+  transform: translate(-60%, -50%);
   top: 50%;
-  left: 50%;
+  left: 60%;
   font-size: 13px;
   font-weight: 600;
 }
 
 input:checked + .slider:after {
   content: "비공개";
+  left: 40%;
 }
 
 /*--------- END --------*/

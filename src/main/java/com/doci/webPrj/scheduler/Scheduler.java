@@ -43,6 +43,15 @@ public class Scheduler {
         for (UpdateView groupStartUpdate : groupList) {
             checkFinish(currentDate, groupStartUpdate, "GS");
         }
+        for (UpdateView groupStartUpdate : groupList) {
+            updateGroupFinish(currentDate, groupStartUpdate);
+        }
+    }
+
+    private void updateGroupFinish(LocalDate currentDate, UpdateView challenge) {
+        if (challenge.isFinish() == false && currentDate.isAfter(challenge.getEndDate())) {
+            service.updateGroupResult(challenge);
+        }
     }
 
     // 그룹도전 시작
@@ -52,7 +61,6 @@ public class Scheduler {
         LocalDate currentDate = LocalDate.now();
         LocalTime currentTime = LocalTime.now();
         int hour = currentTime.getHour();
-        System.out.println(hour);
         List<GroupChallenge> ChallengeList = service.getTodayGroupChallengeList(currentDate);
         for (GroupChallenge challenge : ChallengeList) {
             groupStart(challenge, hour);

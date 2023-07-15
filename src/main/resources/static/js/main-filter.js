@@ -28,7 +28,7 @@ function bringOngoingChallenge() {
 
                     let chalTemplate =
                         `<div class="btn-wrap" >
-                            <button class="chal-btn" data-unique-id="${challenge.uniqueId}" data-challenge-state="진행중">
+                            <button class="chal-btn cursor zoom-2" data-unique-id="${challenge.uniqueId}" data-challenge-state="진행중">
                             <span class="chal-title" >${challenge.name}</span>
                             <div class="prog-wrap">
                               <div>
@@ -45,7 +45,7 @@ function bringOngoingChallenge() {
                               </div>
                             </div>
                           </button>
-                          <button class="plus-btn"
+                          <button class="plus-btn cursor brighten"
                                   data-goal-quantity="${challenge.goalQuantity}"
                                   data-challenge-id="${challenge.uniqueId}">+</button>
                         <div>`
@@ -70,7 +70,7 @@ function bringWaitingChallenge() {
                 if (challenge.performanceRecordsId == null) {
                     let chalTemplate = `
                         <div class="btn-wrap">
-                            <button class="chal-btn" data-unique-id="${challenge.uniqueId}" data-challenge-state="대기중">
+                            <button class="chal-btn zoom-2" data-unique-id="${challenge.uniqueId}" data-challenge-state="대기중">
                             <span class="chal-title">${challenge.name} </span>
                     </button>
                         <div class="chal-wait">도전<br>대기중</div>

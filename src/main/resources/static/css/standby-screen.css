@@ -49,22 +49,37 @@ body {
 
 /* 전체 div */
 .content-list {
-  margin-top: 76px;
+  margin-top: 74px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 18px;
+}
+header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 메세지 */
 .message {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   font-size: 14px;
   font-weight: bold;
   color: #ffffff;
 
-  margin: 20px 0px;
+  margin: 4px 0px;
 }
-
+.message p {
+  transform: translateX(-270px);
+  display: none;
+}
 /* 대기중인 도전 */
 .challenge-title {
   display: flex;
@@ -527,129 +542,6 @@ body {
   font-size: 14px;
 }
 
-/* 도전기간수정모달 */
-
-.bottom-modal-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 9999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
-.bottom-modal-container.modal-show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.bottom-modal-content {
-  max-width: 400px;
-  width: 70%;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  transform: translateY(100%);
-  transition: transform 0.4s ease;
-}
-
-.bottom-modal-container.modal-show .bottom-modal-content {
-  transform: translateY(0);
-}
-
-.modal-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 18px;
-  color: #000;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-label {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 19px;
-  display: inline-block;
-  text-align: left;
-  width: 80%;
-  margin-left: 10px;
-}
-
-.input {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  margin-top: 20px;
-  max-width: 700px;
-}
-
-.input-form {
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
-}
-
-.input-form input {
-  flex: 1;
-  width: 80%;
-  height: 44px;
-  border-radius: 8px;
-  background: #fdfdfd;
-  border: 1px solid #a3a3a3f3;
-  padding: 0;
-  padding-left: 10px;
-  box-sizing: border-box;
-}
-
-.date-finish-btn {
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  margin: 100px 2px 40px;
-}
-
-.date-finish-btn button {
-  font-size: 16px;
-  font-weight: 500;
-  width: 80%;
-  height: 46px;
-
-  font-style: normal;
-  color: #ffffff;
-
-  background-color: #ccc;
-  border-radius: 8px;
-  border: none;
-}
-
-.error {
-  color: red;
-  font-size: 12px;
-  display: flex;
-  text-align: left;
-  margin-top: 4px;
-  display: inline-block;
-  text-align: left;
-  width: 80%;
-  margin-left: 10px;
-}
-
-/* 여기서부터 */
 select {
   width: 36%;
   height: 44px;
@@ -659,7 +551,7 @@ select {
   text-align: center;
 }
 
-.date-finish-btn button {
+.finish-btn button {
   background-color: #383d66 !important;
 }
 
@@ -675,4 +567,32 @@ select {
   width: 80%;
   color: #c11111;
   font-size: 12px;
+}
+#timer {
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  width: 100%;
+  max-width: 400px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#timer div {
+  display: inline-block;
+  width: 15%;
+  padding: 10px;
+  background: #020b43;
+  border-radius: 10px;
+  border: 2px solid #030d52;
+  margin: 4px;
+}
+#timer div span {
+  color: #ffffff;
+  display: block;
+  margin-top: 15px;
+  font-size: 0.35em;
+  font-weight: 400;
 }

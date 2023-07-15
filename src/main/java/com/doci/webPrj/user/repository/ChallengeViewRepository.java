@@ -17,4 +17,8 @@ public interface ChallengeViewRepository {
 
     ChallengeFormView getChallengeFormById(String uniqueId);
 
+    List<OngoingChallengeView> getUserOngoingList(int userId);
+
+    List<PastChallengeView> getUserPastList(int userId);
+
 }

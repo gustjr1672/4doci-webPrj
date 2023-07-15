@@ -14,6 +14,7 @@ import com.doci.webPrj.user.entity.CommentView;
 import com.doci.webPrj.user.entity.Feed;
 import com.doci.webPrj.user.entity.FeedDetail;
 import com.doci.webPrj.user.entity.Member;
+import com.doci.webPrj.user.repository.CommentNotificationRepository;
 import com.doci.webPrj.user.repository.CommentRepository;
 import com.doci.webPrj.user.repository.FeedDetailRepository;
 import com.doci.webPrj.user.repository.FeedRepository;
@@ -27,6 +28,8 @@ public class FeedServiceImp implements FeedService {
     CommentRepository commentRepository;
     @Autowired
     FeedDetailRepository feedDetailRepository;
+    @Autowired
+    CommentNotificationRepository commentNotificationRepository;
 
     @Override
     public List<Feed> getFeedList(List<Member> friendList, int userId) {
@@ -104,6 +107,7 @@ public class FeedServiceImp implements FeedService {
     @Override
     public void add(Comment comment) {
         commentRepository.insert(comment);
+        commentNotificationRepository.insert(comment);
     }
 
     @Override
@@ -122,6 +126,33 @@ public class FeedServiceImp implements FeedService {
     @Override
     public void edit(Comment comment) {
         commentRepository.edit(comment);
+    }
+
+    @Override
+    public List<CommentView> getCommentListByChallengeId(int challengeId) {
+
+        List<CommentView> list = commentRepository.findViewByChallengeId(challengeId);
+
+        LocalDateTime currenTime = LocalDateTime.now();
+        for (CommentView comment : list) {
+            Timestamp commentTime = comment.getRegDate();
+            LocalDateTime commentDateTime = commentTime.toLocalDateTime();
+            long minutesDiff = ChronoUnit.MINUTES.between(commentDateTime, currenTime);
+
+            if (minutesDiff < 1) {
+                comment.setTimeMessage("방금 전");
+            } else if (minutesDiff < 60) {
+                comment.setTimeMessage(minutesDiff + "분 전");
+            } else if (minutesDiff < 1440) {
+                long hoursDiff = minutesDiff / 60;
+                comment.setTimeMessage(hoursDiff + "시간 전");
+            } else {
+                long daysDiff = minutesDiff / 1440;
+                comment.setTimeMessage(daysDiff + "일 전");
+            }
+        }
+
+        return list;
     }
 
 }

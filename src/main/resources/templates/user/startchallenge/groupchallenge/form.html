@@ -96,7 +96,7 @@
               <option value="7">7</option>
             </select>
 
-            <p>일에 한 번</p>
+            <p>일</p>
           </div>
         </div>
 
@@ -130,10 +130,9 @@
                     th:text="${hour}"
                   ></option>
                 </select>
-                <span>시</span>
-                <input type="hidden" id="start-time-hidden" name="startTime" />
               </div>
             </div>
+            <input type="hidden" id="start-time-hidden" name="startTime" />
             <div class="alert hidden" id="time-alert">
               <span>현재시간보다 이후로 설정해주세요.</span>
             </div>

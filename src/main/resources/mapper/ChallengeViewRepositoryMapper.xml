@@ -5,23 +5,38 @@
 
 <mapper namespace="com.doci.webPrj.user.repository.ChallengeViewRepository">
 
-    <!-- getPastList --> 
-
-    <select id="getPastList">
-    select * from
-    past_challenge_view
-    where member_id = #{id}
-    </select>
-    <!-- getOngoingList --> 
-
-    <select id="getOngoingList">
-    select * from
-    ongoing_challenge_view
-    where member_id = #{id}
-    </select>   
     <select id="getChallengeFormById">
     select * from
     challenge_form_view
     where unique_id = #{uniqueId}
     </select>
+
+
+    <select id="getPastList">
+    select * from
+        past_challenge_view
+    where 
+        member_id = #{id}
+        and visibility = 1
+    </select>
+
+
+    <select id="getOngoingList">
+    select * from
+        ongoing_challenge_view
+    where 
+        member_id = #{id}
+        and visibility = 1
+    </select>   
+    <select id="getUserOngoingList">
+    select * from
+        ongoing_challenge_view
+    where member_id = #{userId}
+    </select>   
+     <select id="getUserPastList">
+    select * from
+        past_challenge_view
+    where member_id = #{userId}
+    </select>
+
 </mapper>

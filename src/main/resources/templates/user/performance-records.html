@@ -1,138 +1,187 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/performance-records.css" />
+    <link rel="stylesheet" href="/css/modal.css" />
+    <link rel="stylesheet" href="/css/toggle.css" />
+    <script src="/js/performance-records.js" defer="defer"></script>
+  </head>
 
-</html>
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" />
-  <link rel="stylesheet" href="/css/performance-records.css" />
-  <link rel="stylesheet" href="/css/modal.css" />
-  <link rel="stylesheet" href="/css/toggle.css" />
-  <script src="/js/performance-records.js" defer="defer"></script>
-</head>
-
-<body>
-  <header>
-    <div>
-      <a href="/main">
-        <img class="back" src="/image/header/whiteBack.png" alt="back" />
-      </a>
-      <section>
-        <label id="challenge-visibility" th:data-visibility="${visibility}" class="switch">
-          <input th:data-unique-id="${allChallenges.uniqueId}" type="checkbox">
-          <span class="slider"></span>
-        </label>
-      <button th:data-unique-id="${allChallenges.uniqueId}" th:data-unit-name="${allChallenges.unitName}"><img
-          src="/image/header/more.png" alt="" /></button>
-      </section>
-    </div>
-  </header>
-  <section class="goal">
-    <div>
-      <button id="round" th:data-round="${perfomanceRecord.round}" th:text="${perfomanceRecord.round}+'회차'">1회차</button>
-      <span th:text="${allChallenges.name}">하루에 물 2000ml이상 마시기</span>
-    </div>
-    <div>
-      <span>목표량</span>
-      <span id="goal" th:text="${allChallenges.goalQuantity} + ${allChallenges.unitName}">2000ml</span>
-    </div>
-  </section>
-  <section class="form">
-    <span>도전사진</span>
-    <div id="image-box">
-      <label for="choose-file">
-        <img src="" id="input-image" alt="" />
-      </label>
-    </div>
-    <form th:data-image="${perfomanceRecord.image}" class="image-form" id="image-form" method="post" enctype="multipart/form-data">
-      <div  class="button">
-        <label for="choose-file">
-          <img src="/image/performance-records/addImage.png" alt="" />
-        </label>
-      </div>
-      <input type="file" id="choose-file" class="choose-file" name="choose-file" accept="image/*"
-        onchange="loadFile(this)" />
-      <span>눌러서 사진 추가</span>
-    </form>
-  </section>
-  <form id="record-submit">
-    <section class="form">
-      <span class="memo">메모</span>
-      <textarea class="text-input" id="text-input" name="impression" placeholder="간단한 소감을 입력해 주세요" cols="30" rows="10"
-        th:text="${perfomanceRecord.impression}"></textarea>
-    </section>
-
-    <section class="achive">
-      <span class="text">달성량</span>
-      <div class="achive-control">
-        <button id="minus-btn" type="button">-</button>
-        <div class="achive-amount">
-          <input hidden="hidden" />
-          <input type="number" min="0" id="achive-amount" th:value="${perfomanceRecord.achvQuantity}" name="achvQuantity" />
-          <span th:text="${allChallenges.unitName}">ml</span>
-        </div>
-        <button id="plus-btn" type="button">+</button>
-      </div>
-      <input type="hidden" name="id" th:value="${perfomanceRecord.id}">
-    </section>
-  </form>
-  <footer>
-    <button type="button" form="record-submit" id="save-btn">저장하기</button>
-  </footer>
-
-  <!-- 삭제모달 -->
-  <section class="choice-modal delete-modal hidden">
-    <section class="modal-box delete-modal-content">
-      <span>도전을 포기하시겠습니까? <br> 포기할 시 해당 도전이 삭제됩니다</span>
+  <body>
+    <header>
       <div>
-        <button class="modal-cancel-btn" id="close-btn">취소</button>
-        <button class="modal-delete-btn" id="give-up-btn">포기</button>
+        <a href="/main">
+          <img class="back" src="/image/header/whiteBack.png" alt="back" />
+        </a>
+        <section>
+          <label id="challenge-visibility" th:data-visibility="${visibility}" class="switch">
+            <input th:data-unique-id="${allChallenges.uniqueId}" type="checkbox" />
+            <span class="slider"></span>
+          </label>
+          <button
+            th:data-unique-id="${allChallenges.uniqueId}"
+            th:data-unit-name="${allChallenges.unitName}"
+          >
+            <img src="/image/header/more.png" alt="" />
+          </button>
+        </section>
+      </div>
+    </header>
+    <section class="goal">
+      <div>
+        <button
+          id="round"
+          th:data-round="${perfomanceRecord.round}"
+          th:text="${perfomanceRecord.round}+'회차'"
+        >
+          1회차
+        </button>
+        <span th:text="${allChallenges.name}">하루에 물 2000ml이상 마시기</span>
+      </div>
+      <div>
+        <span>목표량</span>
+        <span id="goal" th:text="${allChallenges.goalQuantity} + ${allChallenges.unitName}"
+          >2000ml</span
+        >
+      </div>
+      <div>
+        <span>다음회차</span>
+        <span
+          id="next-round"
+          th:data-start-date="${allChallenges.startDate}"
+          th:data-auth-frequency="${allChallenges.authFrequency}"
+          th:data-round="${perfomanceRecord.round}"
+          >2023-07-16</span
+        >
       </div>
     </section>
-  </section>
+    <section class="form">
+      <span>도전사진</span>
+      <div id="image-box">
+        <label for="choose-file">
+          <img src="" id="input-image" alt="" />
+        </label>
+      </div>
+      <form
+        th:data-image="${perfomanceRecord.image}"
+        class="image-form"
+        id="image-form"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <div class="button">
+          <label for="choose-file">
+            <img src="/image/performance-records/addImage.png" alt="" />
+          </label>
+        </div>
+        <input
+          type="file"
+          id="choose-file"
+          class="choose-file"
+          name="choose-file"
+          accept="image/*"
+          onchange="loadFile(this)"
+        />
+        <span>눌러서 사진 추가</span>
+      </form>
+    </section>
+    <form id="record-submit">
+      <section class="form">
+        <span class="memo">메모</span>
+        <textarea
+          class="text-input"
+          id="text-input"
+          name="impression"
+          placeholder="간단한 소감을 입력해 주세요"
+          cols="30"
+          rows="10"
+          th:text="${perfomanceRecord.impression}"
+        ></textarea>
+      </section>
 
-  <!-- 회차모달 -->
-  <div id="turn-modal-wrap" class="turn-modal">
-    <div id="turn-modal-content" class="turn-modal-content">
-      <section class="challeng-name-wrap">
-        <div>
-          <div class="current-turn">
-            <span th:text="${perfomanceRecord.round}+'회차'">1회차</span>
+      <section class="achive">
+        <span class="text">달성량</span>
+        <div class="achive-control">
+          <button id="minus-btn" type="button">-</button>
+          <div class="achive-amount">
+            <input hidden="hidden" />
+            <input
+              type="number"
+              min="0"
+              id="achive-amount"
+              th:value="${perfomanceRecord.achvQuantity}"
+              name="achvQuantity"
+            />
+            <span th:text="${allChallenges.unitName}">ml</span>
           </div>
-          <p class="info" th:text="${allChallenges.name}">하루에 물 2000ml이상 마시기</p>
+          <button id="plus-btn" type="button">+</button>
         </div>
+        <input type="hidden" name="id" th:value="${perfomanceRecord.id}" />
+      </section>
+    </form>
+    <footer>
+      <button type="button" form="record-submit" id="save-btn">저장하기</button>
+    </footer>
+
+    <!-- 삭제모달 -->
+    <section class="choice-modal delete-modal hidden">
+      <section class="modal-box delete-modal-content">
+        <span
+          >도전을 포기하시겠습니까? <br />
+          포기할 시 해당 도전이 삭제됩니다</span
+        >
         <div>
-          <p class="period">도전기간</p>
-          <p class="info" th:text="${allChallenges.startDate}+' ~ '+${allChallenges.endDate}">2023.05.07 ~ 2023.06.08
-          </p>
+          <button class="modal-cancel-btn" id="close-btn">취소</button>
+          <button class="modal-delete-btn" id="give-up-btn">포기</button>
         </div>
       </section>
+    </section>
 
-      <section class="title">
-        <div>
-          <p>회차</p>
-          <p>달성량</p>
-          <p>성공여부</p>
-        </div>
-      </section>
-      <section class="record-list" id="record-list-section"></section>
+    <!-- 회차모달 -->
+    <div id="turn-modal-wrap" class="turn-modal">
+      <div id="turn-modal-content" class="turn-modal-content">
+        <section class="challeng-name-wrap">
+          <div>
+            <div class="current-turn">
+              <span th:text="${perfomanceRecord.round}+'회차'">1회차</span>
+            </div>
+            <p class="info" th:text="${allChallenges.name}">하루에 물 2000ml이상 마시기</p>
+          </div>
+          <div>
+            <p class="period">도전기간</p>
+            <p class="info" th:text="${allChallenges.startDate}+' ~ '+${allChallenges.endDate}">
+              2023.05.07 ~ 2023.06.08
+            </p>
+          </div>
+        </section>
 
-      <footer>
-        <button>닫기</button>
-      </footer>
+        <section class="title">
+          <div>
+            <p>회차</p>
+            <p>달성량</p>
+            <p>성공여부</p>
+          </div>
+        </section>
+        <section class="record-list" id="record-list-section"></section>
+
+        <footer>
+          <button>닫기</button>
+        </footer>
+      </div>
     </div>
-  </div>
 
-  <!-- 메세지 모달 -->
+    <!-- 메세지 모달 -->
 
-  <section class="complete-modal-buttonless message-modal-wrap hidden">
-    <section class="buttonless-modal-box message-modal-content"></section>
-  </section>
-
-</body>
-
+    <section class="complete-modal-buttonless message-modal-wrap hidden">
+      <section class="buttonless-modal-box message-modal-content"></section>
+    </section>
+  </body>
 </html>

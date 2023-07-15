@@ -112,10 +112,13 @@ header > button {
     color: #ffffff;
     border-radius: 8px;
     border: none;
-    padding: 0;
+    padding: 4px 8px;
     display: flex;
     align-items: center;
     gap: 4px;
+    border-radius: 4px;
+    background: #42bae1;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
 }
 
 /* 홀수번째만 */
@@ -148,6 +151,7 @@ header > button {
     height: 32px;
     font-weight: 600;
     border: none;
+    cursor: pointer;
 }
 
 .filter .on-going.active,
@@ -276,7 +280,7 @@ option {
     border-radius: 0px 12px 12px 0px;
     border: none;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: #71b5cb;
+    background-color: #42bae1;
     font-size: 24px;
     font-weight: 600;
     color: #ffffff;
@@ -404,6 +408,19 @@ footer img {
 
 footer img {
     width: 30px;
+}
+
+.notification{
+    height: 80%;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    display: flex;
+    flex-direction: column;
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+}
+.notification::-webkit-scrollbar{
+    display: none;  /* 크롬, 사파리, 오페라, 엣지 */
 }
 
 @keyframes push-effect {

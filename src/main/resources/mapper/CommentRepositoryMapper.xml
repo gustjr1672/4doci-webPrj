@@ -10,7 +10,7 @@
         order by reg_date
     </select>
 
-    <insert id="insert">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into comment
         (content, member_id, performance_records_id)
         values
@@ -33,4 +33,10 @@
         content=#{comment.content}
         where id=#{comment.id}
     </update>
+
+    <select id="findViewByChallengeId">
+        select *
+        from comment_view
+        where coalesce(choice_id, free_challenge_id, group_start_id) = #{challengeId}
+    </select>
 </mapper>
