@@ -51,10 +51,8 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
             member.setNickname(oAuth2User.getAttribute("name")+ "" + member.getId());
 
             return  initMyUserDetail(member);
-//            return null;
         }
 
-//        return null;
         return initMyUserDetail(optionalMember.get());
     }
 
@@ -67,6 +65,10 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
             case "naver":{
                 log.info("네이버로그인 요청");
                 return new NaverUserInfo((Map<String, Object>) oAuth2User.getAttributes().get("response"));
+            }
+            case "kakao":{
+                log.info("카카오로그인 요청");
+                return new KakaoUserInfo(oAuth2User.getAttributes());
             }
             default:{
                 return null;
