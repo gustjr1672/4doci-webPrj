@@ -18,7 +18,7 @@
         <img src="/image/header/blackBack.png" alt="뒤로가기" />
       </a>
     </header>
-    <section class="detail-header">
+    <!-- <section class="detail-header">
       <div class="profile">
         <img class="profile-image" th:src="${challenge.profileImage}" alt="" />
         <span th:text="${challenge.nickname}">멋을아는자</span>
@@ -36,6 +36,32 @@
           <span th:text="${count}">3</span>
         </button>
       </div>
+    </section> -->
+
+    <section class="detail-header">
+      <div class="profile">
+        <img class="profile-image" th:src="${challenge.profileImage}" alt="" />
+        <span th:text="${challenge.nickname}">멋을아는자</span>
+      </div>
+      <div class="space-btwn">
+        <div>
+          <img src="/image/community/seed.svg" alt="">
+          <span>진행중인 도전</span>
+        </div>
+        <span class="title" th:text="${challenge.challengeName}"
+          >하루에 30분씩 가벼운 운동하기</span
+        >
+        <div class="period">
+          <span>기간</span>
+          <span th:text="${challenge.startDate}">2023.06.05</span> ~
+          <span th:text="${challenge.endDate}">2023.07.05</span>
+        </div>
+      </div>
+      <button class="comment">
+        <span>전체 댓글</span>
+        <img class="comment-btn" src="/image/community/comment.png" alt="" />
+        <span th:text="${count}">3</span>
+      </button>
     </section>
 
     <section class="feed-section">

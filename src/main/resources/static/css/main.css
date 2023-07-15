@@ -411,10 +411,16 @@ footer img {
 }
 
 .notification{
-    height: 75%;
+    height: 80%;
     overflow-y: scroll;
+    scroll-behavior: smooth;
+    display: flex;
+    flex-direction: column;
     -ms-overflow-style: none; /* 인터넷 익스플로러 */
     scrollbar-width: none; /* 파이어폭스 */
+}
+.notification::-webkit-scrollbar{
+    display: none;  /* 크롬, 사파리, 오페라, 엣지 */
 }
 
 @keyframes push-effect {
