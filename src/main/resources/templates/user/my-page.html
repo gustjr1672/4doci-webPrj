@@ -35,17 +35,17 @@
 
     <div class="challenge-record">
       <div class="total">
-        <p>42</p>
+        <p th:text="${totalChallenge}">42</p>
         <p>전체도전</p>
       </div>
 
       <div class="sucess">
-        <p>24</p>
+        <p th:text="${successChallenge}">24</p>
         <p>성공도전</p>
       </div>
 
       <div class="fail">
-        <p>18</p>
+        <p th:text="${failChallenge}">18</p>
         <p>실패도전</p>
       </div>
     </div>
