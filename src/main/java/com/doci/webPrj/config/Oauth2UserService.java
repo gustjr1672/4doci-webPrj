@@ -76,11 +76,6 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
         }
     }
 
-//    private Member initMember(){
-//        Member member;
-//
-//        return member;
-//    }
     private MyUserDetails initMyUserDetail(Member member) {
         MyUserDetails details = MyUserDetails.builder()
                 .id(member.getId())

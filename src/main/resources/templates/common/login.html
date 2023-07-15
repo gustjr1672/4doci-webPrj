@@ -9,7 +9,6 @@
           href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
           rel="stylesheet"
   />
-  <!-- <script src="/js/login.js" type="module"></script> -->
   <title>login</title>
 </head>
 <body>
@@ -20,7 +19,7 @@
 
   <div class="header-text">회원 로그인</div>
 </header>
-<!--th:action="@{/login}"-->
+
 <form action="/login" method="post">
   <div class="input-form">
     <input type="text" required id="username" name="userId" placeholder="아이디" autocomplete="off"/>
@@ -34,11 +33,6 @@
 </form>
 
 <div class="util">
-<!--  <label for="save-id" class="checkbox-label">-->
-<!--    <input type="checkbox" id="save-id" class="checkbox-input" />-->
-<!--    아이디 저장-->
-<!--  </label>-->
-
   <div class="a">
     <a href="agreement.html" th:href="@{/join/email-verification}">회원가입</a>
     <span> | </span>
@@ -49,7 +43,6 @@
 <p class="sns-text">SNS로그인</p>
 <div class="sns-img">
   <a href="/oauth2/authorization/google" ><img src="/image/login/googleLogo.png" alt="googleLogo" /></a>
-<!--  <button onclick="location.href='/oauth2/authorization/google'"></button>-->
   <a href="/oauth2/authorization/naver"><img src="/image/login/naverLoge.png" alt="naverLogo"/></a>
   <a href="/oauth2/authorization/kakao"><img src="/image/login/kakaoLogo.png" alt="kakaoLogo"/></a>
 </div>
