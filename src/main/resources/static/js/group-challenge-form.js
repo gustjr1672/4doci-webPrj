@@ -55,7 +55,27 @@ let submitBtn = document.querySelector("#submit-button");
 let startTimeInput = document.querySelector("#start-time-hidden");
 let selectAmPm = document.getElementById("start_time");
 let selectHour = document.getElementById("start_hour");
+selectHour.addEventListener("change", () => {
+  let hour = 0;
+  hour = parseInt(selectHour.value);
+  if (selectAmPm.value == "pm") {
+    if (hour != 12) hour += 12;
+  } else if (selectAmPm.value == "am") {
+    if (hour == 12) hour = 0;
+  }
+  startTimeInput.value = hour;
+  let currentDate = new Date();
+  let currentHour = currentDate.getHours();
+  if (startDate.value === currentDate.toISOString().split("T")[0]) {
+    if (startTimeInput.value >= currentHour) {
+      timeAlert.classList.add("hidden");
+      console.log("1");
+    }
+  }
+  noTimeAlert.classList.add("hidden");
+});
 let timeAlert = document.querySelector("#time-alert");
+let noTimeAlert = document.querySelector("#no-time-alert");
 let hour = 0;
 submitBtn.addEventListener("click", (e) => {
   hour = parseInt(selectHour.value);
@@ -67,14 +87,18 @@ submitBtn.addEventListener("click", (e) => {
   let currentDate = new Date();
   let currentHour = currentDate.getHours();
   startTimeInput.value = hour;
-  console.log(startTimeInput.value);
   if (startDate.value === currentDate.toISOString().split("T")[0]) {
     if (startTimeInput.value <= currentHour || isNaN(startTimeInput.value)) {
       timeAlert.classList.remove("hidden");
       e.preventDefault();
       return;
-    } else {
-      if (e.target.form.checkValidity()) e.target.form.submit();
     }
+    if (e.target.form.checkValidity()) e.target.form.submit();
   }
+  if (isNaN(startTimeInput.value)) {
+    e.preventDefault();
+    noTimeAlert.classList.remove("hidden");
+    return;
+  }
+  if (e.target.form.checkValidity()) e.target.form.submit();
 });
