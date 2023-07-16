@@ -364,3 +364,16 @@ function updateTimer() {
 }
 updateTimer();
 setInterval(updateTimer, 1000);
+
+history.pushState(null, null, document.URL);
+window.addEventListener('popstate', () => {
+    history.pushState(null, null, document.URL);
+});
+
+let isSafari = /^((?!chrome|android|windows).)*safari/i.test(navigator.userAgent.toLowerCase());
+let dateInputs = document.querySelectorAll("input[type='date']");
+if (isSafari)
+  for (let i = 0; i < dateInputs.length; i++) {
+    dateInputs[i].style.width = "210px"; // 각 요소에 적절한 가로 크기를 지정해보세요
+    dateInputs[i].style.color = "#333333"; // 각 요소에 적절한 가로 크기를 지정해보세요
+  }
