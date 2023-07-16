@@ -50,7 +50,7 @@
         </div>
       </section>
 
-      <div class="challenge-option zoom-2" th:each="challenge:${randomList}">
+      <div class="challenge-option" th:each="challenge:${randomList}">
         <input
           th:value="${challenge.id}"
           th:id="${challenge.id}"
@@ -61,7 +61,7 @@
           th:data-period="${challenge.period}"
           required
         />
-        <label th:data-period="${challenge.period}" th:for="${challenge.id}" for="17">
+        <label th:data-period="${challenge.period}" th:for="${challenge.id}" for="17" class="zoom-2" >
           <div class="period">
             <p th:text="${challenge.period}+'DAY'">7DAY</p>
           </div>

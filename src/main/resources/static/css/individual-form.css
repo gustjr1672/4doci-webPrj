@@ -66,7 +66,7 @@ select option {
   margin-bottom: 40px;
 
   width: 80%;
-  max-width: 440px;
+  max-width: 480px;
 }
 form {
   width: 100%;
@@ -92,7 +92,7 @@ form {
 
   gap: 18px;
   width: 80%;
-  max-width: 440px;
+  max-width: 480px;
 }
 
 .category_title select {
@@ -111,7 +111,7 @@ form {
 
   gap: 20px;
   width: 80%;
-  max-width: 440px;
+  max-width: 480px;
 }
 /*그룹명, 도전명 */
 
@@ -125,7 +125,7 @@ form {
 
 .title {
   width: 80%;
-  max-width: 440px;
+  max-width: 480px;
   font-size: 14px;
   font-weight: bold;
   color: #333333;
@@ -170,7 +170,7 @@ form {
   flex-direction: column;
   gap: 10px;
   width: 80%;
-  max-width: 440px;
+  max-width: 480px;
 }
 
 .quantity_set {
@@ -206,7 +206,7 @@ form {
   justify-content: space-between;
   align-items: center;
   width: 80%;
-  max-width: 440px;
+  max-width: 480px;
 }
 
 .frequency_set {
@@ -250,7 +250,7 @@ form {
   justify-content: center;
   gap: 10px;
   width: 80%;
-  max-width: 440px;
+  max-width: 480px;
 }
 
 .start_set,
@@ -294,7 +294,7 @@ form {
   line-height: 47px;
   background-color: #383d66;
   width: 80%;
-  max-width: 440px;
+  max-width: 480px;
   height: 47px;
 }
 input,
