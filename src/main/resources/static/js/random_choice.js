@@ -11,7 +11,7 @@ startDateInput.addEventListener("change", () => {
     let startDate = new Date(startDateInput.value);
     let period = parseInt(checked.dataset.period);
     let endDate = new Date(startDate.getTime() + period * 24 * 60 * 60 * 1000);
-
+    endDateInput.disabled = false;
     endDateInput.value = formatDate(endDate);
   }
 });
