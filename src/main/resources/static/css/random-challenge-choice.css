@@ -249,3 +249,7 @@ input:checked + .slider:before {
 .choice-modal{
   z-index: 1;
 }
+
+.no-click {
+  pointer-events: none;
+}
