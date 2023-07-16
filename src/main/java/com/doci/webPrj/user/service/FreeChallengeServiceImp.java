@@ -51,6 +51,13 @@ public class FreeChallengeServiceImp implements FreeChallengeService {
     }
 
     @Override
+    public void nowStart(int freeChallengeId) {
+        LocalDate currentDate = LocalDate.now();
+        freeChallengeRepository.updateStartDate(freeChallengeId,currentDate);
+        savePerformanceRecords(freeChallengeId);
+    }
+
+    @Override
     public ChallengeFormView getFriendForm(String uniqueId) {
         return challengeViewRepository.getChallengeFormById(uniqueId);
     }

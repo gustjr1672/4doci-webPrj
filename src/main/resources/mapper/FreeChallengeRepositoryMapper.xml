@@ -61,4 +61,10 @@
         from free_challenge
         where id = #{id}
     </select>
+
+    <update id="updateStartDate">
+        update free_challenge
+        set start_date = #{startDate}
+        where id = #{id};
+    </update>
 </mapper>

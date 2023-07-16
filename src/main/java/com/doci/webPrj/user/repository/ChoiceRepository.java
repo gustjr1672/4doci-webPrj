@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Param;
 
 import com.doci.webPrj.user.entity.Choice;
 
+import java.time.LocalDate;
+
 @Mapper
 public interface ChoiceRepository {
 
@@ -17,5 +19,7 @@ public interface ChoiceRepository {
     void editVisibility(@Param("id") int id, @Param("visibility") boolean visibility);
 
     boolean getVisibility(int id);
+
+    void updateStartDate(@Param("id") int challengeId, @Param("startDate") LocalDate startDate);
 
 }

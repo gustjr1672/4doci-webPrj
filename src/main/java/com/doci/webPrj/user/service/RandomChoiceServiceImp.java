@@ -37,9 +37,17 @@ public class RandomChoiceServiceImp implements RandomChoiceService {
     }
 
     @Override
+    public void nowStart(int choiceId) {
+        LocalDate currentDate = LocalDate.now();
+        choiceRepository.updateStartDate(choiceId,currentDate);
+        savePerformanceRecords(choiceId);
+    }
+
+    @Override
     public List<ChoiceRandomList> getRandomList(String[] categoryIdList) {
         return randomChallengeRepository.findRandomByCategory(categoryIdList);
     }
+
 
     private void savePerformanceRecords(int choiceId) {
         PerformanceRecords record = PerformanceRecords.builder()

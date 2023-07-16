@@ -58,19 +58,21 @@
 
 <section class="choice-modal delete-modal hidden">
     <section class="modal-box delete-modal-content">
-        <span>도전을 포기하시겠습니까? <br> 포기할 시 해당 도전이 삭제됩니다</span>
+        <span class="content">모달내용</span>
         <div>
             <button class="modal-cancel-btn" id="close-btn">취소</button>
-            <button class="modal-delete-btn" id="give-up-btn">포기</button>
+            <button class="modal-delete-btn hidden" id="give-up-btn">포기</button>
+            <button class="modal-start-btn hidden" id="start-btn">시작</button>
         </div>
     </section>
 </section>
 
 <section class="complete-modal hidden">
     <section class="modal-box">
-        <span>도전이 삭제되었습니다.</span>
+        <span class="complete-content">도전이 삭제되었습니다.</span>
         <div>
-            <button class="modal-close">닫기</button>
+            <button class="modal-close hidden">확인</button>
+            <button class="complete-ok hidden">확인</button>
         </div>
     </section>
 </section>
