@@ -45,10 +45,8 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
                     .name(name)
                     .email(email)
                     .nickname(nickname)
-                    .roles("USER").build();
+                    .roles("SNS").build();
 
-            memberRepository.save(member);
-            member.setNickname(oAuth2User.getAttribute("name")+ "" + member.getId());
 
             return  initMyUserDetail(member);
         }
@@ -87,8 +85,7 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
                 .profileImage(member.getProfileImage())
                 .roles(member.getRoles())
                 .build();
-        String roles = details.getRoles();
-        System.out.println("roles = " + roles);
+
         return details;
     }
 }
