@@ -49,16 +49,3 @@ finishBtn.addEventListener('click',()=>{
     let completeModal = document.querySelector(".complete-modal");
     completeModal.classList.remove("hidden")
 })
-//
-// finishBtn.addEventListener('click',()=>{
-//     let data = new URLSearchParams();
-//     data.append('nickname',nickname.value);
-//
-//     fetch(`/member/nickname`,{
-//         method:'PUT',
-//         body: data
-//     }).then(response=> response.text())
-//         .then(result=>{
-//             nickname.value = result;
-//         })
-// })

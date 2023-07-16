@@ -26,11 +26,5 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         else if (roles.contains("ROLE_SNS")){
             response.sendRedirect("/welcome");
         }
-//        else if (roles.contains("ROLE_naver")){
-//            response.sendRedirect("/welcome");
-//        }
-//        else if (roles.contains("ROLE_kakao")){
-//            response.sendRedirect("/welcome");
-//        }
     }
 }

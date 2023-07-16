@@ -31,8 +31,6 @@ public class SpringSecurityConfig {
                         .requestMatchers("/image/**", "/css/**", "/js/**","/join/**","/api/join/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/welcome","/register/snsLogin").hasRole("SNS")
-//                        .requestMatchers("/welcome","/register/snsLogin").hasRole("kakao")
-//                        .requestMatchers("/welcome","/register/snsLogin").hasRole("naver")
                         .requestMatchers("/**").hasRole("USER")
                         .anyRequest().authenticated()
                 )
