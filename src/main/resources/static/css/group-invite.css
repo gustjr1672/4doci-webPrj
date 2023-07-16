@@ -38,7 +38,8 @@
     align-items: center;
 
     height: 348px;
-    width: 312px;
+    width: 100%;
+    max-width: 480px;
     overflow: scroll;
 }
 
@@ -51,13 +52,14 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    max-width: 450px;
+    /* max-width: 450px; */
     width: 100%;
     padding: 10px 10px;
     background-color: white;
     border: none;
     height: 68px;
     box-sizing: border-box;
+    padding: 0 40px;
 }
 
 .friends-list .content .info {
@@ -102,7 +104,8 @@
     
 }
 .btns{
-    width: 312px;
+    width: 100%;
+    max-width: 480px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,7 +121,7 @@
 
     background-color: #ffffff;
     border: 1px solid #383D66 ;
-    width: 144px;
+    width: 40%;
     height: 47px;
     margin-top: 30px;
 }
@@ -132,7 +135,7 @@
     color: #ffffff;
 
     background-color: #383D66;
-    width: 144px;
+    width: 40%;
     height: 47px;
     margin-top: 30px;
 }

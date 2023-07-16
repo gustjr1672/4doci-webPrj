@@ -28,29 +28,29 @@
     </div>
     <div class="challenge-list-wrap">
       <form class="challenge-list" method="post" th:action="@{/challenge/start/choice/type/submit}">
-        <div class="challenge-option zoom-2">
+        <div class="challenge-option">
           <input value="individual" id="personal" name="challenge" type="radio" />
-          <label for="personal">
-            <div class="explain-wrap ">
+          <label for="personal" class="zoom-2">
+            <div class="explain-wrap">
               <div><span>개인도전</span><span class="explain">으로</span></div>
               <p class="explain">자유롭게 본인의 도전을 시작해보세요</p>
             </div>
             <img src="/image/startchallenge/personal.png" alt="" />
           </label>
         </div>
-        <div class="challenge-option zoom-2">
+        <div class="challenge-option">
           <input value="random" id="random" name="challenge" type="radio" />
-          <label for="random">
-            <div class="explain-wrap zoom-2">
+          <label for="random" class="zoom-2">
+            <div class="explain-wrap">
               <div><span>랜덤도전</span><span class="explain">으로</span></div>
               <p class="explain">다양하고 새로운 도전을 시도해보세요</p>
             </div>
             <img src="/image/startchallenge/random.png" alt="" />
           </label>
         </div>
-        <div class="challenge-option zoom-2">
+        <div class="challenge-option">
           <input value="group" id="group" name="challenge" type="radio" />
-          <label for="group">
+          <label for="group" class="zoom-2">
             <div class="explain-wrap">
               <div><span>그룹도전</span><span class="explain">으로</span></div>
               <p class="explain">다른사람들과 도전을 함께해보세요</p>
@@ -72,7 +72,7 @@
           <button
             type="submit"
             id="submit-button"
-            class="brighten"
+            class="brighten-2"
           >
             선택완료
           </button>

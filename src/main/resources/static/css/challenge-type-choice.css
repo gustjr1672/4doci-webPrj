@@ -124,7 +124,7 @@ label span:first-child {
 button[type="submit"] {
   background-color: #383d66;
   color: white;
-  max-width: 450px;
+  max-width: 480px;
   width: 80%;
   height: 52px;
   font-size: 14px;

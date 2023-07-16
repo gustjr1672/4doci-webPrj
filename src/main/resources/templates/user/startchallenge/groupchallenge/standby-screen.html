@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/css/standby-screen.css" type="text/css">
   <link rel="stylesheet" href="/css/modal.css" type="text/css" />
   <link rel="stylesheet" href="/css/my-page-modal.css" type="text/css">
+  <link href="/css/animation.css" type="text/css" rel="stylesheet"/>
   <script src="/js/standby-screen.js" defer="defer"></script>
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" />
 </head>
@@ -32,11 +33,11 @@
     <div class="friends">
       <div class="modify">
         <p>함께하는 친구</p>
-        <button class="modify-friend">수정</button>
+        <button class="modify-friend cursor">수정</button>
       </div>
       <div class="profile-wrap">
         <div class="add-friend">
-          <button class="add-btn">+</button>
+          <button class="add-btn cursor">+</button>
         </div>
         <div class="profile" th:each="inviFriend: ${inviList}"
           th:if="${inviFriend.toMemberId != challenge.groupLeaderId}">
@@ -60,7 +61,7 @@
     <div class="period">
       <div class="modify">
         <p>도전 기간</p>
-        <button class="modify-date">수정</button>
+        <button class="modify-date cursor">수정</button>
       </div>
       <div class="start-set">
         <p>시작일</p>
@@ -77,8 +78,8 @@
       </div>
     </div>
     <div class="buttons" id="buttons">
-      <button class="close-btn" onclick="location.href = '/main' ">닫기</button>
-      <button type="button" class="start-btn" id="start-btn">바로 시작하기</button>
+      <button class="close-btn brighten-2 cursor" onclick="location.href = '/main' ">닫기</button>
+      <button type="button" class="start-btn brighten-2 cursor" id="start-btn">바로 시작하기</button>
     </div>
   </div>
 
@@ -103,7 +104,7 @@
       <input type="hidden" class="leader-id" th:value="${challenge.groupLeaderId}">
 
       <div class="btns">
-        <button type="button" class="submit-btn">그룹 초대</button>
+        <button type="button" class="submit-btn brighten-2 cursor">그룹 초대</button>
         <button type="button"><img src="/image/wating-page/close.png"></button>
       </div>
     </div>
@@ -197,7 +198,7 @@
       <div class="end-date-alert hidden">종료일을 설정해주세요.</div>
       </div>
       <div class="finish-btn">
-        <button>완료</button>
+        <button class="brighten-2 cursor">완료</button>
       </div>
     </div>
   </div>

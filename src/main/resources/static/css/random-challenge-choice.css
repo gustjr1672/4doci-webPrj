@@ -24,13 +24,13 @@ body {
 }
 .start-order {
   width: 80%;
-  max-width: 400px;
+  max-width: 480px;
   display: flex;
   justify-content: start;
 }
 .end-order {
   width: 80%;
-  max-width: 400px;
+  max-width: 480px;
   display: flex;
   justify-content: space-between;
 }
@@ -136,7 +136,7 @@ h1 p {
   gap: 4px;
   margin: 16px 0;
   width: 80%;
-  max-width: 440px;
+  max-width: 480px;
   min-width: 280px;
   height: 110px;
   border: 2px solid #ffffff;
@@ -215,7 +215,7 @@ h1 p {
   background-color: #383d66;
   color: white;
   width: 80%;
-  max-width: 440px;
+  max-width: 480px;
   min-width: 280px;
   height: 52px;
   font-size: 16px;
