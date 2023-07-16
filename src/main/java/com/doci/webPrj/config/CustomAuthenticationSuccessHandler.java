@@ -23,9 +23,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         else if(roles.contains("ROLE_ADMIN")){
             response.sendRedirect("/admin/main");
         }
-//        else if (roles.contains("ROLE_GOOGLE")){
-//            System.out.println("google = " + "구글로 둘어옴");
-//            response.sendRedirect("/register/nickname");
-//        }
+        else if (roles.contains("ROLE_SNS")){
+            response.sendRedirect("/welcome");
+        }
     }
 }

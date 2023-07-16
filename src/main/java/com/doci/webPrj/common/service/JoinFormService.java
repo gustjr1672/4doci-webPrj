@@ -38,8 +38,10 @@ public class JoinFormService {
     }
 
     public void join(Member member){
-        String pwd = member.getPwd();
-        member.setPwd(passwordEncoder.encode(pwd));
+        if (member.getPwd() != null){
+            String pwd = member.getPwd();
+            member.setPwd(passwordEncoder.encode(pwd));
+        }
         repository.save(member);
     }
 }

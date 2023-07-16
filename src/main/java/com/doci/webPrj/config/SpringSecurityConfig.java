@@ -30,7 +30,7 @@ public class SpringSecurityConfig {
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                         .requestMatchers("/image/**", "/css/**", "/js/**","/join/**","/api/join/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/register/nickname").hasRole("GOOGLE")
+                        .requestMatchers("/welcome","/register/snsLogin").hasRole("SNS")
                         .requestMatchers("/**").hasRole("USER")
                         .anyRequest().authenticated()
                 )
