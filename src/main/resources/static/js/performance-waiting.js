@@ -49,11 +49,10 @@ startBtn.addEventListener('click',function (){
     if (uniqueId.includes("CH")) {
         fetch(`/challenge/choice/${challengeId}`, {
             method: 'PUT'
-        }
-            .then(response => nowStartComplete()));
+        })
+            .then(response => nowStartComplete());
     }
-    else
-        if (uniqueId.includes("FC")) {
+    else if (uniqueId.includes("FC")) {
             fetch(`/challenge/freeChallenge/${challengeId}`,{
                 method:'PUT'
             })
