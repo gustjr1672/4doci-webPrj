@@ -48,6 +48,9 @@
 .zoom-3:hover {
     transform: scale(1.1) translateX(2px);
   }
+.zoom-4:hover{
+  transform: scale(1.05);
+}
 .bold {
     transition: font-weight 0.2s ease;
 }
@@ -62,7 +65,7 @@
     filter: brightness(1.1);
   }
 
-  .brighten-2 {
+.brighten-2 {
     transition: filter 0.2s ease;
     filter: brightness(1);
   }
@@ -76,3 +79,15 @@
 .color-change:hover {
    
   }
+
+.focus:focus{
+  border:2px solid #303030;
+}
+
+.btn-hover:hover img {
+  transform: scale(1.1); /* 이미지 크기 약간 키우기 */
+}
+
+.btn-hover:hover span {
+  font-weight: 700; /* 글꼴 굵게 설정 */
+}

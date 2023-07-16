@@ -88,10 +88,10 @@ function newFriendListLoad(url) {
                 </div>
             </div>
             <button data-id=${value.id} id='add-request' class="${
-          value.state == "요청" ? "" : "hidden"
+          value.state == "요청" ? "zoom-4 cursor" : "hidden"
         }">요청</button>
             <button data-id=${value.id} id='cancel' class="${
-          value.state == "요청취소" ? "" : "hidden"
+          value.state == "요청취소" ? "zoom-4 cursor" : "hidden"
         }">요청취소</button>
         </div>
         `;
