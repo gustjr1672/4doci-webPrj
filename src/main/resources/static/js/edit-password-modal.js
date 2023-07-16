@@ -32,6 +32,7 @@ window.addEventListener('click', (event) => {
 
 function closePasswordModal() {
     pwdModalContainer.classList.remove('modal-show');
+    editFinishBtn.classList.remove("brighten-2");
     inputFormReset();
 }
 
@@ -98,10 +99,12 @@ function turnOnFinishBtn(){
     if (duplicateCheck && newPasswordCheck && nowPasswordCheck ){
         editFinishBtn.disabled = false;
         editFinishBtn.style.backgroundColor = '#383d66';
+        editFinishBtn.classList.add("brighten-2");
     }
     else{
         editFinishBtn.disabled = true;
         editFinishBtn.style.backgroundColor = '#ccc';
+        editFinishBtn.classList.remove("brighten-2");
     }
 }
 

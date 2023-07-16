@@ -34,6 +34,7 @@ function closeNicknameModal() {
     nicknameError.innerHTML = "";
     finishBtn.style.backgroundColor = '#ccc';
     finishBtn.disabled = true;
+    finishBtn.classList.remove("brighten-2");
 }
 
 // ===========================닉네임 유효성 검사==============================
@@ -53,12 +54,14 @@ function chkNicknameValidity(){    // 닉네임 중복검사
                     nicknameError.style.color="#6167FF";
                     finishBtn.disabled = false;
                     finishBtn.style.backgroundColor = '#383d66';
+                    finishBtn.classList.add("brighten-2");
                     return;
                 }
                 nicknameError.style.color= "red";
                 nicknameError.innerHTML = "이미 존재하는 닉네임 입니다";
                 finishBtn.style.backgroundColor = '#ccc';
                 finishBtn.disabled = true;
+                finishBtn.classList.remove("brighten-2");
             })
     }
 }
@@ -68,6 +71,7 @@ function checkNickname(nicknameValue){  // 닉네임 유효성검사
     if(!regex.test(nicknameValue)){
         nicknameError.style.color= "red";
         finishBtn.style.backgroundColor = '#ccc';
+        finishBtn.classList.remove("brighten-2");
         finishBtn.disabled = true;
         document.getElementById("nickname-error").innerHTML = "닉네임은 한글로 2자 이상 8자 이하입니다.";
         return false;
