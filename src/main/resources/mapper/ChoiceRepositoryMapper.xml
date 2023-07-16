@@ -50,4 +50,10 @@
     from choice
     where id = #{id}
     </select>
+
+    <update id="updateStartDate">
+        update choice
+        set start_date = #{startDate}
+        where id = #{id};
+    </update>
 </mapper>

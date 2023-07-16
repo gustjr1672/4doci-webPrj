@@ -9,4 +9,6 @@ public interface RandomChoiceService {
     List<ChoiceRandomList> getRandomList(String[] categoryIdList);
 
     void addRandomChallenge(Choice choice);
+
+    void nowStart(int freeChallengeId);
 }

@@ -1,7 +1,9 @@
 package com.doci.webPrj.user.api.controller;
 
 import com.doci.webPrj.user.entity.PerformanceRecords;
+import com.doci.webPrj.user.service.FreeChallengeService;
 import com.doci.webPrj.user.service.PerformanceRecordsService;
+import com.doci.webPrj.user.service.RandomChoiceService;
 import com.doci.webPrj.user.service.RecordImageService;
 
 import java.io.IOException;
@@ -19,6 +21,10 @@ public class PerformanceRecordsController {
     PerformanceRecordsService recordsService;
     @Autowired
     RecordImageService recordImageService;
+    @Autowired
+    FreeChallengeService freeChallengeService;
+    @Autowired
+    RandomChoiceService randomChoiceService;
 
     @PutMapping("achv-quantity")
     public void upAchvQuantity(@RequestParam("cid") String challengeTypeAndId) {
@@ -38,8 +44,8 @@ public class PerformanceRecordsController {
 
     @PutMapping("performance-records")
     public void edit(PerformanceRecords performanceRecords,
-            @RequestParam(name = "uniqueId", required = false) String uniqueId,
-            @RequestParam(name = "file", required = false) MultipartFile file) throws IOException {
+                     @RequestParam(name = "uniqueId", required = false) String uniqueId,
+                     @RequestParam(name = "file", required = false) MultipartFile file) throws IOException {
 
         PerformanceRecords record = performanceRecords;
 
@@ -60,5 +66,15 @@ public class PerformanceRecordsController {
         List<PerformanceRecords> performanceRecordList = recordsService.getList(challengeTypeAndId);
 
         return performanceRecordList;
+    }
+
+    @PutMapping("/choice/{challengeId}")
+    public void startRandomChoice(@PathVariable int challengeId) {
+            randomChoiceService.nowStart(challengeId);
+    }
+
+    @PutMapping("/freeChallenge/{challengeId}")
+    public void startFreeChallenge(@PathVariable int challengeId) {
+        freeChallengeService.nowStart(challengeId);
     }
 }

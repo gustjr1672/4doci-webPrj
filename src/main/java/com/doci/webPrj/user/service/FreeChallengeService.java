@@ -8,4 +8,6 @@ public interface FreeChallengeService {
 
      ChallengeFormView getFriendForm(String uniqueId);
 
+     void nowStart(int freeChallengeId);
+
 }

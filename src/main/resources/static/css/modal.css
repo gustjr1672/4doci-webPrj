@@ -64,6 +64,7 @@
   background-color: #fff;
   width: 50%;
   height: 40px;
+  border-bottom-right-radius: 12px
 }
 .modal-box div :first-child {
   color: #ff8f8f;
