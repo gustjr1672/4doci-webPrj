@@ -10,6 +10,7 @@
                 group_feed where group_start_id = #{gsId} 
                 and result = '성공'
                 and (impression is not null or image is not null)
+                order by reg_date DESC;
         </select>
         <!-- findRandomById --> 
 
@@ -18,6 +19,7 @@
                 random_feed where choice_id = #{chId}
                 and result = '성공'
                 and (impression is not null or image is not null)
+                order by reg_date DESC;
         </select>
         <!-- findFreeById --> 
 
@@ -26,5 +28,6 @@
                 free_feed where free_challenge_id = #{fcId}
                 and result = '성공'
                 and (impression is not null or image is not null)
+                order by reg_date DESC;
         </select>        
 </mapper>

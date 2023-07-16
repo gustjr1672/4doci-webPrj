@@ -45,9 +45,10 @@
           <span th:text="${feed.nickname}">멋을아는자</span>
         </div>
         <div class="title">
-          <span th:text="${feed.challengeName}" class="challenge-title"
-            >하루에 30분씩 가벼운 스트레칭하기</span
-          >
+          <div class="title-img-wrap">
+            <img src="/image/community/seed.svg">
+            <span th:text="${feed.challengeName}" class="challenge-title">하루에 30분씩 가벼운 스트레칭하기</span>
+          </div>
           <div class="title-btns">
             <button
               th:if="${feed.freeChallengeId}"
