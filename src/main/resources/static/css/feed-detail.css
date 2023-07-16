@@ -6,14 +6,15 @@ header {
   width: 100%;
   display: flex;
   max-width: 660px;
-  margin: 20px 12px;
+  margin: 10px 0px 15px 0px;
+  background-color: #fff;
 }
 header img {
   padding-left: 12px;
   width: 22px;
 }
 header > button {
-  background-color: white;
+  background-color: #fff;
   border: none;
 }
 body {
@@ -22,17 +23,32 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
+.header-fix{
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: 660px;
+  /* z-index: 1; */
+}
 .detail-header {
-  padding-top: 36px;
+  /* padding-top: 36px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  gap: 24px;
+  gap: 12px;
   width: 100%;
   max-width: 660px;
   /* border: 1px solid #dbdbdb;
   border-radius: 12px; */
+  /* border-bottom: 1px solid #E7E7E7; */
+  box-shadow: 0px 4px 2px -2px #E7E7E7;
+  /* border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px; */
+  padding-bottom: 20px;
+  background-color: #fff;
 }
 .profile {
   padding-left: 12px;
@@ -49,13 +65,23 @@ body {
   height: 50px;
   border-radius: 50px;
 }
+
+.period-comment-wrap{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  padding-top: 10px;
+}
+
 .comment {
   display: flex;
   /* justify-content: center; */
   align-items: center;
   gap: 3px;
-  /* padding-right: 16px; */
-  padding-left: 83%;
+  padding-right: 24px;
+  /* padding-left: 77%; */
+  /* margin-left: 550px; */
+  
   border: none;
   background-color: #fff;
 }
@@ -66,8 +92,9 @@ body {
 
 .comment span {
   /* padding-right: 24px; */
-  font-size: 12px;
+  /* font-size: 12px; */
   font-weight: 500;
+  color: #333333 !important;
   /* width: 15px; */
 }
 .comment-btn {
@@ -80,16 +107,22 @@ body {
   flex-direction: column;
   /* justify-content: space-between; */
   /* align-items: center; */
-  padding-bottom: 36px;
+  /* padding-bottom: 36px; */
 }
 
 .space-btwn img{
   width: 15px;
 }
-.space-btwn :first-child {
+/* .space-btwn>span {
   font-size: 12px;
   font-weight: 600;
-  padding-left: 12px;
+  padding-left: 36px;
+} */
+
+.title-img-wrap{
+  display: flex;
+  padding-left: 24px;
+  gap:4px;
 }
 
 .title {
@@ -97,7 +130,7 @@ body {
   width: 180px;
   font-size: 16px;
   font-weight: 700;
-  padding-left: 24px;
+  /* padding-left: 24px; */
   padding-top: 3px;
 }
 .space-btwn button {
@@ -108,8 +141,8 @@ body {
   font-size: 12px;
   font-weight: 600;
   color: #858585;
-  padding-left: 12px;
-  padding-top: 12px;
+  padding-left: 24px;
+  /* padding-top: 12px; */
 }
 
 .period :first-child{
@@ -117,35 +150,49 @@ body {
 }
 
 .feed {
-  padding-top: 36px;
+  padding-top: 20px;
   margin: 10px 0 10px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding-bottom: 36px;
+  /* padding-bottom: 36px; */
   width: 100%;
-  border-bottom: 1px solid #dbdbdb;
-  max-width: 660px;
+  /* border-bottom: 1px solid #dbdbdb; */
+  /* max-width: 660px; */
 }
+
+/* .feed::after{
+  content: "";
+  display: block;
+  width: 99%;
+  border-bottom: 1px solid #dbdbdb;
+} */
+.feed-footer{
+  width: 90%;
+  max-width: 660px;
+  border-bottom: 1px solid #dbdbdb;
+}
+
 .feed img {
   width: 100%;
   max-width: 660px;
+  padding-bottom: 12px;
 }
 .date {
   display: flex;
   justify-content: start;
   align-items: center;
-  width: 100%;
+  width: 90%;
   max-width: 660px;
 }
 .date span {
   color: #858585;
   line-height: 25px;
-  font-size: 12px;
+  /* font-size: 12px; */
   font-weight: 600;
-  margin-left: 12px;
+  /* margin-left: 12px; */
 }
 /* .date span {
   color: #fff;
@@ -162,20 +209,27 @@ body {
   display: flex;
   justify-content: start;
   align-items: center;
-  width: 100%;
+  width: 90%;
   max-width: 660px;
+  height: 100%;
+  padding-bottom: 30px;
 }
 .content span {
-  font-size: 12px;
+  /* font-size: 12px; */
   /* padding-left: 12px; */
   font-weight: 500;
-  margin: 12px 16px 10px 16px;
+  /* margin: 12px 16px 10px 16px; */
 }
 
 .feed-section{
   margin-bottom: 30px;
   width: 100%;
-  max-width: 660px;
+  margin-top: 190px;
+  /* max-width: 660px; */
+}
+
+.feed-section  :last-child .feed-footer{
+  border: none;
 }
 
 /**댓글 모달**/
@@ -201,3 +255,52 @@ body {
 .comment-modal span{
   font-size: 12px;
 }
+
+/* 아이폰 미니 */
+@media screen and (max-width: 390px) {
+  .comment span {
+    font-size: 10px;
+  }
+  .date span {
+    font-size: 10px;
+  }
+  .content span {
+    font-size: 12px; 
+  }
+
+}
+
+/* 모바일 및 10인치 미만 */
+@media screen and (min-width: 391px) and (max-width: 899px) {
+  .comment span {
+    font-size: 12px;
+  }
+  .date span {
+    font-size: 12px;
+  }
+  .content span {
+    font-size: 14px; 
+  }
+
+}
+
+/* 10인치 이상 */
+@media screen and (min-width: 900px) {
+  .comment span {
+    font-size: 12px;
+  }
+  .date span {
+    font-size: 12px;
+  }
+  .content span {
+    font-size: 16px; 
+  }
+
+}
+
+
+
+
+
+
+

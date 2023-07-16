@@ -13,64 +13,69 @@
     <link rel="stylesheet" href="/css/modal.css" />  
   </head>
   <body>
-    <header>
-      <a href="javascript:history.go(-1)">
-        <img src="/image/header/blackBack.png" alt="뒤로가기" />
-      </a>
-    </header>
-    <!-- <section class="detail-header">
-      <div class="profile">
-        <img class="profile-image" th:src="${challenge.profileImage}" alt="" />
-        <span th:text="${challenge.nickname}">멋을아는자</span>
-      </div>
-      <div class="period">
-        <span th:text="${challenge.startDate}">2023.06.05</span> ~
-        <span th:text="${challenge.endDate}">2023.07.05</span>
-      </div>
-      <div class="space-btwn">
-        <span class="title" th:text="${challenge.challengeName}"
-          >하루에 30분씩 가벼운 운동하기</span
-        >
-        <button class="comment">
-          <img class="comment-btn" src="/image/community/comment.png" alt="" />
-          <span th:text="${count}">3</span>
-        </button>
-      </div>
-    </section> -->
-
-    <section class="detail-header">
-      <div class="profile">
-        <img class="profile-image" th:src="${challenge.profileImage}" alt="" />
-        <span th:text="${challenge.nickname}">멋을아는자</span>
-      </div>
-      <div class="space-btwn">
-        <div>
-          <img src="/image/community/seed.svg" alt="">
-          <span>진행중인 도전</span>
+    
+    <div class="header-fix">
+      <header>
+        <a href="javascript:history.go(-1)">
+          <img src="/image/header/blackBack.png" alt="뒤로가기" />
+        </a>
+      </header>
+      <!-- <section class="detail-header">
+        <div class="profile">
+          <img class="profile-image" th:src="${challenge.profileImage}" alt="" />
+          <span th:text="${challenge.nickname}">멋을아는자</span>
         </div>
-        <span class="title" th:text="${challenge.challengeName}"
-          >하루에 30분씩 가벼운 운동하기</span
-        >
         <div class="period">
-          <span>기간</span>
           <span th:text="${challenge.startDate}">2023.06.05</span> ~
           <span th:text="${challenge.endDate}">2023.07.05</span>
         </div>
-      </div>
-      <button class="comment">
-        <span>전체 댓글</span>
-        <img class="comment-btn" src="/image/community/comment.png" alt="" />
-        <span th:text="${count}">3</span>
-      </button>
-    </section>
+        <div class="space-btwn">
+          <span class="title" th:text="${challenge.challengeName}"
+            >하루에 30분씩 가벼운 운동하기</span
+          >
+          <button class="comment">
+            <img class="comment-btn" src="/image/community/comment.png" alt="" />
+            <span th:text="${count}">3</span>
+          </button>
+        </div>
+      </section> -->
+      <section class="detail-header">
+        <div class="profile">
+          <img class="profile-image" th:src="${challenge.profileImage}" alt="" />
+          <span th:text="${challenge.nickname}">멋을아는자</span>
+        </div>
+        <div class="space-btwn">
+          <!-- <span>진행중인 도전</span> -->
+          <div class="title-img-wrap">
+            <img src="/image/community/seed.svg" alt="">
+            <span class="title" th:text="${challenge.challengeName}"
+              >하루에 30분씩 가벼운 운동하기</span
+            >
+          </div>
+          <div class="period-comment-wrap">
+            <div class="period">
+              <span>기간</span>
+              <span th:text="${challenge.startDate}">2023.06.05</span> ~
+              <span th:text="${challenge.endDate}">2023.07.05</span>
+            </div>
+            <button class="comment">
+              <span>전체 댓글</span>
+              <img class="comment-btn" src="/image/community/comment.png" alt="" />
+              <span th:text="${count}">3</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
 
     <section class="feed-section">
       <section class="feed" th:each="feed:${list}">
         <div class="date">
           <span th:text="${#dates.format(feed.regDate, 'yy.MM.dd')}">23.06.05</span>
         </div>
-        <img th:src="${feed.image}" alt="" />
+        <img th:if="${feed.image}" th:src="${feed.image}" alt="" />
         <div class="content"><span th:text="${feed.impression}">자전거탐</span></div>
+        <div class="feed-footer"></div>
       </section>
     </section>
 
