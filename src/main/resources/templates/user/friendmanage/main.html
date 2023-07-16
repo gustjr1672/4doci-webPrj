@@ -35,14 +35,14 @@
     <section id="left-content" class="contents">
       <div class="search">
         <input type="text" name="nickname" placeholder="닉네임으로 검색" />
-        <button id="friend-search" class="zoom-4">검색</button>
+        <button id="friend-search" class="zoom-4 cursor">검색</button>
       </div>
       <div id="friend-list" class="friend-list">
         <p th:text="'친구 '+${total}+'명'">친구 2명</p>
 
         <div class="friend" th:each="friend : ${friendList}">
           <button
-            class="info btn-hover"
+            class="info btn-hover cursor"
             th:onclick="|location.href = '/friendmanage/challenge?id=${friend.id}'|"
           >
             <img th:src="${friend.profileImage}" alt="프로필이미지"/>
@@ -51,7 +51,7 @@
               <span th:text="${friend.nickname}">고민시작</span>
             </div>
           </button>
-          <button th:data-id="${friend.id}" id="friend-delete" class="delete zoom-4">삭제</button>
+          <button th:data-id="${friend.id}" id="friend-delete" class="delete zoom-4 cursor">삭제</button>
         </div>
       </div>
     </section>
@@ -60,7 +60,7 @@
       <p>같이할 친구를 추가해 보세요</p>
       <div class="add-friend">
         <input id="add-search-input focus" required type="text" name="n" placeholder="닉네임으로 검색" />
-        <button id="add-search" class="zoom-4">검색</button>
+        <button id="add-search" class="zoom-4 cursor">검색</button>
       </div>
       <section id="new-friend-list"></section>
     </section>
