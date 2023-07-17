@@ -52,8 +52,8 @@ function friendRequestLoad(url, method) {
               </div>
             </div>
             <div class="friend-request-btns">
-              <button data-id="${member.id}" id="request-refuse" class="refuse">거절</button>
-              <button data-id="${member.id}" id="request-accept">수락</button>
+              <button data-id="${member.id}" id="request-refuse" class="refuse zoom-4 cursor">거절</button>
+              <button data-id="${member.id}" id="request-accept" class="zoom-4 cursor">수락</button>
           </section>
       `;
         notification.insertAdjacentHTML("beforeend", requestListTemplate);
@@ -86,7 +86,7 @@ function groupInvitationLoad(url) {
                 >
               </div>
             </div>
-            <button onclick="location.href='/groupChallenge/invite-request?id=${invitation.groupChallengeId}'">보기</button>
+            <button onclick="location.href='/groupChallenge/invite-request?id=${invitation.groupChallengeId}'" class="zoom-4 cursor">보기</button>
           </div>
         </section>`;
         notification.insertAdjacentHTML("beforeend", groupNotiTemplate);
