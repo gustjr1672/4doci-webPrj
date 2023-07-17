@@ -56,4 +56,16 @@
         set start_date = #{startDate}
         where id = #{id};
     </update>
+
+     <select id="findById" resultType="com.doci.webPrj.user.entity.Choice">
+        select * from choice where id=#{choiceId}
+    </select>
+
+    <update id="updateDate">
+        UPDATE choice
+        set
+            start_date = #{newStartDate},
+            end_date = #{newEndDate}
+        WHERE id = #{choiceId}
+    </update>
 </mapper>

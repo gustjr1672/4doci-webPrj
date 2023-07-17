@@ -153,6 +153,8 @@ let dateSection = document.querySelector(".period");
 //let dateModifyBtn = document.querySelector(".modify-date");
 const dateModal = document.getElementById("date-modal-container");
 let modalCloseBtn = document.querySelector(".edit-modal-close");
+let endAfterAlert = document.querySelector(".alert");
+let endDateAlert = document.querySelector(".end-date-alert");
 
 dateSection.addEventListener("click", function (e) {
   if (e.target.classList.contains("modify-date")) {
@@ -164,6 +166,8 @@ dateSection.addEventListener("click", function (e) {
 // }
 modalCloseBtn.onclick = function (e) {
   dateModal.classList.remove("modal-show");
+  endAfterAlert.classList.add("hidden");
+  endDateAlert.classList.add("hidden");
 };
 
 //도전기간 수정완료시 db에 저장
@@ -172,7 +176,14 @@ let selectAmPm = document.getElementById("new_start_time");
 let alertChangeModal = document.getElementById("alert-change-modal");
 let selectHour = document.getElementById("new_start_hour");
 let startTime = 0;
-let endDateAlert = document.querySelector(".end-date-alert");
+let startDate = document.querySelector("#start_inside");
+let endDate = document.querySelector("#end_inside");
+
+endDate.addEventListener("input", function() {
+  if (this.value) {
+    endDateAlert.classList.add("hidden");
+  }
+});
 dateBtn.onclick = function (e) {
   startTime = parseInt(selectHour.value);
   if (selectAmPm.value == "pm") {
@@ -190,6 +201,7 @@ dateBtn.onclick = function (e) {
   }
   let endDate = document.getElementById("end_inside").value;
   if (endDate == "") {
+    endAfterAlert.classList.add("hidden");
     endDateAlert.classList.remove("hidden");
     return;
   } else endDateAlert.classList.add("hidden");
@@ -263,9 +275,7 @@ dateBtn.onclick = function (e) {
 //   }
 // });
 
-let startDate = document.querySelector("#start_inside");
-let endDate = document.querySelector("#end_inside");
-let alert = document.querySelector(".alert");
+
 
 let today = new Date().toISOString().split("T")[0];
 
@@ -278,10 +288,11 @@ startDate.addEventListener("change", () => {
 
 endDate.addEventListener("change", () => {
   if (startDate.value >= endDate.value) {
-    alert.classList.remove("hidden");
+    endAfterAlert.classList.remove("hidden");
+    endDateAlert.classList.add("hidden");
     endDate.value = null;
   } else {
-    alert.classList.add("hidden");
+    endAfterAlert.classList.add("hidden");
   }
 });
 

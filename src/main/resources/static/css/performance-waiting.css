@@ -255,3 +255,27 @@ header img {
   #dayLeftSpan{
     font-size: 18px !important;
   }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .finish-btn button {
+    background-color: #383d66 !important;
+  }
+
+  .alert-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .alert,
+  .end-date-alert {
+    width: 80%;
+    color: #c11111;
+    font-size: 12px;
+  }
+  

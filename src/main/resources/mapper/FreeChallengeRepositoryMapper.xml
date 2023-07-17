@@ -67,4 +67,16 @@
         set start_date = #{startDate}
         where id = #{id};
     </update>
+
+     <select id="findById" resultType="com.doci.webPrj.user.entity.FreeChallenge">
+        select * from free_challenge where id=#{challengeId}
+    </select>
+
+    <update id="updateDate">
+        UPDATE free_challenge
+        set
+            start_date = #{newStartDate},
+            end_date = #{newEndDate},
+        WHERE id = #{challengeId}
+    </update>
 </mapper>

@@ -22,4 +22,8 @@ public interface ChoiceRepository {
 
     void updateStartDate(@Param("id") int challengeId, @Param("startDate") LocalDate startDate);
 
+    void updateDate(@Param("choiceId")int choiceId,@Param("newStartDate") String newStartDate,
+    @Param("newEndDate") String newEndDate);
+
+    Choice findById(int choiceId);
 }

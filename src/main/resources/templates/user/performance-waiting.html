@@ -10,19 +10,21 @@
     />
     <link rel="stylesheet" href="/css/performance-waiting.css">
     <link rel="stylesheet" href="/css/modal.css">
+    <link rel="stylesheet" href="/css/my-page-modal.css" type="text/css">
+    <link href="/css/animation.css" type="text/css" rel="stylesheet"/> 
     <script src="/js/performance-waiting.js" defer></script>
 </head>
 <body>
 <header>
     <a href="javascript:history.go(-1)">
-        <img src="/image/header/whiteBack.png" alt="뒤로가기"/>
+        <img src="/image/header/whiteBack.png" alt="뒤로가기" class="cursor zoom-4">
     </a>
 </header>
 
 
 <section class="waiting-challenge">
     <div id="cid" style="display: none" th:data-unique-id="${challenge.uniqueId}"></div>
-    <p>대기중인 도전</p>
+    <!-- <p>대기중인 도전</p>
     <div class="challenge-info">
         <div class="auth-frequency">
             <span class="name">인증빈도</span>
@@ -32,17 +34,35 @@
             <span class="name" >목표량</span>
             <span class="info" th:text="${challenge.goalQuantity} + ' ' + ${challenge.unitName}">30 분</span>
         </div>
+    </div> -->
+    <div id="challenge-info">
+        <div>
+            <span th:text="${challenge.goalQuantity}+${challenge.unitName}"></span>
+            <span>목표량</span>
+        </div>
+        <div>
+            <span th:text="${challenge.authFrequency}+'일'"></span>
+            <span>인증빈도</span>
+        </div>
+        <div>
+            <span id="dayLeftSpan"></span>
+            <span>시작일</span>
+        </div>
+
     </div>
-    <p>도전명</p>
+    <p>대기중인 도전</p>
     <div class="challenge-title">
         <span th:text="${challenge.name}">매일 30분이상 운동하기</span>
     </div>
 </section>
 <section class="challenge-period">
+    <div class="modify">
     <p>도전기간</p>
+    <button class="modify-date cursor bold-2">수정</button>
+    </div>
     <div class="date">
         <p>시작일</p>
-        <span th:text="${challenge.startDate}">2023년 05월 12일</span>
+        <span th:text="${challenge.startDate}" id="startDateText">2023년 05월 12일</span>
     </div>
     <div class="date">
         <p>종료일</p>
@@ -51,8 +71,8 @@
 </section>
 
 <div class="btns">
-    <button id="challenge-give-up">포기하기</button>
-    <button id="challenge-now-start">바로 시작하기</button>
+    <button id="challenge-give-up" class="brighten-2 cursor">포기하기</button>
+    <button id="challenge-now-start" class="brighten-2 cursor">바로 시작하기</button>
 </div>
 
 
@@ -76,5 +96,44 @@
         </div>
     </section>
 </section>
+<div class="bottom-modal-container" id="date-modal-container">
+    <div class="bottom-modal-content" id="date-modal-content">
+      <div class="bottom-modal-header">
+        <button class="edit-modal-close  zoom-1 cursor">&times;</button>
+      </div>
+      <!-- 시작일,종료일 변경 모달 -->
+      <div class="period_title">
+        <div class="period_set">
+          <div class="input">
+            <label for="startDate">시작일</label>
+            <div class="input-form">
+              <input required min="yyyy-mm-dd" type="date" id="start_inside" class="inside" name="startDate"
+                th:value="${challenge.startDate}" />
+            </div>
+          </div>
+          <div class="input">
+            <label for="endDate">종료일</label>
+            <div class="input-form">
+              <input min="yyyy-mm-dd" type="date" id="end_inside" class="inside" name="endDate" required
+                th:value="${challenge.endDate}" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="alert-container">
+      <div class="alert hidden">종료일은 시작일 이후로 설정해주세요.</div>
+      <div class="end-date-alert hidden">종료일을 설정해주세요.</div>
+      </div>
+      <div class="finish-btn">
+        <button class="brighten-2 cursor">완료</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <section class="complete-modal-buttonless hidden" id="alert-change-modal">
+    <section class="buttonless-modal-box">
+      <span>도전기간이 변경되었습니다.</span>
+    </section>
+  </section>
 </body>
 </html>

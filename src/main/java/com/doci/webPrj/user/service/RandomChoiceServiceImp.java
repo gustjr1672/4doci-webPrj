@@ -2,6 +2,7 @@ package com.doci.webPrj.user.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import com.doci.webPrj.user.entity.PerformanceRecords;
 import com.doci.webPrj.user.repository.PerformanceRecordsRepository;
@@ -55,5 +56,18 @@ public class RandomChoiceServiceImp implements RandomChoiceService {
                 .choiceId(choiceId)
                 .build();
         recordsRepository.save(record);
+    }
+
+    @Override
+    public void updateDate(Map<String, String> requestData) {
+        String startDate = requestData.get("startDate");
+        String endDate = requestData.get("endDate");
+        int choiceId = Integer.parseInt(requestData.get("challengeId"));
+        choiceRepository.updateDate(choiceId, startDate, endDate);
+    }
+
+    @Override
+    public Choice getChoice(int choiceId) {
+        return choiceRepository.findById(choiceId);
     }
 }
