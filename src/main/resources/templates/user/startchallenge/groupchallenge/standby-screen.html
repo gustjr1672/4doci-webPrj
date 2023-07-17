@@ -33,11 +33,11 @@
     <div class="friends">
       <div class="modify">
         <p>함께하는 친구</p>
-        <button class="modify-friend cursor">수정</button>
+        <button class="modify-friend cursor bold">수정</button>
       </div>
       <div class="profile-wrap">
         <div class="add-friend">
-          <button class="add-btn cursor">+</button>
+          <button class="add-btn zoom-5 cursor">+</button>
         </div>
         <div class="profile" th:each="inviFriend: ${inviList}"
           th:if="${inviFriend.toMemberId != challenge.groupLeaderId}">
@@ -61,7 +61,7 @@
     <div class="period">
       <div class="modify">
         <p>도전 기간</p>
-        <button class="modify-date cursor">수정</button>
+        <button class="modify-date cursor bold-2">수정</button>
       </div>
       <div class="start-set">
         <p>시작일</p>
@@ -105,7 +105,7 @@
 
       <div class="btns">
         <button type="button" class="submit-btn brighten-2 cursor">그룹 초대</button>
-        <button type="button"><img src="/image/wating-page/close.png"></button>
+        <button class="modal-close zoom-1 cursor" type="button">&times;</button>
       </div>
     </div>
 
@@ -147,7 +147,7 @@
   <div class="bottom-modal-container" id="date-modal-container">
     <div class="bottom-modal-content" id="date-modal-content">
       <div class="bottom-modal-header">
-        <button class="edit-modal-close">&times;</button>
+        <button class="edit-modal-close  zoom-1 cursor">&times;</button>
       </div>
 
       <!-- 시작일,종료일 변경 모달 -->
