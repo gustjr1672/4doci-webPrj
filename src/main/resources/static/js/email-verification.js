@@ -4,8 +4,8 @@ let checkSuccess = false;
 let code; // 인증번호 변수
 let intervalId; // 타이머 변수
 
-
-function startTimer(duration, display) { //타이머
+function startTimer(duration, display) {
+  //타이머
   checkSuccess = false;
   let timer = duration,
     minutes,
@@ -26,21 +26,19 @@ function startTimer(duration, display) { //타이머
       clearInterval(startTimer);
       document.getElementById("message").textContent = "인증번호를 다시 받아주세요.";
       code = "";
-    }
-    else if (checkSuccess == true)
-      return;
-    else if (--timer < 0) {  // 타이머가 0보다 작아지면 초기값으로 설정합니다.
+    } else if (checkSuccess == true) return;
+    else if (--timer < 0) {
+      // 타이머가 0보다 작아지면 초기값으로 설정합니다.
       timer = duration;
     }
   }, 1000);
-
-
 }
 
-function addcheck() { // 인증번호 입력칸 및 버튼 추가 코드
+function addcheck() {
+  // 인증번호 입력칸 및 버튼 추가 코드
 
   const container = document.getElementById("checkContainer");
-  container
+  container;
   container.innerHTML = `
      
         <div class="check-input">
@@ -55,23 +53,23 @@ function addcheck() { // 인증번호 입력칸 및 버튼 추가 코드
         </div>
       <div id="auth-btn-Container"></div>
       `;
-
 }
 
-function addBtn() { // 최종완료버튼 추가 코드
-  const container = document.getElementById("auth-btn-Container")
+function addBtn() {
+  // 최종완료버튼 추가 코드
+  const container = document.getElementById("auth-btn-Container");
   container.innerHTML = `
-      <div class="auth-btn">
-      <button type="submit">완료</button>
+      <div class="complete">
+      <button class="complete-btn" type="submit">완료</button>
     </div>
-    `
+    `;
 }
 
-
-function chkEmailValidity() {  // 이메일의 유효성 검사 함수
+function chkEmailValidity() {
+  // 이메일의 유효성 검사 함수
   // email.addEventListener('keyup', function() {
   const error = document.getElementById("error");
-  if (!(email.checkValidity())) {
+  if (!email.checkValidity()) {
     error.style.display = "block";
     error.innerHTML = "유효한 이메일 주소를 입력해주세요";
     return false;
@@ -87,7 +85,6 @@ let email = document.getElementById("email");
 
 //인증번호 받기 버튼 누르면 모달창 띄우고, 인증번호 입력버튼 생기고, 이메일 발송
 authBtn.addEventListener("click", () => {
-
   chkEmailValidity(); // 이메일 유효성 확인
 
   if (chkEmailValidity()) {
@@ -99,30 +96,29 @@ authBtn.addEventListener("click", () => {
 
 function sendEmail(data) {
   fetch("/api/join/email-verification", {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      "Content-Type": "application/x-www-form-urlencoded",
     },
-    body: new URLSearchParams(data)
-  }).then(response => response.text())
-    .then(authCode => {
+    body: new URLSearchParams(data),
+  })
+    .then((response) => response.text())
+    .then((authCode) => {
       code = authCode;
-      openModal();   // 전송 모달창 띄움
-      addcheck();    // 인증번호 버튼 생김
-    })
-};
-
+      openModal(); // 전송 모달창 띄움
+      addcheck(); // 인증번호 버튼 생김
+    });
+}
 
 // controller 에서 받은 인증번호와 내가 입력한 인증번호를 비교한 뒤 완료버튼 생성
 function chkEmailConfirm() {
   let checkinput = document.getElementById("check");
-  const checkinputTxt = document.getElementById("message")
+  const checkinputTxt = document.getElementById("message");
   // checkinput.addEventListener('keyup', function() {
   if (code.toString() !== checkinput.value || checkinput.value == "") {
     // checkSuccess = false;
-    checkinputTxt.textContent = "인증번호가 잘못되었습니다."
-  }
-  else {
+    checkinputTxt.textContent = "인증번호가 잘못되었습니다.";
+  } else {
     checkSuccess = true;
     checkinputTxt.textContent = "인증번호 확인이 완료되었습니다.";
     checkinputTxt.style.color = "#6167FF";
@@ -131,28 +127,26 @@ function chkEmailConfirm() {
 }
 
 const modal = document.getElementById("modal-wrap");
-const closeBtn = modal.querySelector(".close-btn"); 
+const closeBtn = modal.querySelector(".close-btn");
 
-function openModal() { // 이메일 전송 모달창 띄움
+function openModal() {
+  // 이메일 전송 모달창 띄움
   modal.style.display = "block";
 }
 
-closeBtn.onclick = function() { //이메일 전송 모달창 닫고 타이머 실행
+closeBtn.onclick = function () {
+  //이메일 전송 모달창 닫고 타이머 실행
   modal.style.display = "none";
   const timerDisplay = document.querySelector(".timer");
   startTimer(179, timerDisplay);
-}
+};
 
 const errorModal = document.getElementById("error-modal-wrap");
 
 if (errorModal) {
-let closeErrorBtn = errorModal.querySelector(".close-btn");
+  let closeErrorBtn = errorModal.querySelector(".close-btn");
 
-closeErrorBtn.onclick = function(){
-  errorModal.style.display="none";
+  closeErrorBtn.onclick = function () {
+    errorModal.style.display = "none";
+  };
 }
-
-}
-
-
-

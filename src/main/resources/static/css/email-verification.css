@@ -4,30 +4,35 @@
 
 body {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 header {
+  width: 100%;
   display: flex;
-  margin-left: 12px;
-  margin-top: 20px;
+  max-width: 660px;
+  margin: 20px 12px;
 }
-header img{
-  height: 22px;
+header img {
+  padding-left: 12px;
   width: 22px;
 }
-
-header>button {
+header > button {
   background-color: white;
   border: none;
 }
 
 .h1 {
+  width: 80%;
+  max-width: 500px;
   display: flex;
-  justify-content: center;
-  margin: 20px 62px 48px 0px
+  justify-content: start;
+  margin: 20px 0 48px 0;
 }
 
-.h1>h1 {
+.h1 > h1 {
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -37,18 +42,20 @@ header>button {
 }
 
 form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: center;
 }
-
 
 label {
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 19px;
-  width: 300px;
+  width: 80%;
+  max-width: 500px;
 }
 
 .email-input {
@@ -56,35 +63,47 @@ label {
   flex-direction: column;
   gap: 10px;
   align-items: center;
+  width: 100%;
 }
 
 .email-input-form {
+  display: flex;
+  justify-content: center;
+
   text-align: center;
+  width: 100%;
 }
 
 input[type="email"] {
-  width: 288px;
+  width: 77%;
+  max-width: 486px;
   height: 44px;
   border-radius: 8px;
-  background: #FDFDFD;
+  background: #fdfdfd;
   border: 1px solid #949494;
-  /* box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25); */
   padding-left: 10px;
+  /* box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25); */
 }
-
+#checkContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .check-input {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   gap: 10px;
+  width: 80%;
+  max-width: 500px;
 }
 
 .check-input-form {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
-  width: 300px;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 500px;
 }
 
 .check-input-form button {
@@ -94,33 +113,33 @@ input[type="email"] {
   height: 40px;
 
   font-style: normal;
-  color: #FFFFFF;
+  color: #ffffff;
 
   background-color: #383d66;
   border-radius: 8px;
   border: none;
-
 }
 
 .check-input-form input {
   width: 56%;
   height: 40px;
   border-radius: 8px;
-  background: #FDFDFD;
+  background: #fdfdfd;
   border: 1px solid #949494;
   /* box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25); */
   padding-left: 10px;
 }
 
-.timer-wrap{
+.timer-wrap {
   display: flex;
-  width: 300px;
+  width: 100%;
+  max-width: 500px;
+  justify-content: space-between;
 }
 
 .timer {
-  margin-right: 30px;
+  margin-right: 10%;
   font-size: 14px;
-
 }
 
 .auth-btn {
@@ -135,17 +154,35 @@ input[type="email"] {
 .auth-btn button {
   font-size: 16px;
   font-weight: 500;
-  width: 300px;
+  width: 80%;
+  max-width: 500px;
   height: 52px;
 
   font-style: normal;
-  color: #FFFFFF;
-
+  color: #ffffff;
   background-color: #383d66;
   border-radius: 8px;
-  border: none;
+  padding: 0;
 }
+.complete {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.complete-btn {
+  width: 100%;
+  height: 52px;
+  font-style: normal;
+  color: #ffffff;
+  background-color: #383d66;
+  border-radius: 8px;
 
+  font-size: 16px;
+}
+#auth-btn-Container {
+  width: 100%;
+}
 #message {
   display: flex;
   width: 300px;
@@ -153,7 +190,7 @@ input[type="email"] {
   /* margin-right: 100px; */
   font-size: 12px;
   color: rgb(230, 31, 31);
-  margin-left :4px
+  margin-left: 4px;
 }
 
 .modal {
@@ -172,6 +209,7 @@ input[type="email"] {
   background-color: #fefefe;
   border-radius: 8px;
   width: 80%;
+  max-width: 500px;
   height: 180px;
   margin: auto;
   padding: 20px;
@@ -188,7 +226,7 @@ input[type="email"] {
 }
 
 .modal-content p {
-  font-size: 16px ;
+  font-size: 16px;
   font-weight: 600;
   margin-bottom: 10px;
 }
@@ -208,13 +246,13 @@ input[type="email"] {
   height: 46px;
 }
 
-.error{
+.error {
   display: none;
   font-size: 12px;
   color: rgb(230, 31, 31);
   width: 300px;
 }
 
-#error-modal-wrap{
+#error-modal-wrap {
   display: block;
 }
