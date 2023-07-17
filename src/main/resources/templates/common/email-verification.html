@@ -11,14 +11,13 @@
       rel="stylesheet"
     />
     <script src="/js/email-verification.js" defer></script>
-    <script src="/js/header.js" defer></script>
   </head>
 
   <body>
     <header>
-      <button onclick="goBack()">
+      <a href="javascript:history.go(-1)">
         <img src="/image/header/blackBack.png" alt="뒤로가기" />
-      </button>
+      </a>
     </header>
 
     <div class="h1">
@@ -29,6 +28,7 @@
       <div class="email-input">
         <label for="email">이메일 주소</label>
         <div class="email-input-form">
+          <input hidden="hidden" />
           <input type="email" id="email" name="email" required />
         </div>
         <div id="error" class="error"></div>
@@ -40,7 +40,7 @@
     </form>
 
     <div id="modal-wrap" class="modal">
-      <div id="modal-content"class="modal-content">
+      <div id="modal-content" class="modal-content">
         <p>이메일이 전송되었습니다.</p>
         <button class="close-btn">확인</button>
       </div>
@@ -52,7 +52,5 @@
         <button class="close-btn">확인</button>
       </div>
     </div>
-
-
   </body>
 </html>
