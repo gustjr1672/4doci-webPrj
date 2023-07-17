@@ -67,13 +67,13 @@ function chkNicknameValidity(){    // 닉네임 중복검사
 }
 
 function checkNickname(nicknameValue){  // 닉네임 유효성검사
-    const regex = /^[가-힣]{2,8}$/;
+    const regex = /^[가-힣]{2,7}$/;
     if(!regex.test(nicknameValue)){
         nicknameError.style.color= "red";
         finishBtn.style.backgroundColor = '#ccc';
         finishBtn.classList.remove("brighten-2");
         finishBtn.disabled = true;
-        document.getElementById("nickname-error").innerHTML = "닉네임은 한글로 2자 이상 8자 이하입니다.";
+        document.getElementById("nickname-error").innerHTML = "닉네임은 한글로 2자 이상 7자 이하입니다.";
         return false;
     }
     document.getElementById("nickname-error").innerHTML = "";
