@@ -43,7 +43,7 @@
 
         <div class="name_set">
           <div class="title">
-            <label for="name">도전명</label>
+            <label for="challenge_name">도전명</label>
             <div>
               <textarea
                 placeholder="3자 이상 30자 이하"
@@ -52,9 +52,12 @@
                 name="name"
                 minlength="3"
                 maxlength="30"
+                autocomplete="off"
                 required
               ></textarea>
-              <p id="check_challenge_length"></p>
+            </div>
+            <div class="check-challenge-length-wrap">
+              <p class="check-challenge-length hidden">30자 이내로 작성해 주세요</p>
             </div>
           </div>
         </div>

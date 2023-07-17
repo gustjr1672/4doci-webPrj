@@ -1,163 +1,129 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>free_challenge_form</title>
-    <link rel="stylesheet" href="/css/individual-form.css" type="text/css" />
-    <link rel="stylesheet" href="/css/modal.css" type="text/css" />
-    <link rel="stylesheet" href="/css/toggle.css" type="text/css" />
-    <link href="/css/animation.css" type="text/css" rel="stylesheet"/>
-    <script src="/js/free-challenge-form.js" defer="defer"></script>
-    <link
-      href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <header>
-      <a href="javascript:history.go(-1)">
-        <img src="/image/header/blackBack.png" alt="뒤로가기" />
-      </a>
-    </header>
 
-    <div class="massage">
-      <p>도전에 대해 입력해 주세요</p>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>free_challenge_form</title>
+  <link rel="stylesheet" href="/css/individual-form.css" type="text/css" />
+  <link rel="stylesheet" href="/css/modal.css" type="text/css" />
+  <link rel="stylesheet" href="/css/toggle.css" type="text/css" />
+  <link href="/css/animation.css" type="text/css" rel="stylesheet" />
+  <script src="/js/free-challenge-form.js" defer="defer"></script>
+  <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet" />
+</head>
 
-    <form action="/freeChallenge/challenge/reg" method="post">
-      <div class="list">
-        <div class="category_title">
-          <label for="category">카테고리</label>
-          <!--label: 입력 폼 요소와 레이블을 연결할때 사용. div보다 의미론적으로 명확-->
+<body>
+  <header>
+    <a href="javascript:history.go(-1)">
+      <img src="/image/header/blackBack.png" alt="뒤로가기" />
+    </a>
+  </header>
+
+  <div class="massage">
+    <p>도전에 대해 입력해 주세요</p>
+  </div>
+
+  <form action="/freeChallenge/challenge/reg" method="post">
+    <div class="list">
+      <div class="category_title">
+        <label for="category">카테고리</label>
+        <!--label: 입력 폼 요소와 레이블을 연결할때 사용. div보다 의미론적으로 명확-->
+        <div>
+          <select id="category" name="categoryId" required>
+            <option value="">선택</option>
+            <option th:each="category:${categoryList}" th:value="${category.id}" th:text="${category.name}"></option>
+          </select>
+        </div>
+      </div>
+      <div class="visibility_title">
+        <label for="visibility">공개여부</label>
+        <label id="visibility" class="switch">
+          <input type="checkbox" value=true name="visibility">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="name_set">
+        <div class="title">
+          <label for="challenge_name">도전명</label>
           <div>
-            <select id="category" name="categoryId" required>
+            <textarea placeholder="3자 이상 30자 이하" id="challenge_name" class="challenge_name" name="name" minlength="3"
+              maxlength="30" autocomplete="off" required></textarea>
+          </div>
+          <div class="check-challenge-length-wrap">
+            <p class="check-challenge-length hidden">30자 이내로 작성해 주세요</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="quantity_title">
+        <label for="quantity_inside">목표량</label>
+        <div class="quantity_set">
+          <input type="number" placeholder="수치 입력" id="quantity_inside" name="goalQuantity" required />
+
+          <!--              id="quantity_inside"-->
+          <select name="unitId" required>
+            <option value="">단위 선택</option>
+
+            <option th:each="unit:${unitList}" th:value="${unit.id}" th:text="${unit.name}"></option>
+          </select>
+
+        </div>
+      </div>
+
+      <div class="frequency_title">
+        <label for="auth_frequency">인증 빈도</label>
+        <div class="frequency_set">
+          <div>
+            <select id="auth_frequency" name="authFrequency" required>
               <option value="">선택</option>
-              <option
-                th:each="category:${categoryList}"
-                th:value="${category.id}"
-                th:text="${category.name}"
-              ></option>
+
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
             </select>
           </div>
+          <p>일</p>
         </div>
-        <div class="visibility_title">
-          <label for="visibility">공개여부</label>
-          <label id="visibility" class="switch">
-            <input type="checkbox" value = true name="visibility" >
-            <span class="slider"></span>
-          </label>
-        </div>
-        <div class="name_set">
-          <div class="title">
-            <label for="challenge_name">도전명</label>
-            <div>
-              <textarea
-                placeholder="3자 이상 30자 이하"
-                id="challenge_name"
-                class="challenge_name"
-                name="name"
-                minlength="3"
-                maxlength="30"
-                autocomplete="off"
-                required
-              ></textarea>
-            </div>
-          </div>
-        </div>
-        <p id="check_challenge_length"></p>
-
-        <div class="quantity_title">
-          <label for="quantity_inside">목표량</label>
-          <div class="quantity_set">
-            <input
-              type="number"
-              placeholder="수치 입력"
-              id="quantity_inside"
-              name="goalQuantity"
-              required
-            />
-            
-              <!--              id="quantity_inside"-->
-              <select name="unitId" required>
-                <option value="">단위 선택</option>
-
-                <option
-                  th:each="unit:${unitList}"
-                  th:value="${unit.id}"
-                  th:text="${unit.name}"
-                ></option>
-              </select>
-            
-          </div>
-        </div>
-
-        <div class="frequency_title">
-          <label for="auth_frequency">인증 빈도</label>
-          <div class="frequency_set">
-            <div>
-              <select id="auth_frequency" name="authFrequency" required>
-                <option value="">선택</option>
-
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-              </select>
-            </div>
-            <p>일</p>
-          </div>
-        </div>
-
-        <div class="period_title">
-          <div class="period_set">
-            <div class="start_set">
-              <label for="start_inside">시작일</label>
-              <div>
-                <input
-                  required
-                  min="yyyy-mm-dd"
-                  type="date"
-                  id="start_inside"
-                  class="inside"
-                  name="startDate"
-                />
-              </div>
-            </div>
-            <div class="end_set">
-              <label for="end_inside">종료일</label>
-              <div>
-                <input
-                  min="yyyy-mm-dd"
-                  type="date"
-                  id="end_inside"
-                  class="inside"
-                  name="endDate"
-                  required
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="alert hidden">종료일은 시작일 이후로 설정해주세요.</div>
       </div>
-      <div class="next_btn">
-        <div type="submit" id="submit" class="brighten-2 cursor">도전생성</div>
-        <button type="submit" class="hidden " id="submit-button">도전생성</button>
-      </div>
-    </form>
-    <section class="choice-modal hidden">
-      <section class="modal-box">
-        <span>도전을 시작하시겠습니까?</span>
-        <div>
-          <button>취소</button>
-          <button>시작</button>
+
+      <div class="period_title">
+        <div class="period_set">
+          <div class="start_set">
+            <label for="start_inside">시작일</label>
+            <div>
+              <input required min="yyyy-mm-dd" type="date" id="start_inside" class="inside" name="startDate" />
+            </div>
+          </div>
+          <div class="end_set">
+            <label for="end_inside">종료일</label>
+            <div>
+              <input min="yyyy-mm-dd" type="date" id="end_inside" class="inside" name="endDate" required />
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
+      <div class="alert hidden">종료일은 시작일 이후로 설정해주세요.</div>
+    </div>
+    <div class="next_btn">
+      <div type="submit" id="submit" class="brighten-2 cursor">도전생성</div>
+      <button type="submit" class="hidden " id="submit-button">도전생성</button>
+    </div>
+  </form>
+  <section class="choice-modal hidden">
+    <section class="modal-box">
+      <span>도전을 시작하시겠습니까?</span>
+      <div>
+        <button>취소</button>
+        <button>시작</button>
+      </div>
     </section>
-  </body>
+  </section>
+</body>
+
 </html>
