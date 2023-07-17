@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -44,8 +45,8 @@ public class PerformanceRecordsController {
 
     @PutMapping("performance-records")
     public void edit(PerformanceRecords performanceRecords,
-                     @RequestParam(name = "uniqueId", required = false) String uniqueId,
-                     @RequestParam(name = "file", required = false) MultipartFile file) throws IOException {
+            @RequestParam(name = "uniqueId", required = false) String uniqueId,
+            @RequestParam(name = "file", required = false) MultipartFile file) throws IOException {
 
         PerformanceRecords record = performanceRecords;
 
@@ -64,13 +65,22 @@ public class PerformanceRecordsController {
 
         // 전체 수행기록 리스트
         List<PerformanceRecords> performanceRecordList = recordsService.getList(challengeTypeAndId);
+        return performanceRecordList;
+    }
 
+    @GetMapping("{groupChallengeId}/performance-records/{memberId}")
+    public List<PerformanceRecords> PerformanceRecords(@PathVariable("groupChallengeId") int groupChallengeId,
+            @PathVariable("memberId") int memberId) {
+        int groupStartId = recordsService.getGroupStartId(groupChallengeId, memberId);
+        // 전체 수행기록 리스트
+        String challengeTypeAndId = "GS_" + groupStartId;
+        List<PerformanceRecords> performanceRecordList = recordsService.getList(challengeTypeAndId);
         return performanceRecordList;
     }
 
     @PutMapping("/choice/{challengeId}")
     public void startRandomChoice(@PathVariable int challengeId) {
-            randomChoiceService.nowStart(challengeId);
+        randomChoiceService.nowStart(challengeId);
     }
 
     @PutMapping("/freeChallenge/{challengeId}")

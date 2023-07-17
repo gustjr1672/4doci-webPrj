@@ -2,6 +2,7 @@ package com.doci.webPrj.user.service;
 
 import java.util.List;
 
+import com.doci.webPrj.user.entity.Member;
 import com.doci.webPrj.user.entity.PerformanceRecords;
 
 public interface PerformanceRecordsService {
@@ -22,5 +23,11 @@ public interface PerformanceRecordsService {
     boolean getVisibility(String challengeId);
 
     void updateToSuccess(String uniqueId);
+
+    List<Member> getMemberListByChalId(String challengeId, int userId);
+
+    int getGroupChallengeid(String challengeId);
+
+    int getGroupStartId(int groupChallengeId, int memberId);
 
 }

@@ -1,10 +1,15 @@
 package com.doci.webPrj.user.service;
 
 import com.doci.webPrj.user.entity.AllChallenges;
+import com.doci.webPrj.user.entity.Member;
 import com.doci.webPrj.user.entity.PerformanceRecords;
 import com.doci.webPrj.user.repository.AllChallengesRepository;
 import com.doci.webPrj.user.repository.ChoiceRepository;
 import com.doci.webPrj.user.repository.FreeChallengeRepository;
+import com.doci.webPrj.user.repository.GroupChallengeRepository;
+import com.doci.webPrj.user.repository.GroupStartRepository;
+import com.doci.webPrj.user.repository.InvitationMemberViewRepository;
+import com.doci.webPrj.user.repository.MemberRepository;
 import com.doci.webPrj.user.repository.PerformanceRecordsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +37,12 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
 
     @Autowired
     AllChallengesRepository allChallengesRepository;
+    @Autowired
+    MemberRepository memberRepository;
+    @Autowired
+    GroupChallengeRepository groupChallengeRepository;
+    @Autowired
+    GroupStartRepository groupStartRepository;
 
     @Override
     public void updateAchvQuantity(String challengeTypeAndId) {
@@ -191,6 +202,28 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
         record.setRegDate(currentTime);
         recordsRepository.updateSuccess(record);
 
+    }
+
+    @Override
+    public List<Member> getMemberListByChalId(String challengeId, int userId) {
+        int index = challengeId.indexOf(UNDERBAR);
+        int groupStartId = Integer.parseInt(challengeId.substring(index + 1));
+        int groupChallengeId = groupChallengeRepository.getGroupChallengeIdByGsId(groupStartId);
+        List<Member> list = memberRepository.findByGroupChallengeId(groupChallengeId, userId);
+        return list;
+    }
+
+    @Override
+    public int getGroupChallengeid(String challengeId) {
+        int index = challengeId.indexOf(UNDERBAR);
+        int groupStartId = Integer.parseInt(challengeId.substring(index + 1));
+
+        return groupChallengeRepository.getGroupChallengeIdByGsId(groupStartId);
+    }
+
+    @Override
+    public int getGroupStartId(int groupChallengeId, int memberId) {
+        return groupStartRepository.getId(groupChallengeId, memberId);
     }
 
 }

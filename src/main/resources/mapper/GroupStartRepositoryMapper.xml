@@ -19,6 +19,10 @@
         SELECT id from group_start
         where group_challenge_id = #{challengeId}
     </select>
+       <select id="getId">
+        SELECT id from group_start
+        where group_challenge_id = #{groupChallengeId} and to_member_id = #{memberId}
+    </select>
 
     <delete id="delete">
         DELETE from group_start
