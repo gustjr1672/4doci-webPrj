@@ -63,9 +63,9 @@ body {
   align-items: center;
   justify-content: space-between;
   margin: 0 40px;
-  padding: 0 8%;
+  padding: 0 60px;
   width: 80%;
-  max-width: 300px;
+  max-width: 360px;
   height: 68px;
   border: 2px solid #ffffff;
   border-radius: 12px;
@@ -75,6 +75,7 @@ body {
 
 .category-checkBox label div p {
   margin: 0;
+  word-break: keep-all;
 }
 .category-checkBox label img {
   width: 30px;

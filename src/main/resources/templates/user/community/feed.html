@@ -9,6 +9,7 @@
     <script src="/js/feed.js" defer="defer"></script>
     <link rel="stylesheet" href="/css/feed.css" />
     <link rel="stylesheet" href="/css/modal.css" />
+    <link href="/css/animation.css" type="text/css" rel="stylesheet"/>
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
       rel="stylesheet"
@@ -25,13 +26,14 @@
       </header>
     </div>
     <section class="friends">
-      <button th:onclick="|location.href = '/friendmanage/challenge?id=${user.id}'|">
+      <button th:onclick="|location.href = '/friendmanage/challenge?id=${user.id}'|" class="btn-hover cursor">
         <img th:src="${user.profileImage}" alt="friend" />
         <span th:text="${user.nickname}">신도시아지매</span>
       </button>
       <button
         th:each="friend:${friendList}"
         th:onclick="|location.href = '/friendmanage/challenge?id=${friend.id}'|"
+        class="btn-hover cursor"
       >
         <img th:src="${friend.profileImage}" alt="friend" />
         <span th:text="${friend.nickname}">멋을아는자</span>
@@ -54,6 +56,7 @@
               th:if="${feed.freeChallengeId}"
               th:value="${feed.freeChallengeId}"
               th:onclick="|location.href = '/community/feed/detail?fc=${feed.freeChallengeId}'|"
+              class="zoom-4 cursor"
             >
               <img src="/image/community/more.png" alt="" /><span>자세히 보기</span>
             </button>
@@ -61,6 +64,7 @@
               th:if="${feed.choiceId}"
               th:value="${feed.choiceId}"
               th:onclick="|location.href = '/community/feed/detail?ch=${feed.choiceId}'|"
+              class="zoom-4 cursor"
             >
               <img src="/image/community/more.png" alt="" /><span>자세히 보기</span>
             </button>
@@ -68,6 +72,7 @@
               th:if="${feed.groupStartId}"
               th:value="${feed.groupStartId}"
               th:onclick="|location.href = '/community/feed/detail?gs=${feed.groupStartId}'|"
+              class="zoom-4 cursor"
             >
               <img src="/image/community/more.png" alt="" /><span>자세히 보기</span>
             </button>
@@ -81,7 +86,7 @@
           <span class="time-message" th:text="${feed.timeMessage}">1시간 전</span>
           <div class="footer-btn">
 
-            <button class="comment-button" th:data-record-id="${feed.id}" th:data-member-id="${feed.memberId}">
+            <button class="comment-button btn-hover-2 cursor" th:data-record-id="${feed.id}" th:data-member-id="${feed.memberId}">
               <img th:data-record-id="${feed.id}" th:data-member-id="${feed.memberId}" src="/image/community/comment.png" alt="" />
               <span th:data-record-id="${feed.id}" th:data-member-id="${feed.memberId}" th:id="${feed.id}" th:text="${feed.commentCount}">1</span>
             </button>
@@ -93,20 +98,21 @@
     <div class="footer-wrap">
       <footer>
         <button>
-          <img src="/image/footer/home.png" alt="홈" onclick="location.href = '/main' " />
+          <img src="/image/footer/home.png" alt="홈" onclick="location.href = '/main' " class="cursor zoom-1"/>
         </button>
         <button>
-          <img src="/image/footer/clickCommunity.png" alt="커뮤니티" />
+          <img src="/image/footer/clickCommunity.png" alt="커뮤니티" class="cursor zoom-1"/>
         </button>
         <button>
           <img
             src="/image/footer/friendManagement.png"
             alt="친구관리"
             onclick="location.href = '/friendmanage/main' "
+            class="cursor zoom-1"
           />
         </button>
         <button>
-          <img src="/image/footer/myPage.png" alt="내정보" onclick="location.href = '/my-page' " />
+          <img src="/image/footer/myPage.png" alt="내정보" onclick="location.href = '/my-page' " class="cursor zoom-1"/>
         </button>
       </footer>
     </div>

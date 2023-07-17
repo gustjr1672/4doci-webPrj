@@ -91,3 +91,11 @@
 .btn-hover:hover span {
   font-weight: 700; /* 글꼴 굵게 설정 */
 }
+
+.btn-hover-2:hover img {
+  transform: scale(1.05); /* 이미지 크기 약간 키우기 */
+}
+
+.btn-hover-2:hover span {
+  font-weight: 700; /* 글꼴 굵게 설정 */
+}
