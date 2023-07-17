@@ -4,7 +4,7 @@ challengeName.oninput = function () {
   let input = challengeName.value;
   let alert = document.getElementById("check_challenge_length");
 
-  if (input.length == 30) alert.textContent = "30자 이내로 작성해 주세요";
+  if (input.length > 30) alert.textContent = "30자 이내로 작성해 주세요";
   else alert.textContent = "";
 };
 let startDate = document.querySelector("#start_inside");

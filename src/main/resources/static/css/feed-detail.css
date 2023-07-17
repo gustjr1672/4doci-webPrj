@@ -232,6 +232,10 @@ body {
   border: none;
 }
 
+.comment-content-nickname{
+  font-size: 12px;
+}
+
 /**댓글 모달**/
 .comment-content-list{
   overflow-y: scroll;
@@ -252,10 +256,6 @@ body {
   color: #333333;
 }
 
-.comment-modal span{
-  font-size: 12px;
-}
-
 /* 아이폰 미니 */
 @media screen and (max-width: 390px) {
   .comment span {
@@ -266,6 +266,14 @@ body {
   }
   .content span {
     font-size: 12px; 
+  }
+
+  .comment-text{
+    font-size: 12px;
+  }
+
+  .comment-content-footer span{
+    font-size: 10px;
   }
 
 }
@@ -282,6 +290,13 @@ body {
     font-size: 14px; 
   }
 
+  .comment-text{
+    font-size: 12px;
+  }
+  .comment-content-footer span{
+    font-size: 10px;
+  }
+
 }
 
 /* 10인치 이상 */
@@ -294,6 +309,14 @@ body {
   }
   .content span {
     font-size: 16px; 
+  }
+
+  .comment-text{
+    font-size: 14px;
+  }
+  
+  .comment-content-footer span{
+    font-size: 12px;
   }
 
 }
