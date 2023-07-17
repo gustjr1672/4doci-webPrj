@@ -40,16 +40,16 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
         Optional<Member> optionalMember = memberRepository.findByUserId(loginId);
 
         if (optionalMember.isEmpty()) {
+
             Member member = Member.builder()
                     .userId(loginId)
                     .name(name)
                     .email(email)
                     .nickname(nickname)
                     .roles("SNS").build();
-
-
             return  initMyUserDetail(member);
         }
+
 
         return initMyUserDetail(optionalMember.get());
     }
