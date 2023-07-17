@@ -1,13 +1,19 @@
 package com.doci.webPrj.user.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.doci.webPrj.config.MyUserDetails;
 import com.doci.webPrj.user.entity.AllChallenges;
+import com.doci.webPrj.user.entity.Member;
 import com.doci.webPrj.user.entity.PerformanceRecords;
+import com.doci.webPrj.user.repository.MemberRepository;
 import com.doci.webPrj.user.service.AllChallengesService;
 import com.doci.webPrj.user.service.PerformanceRecordsService;
 
@@ -35,6 +41,23 @@ public class PerformanceRecordsController {
         model.addAttribute("allChallenges", allChallenges);
 
         return "user/performance-records";
+    }
+
+    @GetMapping("performance-records/group")
+    public String groupPerformanceRecords(@AuthenticationPrincipal MyUserDetails user, Model model,
+            @RequestParam(name = "cid") String challengeId) {
+        PerformanceRecords performanceRecords = performanceRecordsService.getCurrentRecord(challengeId);
+
+        // 도전정보
+        AllChallenges allChallenges = allChallengesService.getChallenge(challengeId);
+        List<Member> memberList = performanceRecordsService.getMemberListByChalId(challengeId, user.getId());
+        int groupChallengeId = performanceRecordsService.getGroupChallengeid(challengeId);
+        model.addAttribute("user", user);
+        model.addAttribute("groupChallengeId", groupChallengeId);
+        model.addAttribute("perfomanceRecord", performanceRecords);
+        model.addAttribute("memberList", memberList);
+        model.addAttribute("allChallenges", allChallenges);
+        return "user/group-performance-record";
     }
 
     @GetMapping("performance-records/delete")

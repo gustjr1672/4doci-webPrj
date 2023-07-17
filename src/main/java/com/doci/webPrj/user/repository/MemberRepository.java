@@ -22,11 +22,12 @@ public interface MemberRepository {
 
     void save(@Param("m") Member member);
 
-
     void updateNickname(MyUserDetails user);
 
     void updatePassword(MyUserDetails user);
 
-    List<Member> findListNotInvi(@Param("challengeId") int challengeId,@Param("friendList")List<Member> friendList);
+    List<Member> findListNotInvi(@Param("challengeId") int challengeId, @Param("friendList") List<Member> friendList);
+
+    List<Member> findByGroupChallengeId(@Param("challengeId") int challengeId, @Param("userId") int userId);
 
 }

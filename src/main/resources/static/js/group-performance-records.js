@@ -1,15 +1,10 @@
 let file = null;
 let imageForm = document.querySelector("#image-form");
 let recordImage = imageForm.dataset.image;
-let visibilityLabel = document.querySelector("#challenge-visibility");
-let visibilityInput = visibilityLabel.querySelector("input[type=checkbox]");
 
 window.onload = function () {
   if (recordImage) {
     loadFile(null, recordImage);
-  }
-  if (visibilityLabel.dataset.visibility == "false") {
-    visibilityInput.checked = true;
   }
 };
 function loadFile(input, image) {
@@ -21,7 +16,6 @@ function loadFile(input, image) {
   imageBox.className = "image-box";
   newImage.className = "image-thumbnail";
 
-  let formSection = document.querySelector(".form");
   if (image != null) {
     console.log("1");
     newImage.src = image;
@@ -52,7 +46,7 @@ minusBtn.addEventListener("click", function () {
 });
 
 /**삭제 모달**/
-const deleteBtn = document.querySelector("header button");
+const deleteBtn = document.querySelector(".challenge-delete-btn");
 const deleteModal = document.querySelector(".delete-modal");
 const closeBtn = document.querySelector("#close-btn");
 const giveUpBtn = document.querySelector("#give-up-btn");
@@ -60,6 +54,7 @@ const helpBtn = document.querySelector("#help");
 const helpModal = document.querySelector(".help-modal");
 const uniqueId = deleteBtn.dataset.uniqueId;
 const unitName = deleteBtn.dataset.unitName;
+
 helpBtn.addEventListener("click", () => {
   document.body.style.overflow = "hidden";
   helpModal.classList.remove("hidden");
@@ -80,17 +75,119 @@ closeBtn.addEventListener("click", function () {
 giveUpBtn.addEventListener("click", function () {
   location.href = `performance-records/delete?cid=${uniqueId}`;
 });
+let groupStatus = document.querySelector(".group-status");
+const groupChallengeId = deleteBtn.dataset.groupChallengeId;
+const friendTurnModal = document.querySelector("#friend-turn-modal-wrap");
+const friendTurnModalContent = document.querySelector("#friend-turn-modal-content");
+const friendRecordListSection = document.querySelector("#friend-record-list-section");
+groupStatus.addEventListener("click", (e) => {
+  document.body.style.overflow = "hidden";
+  friendTurnModal.classList.remove("hidden");
+  let memberId = e.target.dataset.memberId;
+  fetch(`/challenge/${groupChallengeId}/performance-records/${memberId}`)
+    .then((response) => response.json())
+    .then((list) => {
+      friendRecordListSection.innerHTML = "";
+      for (record of list) {
+        let template = null;
+        if (record.result == "성공") {
+          template = `
+              <div class="turn-wrap">
+                <div class="turn">
+                  <span>${record.round}회차</span>
+                </div>
+                <p>${record.achvQuantity}${unitName}</p>
+                <p style="color: #71B5CB;">성공</p>
+              </div>
+            `;
+        } else if (record.result == "실패") {
+          template = `
+                <div class="turn-wrap">
+                  <div class="turn">
+                    <span>${record.round}회차</span>
+                  </div>
+                  <p>${record.achvQuantity}${unitName}</p>
+                  <p style="color: rgb(219, 92, 92);">실패</p>
+                </div>
+              `;
+        } else {
+          template = `
+                <div class="turn-wrap">
+                  <div class="turn">
+                    <span>${record.round}회차</span>
+                  </div>
+                  <p>${record.achvQuantity}${unitName}</p>
+                  <p style="color: #3b3b3b;">진행중</p>
+                </div>
+              `;
+        }
 
+        friendRecordListSection.insertAdjacentHTML("beforeend", template);
+      }
+    });
+  setTimeout(function () {
+    friendTurnModalContent.classList.add("active");
+  }, 20);
+});
+
+const friendSection = document.querySelector(".friends");
+let periodSection = document.querySelector(".period-section");
+friendSection.addEventListener("click", (e) => {
+  if (!e.target.classList.contains("friend-round-btn")) return;
+  let memberId = e.target.dataset.memberId;
+  fetch(`/challenge/${groupChallengeId}/performance-records/${memberId}`)
+    .then((response) => response.json())
+    .then((list) => {
+      friendRecordListSection.innerHTML = "";
+      for (record of list) {
+        let template = null;
+        if (record.result == "성공") {
+          template = `
+              <div class="turn-wrap">
+                <div class="turn">
+                  <span>${record.round}회차</span>
+                </div>
+                <p>${record.achvQuantity}${unitName}</p>
+                <p style="color: #71B5CB;">성공</p>
+              </div>
+            `;
+        } else if (record.result == "실패") {
+          template = `
+                <div class="turn-wrap">
+                  <div class="turn">
+                    <span>${record.round}회차</span>
+                  </div>
+                  <p>${record.achvQuantity}${unitName}</p>
+                  <p style="color: rgb(219, 92, 92);">실패</p>
+                </div>
+              `;
+        } else {
+          template = `
+                <div class="turn-wrap">
+                  <div class="turn">
+                    <span>${record.round}회차</span>
+                  </div>
+                  <p>${record.achvQuantity}${unitName}</p>
+                  <p style="color: #3b3b3b;">진행중</p>
+                </div>
+              `;
+        }
+
+        friendRecordListSection.insertAdjacentHTML("beforeend", template);
+      }
+    });
+});
 /**회차 모달**/
 const turnBtn = document.querySelector(".goal div button");
 const turnModal = document.querySelector("#turn-modal-wrap");
 const turnModalContent = document.querySelector("#turn-modal-content");
 const recordListSection = document.querySelector("#record-list-section");
+
 const performanceRecordList = null;
 
 turnBtn.addEventListener("click", function (e) {
   document.body.style.overflow = "hidden";
-  fetch(`challenge/performance-records?cid=${uniqueId}`)
+  fetch(`/challenge/performance-records?cid=${uniqueId}`)
     .then((response) => response.json())
     .then((list) => {
       recordListSection.innerHTML = "";
@@ -140,12 +237,21 @@ turnBtn.addEventListener("click", function (e) {
 });
 
 turnModal.addEventListener("click", function (e) {
-  if (e.target.tagName != "BUTTON") return;
+  if (e.target.className != "turn-modal-close-btn") return;
 
   turnModalContent.classList.remove("active");
   setTimeout(function () {
     document.body.style.overflow = "auto";
     turnModal.classList.add("hidden");
+  }, 300);
+});
+friendTurnModal.addEventListener("click", function (e) {
+  if (e.target.className != "turn-modal-close-btn") return;
+
+  friendTurnModalContent.classList.remove("active");
+  setTimeout(function () {
+    document.body.style.overflow = "auto";
+    friendTurnModal.classList.add("hidden");
   }, 300);
 });
 
@@ -172,7 +278,7 @@ saveBtn.addEventListener("click", function (e) {
   formData.append("file", file); //loadFile에서 입력된 file 사용
   formData.append("result", false);
 
-  fetch("challenge/performance-records", {
+  fetch("/challenge/performance-records", {
     //FormData객체를 보낼때 header 부분은 브라우저가 자동으로 설정해줌
     method: "PUT",
     body: formData,
@@ -192,18 +298,7 @@ function showMessage(message) {
     messageModalWrap.classList.add("hidden");
   }, 1000);
 }
-let visibilityBtn = document.querySelector("input[type=checkbox]");
-visibilityBtn.addEventListener("change", (e) => {
-  if (visibilityBtn.checked) {
-    fetch(`api/all-challenges/${e.target.dataset.uniqueId}/0`, {
-      method: "PUT",
-    });
-  } else {
-    fetch(`api/all-challenges/${e.target.dataset.uniqueId}/1`, {
-      method: "PUT",
-    });
-  }
-});
+
 let nextRound = document.querySelector("#next-round");
 let startDateString = nextRound.dataset.startDate;
 let authFrequency = nextRound.dataset.authFrequency;

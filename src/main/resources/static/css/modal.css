@@ -4,7 +4,9 @@
 
 .choice-modal,
 .complete-modal,
-.complete-modal-buttonless {
+.complete-modal-buttonless,
+.help-modal,
+.friend-turn-modal {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,7 +66,7 @@
   background-color: #fff;
   width: 50%;
   height: 40px;
-  border-bottom-right-radius: 12px
+  border-bottom-right-radius: 12px;
 }
 .modal-box div :first-child {
   color: #ff8f8f;
@@ -146,7 +148,7 @@
   flex-direction: column;
   gap: 12px;
 }
-.comment-content-section{
+.comment-content-section {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -196,10 +198,6 @@
   cursor: pointer;
 }
 
-.hidden {
-  display: none;
-}
-
 /**폰트 크기**/
 /* 아이폰 미니 */
 @media screen and (max-width: 390px) {
@@ -209,7 +207,97 @@
   .comment-footer button {
     font-size: 12px;
   }
+}
 
+.help-modal-box {
+  transform: translateY(-20%);
+  color: #383d66;
+  background-color: #fff;
+  height: 400px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+.help-modal-box-header {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.help-modal-box-header span {
+  font-weight: 700;
+  font-size: 20px;
+}
+.help-modal-box-header img {
+  width: 120px;
+}
+.help-modal-box-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+.help-modal-box-content img {
+  width: 32px;
+}
+#left-arrow-btn {
+  padding-left: 12px;
+}
+#right-arrow-btn {
+  padding-right: 12px;
+}
+.help-scroll-section {
+  max-width: 360px;
+  height: 100%;
+  overflow: hidden;
+}
+.help-modal-contents {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 400%;
+  height: 100%;
+  margin-top: 60px;
+  transition: 1s;
+}
+.help-content {
+  color: #333;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  word-break: break-all;
+  gap: 48px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+}
+.help-content :first-child {
+  font-size: 14px;
+  font-size: 800;
+}
+.help-content :nth-child(2) {
+  word-break: break-all;
+}
+
+.page1 {
+  margin-left: 0;
+}
+.page2 {
+  margin-left: -100%;
+}
+.page3 {
+  margin-left: -200%;
+}
+.page4 {
+  margin-left: -300%;
 }
 
 /* 모바일 및 10인치 미만 */
@@ -220,7 +308,6 @@
   .comment-footer button {
     font-size: 12px;
   }
-
 }
 
 /* 10인치 이상 */
@@ -231,5 +318,7 @@
   .comment-footer button {
     font-size: 14px;
   }
-
+}
+.hidden {
+  display: none !important;
 }
