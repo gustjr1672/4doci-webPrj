@@ -152,10 +152,10 @@
   gap: 8px;
 }
 .comment-content-input {
-  font-size: 12px;
+  /* font-size: 12px; */
   height: 17px;
   border: 1px solid #fff;
-  padding: 0 5px;
+  /* padding: 0 5px; */
 }
 .comment-content-nickname {
   font-size: 12px;
@@ -200,3 +200,36 @@
   display: none;
 }
 
+/**폰트 크기**/
+/* 아이폰 미니 */
+@media screen and (max-width: 390px) {
+  .comment-content-input {
+    font-size: 12px;
+  }
+  .comment-footer button {
+    font-size: 12px;
+  }
+
+}
+
+/* 모바일 및 10인치 미만 */
+@media screen and (min-width: 391px) and (max-width: 899px) {
+  .comment-content-input {
+    font-size: 12px;
+  }
+  .comment-footer button {
+    font-size: 12px;
+  }
+
+}
+
+/* 10인치 이상 */
+@media screen and (min-width: 900px) {
+  .comment-content-input {
+    font-size: 14px;
+  }
+  .comment-footer button {
+    font-size: 14px;
+  }
+
+}
