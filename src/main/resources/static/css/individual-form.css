@@ -58,7 +58,6 @@ select option {
 }
 
 .massage p {
-  padding-top: 48px;
   font-size: 16px;
   font-weight: bold;
   color: #333333;
@@ -148,16 +147,22 @@ form {
   color: #333333;
 
   text-align: center;
-  padding: 20px 40px 10px 40px;
+  padding: 40px 47px 0px 47px;
 }
 
-#check_challenge_length {
+.check-challenge-length {
   margin: 4px 0 0 0;
-  /* position: absolute; */
-
-  font-size: 10px;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 500;
   color: rgb(219, 92, 92);
+}
+
+.check-challenge-length-wrap{
+  height: 12px;
+}
+
+.hidden{
+  display: none;
 }
 
 /*목표량 설정*/
@@ -248,9 +253,10 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
   width: 80%;
   max-width: 480px;
+  margin-top: 20px;
 }
 
 .start_set,

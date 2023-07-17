@@ -2,10 +2,12 @@ const challengeName = document.getElementById("challenge_name");
 
 challengeName.oninput = function () {
   let input = challengeName.value;
-  let alert = document.getElementById("check_challenge_length");
+  let alert = document.querySelector(".check-challenge-length");
 
-  if (input.length > 30) alert.textContent = "30자 이내로 작성해 주세요";
-  else alert.textContent = "";
+  if (input.length > 30)
+    alert.classList.remove("hidden");
+  else 
+    alert.classList.add("hidden");
 };
 let startDate = document.querySelector("#start_inside");
 let endDate = document.querySelector("#end_inside");
