@@ -51,11 +51,17 @@
 .zoom-4:hover{
   transform: scale(1.05);
 }
-.bold {
-    transition: font-weight 0.2s ease;
+.zoom-5 {
+  transition: transform 0.2s ease;
+}
+.zoom-5:hover {
+  transform: scale(1.03) translateX(1px);
 }
 .bold:hover {
     font-weight: 800;
+  }
+.bold-2:hover {
+    font-weight: 700;
   }
 .brighten {
     transition: filter 0.2s ease;
@@ -85,17 +91,17 @@
 }
 
 .btn-hover:hover img {
-  transform: scale(1.1); /* 이미지 크기 약간 키우기 */
+  transform: scale(1.1); 
 }
 
 .btn-hover:hover span {
-  font-weight: 700; /* 글꼴 굵게 설정 */
+  font-weight: 700;
 }
 
 .btn-hover-2:hover img {
-  transform: scale(1.05); /* 이미지 크기 약간 키우기 */
+  transform: scale(1.05); 
 }
 
 .btn-hover-2:hover span {
-  font-weight: 700; /* 글꼴 굵게 설정 */
+  font-weight: 700;
 }

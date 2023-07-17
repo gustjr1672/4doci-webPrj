@@ -4,40 +4,51 @@
 
 body {
   margin: 0;
-  background-image: linear-gradient(to bottom, #383d66 312px, #ffffff 312px);
+  background-image: linear-gradient(to bottom, #383d66 372px, #ffffff 372px);
   background-repeat: no-repeat;
 }
+
 @keyframes shake {
   0% {
     transform: translateX(0);
   }
+
   10% {
     transform: translateX(-1px);
   }
+
   20% {
     transform: translateX(1px);
   }
+
   30% {
     transform: translateX(-1px);
   }
+
   40% {
     transform: translateX(1px);
   }
+
   50% {
     transform: translateX(-1px);
   }
+
   60% {
     transform: translateX(1px);
   }
+
   70% {
     transform: translateX(-1px);
   }
+
   80% {
     transform: translateX(1px);
   }
+
   90% {
     transform: translateX(-1px);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -49,12 +60,13 @@ body {
 
 /* 전체 div */
 .content-list {
-  margin-top: 74px;
+  margin-top: 94px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 18px;
 }
+
 header {
   width: 100%;
   display: flex;
@@ -76,10 +88,12 @@ header {
 
   margin: 4px 0px;
 }
+
 .message p {
   transform: translateX(-270px);
   display: none;
 }
+
 /* 대기중인 도전 */
 .challenge-title {
   display: flex;
@@ -88,7 +102,8 @@ header {
   align-items: center;
 
   width: 100%;
-  max-width: 700px;
+  max-width: 500px;
+  margin-top: 20px;
 }
 
 .challenge-title p {
@@ -124,7 +139,7 @@ header {
   gap: 20px;
   align-items: center;
 
-  max-width: 700px;
+  max-width: 500px;
   width: 100%;
 }
 
@@ -151,8 +166,10 @@ header {
 }
 
 .profile-wrap {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE 10+ */
 }
 
 .profile {
@@ -167,7 +184,7 @@ header {
   height: 80px;
 }
 
-.profile > div {
+.profile>div {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -178,6 +195,7 @@ header {
   width: 60px;
   height: 80px;
 }
+
 .add-btn {
   width: 60px;
   height: 60px;
@@ -212,16 +230,29 @@ header {
   top: -8px;
   left: 38px;
 }
+
 .delete-btn img {
   width: 15px;
   height: 15px;
 }
+
 .img {
   z-index: 2;
   width: 60px;
   height: 60px;
   border-radius: 60px;
   position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  color: #000;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 /* ================================================ */
@@ -233,10 +264,10 @@ header {
   align-items: center;
 
   width: 100%;
-  max-width: 700px;
+  max-width: 500px;
 }
 
-.modify > p {
+.modify>p {
   /*>: 바로 밑 자식에만 먹음 */
   font-size: 14px;
   font-weight: bold;
@@ -251,13 +282,14 @@ header {
   align-items: center;
   /* gap: 80px; */
   width: 90%;
-  font-size: 12px;
-  color: #333333;
+  font-size: 13px;
+  font-weight: 500;
 }
+
 .start-set p {
   line-height: 35px;
-  font-weight: bold;
 }
+
 .start-set div {
   width: 80%;
   height: 40px;
@@ -270,6 +302,7 @@ header {
   justify-content: center;
   gap: 10px;
 }
+
 .start-set span {
   /* border-bottom: 1px solid #333333; */
   /* border-radius: 12px; */
@@ -279,19 +312,21 @@ header {
 
   font-weight: medium;
 }
+
 /* 종료일 */
 .end-set {
   display: flex;
   justify-content: space-between;
   width: 90%;
-  font-size: 12px;
-  color: #333333;
+  font-size: 13px;
+  font-weight: 500;
+  align-items: center;
 }
 
 .end-set p {
   line-height: 35px;
-  font-weight: bold;
 }
+
 .end-set div {
   width: 80%;
   height: 40px;
@@ -303,6 +338,7 @@ header {
   align-items: center;
   justify-content: center;
 }
+
 .end-set span {
   /* border-bottom: 1px solid #333333; */
   /* border-radius: 12px; */
@@ -319,8 +355,9 @@ header {
   justify-content: center;
   gap: 25px;
   margin-top: 30px;
-  max-width: 700px;
+  max-width: 500px;
   width: 100%;
+  margin-bottom: 30px;
 }
 
 .buttons button {
@@ -361,11 +398,13 @@ header {
   align-items: center;
 
   background-color: rgba(0, 0, 0, 0.7);
-  color:#333333;
+  color: #333333;
 }
+
 .hidden {
   display: none !important;
 }
+
 /* 모달 바디 */
 .modal-body {
   position: absolute;
@@ -455,22 +494,26 @@ header {
 
 /* 모달버튼 */
 .content input[type="checkbox"] {
-  appearance: none; /*기본스타일 없애기 */
+  appearance: none;
+  /*기본스타일 없애기 */
   border: 1px solid #949494;
   border-radius: 30px;
   width: 30px;
   height: 30px;
 }
+
 .content input[type="checkbox"]:checked {
   background-image: url("/image/groupchallenge/select.png");
   background-repeat: no-repeat;
   border: none;
 }
+
 .btns {
   width: 100%;
   display: flex;
   justify-content: center;
 }
+
 .btns button:nth-child(1) {
   border: none;
   border-radius: 12px;
@@ -509,6 +552,7 @@ header {
   font-size: 14px;
   font-weight: 700;
 }
+
 .refuse {
   position: absolute;
   top: 0;
@@ -525,10 +569,12 @@ header {
   font-weight: 700;
   color: #c11111;
 }
+
 .choice-modal,
 .complete-modal-buttonless {
   z-index: 4;
 }
+
 #start-modal-box {
   gap: 20px !important;
 }
@@ -564,12 +610,14 @@ select {
   justify-content: center;
   margin-top: 10px;
 }
+
 .alert,
 .end-date-alert {
   width: 80%;
   color: #c11111;
   font-size: 12px;
 }
+
 #timer {
   font-size: 20px;
   font-weight: 500;
@@ -591,6 +639,7 @@ select {
   border: 2px solid #030d52;
   margin: 4px;
 }
+
 #timer div span {
   color: #ffffff;
   display: block;
@@ -599,6 +648,6 @@ select {
   font-weight: 400;
 }
 
-.period_title{
-  color:#333333;
+.period_title {
+  color: #333333;
 }

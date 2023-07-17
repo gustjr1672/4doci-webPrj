@@ -22,4 +22,8 @@ public interface FreeChallengeRepository {
 
     void updateStartDate(@Param("id") int challengeId, @Param("startDate")LocalDate startDate);
 
+    void updateDate(@Param("challengeId")int challengeId,@Param("newStartDate") String newStartDate,
+    @Param("newEndDate") String newEndDate);
+
+    FreeChallenge findById(int challengeId);
 }

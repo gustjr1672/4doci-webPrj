@@ -2,6 +2,7 @@ package com.doci.webPrj.user.service;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Map;
 
 import com.doci.webPrj.user.entity.PerformanceRecords;
 import com.doci.webPrj.user.repository.PerformanceRecordsRepository;
@@ -60,6 +61,19 @@ public class FreeChallengeServiceImp implements FreeChallengeService {
     @Override
     public ChallengeFormView getFriendForm(String uniqueId) {
         return challengeViewRepository.getChallengeFormById(uniqueId);
+    }
+
+    @Override
+    public void updateDate(Map<String, String> requestData) {
+        String startDate = requestData.get("startDate");
+        String endDate = requestData.get("endDate");
+        int challengeId = Integer.parseInt(requestData.get("challengeId"));
+        freeChallengeRepository.updateDate(challengeId, startDate, endDate);
+    }
+
+    @Override
+    public FreeChallenge getChallenge(int challengeId) {
+        return freeChallengeRepository.findById(challengeId);
     }
 
 }
