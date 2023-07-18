@@ -305,8 +305,14 @@ let authFrequency = nextRound.dataset.authFrequency;
 let round = nextRound.dataset.round;
 let nextRoundDate = new Date(startDateString);
 nextRoundDate.setDate(nextRoundDate.getDate() + authFrequency * round);
-let year = nextRoundDate.getFullYear();
-let month = (nextRoundDate.getMonth() + 1).toString().padStart(2, "0");
-let day = nextRoundDate.getDate().toString().padStart(2, "0");
-let formattedDate = year + "-" + month + "-" + day;
+let currentDate = new Date();
+let diffDays = getDaysDiff(currentDate, nextRoundDate);
+console.log(nextRoundDate);
+let formattedDate = `D - ${diffDays}`;
 nextRound.textContent = formattedDate;
+function getDaysDiff(startDate, endDate) {
+  const oneDay = 24 * 60 * 60 * 1000; // 하루를 밀리초로 변환
+  const diffInMilliseconds = endDate - startDate; // 두 날짜의 차이를 밀리초로 계산
+  const diffInDays = Math.round(diffInMilliseconds / oneDay); // 밀리초를 일(day)로 변환하여 정수로 반올림
+  return diffInDays;
+}

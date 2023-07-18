@@ -51,7 +51,27 @@
         </button>
         <span th:text="${allChallenges.name}">하루에 물 2000ml이상 마시기</span>
       </div>
-      <div>
+      <div id="challenge-info">
+        <div>
+          <span th:text="${allChallenges.goalQuantity}+${allChallenges.unitName}"></span>
+          <span>목표량</span>
+        </div>
+        <div>
+          <span th:text="${allChallenges.authFrequency}+'일'"></span>
+          <span>인증빈도</span>
+        </div>
+        <div>
+          <span
+            id="next-round"
+            th:data-start-date="${allChallenges.startDate}"
+            th:data-auth-frequency="${allChallenges.authFrequency}"
+            th:data-round="${perfomanceRecord.round}"
+            class="dayLeftSpan"
+          ></span>
+          <span>다음회차</span>
+        </div>
+      </div>
+      <!-- <div>
         <span>목표량</span>
         <span id="goal" th:text="${allChallenges.goalQuantity} + ${allChallenges.unitName}"
           >2000ml</span
@@ -66,7 +86,7 @@
           th:data-round="${perfomanceRecord.round}"
           >2023-07-16</span
         >
-      </div>
+      </div> -->
     </section>
     <section class="form">
       <span>도전사진</span>
@@ -153,20 +173,14 @@
     <!-- 회차모달 -->
     <div id="turn-modal-wrap" class="turn-modal hidden">
       <div id="turn-modal-content" class="turn-modal-content">
-        <section class="challeng-name-wrap">
-          <div>
-            <div class="current-turn">
-              <span th:text="${perfomanceRecord.round}+'회차'">1회차</span>
-            </div>
-            <p class="info" th:text="${allChallenges.name}">하루에 물 2000ml이상 마시기</p>
-          </div>
+        <div class="period-section">
           <div>
             <p class="period">도전기간</p>
             <p class="info" th:text="${allChallenges.startDate}+' ~ '+${allChallenges.endDate}">
               2023.05.07 ~ 2023.06.08
             </p>
           </div>
-        </section>
+        </div>
 
         <section class="title">
           <div>
