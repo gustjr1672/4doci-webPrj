@@ -5,7 +5,7 @@
 
 body {
     margin: 0; 
-    background-image: linear-gradient(to bottom,#383D66 312px, #FFFFFF 312px);
+    background-image: linear-gradient(to bottom,#383D66 372px, #FFFFFF 372px);
     background-repeat: no-repeat;
 }
 
@@ -13,20 +13,30 @@ body {
 
 /* 전체 div */
 .content-list{
-    margin-top: 76px;
+    margin-top: 94px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 18px;
 }
-
+header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 /* 메세지 */
 .message{
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     font-size: 14px;
     font-weight: bold;
     color: #ffffff;
-
-    margin: 20px 0px;
+    margin: 4px 0px;
 }
 
 /* 대기중인 도전 */
@@ -37,7 +47,8 @@ body {
     align-items: center;  
 
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
+    margin-top: 20px;
 } 
 
 .challenge-title p{
@@ -45,7 +56,7 @@ body {
     font-weight: bold;
     color: #ffffff;
 
-    margin-right: 230px;
+    width: 90%;
 }
 
 .challenge-title span{
@@ -59,8 +70,8 @@ body {
     border-radius: 12px;
     background-color: #ffffff;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
-    width: 325px;
     height: 123px;
+    width: 90%;
 
     display: flex;
     align-items: center;
@@ -74,16 +85,15 @@ body {
     gap: 20px;
     align-items: center;
 
+    max-width: 500px;
     width: 100%;
-    max-width: 400px;
 }
 
 .friends p{
     font-size: 14px;
     font-weight: bold;
     color:#333333;
-
-    margin-right: 230px;
+    width: 90%;
 }
 .profile img{
     z-index: 2;
@@ -141,86 +151,103 @@ body {
     align-items: center;
 
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
 }
 
 .period>p{      /*>: 바로 밑 자식에만 먹음 */
     font-size: 14px;
     font-weight: bold;
     color: #333333;
-
-    margin-right: 251px;
+    width: 90%;
 }
 
-/* 시작일 */
-.start-set{
+.start-set {
     display: flex;
-    gap: 40px;
-    
-    font-size: 12px;
-    color:#333333;
-}
-
-.start-set p{
+    justify-content: space-between;
+    align-items: center;
+    /* gap: 80px; */
+    width: 90%;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  
+  .start-set p {
     line-height: 35px;
-    font-weight: bold;
-}
-
-.start-set span{
-    border-bottom: 1px solid #333333;
-    /* border-radius: 12px; */
-    text-align: center;
-    line-height: 35px;
-
-    width: 167px;
-    height: 35px;
-
-    font-weight: medium;
-}
-/* 종료일 */
-.end-set{
+  }
+  
+  .start-set div {
+    width: 80%;
+    height: 40px;
+    border: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
     display: flex;
-    gap: 40px;
-    
-    font-size: 12px;
-    color: #333333;
-}
-
-.end-set p{
-    line-height: 35px;
-    font-weight: bold;
-}
-
-.end-set span{
-    border-bottom: 1px solid #333333;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .start-set span {
+    /* border-bottom: 1px solid #333333; */
     /* border-radius: 12px; */
-    text-align: center;
     line-height: 35px;
-
-    width: 167px;
+  
     height: 35px;
-
+  
     font-weight: medium;
-}
+  }
+  
+  /* 종료일 */
+  .end-set {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    font-size: 13px;
+    font-weight: 500;
+    align-items: center;
+  }
+  
+  .end-set p {
+    line-height: 35px;
+  }
+  
+  .end-set div {
+    width: 80%;
+    height: 40px;
+    border: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .end-set span {
+    /* border-bottom: 1px solid #333333; */
+    /* border-radius: 12px; */
+    line-height: 35px;
+  
+    height: 35px;
+  
+    font-weight: medium;
+  }
 
 /* 버튼 */
 .btn-section {
-    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    margin: 30px 0;
+    max-width: 500px;
+    width: 100%;
   }
   .btns {
-    margin-top: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 450px;
     width: 100%;
-    box-sizing: border-box;
-    /* margin: 80px auto; */
-    padding: 0 30px 100px 30px;
-    gap: 10%;
+    gap: 25px;
   }
   .btns button {
     font-size: 16px;
@@ -230,8 +257,8 @@ body {
     background-color: #ffffff;
     color: #383d66;
     outline: 0;
-    width: 140px;
-    height: 50px;
+    height: 47px;
+    width: 40%;
   }
   .btns :nth-child(2) {
     border: solid 1px #383d66;
@@ -324,3 +351,33 @@ body {
 .choice-modal{
     z-index: 5;
 }
+
+#timer {
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+    width: 100%;
+    max-width: 400px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #timer div {
+    display: inline-block;
+    width: 15%;
+    padding: 10px;
+    background: #020b43;
+    border-radius: 10px;
+    border: 2px solid #030d52;
+    margin: 4px;
+  }
+  
+  #timer div span {
+    color: #ffffff;
+    display: block;
+    margin-top: 15px;
+    font-size: 0.35em;
+    font-weight: 400;
+  }

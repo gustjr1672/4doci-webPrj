@@ -89,10 +89,6 @@ header {
   margin: 4px 0px;
 }
 
-.message p {
-  transform: translateX(-270px);
-  display: none;
-}
 
 /* 대기중인 도전 */
 .challenge-title {
@@ -272,7 +268,6 @@ header {
   font-size: 14px;
   font-weight: bold;
   color: #333333;
-  width: 80%;
 }
 
 /* 시작일 */
