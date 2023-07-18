@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.doci.webPrj.user.entity.CommentNotificationView;
+import com.doci.webPrj.user.entity.Invitation;
+import com.doci.webPrj.user.entity.InvitationNotification;
 import com.doci.webPrj.user.entity.Member;
 import com.doci.webPrj.user.repository.CommentNotificationRepository;
 import com.doci.webPrj.user.repository.FriendRequestNotificationRepository;
@@ -68,8 +70,8 @@ public class NotificationServiceImp implements NotificationService {
 
         List<Integer> idList = repository.findList(userId);
         List<CommentNotificationView> notiList = commentNotificationRepository.getList(userId);
-
-        if (idList.size() == 0 && notiList.size() == 0)
+        List<Integer> inviList = invirepository.findList(userId);
+        if (idList.size() == 0 && notiList.size() == 0 && inviList.size() == 0)
             result = false;
 
         return result;

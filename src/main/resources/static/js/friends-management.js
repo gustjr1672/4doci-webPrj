@@ -114,7 +114,7 @@ friendSearchBtn.addEventListener("click", () => {
       for (const friend of list) {
         let friendListTemplate = `
         <div class="friend">
-          <button class="info">
+          <button class="info btn-hover cursor"  onclick="location.href = '/friendmanage/challenge?id=${friend.id}'">
             <img src="${friend.profileImage}" alt="프로필이미지" />
             <div class="user-name">
               <span> ${friend.name}</span>
