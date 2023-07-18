@@ -45,7 +45,7 @@ function addcheck() {
           <label for="check">인증번호</label>
           <div class="check-input-form">
           <input type="text" id="check" name="check" required />
-          <button type="button" onclick="chkEmailConfirm(${code})">인증확인</button>
+          <button type="button" class="brighten-2 cursor" onclick="chkEmailConfirm(${code})">인증확인</button>
         </div>
         <div class="timer-wrap">
         <span id="message"></span>
@@ -60,7 +60,7 @@ function addBtn() {
   const container = document.getElementById("auth-btn-Container");
   container.innerHTML = `
       <div class="complete">
-      <button class="complete-btn" type="submit">완료</button>
+      <button class="complete-btn brighten-2 cursor" type="submit">완료</button>
     </div>
     `;
 }

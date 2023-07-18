@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link href="/css/join-form.css" type="text/css" rel="stylesheet" />
+    <link href="/css/animation.css" type="text/css" rel="stylesheet"/>  
     <link
       href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
       rel="stylesheet"
@@ -17,7 +18,7 @@
   <body>
     <header>
       <a href="javascript:history.go(-1)">
-        <img src="/image/header/blackBack.png" alt="뒤로가기" />
+        <img src="/image/header/blackBack.png" alt="뒤로가기" class="zoom-4 cursor" />
       </a>
     </header>
     <div class="h1">
@@ -50,7 +51,7 @@
               required
               autocomplete="off"
             />
-            <button type="button">중복확인</button>
+            <button type="button" class="brighten-2 cursor">중복확인</button>
           </div>
           <div id="id-error" class="error"></div>
         </div>
@@ -95,7 +96,7 @@
       </div>
 
       <div class="finish-btn">
-        <button type="submit" disabled>완료</button>
+        <button type="submit" class="" disabled>완료</button>
       </div>
     </form>
   </body>

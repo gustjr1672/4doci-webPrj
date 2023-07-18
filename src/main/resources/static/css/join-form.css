@@ -142,6 +142,8 @@ label {
   display: flex;
   text-align: left;
   margin-top: 4px;
+  width: 83%;
+  max-width: 512px;
 }
 
 #email {

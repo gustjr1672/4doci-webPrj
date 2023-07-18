@@ -47,6 +47,7 @@ idvalidBtn.onclick = function() {    // ID 중복검사
                     if (checkInputValid()) {        
                         finishBtn.disabled = false;
                         finishBtn.style.backgroundColor = '#383d66';
+                        finishBtn.classList.add("brighten-2 cursor")
                     }
                     return;
                 }
@@ -134,10 +135,12 @@ for (let i = 0; i < inputs.length; i++) {
         if (inputValid == true) {
             finishBtn.disabled = false;
             finishBtn.style.backgroundColor = '#383d66';
+            finishBtn.classList.add("brighten-2 cursor")
         }
         else{
             finishBtn.disabled = true;
             finishBtn.style.backgroundColor = '#ccc';
+            finishBtn.classList.remove("brighten-2 cursor")
         }
     });
 }
