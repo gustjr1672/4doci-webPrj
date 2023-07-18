@@ -125,9 +125,9 @@ public class GroupChallengeController {
     public String groupInvite(Model model, @RequestParam("id") int challengeId) {
 
         GroupChallenge challenge = groupChallengeService.getChallenge(challengeId);
-        Member groupLeader = groupChallengeService.getLeader(challenge.getGroupLeaderId());
+        List<Unit> unitList = unitService.findAll();
         model.addAttribute("challenge", challenge);
-        model.addAttribute("leader", groupLeader);
+        model.addAttribute("unitList", unitList);
         return "user/startchallenge/groupchallenge/invite-request";
     }
 
