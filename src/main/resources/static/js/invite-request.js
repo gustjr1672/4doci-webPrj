@@ -34,3 +34,25 @@ acceptBtn.onclick = function(e){
       form.submit();
     }
   })
+
+  function getDaysUntilStart(startDate) {
+    const today = new Date();
+    const start = new Date(startDate);
+    const oneDay = 24 * 60 * 60 * 1000; // 1일을 밀리초로 계산
+  
+    const remainingDays = Math.round((start - today) / oneDay);
+  
+    if (remainingDays > 0) {
+      return remainingDays;
+    } else if (remainingDays === 0) {
+      return 0;
+    } else {
+      return -1;
+    }
+  }
+  const startDateSpan = document.getElementById("startDateText");
+  const startDateText = startDateSpan.innerText;
+  const daysLeft = getDaysUntilStart(startDateText);
+
+  const daysLeftSpan = document.getElementById("dayLeftSpan");
+  daysLeftSpan.innerText = `D - ${daysLeft}`;

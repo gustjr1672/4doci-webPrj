@@ -25,9 +25,23 @@
     </div>
     <div class="content-list">
     <form action="/groupChallenge/invite-request/submit" method="POST">
-    <div class="profile">
+    <!-- <div class="profile">
       <img th:src="${leader.profileImage}" alt="" />
       <span th:text="${leader.nickname}"></span>
+    </div> -->
+    <div id="challenge-info">
+      <div th:each="unit:${unitList}" th:if="${unit.id == challenge.unitId}">
+          <span  th:text="${challenge.goalQuantity}+${unit.name}"></span>
+          <span>목표량</span>
+      </div>
+      <div>
+          <span th:text="${challenge.authFrequency}+'일'"></span>
+          <span>인증빈도</span>
+      </div>
+      <div>
+          <span id="dayLeftSpan"></span>
+          <span>시작일</span>
+      </div>
     </div>
     <input type="hidden" name="id" th:value="${challenge.id}">
     <div class="challenge-name">
@@ -41,7 +55,7 @@
       </div>
       <div class="date">
         <span>시작일</span>
-        <span th:text="${challenge.startDate}">2023년 05월 12일</span>
+        <span th:text="${challenge.startDate}" id="startDateText">2023년 05월 12일</span>
       </div>
       <div class="date">
         <span>종료일</span>

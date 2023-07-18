@@ -49,7 +49,7 @@ header img {
     margin: 14px 0;
 }
 
-.challenge-info {
+/* .challenge-info {
     display: flex;
     padding: 10px 0;
     flex-direction: column;
@@ -59,8 +59,41 @@ header img {
     width: 100%;
     font-size: 12px;
     font-weight: 600;
-}
+} */
+#challenge-info {
 
+    color: white;
+    width: 90%;
+    max-width: 400px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+  }
+  
+  #challenge-info div {
+    display: inline-block;
+    width: 20%;
+    height: 50px;
+    padding: 20px;
+    background: #697eb9;
+    border-radius: 10px;
+    /* border: 2px solid #030d52; */
+    border:none;
+    margin: 10px;
+  }
+  #challenge-info div span:first-child{
+    font-size: 20px;
+    font-weight: 500;
+  }
+  #challenge-info div span:nth-child(2) {
+    color: #ffffff;
+    display: block;
+    margin-top: 15px;
+    font-size: 0.35em;
+    font-weight: 400;
+  }
 .auth-frequency,
 .goal-quantity {
     display: flex;
@@ -214,43 +247,6 @@ header img {
     color: white;
     background: #383D66;
 }
-
-
-
-#challenge-info {
-
-    color: white;
-    width: 90%;
-    max-width: 400px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 10px;
-  }
-  
-  #challenge-info div {
-    display: inline-block;
-    width: 20%;
-    height: 50px;
-    padding: 20px;
-    background: #697eb9;
-    border-radius: 10px;
-    /* border: 2px solid #030d52; */
-    border:none;
-    margin: 10px;
-  }
-  #challenge-info div span:first-child{
-    font-size: 20px;
-    font-weight: 500;
-  }
-  #challenge-info div span:nth-child(2) {
-    color: #ffffff;
-    display: block;
-    margin-top: 15px;
-    font-size: 0.35em;
-    font-weight: 400;
-  }
 
   #dayLeftSpan{
     font-size: 18px !important;

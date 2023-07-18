@@ -21,8 +21,9 @@ body {
 header {
   width: 100%;
   display: flex;
-  max-width: 660px;
+  max-width: 700px;
   margin: 20px 12px;
+  height: 40px;
 }
 header img {
   padding-left: 12px;
@@ -36,6 +37,7 @@ form {
   flex-direction: column;
   align-items: center;
   gap: 18px;
+  margin-top: 18px;
 }
 .profile {
   padding: 36px 0;
@@ -55,6 +57,41 @@ form {
   font-size: 14px;
   font-weight: 500;
 }
+
+#challenge-info {
+
+  color: white;
+  width: 90%;
+  max-width: 400px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+}
+
+#challenge-info div {
+  display: inline-block;
+  width: 20%;
+  height: 50px;
+  padding: 20px;
+  background: #697eb9;
+  border-radius: 10px;
+  /* border: 2px solid #030d52; */
+  border:none;
+  margin: 10px;
+}
+#challenge-info div span:first-child{
+  font-size: 20px;
+  font-weight: 500;
+}
+#challenge-info div span:nth-child(2) {
+  color: #ffffff;
+  display: block;
+  margin-top: 15px;
+  font-size: 0.35em;
+  font-weight: 400;
+}
 .challenge-name {
   font-size: 14px;
   font-weight: bold;
@@ -72,6 +109,7 @@ form {
   justify-content: start;
   align-items: center;
   width: 90%;
+  margin:14px 0;
 }
 .challenge-name :nth-child(2) {
   border: none;
