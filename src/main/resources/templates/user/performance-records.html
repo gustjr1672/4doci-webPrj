@@ -94,7 +94,7 @@
       <span>도전사진</span>
       <div id="image-box">
         <label for="choose-file">
-          <img src="" id="input-image" alt="" class="cursor zoom-4"/>
+          <img src="" id="input-image" alt="" class="cursor zoom-4" />
         </label>
       </div>
       <form
@@ -155,7 +155,9 @@
       </section>
     </form>
     <footer>
-      <button type="button" form="record-submit" id="save-btn" class="brighten-2 cursor">저장하기</button>
+      <button type="button" form="record-submit" id="save-btn" class="brighten-2 cursor">
+        저장하기
+      </button>
     </footer>
 
     <!-- 삭제모달 -->
@@ -177,7 +179,6 @@
       <div id="turn-modal-content" class="turn-modal-content">
         <div class="period-section">
           <div>
-            <p class="period">도전기간</p>
             <p class="info" th:text="${allChallenges.startDate}+' ~ '+${allChallenges.endDate}">
               2023.05.07 ~ 2023.06.08
             </p>

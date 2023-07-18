@@ -115,8 +115,8 @@
           </div>
         </div>
       </section>
-      <div class="no-feed">
-        <div th:unless="${#lists.size(feedList)!=0}">
+      <div th:unless="${#lists.size(feedList)!=0}" class="no-feed">
+        <div>
           <svg class="loader" viewBox="0 0 48 30" width="48px" height="30px">
             <g
               fill="none"

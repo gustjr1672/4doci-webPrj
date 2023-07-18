@@ -19,19 +19,21 @@
     <header>
       <div>
         <a href="javascript:history.go(-1)">
-          <img class="back cursor zoom-4" src="/image/header/whiteBack.png" alt="뒤로가기"/>
+          <img class="back cursor zoom-4" src="/image/header/whiteBack.png" alt="뒤로가기" />
         </a>
         <!-- <img src="/image/header/w.png" alt="" /> -->
         <div class="header-contents">
-          <span th:data-member-id="${allChallenges.memberId}" class="group-status cursor zoom-4">그룹현황</span>
-          <img id="help" src="/image/performance-records/help.png" alt="" class="cursor zoom-4"/>
+          <span th:data-member-id="${allChallenges.memberId}" class="group-status cursor zoom-4"
+            >그룹현황</span
+          >
+          <img id="help" src="/image/performance-records/help.png" alt="" class="cursor zoom-4" />
           <button
             class="challenge-delete-btn"
             th:data-unique-id="${allChallenges.uniqueId}"
             th:data-unit-name="${allChallenges.unitName}"
             th:data-group-challenge-id="${groupChallengeId}"
           >
-            <img src="/image/performance-records/trash.png" alt=""  class="cursor zoom-4"/>
+            <img src="/image/performance-records/trash.png" alt="" class="cursor zoom-4" />
           </button>
         </div>
       </div>
@@ -102,7 +104,7 @@
       >
         <div class="button">
           <label for="choose-file">
-            <img src="/image/performance-records/addImage.png" alt="" class="zoom-4 cursor"  />
+            <img src="/image/performance-records/addImage.png" alt="" class="zoom-4 cursor" />
           </label>
         </div>
         <input
@@ -151,7 +153,9 @@
       </section>
     </form>
     <footer>
-      <button type="button" form="record-submit" id="save-btn" class="brighten-2 cursor">저장하기</button>
+      <button type="button" form="record-submit" id="save-btn" class="brighten-2 cursor">
+        저장하기
+      </button>
     </footer>
 
     <!-- 삭제모달 -->
@@ -181,7 +185,6 @@
             <span th:text="${allChallenges.endDate}"></span>
           </div> -->
           <div>
-            <p class="period">도전기간</p>
             <p class="info" th:text="${allChallenges.startDate}+' ~ '+${allChallenges.endDate}">
               2023.05.07 ~ 2023.06.08
             </p>

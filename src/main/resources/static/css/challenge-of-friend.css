@@ -32,7 +32,9 @@ header > button {
   margin: 32px auto;
 }
 .friend-photo {
-  width: 80px;
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
   border-radius: 50px;
 }
 .profile {
@@ -87,15 +89,15 @@ header > button {
   color: #fff;
 }
 .btns span {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 .options {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 160px;
-  width: 80%;
+  max-width: 170px;
+  width: 90%;
 }
 .btns button {
   width: 50%;
@@ -103,6 +105,7 @@ header > button {
   font-weight: 400;
   font-size: 12px;
   height: 40px;
+  padding: 0;
   /* border-radius: 12px; */
 }
 .ongoing-btn.active {
