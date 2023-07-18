@@ -435,7 +435,7 @@ footer img {
     }
 }
 .push {
-    animation: push-effect 0.1s both;
+    animation: push-effect 0.15s both;
 }
 
 /*========================도전없음 ===========================*/

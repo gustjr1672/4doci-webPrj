@@ -36,12 +36,10 @@ challengeList.onclick = (e) => {
         method: "PUT",
       });
     }
-  })();
-
-  setTimeout(() => {
     button.classList.remove("push");
     achvQuantity.classList.remove("push");
-  }, 100);
+  })();
+
 };
 
 function increaseProgress(progressBar, goalQuantity) {
