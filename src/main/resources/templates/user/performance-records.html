@@ -29,13 +29,13 @@
             <span class="slider"></span>
           </label>
           <div>
-            <img id="help" src="/image/performance-records/help.png" alt="" />
+            <img id="help" src="/image/performance-records/help.png" alt="" class="cursor zoom-4" />
             <button
               class="challenge-delete-btn"
               th:data-unique-id="${allChallenges.uniqueId}"
               th:data-unit-name="${allChallenges.unitName}"
             >
-              <img src="/image/performance-records/flag.png" alt="" />
+              <img src="/image/performance-records/trash.png" alt="" class="cursor zoom-4" />
             </button>
           </div>
         </section>
@@ -47,6 +47,7 @@
           id="round"
           th:data-round="${perfomanceRecord.round}"
           th:text="${perfomanceRecord.round}+'회차'"
+          class="cursor zoom-1"
         >
           1회차
         </button>
@@ -93,7 +94,7 @@
       <span>도전사진</span>
       <div id="image-box">
         <label for="choose-file">
-          <img src="" id="input-image" alt="" />
+          <img src="" id="input-image" alt="" class="cursor zoom-4"/>
         </label>
       </div>
       <form
@@ -105,7 +106,7 @@
       >
         <div class="button">
           <label for="choose-file">
-            <img src="/image/performance-records/addImage.png" alt="" />
+            <img src="/image/performance-records/addImage.png" alt="" class="zoom-4 cursor" />
           </label>
         </div>
         <input
@@ -136,7 +137,7 @@
       <section class="achive">
         <span class="text">달성량</span>
         <div class="achive-control">
-          <button id="minus-btn" type="button">-</button>
+          <button id="minus-btn" type="button" class="zoom-1 cursor">-</button>
           <div class="achive-amount">
             <input hidden="hidden" />
             <input
@@ -148,13 +149,13 @@
             />
             <span th:text="${allChallenges.unitName}">ml</span>
           </div>
-          <button id="plus-btn" type="button">+</button>
+          <button id="plus-btn" type="button" class="zoom-1 cursor">+</button>
         </div>
         <input type="hidden" name="id" th:value="${perfomanceRecord.id}" />
       </section>
     </form>
     <footer>
-      <button type="button" form="record-submit" id="save-btn">저장하기</button>
+      <button type="button" form="record-submit" id="save-btn" class="brighten-2 cursor">저장하기</button>
     </footer>
 
     <!-- 삭제모달 -->
@@ -193,7 +194,7 @@
         <section class="record-list" id="record-list-section"></section>
 
         <footer>
-          <button>닫기</button>
+          <button class="brighten-2 cursor">닫기</button>
         </footer>
       </div>
     </div>

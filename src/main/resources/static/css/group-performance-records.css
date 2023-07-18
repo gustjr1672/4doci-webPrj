@@ -27,9 +27,15 @@ header > div {
 header img {
   width: 22px;
 }
+#help{
+  width: 26px;
+}
 header button {
   border: none;
   background-color: rgba(255, 255, 255, 0);
+  display: flex;
+  align-items: center;
+  padding: 0;
 }
 .header-contents {
   width: 180px;
@@ -129,7 +135,7 @@ header section {
   background-color: #c85d77;
   text-align: center;
   border: none;
-  box-shadow: 0px 3px 3px 0px rgba(255, 255, 255, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .goal > :first-child > :nth-child(2) {
   color: #fff;
@@ -323,8 +329,8 @@ footer {
 }
 footer button {
   text-align: center;
-  width: 60%;
-  max-width: 400px;
+  width: 80%;
+  max-width: 500px;
   height: 50px;
   border: none;
   font-size: 16px;
@@ -500,7 +506,7 @@ button {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1);
   }
   to {
     transform: scale(1);
@@ -530,7 +536,7 @@ button {
   border-radius: 10px;
   /* border: 2px solid #030d52; */
   border: none;
-  margin: 10px;
+  margin: 6px;
 }
 #challenge-info div span:first-child {
   font-size: 20px;
