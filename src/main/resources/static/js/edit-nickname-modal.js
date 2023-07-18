@@ -10,7 +10,9 @@ let nicknameError = document.getElementById("nickname-error");
 const finishBtn = document.querySelector('.finish-btn button');
 let loginUserNickname = document.querySelector('.nickname');
 
-
+let editNicknameComplete = document.querySelector('.complete-modal');
+let editNicknameClose = editNicknameComplete.querySelector('modal-close');
+let editNicknameText = editNicknameComplete.querySelector('.result-text');
 // ==============================모달============================
 nicknameModalButton.addEventListener('click', () => {
     nicknameModalContainer.classList.add('modal-show');
@@ -93,5 +95,12 @@ finishBtn.addEventListener('click',()=>{
         .then(result=>{
             loginUserNickname.textContent=result;
             nickname.value = result;
+            closeNicknameModal();
+            editNicknameText.innerHTML = '닉네임이 변경되었습니다.';
+            editNicknameComplete.classList.remove('hidden');
         })
+})
+
+editNicknameClose.addEventListener('click',()=>{
+    editNicknameComplete.classList.add('hidden');
 })
