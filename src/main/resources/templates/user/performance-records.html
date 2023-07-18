@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/css/performance-records.css" />
     <link rel="stylesheet" href="/css/modal.css" />
     <link rel="stylesheet" href="/css/toggle.css" />
+    <link rel="stylesheet" href="/css/animation.css" />
     <script src="/js/performance-records.js" defer="defer"></script>
     <script src="/js/modal.js" defer="defer"></script>
   </head>
@@ -19,8 +20,8 @@
   <body>
     <header>
       <div>
-        <a href="/main">
-          <img class="back" src="/image/header/whiteBack.png" alt="back"  class="cursor zoom-4"/>
+        <a href="javascript:history.go(-1)">
+          <img class="back cursor zoom-4" src="/image/header/whiteBack.png" alt="back" />
         </a>
         <section>
           <label id="challenge-visibility" th:data-visibility="${visibility}" class="switch">
