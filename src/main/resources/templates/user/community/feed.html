@@ -9,7 +9,7 @@
     <script src="/js/feed.js" defer="defer"></script>
     <link rel="stylesheet" href="/css/feed.css" />
     <link rel="stylesheet" href="/css/modal.css" />
-    <link href="/css/animation.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/animation.css" type="text/css" rel="stylesheet" />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
       rel="stylesheet"
@@ -25,20 +25,26 @@
         <img src="/image/header/blackLogo.png" alt="4℃" />
       </header>
     </div>
-    <section class="friends">
-      <button th:onclick="|location.href = '/friendmanage/challenge?id=${user.id}'|" class="btn-hover cursor">
-        <img th:src="${user.profileImage}" alt="friend" />
-        <span th:text="${user.nickname}">신도시아지매</span>
-      </button>
-      <button
-        th:each="friend:${friendList}"
-        th:onclick="|location.href = '/friendmanage/challenge?id=${friend.id}'|"
-        class="btn-hover cursor"
-      >
-        <img th:src="${friend.profileImage}" alt="friend" />
-        <span th:text="${friend.nickname}">멋을아는자</span>
-      </button>
-    </section>
+    <div class="friends-wrap">
+      <section class="friends">
+        <button
+          th:onclick="|location.href = '/friendmanage/challenge?id=${user.id}'|"
+          class="btn-hover cursor"
+        >
+          <img th:src="${user.profileImage}" alt="friend" />
+          <span th:text="${user.nickname}">신도시아지매</span>
+        </button>
+
+        <button
+          th:each="friend:${friendList}"
+          th:onclick="|location.href = '/friendmanage/challenge?id=${friend.id}'|"
+          class="btn-hover cursor"
+        >
+          <img th:src="${friend.profileImage}" alt="friend" />
+          <span th:text="${friend.nickname}">멋을아는자</span>
+        </button>
+      </section>
+    </div>
 
     <main>
       <section class="feed" th:each="feed:${feedList}">
@@ -48,8 +54,10 @@
         </div>
         <div class="title">
           <div class="title-img-wrap">
-            <img src="/image/community/seed.svg">
-            <span th:text="${feed.challengeName}" class="challenge-title">하루에 30분씩 가벼운 스트레칭하기</span>
+            <img src="/image/community/seed.svg" />
+            <span th:text="${feed.challengeName}" class="challenge-title"
+              >하루에 30분씩 가벼운 스트레칭하기</span
+            >
           </div>
           <div class="title-btns">
             <button
@@ -85,10 +93,24 @@
         <div class="feed-footer">
           <span class="time-message" th:text="${feed.timeMessage}">1시간 전</span>
           <div class="footer-btn">
-
-            <button class="comment-button btn-hover-2 cursor" th:data-record-id="${feed.id}" th:data-member-id="${feed.memberId}">
-              <img th:data-record-id="${feed.id}" th:data-member-id="${feed.memberId}" src="/image/community/comment.png" alt="" />
-              <span th:data-record-id="${feed.id}" th:data-member-id="${feed.memberId}" th:id="${feed.id}" th:text="${feed.commentCount}">1</span>
+            <button
+              class="comment-button btn-hover-2 cursor"
+              th:data-record-id="${feed.id}"
+              th:data-member-id="${feed.memberId}"
+            >
+              <img
+                th:data-record-id="${feed.id}"
+                th:data-member-id="${feed.memberId}"
+                src="/image/community/comment.png"
+                alt=""
+              />
+              <span
+                th:data-record-id="${feed.id}"
+                th:data-member-id="${feed.memberId}"
+                th:id="${feed.id}"
+                th:text="${feed.commentCount}"
+                >1</span
+              >
             </button>
           </div>
         </div>
@@ -98,10 +120,15 @@
     <div class="footer-wrap">
       <footer>
         <button>
-          <img src="/image/footer/home.png" alt="홈" onclick="location.href = '/main' " class="cursor zoom-1"/>
+          <img
+            src="/image/footer/home.png"
+            alt="홈"
+            onclick="location.href = '/main' "
+            class="cursor zoom-1"
+          />
         </button>
         <button>
-          <img src="/image/footer/clickCommunity.png" alt="커뮤니티" class="cursor zoom-1"/>
+          <img src="/image/footer/clickCommunity.png" alt="커뮤니티" class="cursor zoom-1" />
         </button>
         <button>
           <img
@@ -112,7 +139,12 @@
           />
         </button>
         <button>
-          <img src="/image/footer/myPage.png" alt="내정보" onclick="location.href = '/my-page' " class="cursor zoom-1"/>
+          <img
+            src="/image/footer/myPage.png"
+            alt="내정보"
+            onclick="location.href = '/my-page' "
+            class="cursor zoom-1"
+          />
         </button>
       </footer>
     </div>
@@ -129,7 +161,7 @@
         </div>
       </section>
     </section>
-    <input type="hidden" th:value="${recordIdOfNewComment}" id="move-record-id">
+    <input type="hidden" th:value="${recordIdOfNewComment}" id="move-record-id" />
 
     <!-- 댓글 삭제 확인 모달 -->
     <section class="choice-modal hidden">

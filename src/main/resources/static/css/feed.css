@@ -28,16 +28,18 @@ header img {
   width: 60px;
   height: 60px;
 }
-
+.friends-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .friends {
   width: 90%;
   max-width: 660px;
   margin: 12px;
   padding: 0 0 16px 0px;
   display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 4px;
+  gap: 2px;
 
   border-bottom: 1px solid #dbdbdb;
   white-space: nowrap;
@@ -59,8 +61,7 @@ header img {
   justify-content: center;
   align-items: center;
   color: black;
-  overflow: hidden;
-  padding : 10px 6px;
+  padding: 10px 6px;
 }
 .friends button img {
   width: 52px;
@@ -114,7 +115,7 @@ header img {
   word-break: keep-all;
 }
 
-.title-img-wrap img{
+.title-img-wrap img {
   width: 15px;
 }
 
@@ -241,24 +242,23 @@ footer img {
   width: 30px;
 }
 
-main :last-child .feed-footer{
+main :last-child .feed-footer {
   border: none;
 }
 
-
 /* 댓글모달 */
-.modal-inside{
+.modal-inside {
   overflow-y: scroll;
 }
 
-.comment-content-footer{
+.comment-content-footer {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
 }
 
 .comment-content-buttons button,
-.comment-edit-buttons button{
+.comment-edit-buttons button {
   border: none;
   border-radius: 8px;
   /* font-size: 12px; */
@@ -267,16 +267,16 @@ main :last-child .feed-footer{
   cursor: pointer;
 }
 
-@keyframes slide-in{
+@keyframes slide-in {
   0% {
     width: 40%;
   }
-  100%{
+  100% {
     width: 100%;
   }
 }
 
-.comment-content-input-edit{
+.comment-content-input-edit {
   border: 1px solid #bebebe;
   border-radius: 6px;
   padding: 0 5px;
@@ -288,51 +288,47 @@ main :last-child .feed-footer{
   animation-fill-mode: forwards;
 }
 
-.slide-open{
+.slide-open {
   animation-name: slide-in;
 }
-
 
 /**폰트 크기**/
 /* 아이폰 미니 */
 @media screen and (max-width: 390px) {
-
   .friends button span {
     font-size: 8px;
   }
 
   .content span {
-    font-size: 12px; 
+    font-size: 12px;
   }
 
   .time-message {
-    font-size: 10px; 
-  }
-
-  .profile {
-    font-size: 12px; 
-  }
-
-  .challenge-title {
-    font-size: 14px; 
-  }
-
-  .comment-content-buttons button,
-  .comment-edit-buttons button{
     font-size: 10px;
   }
 
+  .profile {
+    font-size: 12px;
+  }
+
+  .challenge-title {
+    font-size: 14px;
+  }
+
+  .comment-content-buttons button,
+  .comment-edit-buttons button {
+    font-size: 10px;
+  }
 }
 
 /* 모바일 및 10인치 미만 */
 @media screen and (min-width: 391px) and (max-width: 899px) {
-  
   .friends button span {
     font-size: 10px;
   }
-  
+
   .content span {
-    font-size: 14px; 
+    font-size: 14px;
   }
 
   .time-message {
@@ -340,15 +336,15 @@ main :last-child .feed-footer{
   }
 
   .profile {
-    font-size: 12px; 
+    font-size: 12px;
   }
 
   .challenge-title {
-    font-size: 14px; 
+    font-size: 14px;
   }
 
   .comment-content-buttons button,
-  .comment-edit-buttons button{
+  .comment-edit-buttons button {
     font-size: 10px;
   }
 }
@@ -358,25 +354,25 @@ main :last-child .feed-footer{
   .friends button span {
     font-size: 10px;
   }
-  
+
   .content span {
-    font-size: 16px; 
+    font-size: 16px;
   }
 
   .time-message {
-    font-size: 12px; 
+    font-size: 12px;
   }
 
   .profile {
-    font-size: 14px; 
+    font-size: 14px;
   }
 
   .challenge-title {
-    font-size: 16px; 
+    font-size: 16px;
   }
 
   .comment-content-buttons button,
-  .comment-edit-buttons button{
+  .comment-edit-buttons button {
     font-size: 12px;
   }
 }
