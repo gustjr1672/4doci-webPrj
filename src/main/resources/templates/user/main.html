@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Document</title>
+    <title>4docci</title>
     <link href="/css/main.css" type="text/css" rel="stylesheet"/>
     <link href="/css/notification.css" type="text/css" rel="stylesheet"/>
     <link href="/css/animation.css" type="text/css" rel="stylesheet"/>
@@ -28,7 +28,7 @@
         </div>
         <button class="bell" onclick="openModal()">
             <img th:if="${isNoti}" id="bell" class="cursor shake" src="/image/header/whiteBellAlarm.png" alt="알림"/>
-            <img th:unless="${isNoti}" id="bell" class="shake cursor"src="/image/header/whiteBell.png" alt="알림"/>
+            <img th:unless="${isNoti}" id="bell" class="shake cursor" src="/image/header/whiteBell.png" alt="알림"/>
         </button>
     </header>
 </div>
@@ -62,37 +62,52 @@
                 <button class="waiting cursor bold">대기중</button>
             </div>
         </section>
-<!--        <select id="filter" onchange="applyFilter()">-->
-<!--            <option value="on-going">진행 중</option>-->
-<!--            <option value="waiting">대기 중</option>-->
-<!--        </select>-->
     </div>
+    <section class="no-ongoing-chal-wrap">
+        <div class="no-chal wait" th:data-challenge-count="${ongoingChallengeCnt}"
+             th:if="${ongoingChallengeCnt} == 0">
+            <div class="typing-indicator">
+                <div class="typing-circle"></div>
+                <div class="typing-circle"></div>
+                <div class="typing-circle"></div>
+                <div class="typing-shadow"></div>
+                <div class="typing-shadow"></div>
+                <div class="typing-shadow"></div>
+            </div>
+            <span class="no-chal-title">진행중인 도전이 없습니다</span>
+        </div>
+    </section >
 
-    <div class="chal-section" th:data-user-id="${user.id}">
-        <div class="btn-wrap" th:each="all:${allChallengesList}" th:if="${all.performanceRecordsId}!=null">
-            <button class="chal-btn cursor zoom-2" th:data-unique-id="${all.uniqueId}" data-challenge-state="진행중">
-                <span class="chal-title" th:text="${all.name}">하루에 30분이상 운동하고 치킨먹고 자기</span>
-                <div class="prog-wrap">
-                    <div>
-                        <span class="achv-Quantity" th:text="${all.achvQuantity}">0</span>
-                        <span>/</span>
-                        <span th:text="${all.goalQuantity} + ' '+ ${all.unitName}">1회</span>
-                        <span hidden="hidden" th:text="${all.goalQuantity}" class="goal_quantity"></span>
-                    </div>
-                    <div class="prog-bar">
-                        <div class="prog"
-                             th:data-achv-quantity="${all.achvQuantity}"
-                             th:data-goal-quantity="${all.goalQuantity}">
+    <section class="no-waiting-chal-wrap">
+
+    </section>
+
+
+        <div class="chal-section" th:data-user-id="${user.id}">
+            <div class="btn-wrap" th:each="all:${allChallengesList}" th:if="${all.performanceRecordsId}!=null">
+                <button class="chal-btn cursor zoom-2" th:data-unique-id="${all.uniqueId}" data-challenge-state="진행중">
+                    <span class="chal-title" th:text="${all.name}">하루에 30분이상 운동하고 치킨먹고 자기</span>
+                    <div class="prog-wrap">
+                        <div>
+                            <span class="achv-Quantity" th:text="${all.achvQuantity}">0</span>
+                            <span>/</span>
+                            <span th:text="${all.goalQuantity} + ' '+ ${all.unitName}">1회</span>
+                            <span hidden="hidden" th:text="${all.goalQuantity}" class="goal_quantity"></span>
+                        </div>
+                        <div class="prog-bar">
+                            <div class="prog"
+                                 th:data-achv-quantity="${all.achvQuantity}"
+                                 th:data-goal-quantity="${all.goalQuantity}">
+                            </div>
                         </div>
                     </div>
-                </div>
-            </button>
-            <button class="plus-btn cursor brighten"
-                    th:data-goal-quantity="${all.goalQuantity}"
-                    th:data-challenge-id="${all.uniqueId}">+
-          </button>
+                </button>
+                <button class="plus-btn cursor brighten"
+                        th:data-goal-quantity="${all.goalQuantity}"
+                        th:data-challenge-id="${all.uniqueId}">+
+                </button>
+            </div>
         </div>
-    </div>
 </section>
 
 
