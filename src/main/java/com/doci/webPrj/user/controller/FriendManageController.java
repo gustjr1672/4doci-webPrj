@@ -27,12 +27,7 @@ public class FriendManageController {
     NotificationService notificationService;
 
     @GetMapping("main")
-    public String main(
-            Model model,
-            @AuthenticationPrincipal MyUserDetails user) {
-        List<Member> friendList = friendManageService.getFriendList(user.getId());
-        model.addAttribute("friendList", friendList);
-        model.addAttribute("total", friendList.size());
+    public String main() {
         return "user/friendmanage/main";
     }
 
