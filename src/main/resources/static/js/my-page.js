@@ -1,6 +1,20 @@
 
 
+const randomImage = ['normal','normalB','normalC',
+                            'normalD','normalE','normalF',
+                            'normalG','normalH','normalI']
+
 function changeTONormalProfile(){
+    // nowImage
+    // let rand_0_9 = Math.floor(Math.random() * 9);
+    // let index = randomImage.indexOf(nowImage);
+    //
+    // while (rand_0_9 == index){
+    //     rand_0_9 = Math.floor(Math.random() * 9);
+    // }
+    // let imageName = randomImage[rand_0_9];
+    // let fileName = "/upload/image/profile/" + imageName +'.png';
+
     let fileName = "/upload/image/profile/normal.png";
 
     let userImg = document.querySelector(".user-image");
@@ -53,6 +67,8 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.classList.remove('show'); // 모달에서 show 클래스 제거하여 사라지도록 설정
     });
     normalImageButton.addEventListener('click',()=>{
+        // let nowFileName = normalImageButton.dataset.nowImage;
+        // let nowImage = nowFileName.split('/').pop().split('.')[0];
         changeTONormalProfile();
     });
 });

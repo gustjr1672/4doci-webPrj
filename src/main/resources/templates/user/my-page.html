@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/css/my-page-modal.css">
   <link rel="stylesheet" href="/css/modal.css">
   <link href="/css/animation.css" type="text/css" rel="stylesheet"/>
+  <link href="/css/animation.css" type="text/css" rel="stylesheet"/>
   <title>myPage</title>
   <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet"/>
 
@@ -94,12 +95,12 @@
         <span class="close">&times;</span>
         <div class="buttons">
           <div class="normal-change">
-            <button class="normal-image"><img src="/image/my-page/normalProfile.png" alt="기본이미지로"></button>
-            <span>기본 이미지</span>
+            <button class="normal-image cursor zoom-2" th:data-now-image="${user.profileImage}"><img class="zoom-2" src="/image/my-page/normalProfile.png" alt="기본이미지로"></button>
+            <span>랜덤 이미지</span>
           </div>
 
           <div class="new-change">
-            <button class="new-image"><label for="choose-file"><img src="/image/my-page/newProfile.png" alt="새로운이미지로"></label></button>
+            <button class="new-image cursor zoom-2"><label for="choose-file" class="cursor"><img src="/image/my-page/newProfile.png" alt="새로운이미지로"></label></button>
             <span>새로운 이미지</span>
           </div>
         </div>
