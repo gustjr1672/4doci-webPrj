@@ -15,6 +15,9 @@ function connectWs() {
     console.log("close");
   };
 }
+window.addEventListener("load", () => {
+  friendListBtn.click();
+});
 //모달
 let modal = document.querySelector(".delete-modal");
 let modalCancelBtn = document.querySelector(".modal-cancel-btn");
@@ -99,20 +102,51 @@ function newFriendListLoad(url) {
       });
     });
 }
-
+let friendListBtn = document.querySelector("#friend-list-btn");
+friendListBtn.addEventListener("click", () => {
+  fetch(`/friendmanage/friends/list`)
+    .then((response) => response.json())
+    .then((list) => {
+      friendList.innerHTML = "";
+      friendList.insertAdjacentHTML("beforeend", `<p >친구 ${list.length}명</p>`);
+      if (list.length > 0) {
+        for (const friend of list) {
+          let friendListTemplate = `
+      <div class="friend">
+        <button class="info btn-hover cursor"  onclick="location.href = '/friendmanage/challenge?id=${friend.id}'">
+          <img src="${friend.profileImage}" alt="프로필이미지" />
+          <div class="user-name">
+            <span> ${friend.name}</span>
+            <span>${friend.nickname}</span>
+          </div>
+        </button>
+        <button data-id="${friend.id}" id="friend-delete" class="delete">삭제</button>
+      </div>`;
+          friendList.insertAdjacentHTML("beforeend", friendListTemplate);
+        }
+      } else {
+        let noFriendTemplate = `<div class="no-friend">
+        <div class="loader"></div>
+        <div>새로운 친구를 추가해보세요</div>
+      </div>`;
+        friendList.insertAdjacentHTML("beforeend", noFriendTemplate);
+      }
+    });
+});
 let friendSearchBtn = document.getElementById("friend-search");
 let friendSearchInput = document.querySelector("input[name=nickname]");
 let friendList = document.getElementById("friend-list");
 friendSearchBtn.addEventListener("click", () => {
   if (friendSearchInput.value == "") return;
-  fetch(`/friendmanage/friends/list?n=${friendSearchInput.value}`)
+  fetch(`/friendmanage/friends/list/${friendSearchInput.value}`)
     .then((response) => response.json())
     .then((list) => {
-      console.log(list);
       friendList.innerHTML = "";
       friendList.insertAdjacentHTML("beforeend", `<p >친구 ${list.length}명</p>`);
-      for (const friend of list) {
-        let friendListTemplate = `
+
+      if (list.length > 0)
+        for (const friend of list) {
+          let friendListTemplate = `
         <div class="friend">
           <button class="info btn-hover cursor"  onclick="location.href = '/friendmanage/challenge?id=${friend.id}'">
             <img src="${friend.profileImage}" alt="프로필이미지" />
@@ -123,7 +157,15 @@ friendSearchBtn.addEventListener("click", () => {
           </button>
           <button data-id="${friend.id}" id="friend-delete" class="delete">삭제</button>
         </div>`;
-        friendList.insertAdjacentHTML("beforeend", friendListTemplate);
+          friendList.insertAdjacentHTML("beforeend", friendListTemplate);
+        }
+      else {
+        console.log(1);
+        let noFriendTemplate = `<div class="no-friend">
+        <div class="loader"></div>
+        <div>검색결과가 없습니다!</div>
+        </div>`;
+        friendList.insertAdjacentHTML("beforeend", noFriendTemplate);
       }
     });
 });
@@ -147,13 +189,13 @@ modalDeleteBtn.addEventListener("click", (e) => {
   })
     .then((response) => response.json())
     .then((list) => {
-      console.log(list);
       modal.classList.add("hidden");
       completeModal.classList.remove("hidden");
       friendList.innerHTML = "";
       friendList.insertAdjacentHTML("beforeend", `<p >친구 ${list.length}명</p>`);
-      for (const friend of list) {
-        let friendListTemplate = `
+      if (list.length > 0)
+        for (const friend of list) {
+          let friendListTemplate = `
         <div class="friend">
           <button class="info">
             <img src="${friend.profileImage}" alt="프로필이미지" />
@@ -164,7 +206,14 @@ modalDeleteBtn.addEventListener("click", (e) => {
           </button>
           <button data-id=${friend.id} id="friend-delete" class="delete">삭제</button>
         </div>`;
-        friendList.insertAdjacentHTML("beforeend", friendListTemplate);
+          friendList.insertAdjacentHTML("beforeend", friendListTemplate);
+        }
+      else {
+        let noFriendTemplate = `<div class="no-friend">
+        <div class="loader"></div>
+        <div>새로운 친구를 추가해보세요</div>
+        </div>`;
+        friendList.insertAdjacentHTML("beforeend", noFriendTemplate);
       }
     });
 });

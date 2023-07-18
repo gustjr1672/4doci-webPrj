@@ -10,6 +10,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,11 +37,18 @@ public class FriendManageController {
         return list;
     }
 
-    @GetMapping("friends/list")
+    @GetMapping("friends/list/{nickname}")
     public List<Member> list(
             @AuthenticationPrincipal MyUserDetails user,
-            @RequestParam(name = "n", required = false) String nickname) {
+            @PathVariable("nickname") String nickname) {
         List<Member> friendList = friendManageService.getFriendListByNickname(user.getId(), nickname);
+        return friendList;
+    }
+
+    @GetMapping("friends/list")
+    public List<Member> list(
+            @AuthenticationPrincipal MyUserDetails user) {
+        List<Member> friendList = friendManageService.getFriendList(user.getId());
         return friendList;
     }
 
