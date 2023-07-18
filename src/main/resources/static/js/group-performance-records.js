@@ -237,7 +237,7 @@ turnBtn.addEventListener("click", function (e) {
 });
 
 turnModal.addEventListener("click", function (e) {
-  if (e.target.className != "turn-modal-close-btn") return;
+  if (!e.target.classList.contains("turn-modal-close-btn")) return;
 
   turnModalContent.classList.remove("active");
   setTimeout(function () {
@@ -246,7 +246,7 @@ turnModal.addEventListener("click", function (e) {
   }, 300);
 });
 friendTurnModal.addEventListener("click", function (e) {
-  if (e.target.className != "turn-modal-close-btn") return;
+  if (!e.target.classList.contains("turn-modal-close-btn")) return;
 
   friendTurnModalContent.classList.remove("active");
   setTimeout(function () {
