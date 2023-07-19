@@ -83,8 +83,8 @@
     </section>
 
 
-        <div class="chal-section" th:data-user-id="${user.id}">
-            <div class="btn-wrap" th:each="all:${allChallengesList}" th:if="${all.performanceRecordsId}!=null">
+        <div class="chal-section" th:data-user-id="${user.id}" th:data-now-date="${currentDate}">
+            <div class="btn-wrap" th:each="all:${allChallengesList}" th:if="${all.performanceRecordsId}!=null and ${all.endDate} > ${currentDate}  ">
                 <button class="chal-btn cursor zoom-2" th:data-unique-id="${all.uniqueId}" data-challenge-state="진행중">
                     <span class="chal-title" th:text="${all.name}">하루에 30분이상 운동하고 치킨먹고 자기</span>
                     <div class="prog-wrap">

@@ -32,7 +32,7 @@ let categorySelect = categoryFilter.querySelector("select");
 categorySelect.onchange = (e) => { // 카테고리 선택시 url 생성 후 목록 출력
     e.preventDefault();
     let selectedOption = categorySelect.options[categorySelect.selectedIndex];
-    let url = `http://localhost:8080/admin/api/randomchallenges?c=${selectedOption.dataset.id}`;
+    let url = `/admin/api/randomchallenges?c=${selectedOption.dataset.id}`;
     console.log(selectedOption.dataset.id);
     challengeListLoad(url);
 }

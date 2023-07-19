@@ -55,8 +55,8 @@ public class Scheduler {
     }
 
     // 그룹도전 시작
-    // @Scheduled(cron = "0 0 0/1 * * *") // 매 1시간마다 실행
     // @Scheduled(cron = "*/10 * * * * *") // 매 10초마다 실행
+     @Scheduled(cron = "0 0 0/1 * * *") // 매 1시간마다 실행
     void runScheduleGroupTask() {
         LocalDate currentDate = LocalDate.now();
         LocalTime currentTime = LocalTime.now();
