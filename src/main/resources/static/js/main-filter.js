@@ -40,6 +40,7 @@ function bringOngoingChallenge() {
     let chalListSection = document.querySelector(".chal-list");
     let chalList = chalListSection.querySelector(".chal-section");
     let userId = chalList.dataset.userId;
+    let currentDate = chalList.dataset.nowDate;
     fetch(`/api/all-challenges/${userId}`,)
         .then(response => response.json())
         .then(allChallengelist => {
@@ -50,7 +51,8 @@ function bringOngoingChallenge() {
             }
 
             for (let challenge of allChallengelist) {
-                if (challenge.performanceRecordsId != null) {
+
+                if (challenge.performanceRecordsId != null && challenge.endDate > currentDate) {
                     let chalTemplate =
                         `<div class="btn-wrap" >
                             <button class="chal-btn cursor zoom-2" data-unique-id="${challenge.uniqueId}" data-challenge-state="진행중">

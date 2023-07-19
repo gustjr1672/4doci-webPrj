@@ -34,8 +34,10 @@ public class MainController {
         long count = allChallengesList.stream()
                 .filter(allChallenges -> allChallenges.getPerformanceRecordsId() != null)
                 .count();
+
         model.addAttribute("ongoingChallengeCnt", count);
         LocalDate currentDate = LocalDate.now();
+
         model.addAttribute("allChallengesList", allChallengesList);
         model.addAttribute("currentDate", currentDate);
         model.addAttribute("user", user);
