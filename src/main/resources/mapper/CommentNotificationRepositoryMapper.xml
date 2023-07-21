@@ -15,6 +15,7 @@
         from comment_notification_view
         where to_member_id = #{toMemberId}
          and from_member_id != #{toMemberId}
+         order by reg_date DESC
     </select>
 
     <delete id="delete">

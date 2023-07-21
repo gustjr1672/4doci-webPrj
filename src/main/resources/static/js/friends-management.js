@@ -120,7 +120,7 @@ friendListBtn.addEventListener("click", () => {
             <span>${friend.nickname}</span>
           </div>
         </button>
-        <button data-id="${friend.id}" id="friend-delete" class="delete">삭제</button>
+        <button data-id="${friend.id}" id="friend-delete" class="delete zoom-4 cursor">삭제</button>
       </div>`;
           friendList.insertAdjacentHTML("beforeend", friendListTemplate);
         }
@@ -155,7 +155,7 @@ friendSearchBtn.addEventListener("click", () => {
               <span>${friend.nickname}</span>
             </div>
           </button>
-          <button data-id="${friend.id}" id="friend-delete" class="delete">삭제</button>
+          <button data-id="${friend.id}" id="friend-delete" class="delete zoom-4 cursor">삭제</button>
         </div>`;
           friendList.insertAdjacentHTML("beforeend", friendListTemplate);
         }
@@ -204,7 +204,7 @@ modalDeleteBtn.addEventListener("click", (e) => {
               <span>${friend.nickname}</span>
             </div>
           </button>
-          <button data-id=${friend.id} id="friend-delete" class="delete">삭제</button>
+          <button data-id=${friend.id} id="friend-delete" class="delete zoom-4 cursor">삭제</button>
         </div>`;
           friendList.insertAdjacentHTML("beforeend", friendListTemplate);
         }

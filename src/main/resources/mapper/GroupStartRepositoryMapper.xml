@@ -28,6 +28,10 @@
         DELETE from group_start
         where group_challenge_id = #{challengeId} and to_member_id = #{memberId};
     </delete>
+    <delete id="deleteById">
+        DELETE from group_start
+        where id = #{id};
+    </delete>
         <update id="update">
         UPDATE group_start
         SET result = #{result}

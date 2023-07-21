@@ -30,7 +30,7 @@ public class NotificationHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        System.out.println("Socket 연결");
+        // System.out.println("Socket 연결");
         sessions.add(session);
         System.out.println(sendPushUsername(session));
         String senderId = sendPushUsername(session);
@@ -58,14 +58,13 @@ public class NotificationHandler extends TextWebSocketHandler {
                     sendedPushSession.sendMessage(textMsg);
                 }
 
-
             }
         }
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        System.out.println("Socket 연결 해제");
+        // System.out.println("Socket 연결 해제");
         sessions.remove(session);
         userSessionMap.remove(sendPushUsername(session), session);
     }

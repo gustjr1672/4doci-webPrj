@@ -118,7 +118,6 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
 
     @Override
     public void deleteChallenge(String challengeId) {
-
         List<Object> typeAndId = SeparateTypeAndId(challengeId);
         String type = (String) typeAndId.get(0);
         int id = (int) typeAndId.get(1);
@@ -132,6 +131,8 @@ public class PerformanceRecordsServiceImp implements PerformanceRecordsService {
                 break;
             case GROUPSTART:
                 // 그룹도전 합치고 구현
+                System.out.println(id);
+                groupStartRepository.deleteById(id);
                 break;
         }
 

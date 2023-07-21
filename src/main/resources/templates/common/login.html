@@ -1,54 +1,66 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/login.css" />
+    <link href="/css/animation.css" type="text/css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
+      rel="stylesheet"
+    />
+    <title>login</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-img">
+        <img src="/image/header/blackLogo.png" alt="4docciImg" class="zoom-4 cursor" />
+      </div>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/css/login.css" />
-  <link href="/css/animation.css" type="text/css" rel="stylesheet"/> 
-  <link
-          href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css"
-          rel="stylesheet"
-  />
-  <title>login</title>
-</head>
-<body>
-<header>
-  <div class="header-img">
-    <img src="/image/header/blackLogo.png" alt="4docciImg" class="zoom-4 cursor" />
-  </div>
+      <div class="header-text">회원 로그인</div>
+    </header>
 
-  <div class="header-text">회원 로그인</div>
-</header>
+    <form action="/login" method="post">
+      <div class="input-form">
+        <input
+          type="text"
+          required
+          id="username"
+          name="userId"
+          placeholder="아이디"
+          autocomplete="off"
+        />
+        <input type="password" required id="password" name="pwd" placeholder="비밀번호" />
+        <div class="wrong-error" th:if="${param.error}">
+          아이디 또는 비밀번호가 일치하지 않습니다.
+        </div>
+      </div>
 
-<form action="/login" method="post">
-  <div class="input-form">
-    <input type="text" required id="username" name="userId" placeholder="아이디" autocomplete="off"/>
-    <input type="password" required id="password" name="pwd" placeholder="비밀번호" />
-    <div class="wrong-error" th:if="${param.error}">아이디 또는 비밀번호가 일치하지 않습니다.</div>
-  </div>
+      <div class="login-btn">
+        <button type="submit" class="brighten-2 cursor">로그인</button>
+      </div>
+    </form>
 
-  <div class="login-btn">
-    <button type="submit" class="brighten-2 cursor">로그인</button>
-  </div>
-</form>
+    <div class="util">
+      <div class="a">
+        <a href="agreement.html" th:href="@{/join/email-verification}" class="bold cursor"
+          >회원가입</a
+        >
+        <span> | </span>
+        <a href="" class="bold cursor">회원정보 찾기</a>
+      </div>
+    </div>
 
-
-<div class="util">
-  <div class="a">
-    <a href="agreement.html" th:href="@{/join/email-verification}" class="bold cursor">회원가입</a>
-    <span> | </span>
-    <a href="" class="bold cursor">회원정보 찾기</a>
-  </div>
-</div>
-
-<p class="sns-text">SNS로그인</p>
-<div class="sns-img">
-  <a href="/oauth2/authorization/google" ><img src="/image/login/googleLogo.png" alt="googleLogo" class="zoom-4 cursor"/></a>
-  <a href="/oauth2/authorization/naver"><img src="/image/login/naverLoge.png" alt="naverLogo"  class="zoom-4 cursor"/></a>
-  <a href="/oauth2/authorization/kakao"><img src="/image/login/kakaoLogo.png" alt="kakaoLogo"  class="zoom-4 cursor"/></a>
-</div>
-</body>
-
+    <p class="sns-text">SNS로그인</p>
+    <div class="sns-img">
+      <a href="/oauth2/authorization/google"
+        ><img src="/image/login/googleLogo.png" alt="googleLogo" class="zoom-4 cursor"
+      /></a>
+      <!-- <a href="/oauth2/authorization/naver"><img src="/image/login/naverLoge.png" alt="naverLogo"  class="zoom-4 cursor"/></a> -->
+      <a href="/oauth2/authorization/kakao"
+        ><img src="/image/login/kakaoLogo.png" alt="kakaoLogo" class="zoom-4 cursor"
+      /></a>
+    </div>
+  </body>
 </html>

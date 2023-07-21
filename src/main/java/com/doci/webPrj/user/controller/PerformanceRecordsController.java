@@ -62,7 +62,6 @@ public class PerformanceRecordsController {
 
     @GetMapping("performance-records/delete")
     public String PerformanceRecordsDelete(@RequestParam(name = "cid") String challengeId) {
-
         performanceRecordsService.deleteChallenge(challengeId);
 
         return "redirect:/main";
