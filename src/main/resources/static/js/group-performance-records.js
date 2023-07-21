@@ -73,7 +73,7 @@ closeBtn.addEventListener("click", function () {
 });
 
 giveUpBtn.addEventListener("click", function () {
-  location.href = `performance-records/delete?cid=${uniqueId}`;
+  location.href = `/performance-records/delete?cid=${uniqueId}`;
 });
 let groupStatus = document.querySelector(".group-status");
 const groupChallengeId = deleteBtn.dataset.groupChallengeId;

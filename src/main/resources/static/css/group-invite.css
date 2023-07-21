@@ -1,141 +1,138 @@
-
 * {
-    font-family: "SUIT", sans-serif !important;
-  }
-
-
-.invite-wrap{
-    margin-top: 76px;
-    border-radius: 12px;
-
-    width: 100%;
-    background-color: #ffffff;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 32px;
+  font-family: "SUIT", sans-serif !important;
 }
 
-.invite-wrap p{
-    font-size: 14px;
-    font-weight: bold;
-    color:#333333;
+.invite-wrap {
+  margin-top: 76px;
+  border-radius: 12px;
 
-    margin-top: 44px;
-    width: 312px;
+  width: 100%;
+  background-color: #ffffff;
 
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.invite-wrap p {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+
+  margin-top: 44px;
+  width: 312px;
+
+  text-align: center;
 }
 
 /* 모달 바디 -친구 목록 */
 .friends-list {
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 
-    height: 348px;
-    width: 100%;
-    max-width: 480px;
-    overflow: scroll;
+  height: 348px;
+  width: 100%;
+  max-width: 480px;
+  overflow: scroll;
+  gap: 14px;
 }
 
-.friends-list::-webkit-scrollbar{
-    display: none;
+.friends-list::-webkit-scrollbar {
+  display: none;
 }
 
 .friends-list .content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    /* max-width: 450px; */
-    width: 100%;
-    padding: 10px 10px;
-    background-color: white;
-    border: none;
-    height: 68px;
-    box-sizing: border-box;
-    padding: 0 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* max-width: 450px; */
+  width: 100%;
+  padding: 10px 10px;
+  background-color: white;
+  border: none;
+  height: 68px;
+  box-sizing: border-box;
+  padding: 0 40px;
 }
 
 .friends-list .content .info {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
 }
 
 .friends-list .content .info div {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
 }
 
 .content img {
-    width: 50px;
-    height: 50px;
-    border-radius: 60px;
+  width: 50px;
+  height: 50px;
+  border-radius: 60px;
 }
-  
+
 .content span {
-    margin: 0px;
-    font-size: 12px;
-    font-weight: medium;
-    color:#333333;
+  margin: 0px;
+  font-size: 12px;
+  font-weight: medium;
+  color: #333333;
 }
 
-.content input[type=checkbox]{
-    appearance: none;   /*기본스타일 없애기 */
-    border: 1px solid #949494;
-    border-radius: 30px;
-    width: 30px;
-    height: 30px;
+.content input[type="checkbox"] {
+  appearance: none; /*기본스타일 없애기 */
+  border: 1px solid #949494;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
 }
-.content input[type=checkbox]:checked{
-    background-image: url("/image/freechallenge/select.png");
-    background-repeat: no-repeat;
-    border: none;
-    
+.content input[type="checkbox"]:checked {
+  background-image: url("/image/freechallenge/select.png");
+  background-repeat: no-repeat;
+  border: none;
 }
-.btns{
-    width: 100%;
-    max-width: 480px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
+.btns {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 }
-.btns button:nth-child(1){
-    border: none;
-    border-radius: 12px;
+.btns button:nth-child(1) {
+  border: none;
+  border-radius: 12px;
 
-    font-size: 14px;
-    font-weight: 500;
-    color: #383D66;
+  font-size: 14px;
+  font-weight: 500;
+  color: #383d66;
 
-    background-color: #ffffff;
-    border: 1px solid #383D66 ;
-    width: 40%;
-    height: 47px;
-    margin-top: 30px;
+  background-color: #ffffff;
+  border: 1px solid #383d66;
+  width: 40%;
+  height: 47px;
+  margin-top: 30px;
 }
 
-.btns button:nth-child(2){
-    border: none;
-    border-radius: 12px;
+.btns button:nth-child(2) {
+  border: none;
+  border-radius: 12px;
 
-    font-size: 14px;
-    font-weight: 500;
-    color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
 
-    background-color: #383D66;
-    width: 40%;
-    height: 47px;
-    margin-top: 30px;
+  background-color: #383d66;
+  width: 40%;
+  height: 47px;
+  margin-top: 30px;
 }
