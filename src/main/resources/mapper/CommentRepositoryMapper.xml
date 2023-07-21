@@ -7,7 +7,8 @@
     <select id="findViewByRecordId">
         select * from comment_view
         where performance_records_id = #{recordId}
-        order by reg_date
+        order by reg_date DESC
+
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
@@ -38,5 +39,6 @@
         select *
         from comment_view
         where coalesce(choice_id, free_challenge_id, group_start_id) = #{challengeId}
+        order by reg_date DESC
     </select>
 </mapper>
