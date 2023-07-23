@@ -39,10 +39,13 @@
 
 ### 도전 등록
 
-| 개인도전 등록 | 랜덤도전 등록 | 그룹도전 등록 | 그룹도전 초대 알림 | 
-| :---: | :---: | :---: | :---: |
-| <img src= "https://github.com/gustjr1672/4doci-webPrj/assets/62335548/7c414cc3-7879-4813-b3b0-ceb9471e27b3" width="250px" height="429px"> | <img src= "https://github.com/gustjr1672/4doci-webPrj/assets/62335548/a17a12aa-3322-43db-9cc4-1c9996f22cbd" width="250px" height="429px"> | <img src= "https://github.com/gustjr1672/4doci-webPrj/assets/62335548/4e639241-da0b-4831-8352-c22fae53b46a" width="250px" height="429px"> | <img src= "https://github.com/gustjr1672/4doci-webPrj/assets/62335548/024e08a5-acfd-4078-b1e7-b5ae7aa918a4" width="250px" height="429px">
+| 개인도전 등록 | 랜덤도전 등록 | 
+| :---: | :---: | 
+| <img src= "https://github.com/gustjr1672/4doci-webPrj/assets/62335548/7c414cc3-7879-4813-b3b0-ceb9471e27b3" width="250px" height="429px"> | <img src= "https://github.com/gustjr1672/4doci-webPrj/assets/62335548/a17a12aa-3322-43db-9cc4-1c9996f22cbd" width="250px" height="429px"> |
 
+|그룹도전 등록 | 그룹도전 초대 알림 | 
+|:---: | :---: |
+| <img src= "https://github.com/gustjr1672/4doci-webPrj/assets/62335548/4e639241-da0b-4831-8352-c22fae53b46a" width="250px" height="429px"> | <img src= "https://github.com/gustjr1672/4doci-webPrj/assets/62335548/024e08a5-acfd-4078-b1e7-b5ae7aa918a4" width="250px" height="429px"> |
 <br>
 
 ### 친구관리
@@ -55,10 +58,13 @@
 
 ### 커뮤니티
 
-| 댓글 | 댓글 알림| 친구 도전 따라하기 | 도전 기록 자세히보기 |
-| :---: | :---: | :---: | :---: |
-| <img src= "https://github.com/gustjr1672/4doci-webPrj/assets/62335548/228d3101-f6df-4fa3-a0c8-d2ced9c42370" width="250px" height="429px"> | <img src= "https://github.com/gustjr1672/4doci-webPrj/assets/62335548/0cb67dbb-9696-4fa0-8f14-ef66275ac07b" width="250px" height="429px"> | <img src= "https://github.com/gustjr1672/4doci-webPrj/assets/62335548/0b7c2b84-82dc-44c6-9f92-cf13e6fc25fc" width="250px" height="429px"> | <img src= "https://github.com/gustjr1672/4doci-webPrj/assets/62335548/dc152d63-0f77-4257-87cb-e3578c7b8503" width="250px" height="429px"> |
+| 댓글 | 댓글 알림| 
+| :---: | :---: |
+| <img src= "https://github.com/gustjr1672/4doci-webPrj/assets/62335548/228d3101-f6df-4fa3-a0c8-d2ced9c42370" width="250px" height="429px"> | <img src= "https://github.com/gustjr1672/4doci-webPrj/assets/62335548/0cb67dbb-9696-4fa0-8f14-ef66275ac07b" width="250px" height="429px"> |
 
+|친구 도전 따라하기 | 도전 기록 자세히보기 |
+| :---: | :---: |
+| <img src= "https://github.com/gustjr1672/4doci-webPrj/assets/62335548/0b7c2b84-82dc-44c6-9f92-cf13e6fc25fc" width="250px" height="429px"> | <img src= "https://github.com/gustjr1672/4doci-webPrj/assets/62335548/dc152d63-0f77-4257-87cb-e3578c7b8503" width="250px" height="429px"> |
 <br>
 
 ### 개인정보 수정
